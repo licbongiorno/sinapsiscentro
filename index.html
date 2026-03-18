@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SINAPSIS – Centro de Salud Integral | Berazategui</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy:      #0d2b3e;
+    --teal:      #1a6e7a;
+    --teal-mid:  #2a9aaa;
+    --teal-soft: #7ecfda;
+    --teal-pale: #d6f0f4;
+    --warm:      #c8a87a;
+    --warm-soft: #f4ede2;
+    --white:     #ffffff;
+    --bg:        #f6fbfc;
+    --text:      #1c3340;
+    --text-soft: #5a7a8a;
+    --radius:    16px;
+    --shadow:    0 8px 40px rgba(13,43,62,0.10);
+    --shadow-sm: 0 2px 16px rgba(13,43,62,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 18px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(42,154,170,0.12);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow-sm); }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-circle {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-circle svg { width: 26px; height: 26px; fill: white; }
+  .nav-brand-text { line-height: 1.1; }
+  .nav-brand-text strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 600;
+    color: var(--navy); letter-spacing: 0.05em;
+  }
+  .nav-brand-text span {
+    font-size: 0.68rem; font-weight: 400;
+    color: var(--teal-mid); letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-soft);
+    font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.03em;
+    position: relative; transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content:''; position: absolute; bottom:-3px; left:0; right:100%;
+    height:2px; background: var(--teal-mid);
+    transition: right 0.3s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-links a:hover::after { right: 0; }
+
+  .nav-cta {
+    background: var(--teal); color: white !important;
+    padding: 9px 22px; border-radius: 50px;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--navy) !important; transform: translateY(-1px); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--navy) 0%, #0f4356 50%, #1a6e7a 100%);
+  }
+
+  #neural-canvas {
+    position: absolute; inset: 0;
+    opacity: 0.35;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    width: 90%; max-width: 760px;
+    margin: 0 auto; padding: 120px 0 80px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(126,207,218,0.18);
+    border: 1px solid rgba(126,207,218,0.35);
+    padding: 7px 18px; border-radius: 50px;
+    font-size: 0.78rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--teal-soft);
+    margin-bottom: 32px;
+    animation: fadeDown 0.8s ease both;
+  }
+  .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-soft); display: block; }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-weight: 300; line-height: 1.0;
+    color: white; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    animation: fadeDown 0.8s 0.15s ease both;
+  }
+  .hero-title em {
+    font-style: italic; font-weight: 300;
+    color: var(--teal-soft);
+  }
+
+  .hero-sub {
+    margin-top: 10px;
+    font-size: 0.85rem; letter-spacing: 0.28em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    animation: fadeDown 0.8s 0.25s ease both;
+  }
+
+  .hero-desc {
+    margin: 28px auto 0;
+    max-width: 520px;
+    font-size: 1.1rem; line-height: 1.75;
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    animation: fadeDown 0.8s 0.35s ease both;
+  }
+
+  .hero-pills {
+    margin-top: 36px;
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    animation: fadeDown 0.8s 0.45s ease both;
+  }
+  .hero-pill {
+    padding: 8px 20px; border-radius: 50px;
+    border: 1px solid rgba(126,207,218,0.35);
+    color: var(--teal-soft); font-size: 0.83rem;
+    background: rgba(126,207,218,0.08);
+    transition: all 0.25s;
+  }
+  .hero-pill:hover {
+    background: rgba(126,207,218,0.22);
+    border-color: var(--teal-soft);
+    transform: translateY(-2px);
+  }
+
+  .hero-btns {
+    margin-top: 44px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    animation: fadeDown 0.8s 0.55s ease both;
+  }
+  .btn-primary {
+    background: var(--teal-mid); color: white;
+    padding: 15px 36px; border-radius: 50px;
+    text-decoration: none; font-weight: 500; font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    transition: all 0.25s; box-shadow: 0 4px 20px rgba(42,154,170,0.4);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--teal-soft); color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(42,154,170,0.5); }
+  .btn-secondary {
+    color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.28);
+    padding: 15px 36px; border-radius: 50px;
+    text-decoration: none; font-weight: 400; font-size: 0.95rem;
+    transition: all 0.25s; background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.5); color: white; }
+
+  .hero-scroll {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.35); font-size: 0.72rem; letter-spacing: 0.2em;
+    text-transform: uppercase; animation: bounce 2.5s infinite;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+  }
+
+  /* ─── SECTIONS COMMON ─── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--teal-mid); font-weight: 600; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before {
+    content:''; width: 28px; height: 2px; background: var(--teal-mid);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 400;
+    line-height: 1.2; color: var(--navy);
+  }
+  .section-title em { font-style: italic; color: var(--teal); }
+
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: white;
+  }
+  .about-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  @media(max-width:768px){ .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: var(--text-soft); margin-top: 22px; font-weight: 300;
+  }
+
+  .about-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .about-card {
+    background: var(--bg);
+    border: 1px solid rgba(42,154,170,0.12);
+    border-radius: var(--radius); padding: 24px 22px;
+    transition: all 0.3s;
+  }
+  .about-card:hover {
+    border-color: var(--teal-mid);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-3px);
+  }
+  .about-card .icon {
+    font-size: 1.8rem; margin-bottom: 10px;
+  }
+  .about-card h4 {
+    font-size: 0.92rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .about-card p { font-size: 0.83rem; color: var(--text-soft); line-height: 1.5; }
+
+  /* ─── SERVICES ─── */
+  #services {
+    background: linear-gradient(170deg, var(--teal-pale) 0%, var(--bg) 60%);
+  }
+  .services-header { max-width: 1100px; margin: 0 auto 60px; }
+
+  .services-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  @media(max-width:768px){ .services-grid { grid-template-columns: 1fr; } }
+
+  .service-block {
+    background: white; border-radius: 20px;
+    padding: 36px; box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(42,154,170,0.08);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .service-block:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+
+  .service-block-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px;
+  }
+  .service-block-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+  .terapias .service-block-icon { background: rgba(42,154,170,0.12); }
+  .evaluaciones .service-block-icon { background: rgba(200,168,122,0.15); }
+  .service-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem; font-weight: 600;
+    color: var(--navy); letter-spacing: 0.05em;
+  }
+
+  .service-list { list-style: none; }
+  .service-list li {
+    display: flex; align-items: center; gap: 14px;
+    padding: 13px 0; border-bottom: 1px solid rgba(42,154,170,0.08);
+    font-size: 0.96rem; color: var(--text); transition: all 0.2s;
+  }
+  .service-list li:last-child { border-bottom: none; }
+  .service-list li:hover { color: var(--teal); padding-left: 6px; }
+  .service-list li .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--teal-mid); flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .service-list li:hover .dot { transform: scale(1.5); }
+  .evaluaciones .service-list li .dot { background: var(--warm); }
+
+  .cud-banner {
+    max-width: 1100px; margin: 32px auto 0;
+    background: var(--navy);
+    border-radius: var(--radius); padding: 28px 36px;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .cud-banner .cud-icon { font-size: 2rem; }
+  .cud-banner p {
+    color: white; font-size: 1rem; font-weight: 400;
+    line-height: 1.5;
+  }
+  .cud-banner strong { color: var(--teal-soft); }
+
+  /* ─── HORARIOS ─── */
+  #horarios { background: white; }
+  .horarios-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    margin-top: 48px;
+  }
+  @media(max-width:600px){ .horarios-inner { grid-template-columns:1fr; } }
+
+  .horario-card {
+    border-radius: 20px; padding: 38px 32px; text-align: center;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .horario-card:hover { transform: translateY(-4px); }
+  .horario-card.lv {
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
+    color: white;
+  }
+  .horario-card.sa {
+    background: white; border: 2px solid var(--teal-pale);
+    color: var(--navy);
+  }
+  .horario-card::before {
+    content:''; position: absolute; top: -40px; right: -40px;
+    width: 120px; height: 120px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .horario-card .day-icon { font-size: 2.4rem; margin-bottom: 14px; }
+  .horario-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; margin-bottom: 8px;
+  }
+  .horario-card .time {
+    font-size: 1.15rem; font-weight: 500; opacity: 0.9;
+    letter-spacing: 0.03em;
+  }
+  .horario-card.sa .time { color: var(--teal-mid); }
+
+  /* ─── MAPA ─── */
+  #ubicacion { background: var(--bg); }
+  .map-wrapper {
+    max-width: 1100px; margin: 48px auto 0;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 32px;
+    align-items: start;
+  }
+  @media(max-width:768px){ .map-wrapper { grid-template-columns:1fr; } }
+
+  .map-info {
+    background: white; border-radius: 20px;
+    padding: 32px; box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(42,154,170,0.1);
+  }
+  .map-info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 20px;
+  }
+  .info-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 0; border-bottom: 1px solid var(--teal-pale);
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--teal-pale); display: flex; align-items: center;
+    justify-content: center; font-size: 1rem; flex-shrink: 0;
+  }
+  .info-row div { flex: 1; }
+  .info-row .label {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal-mid); font-weight: 600; margin-bottom: 3px;
+  }
+  .info-row .value {
+    font-size: 0.93rem; color: var(--text); font-weight: 400; line-height: 1.4;
+  }
+  .info-row a { color: var(--teal); text-decoration: none; }
+  .info-row a:hover { text-decoration: underline; }
+
+  .map-frame {
+    border-radius: 20px; overflow: hidden;
+    box-shadow: var(--shadow-sm); height: 420px;
+    border: 1px solid rgba(42,154,170,0.1);
+  }
+  .map-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  /* ─── CONTACT ─── */
+  #contacto {
+    background: linear-gradient(150deg, var(--navy) 0%, #0f4356 100%);
+    text-align: center;
+  }
+  #contacto .section-label { justify-content: center; color: var(--teal-soft); }
+  #contacto .section-label::before { background: var(--teal-soft); }
+  #contacto .section-title { color: white; }
+  #contacto .section-title em { color: var(--teal-soft); }
+
+  .contact-desc {
+    color: rgba(255,255,255,0.62); font-size: 1.05rem;
+    max-width: 500px; margin: 18px auto 44px;
+    font-weight: 300; line-height: 1.7;
+  }
+
+  .contact-btns {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .contact-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 16px 32px; border-radius: 50px;
+    text-decoration: none; font-weight: 500; font-size: 0.95rem;
+    transition: all 0.25s;
+  }
+  .contact-btn.wa {
+    background: #25D366; color: white;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  }
+  .contact-btn.wa:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.45); }
+  .contact-btn.mail {
+    background: rgba(255,255,255,0.1); color: white;
+    border: 1px solid rgba(255,255,255,0.22);
+  }
+  .contact-btn.mail:hover { background: rgba(255,255,255,0.18); }
+  .contact-btn.ig {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: white;
+    box-shadow: 0 4px 20px rgba(253,29,29,0.3);
+  }
+  .contact-btn.ig:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #071820; padding: 28px 5%;
+    text-align: center;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer p { color: rgba(255,255,255,0.35); font-size: 0.82rem; }
+  footer a { color: var(--teal-soft); text-decoration: none; }
+
+  /* ─── FLOATING WHATSAPP ─── */
+  .fab-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    display: flex; align-items: center; gap: 12px;
+    background: #25D366; color: white;
+    padding: 14px 22px; border-radius: 50px;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    box-shadow: 0 6px 30px rgba(37,211,102,0.45);
+    transition: all 0.3s;
+    animation: pulse-wa 2.5s infinite;
+  }
+  .fab-wa:hover {
+    background: #1ebe5d; transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 40px rgba(37,211,102,0.55);
+    animation: none;
+  }
+  .fab-wa svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+  .fab-wa .fab-num { font-size: 0.8rem; opacity: 0.9; }
+
+  @media(max-width:520px){
+    .fab-wa .fab-label { display: none; }
+    .fab-wa { padding: 16px; border-radius: 50%; gap: 0; }
+  }
+
+  /* ─── SCROLL TO TOP ─── */
+  .scroll-top {
+    position: fixed; bottom: 95px; right: 28px; z-index: 998;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(13,43,62,0.75); color: white;
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0.7);
+    transition: all 0.3s; backdrop-filter: blur(8px);
+    box-shadow: 0 3px 14px rgba(0,0,0,0.2);
+  }
+  .scroll-top.show { opacity: 1; transform: scale(1); }
+  .scroll-top:hover { background: var(--teal); }
+  .scroll-top svg { width: 18px; height: 18px; stroke: white; fill: none; }
+
+  @media(max-width:520px){
+    .scroll-top { bottom: 96px; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeDown {
+    from { opacity:0; transform: translateY(-18px); }
+    to   { opacity:1; transform: none; }
+  }
+  @keyframes bounce {
+    0%,100%{ transform: translateX(-50%) translateY(0); }
+    50%    { transform: translateX(-50%) translateY(8px); }
+  }
+  @keyframes pulse-wa {
+    0%,100%{ box-shadow: 0 6px 30px rgba(37,211,102,0.45); }
+    50%    { box-shadow: 0 6px 42px rgba(37,211,102,0.7); }
+  }
+
+  /* staggered reveal delays */
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-logo-circle">
+      <!-- Brain SVG icon -->
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M32 6C20 6 12 15 12 24c0 5 2 9 5 12-1 2-2 5-2 8 0 6 4 10 10 10 1 0 2 0 3-1 1 2 4 3 4 3s3-1 4-3c1 1 2 1 3 1 6 0 10-4 10-10 0-3-1-6-2-8 3-3 5-7 5-12 0-9-8-18-20-18zm0 4c10 0 16 7 16 14 0 4-2 8-5 10l-2 2 1 2c1 2 2 4 2 7 0 3-2 6-6 6-1 0-2-0-3-1l-2-1-1 2c-1 1-2 1-0 1s-1 0-0-1l-1-2-2 1c-1 1-2 1-3 1-4 0-6-3-6-6 0-3 1-5 2-7l1-2-2-2c-3-2-5-6-5-10 0-7 6-14 16-14z" opacity=".3"/><circle cx="24" cy="22" r="3"/><circle cx="40" cy="22" r="3"/><path d="M26 32 Q32 38 38 32" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="nav-brand-text">
+      <strong>SINAPSIS</strong>
+      <span>Centro de Salud Integral</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#services">Servicios</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="https://wa.me/5491168567160" target="_blank" class="nav-cta">Turnos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="neural-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Centro de Salud Integral <span></span></div>
+    <h1 class="hero-title">SINA<em>PSIS</em></h1>
+    <p class="hero-sub">Berazategui · Equipo Interdisciplinario</p>
+    <p class="hero-desc">
+      Un espacio pensado para acompañar el desarrollo,<br>
+      el aprendizaje y el bienestar de niños, adolescentes,
+      adultos y familias.
+    </p>
+    <div class="hero-pills">
+      <div class="hero-pill">Psicología</div>
+      <div class="hero-pill">Psicopedagogía</div>
+      <div class="hero-pill">Fonoaudiología</div>
+      <div class="hero-pill">Terapia Ocupacional</div>
+      <div class="hero-pill">Evaluaciones</div>
+    </div>
+    <div class="hero-btns">
+      <a href="https://wa.me/5491168567160" target="_blank" class="btn-primary">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir turno
+      </a>
+      <a href="#services" class="btn-secondary">
+        Ver servicios ↓
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Deslizar
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label">Quiénes somos</div>
+      <h2 class="section-title">Un espacio de<br><em>salud y bienestar</em></h2>
+      <p>Somos un centro terapéutico interdisciplinario orientado al acompañamiento integral de personas en todas las etapas de la vida. Nuestro equipo trabaja de forma coordinada para ofrecer la mejor atención posible.</p>
+      <p>Trabajamos con obras sociales, prepagas y pacientes particulares. Acompañamos a personas con CUD y sin CUD.</p>
+    </div>
+    <div class="about-cards reveal delay-2">
+      <div class="about-card">
+        <div class="icon">🧒</div>
+        <h4>Niños</h4>
+        <p>Estimulación, aprendizaje y desarrollo desde temprana edad.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🧑</div>
+        <h4>Adolescentes</h4>
+        <p>Acompañamiento en los cambios y desafíos de la etapa.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">👤</div>
+        <h4>Adultos</h4>
+        <p>Psicología, evaluaciones cognitivas y salud mental.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">👨‍👩‍👧</div>
+        <h4>Familias</h4>
+        <p>Mirada sistémica e integral de cada situación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-label">Especialidades</div>
+    <h2 class="section-title">Terapias &amp; <em>Evaluaciones</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-block terapias reveal delay-1">
+      <div class="service-block-header">
+        <div class="service-block-icon">🧩</div>
+        <h3>Terapias</h3>
+      </div>
+      <ul class="service-list">
+        <li><span class="dot"></span>Psicopedagogía</li>
+        <li><span class="dot"></span>Psicología</li>
+        <li><span class="dot"></span>Terapia Ocupacional</li>
+        <li><span class="dot"></span>Fonoaudiología</li>
+        <li><span class="dot"></span>Estimulación Temprana</li>
+        <li><span class="dot"></span>Estimulación Cognitiva</li>
+        <li><span class="dot"></span>Alfabetización</li>
+      </ul>
+    </div>
+    <div class="service-block evaluaciones reveal delay-2">
+      <div class="service-block-header">
+        <div class="service-block-icon">🔍</div>
+        <h3>Evaluaciones</h3>
+      </div>
+      <ul class="service-list">
+        <li><span class="dot"></span>Psicodiagnóstico</li>
+        <li><span class="dot"></span>ADOS 2 y ADI-R</li>
+        <li><span class="dot"></span>Evaluaciones Neurocognitivas</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cud-banner reveal delay-1">
+    <div class="cud-icon">✅</div>
+    <p><strong>Trabajamos con y sin CUD.</strong> Atendemos obras sociales y pacientes particulares. Consultanos por coberturas disponibles.</p>
+  </div>
+</section>
+
+<!-- HORARIOS -->
+<section id="horarios">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="reveal">
+      <div class="section-label">Disponibilidad</div>
+      <h2 class="section-title">Horarios de <em>Atención</em></h2>
+    </div>
+    <div class="horarios-inner">
+      <div class="horario-card lv reveal delay-1">
+        <div class="day-icon">📅</div>
+        <h3>Lunes a Viernes</h3>
+        <p class="time">9:00 – 20:00 hs.</p>
+      </div>
+      <div class="horario-card sa reveal delay-2">
+        <div class="day-icon">📆</div>
+        <h3>Sábados</h3>
+        <p class="time">9:00 – 13:00 hs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN + MAPA -->
+<section id="ubicacion">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal">
+      <div class="section-label">Dónde encontrarnos</div>
+      <h2 class="section-title">Nuestra <em>Ubicación</em></h2>
+    </div>
+  </div>
+  <div class="map-wrapper">
+    <div class="map-info reveal delay-1">
+      <h4>Sinapsis Centro</h4>
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="label">Dirección</div>
+          <div class="value">Calle 27 N°3907 esq. 139<br>Berazategui, Buenos Aires</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📞</div>
+        <div>
+          <div class="label">Teléfono / WhatsApp</div>
+          <div class="value"><a href="https://wa.me/5491168567160">11 6856-7160</a></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">✉️</div>
+        <div>
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:sinapsisdatos@gmail.com">sinapsisdatos@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📸</div>
+        <div>
+          <div class="label">Instagram</div>
+          <div class="value"><a href="https://instagram.com/sinapsiscentro" target="_blank">@sinapsiscentro</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="map-frame reveal delay-2">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-58.2180,-34.7870,-58.1980,-34.7730&layer=mapnik&marker=-34.7800,-58.2080"
+        title="Mapa Sinapsis Centro Berazategui"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-label reveal">Sumate</div>
+  <h2 class="section-title reveal delay-1">¿Querés <em>consultarnos</em>?</h2>
+  <p class="contact-desc reveal delay-2">Estamos disponibles para responder tus consultas y ayudarte a encontrar el turno que mejor se adapte a tus necesidades.</p>
+  <div class="contact-btns reveal delay-3">
+    <a href="https://wa.me/5491168567160" target="_blank" class="contact-btn wa">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:sinapsisdatos@gmail.com" class="contact-btn mail">
+      ✉️ Email
+    </a>
+    <a href="https://instagram.com/sinapsiscentro" target="_blank" class="contact-btn ig">
+      📸 Instagram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>SINAPSIS</strong> – Centro de Salud Integral · Berazategui</p>
+  <p><a href="https://instagram.com/sinapsiscentro" target="_blank">@sinapsiscentro</a></p>
+</footer>
+
+<!-- FLOATING WHATSAPP BTN -->
+<a href="https://wa.me/5491168567160" target="_blank" class="fab-wa" title="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="fab-label">Pedir turno</span>
+</a>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" title="Volver arriba">
+  <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<script>
+/* ── Neural Canvas Animation ── */
+const canvas = document.getElementById('neural-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, nodes = [];
+
+function resize() {
+  W = canvas.width  = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+
+function createNodes(n) {
+  nodes = [];
+  for (let i = 0; i < n; i++) {
+    nodes.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      r: Math.random() * 2.5 + 1.2,
+    });
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  const count = nodes.length;
+
+  // connections
+  for (let i = 0; i < count; i++) {
+    for (let j = i + 1; j < count; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 140) {
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.strokeStyle = `rgba(126,207,218,${0.55 * (1 - dist/140)})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+  }
+
+  // nodes
+  nodes.forEach(n => {
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(126,207,218,0.9)';
+    ctx.fill();
+    n.x += n.vx; n.y += n.vy;
+    if (n.x < 0 || n.x > W) n.vx *= -1;
+    if (n.y < 0 || n.y > H) n.vy *= -1;
+  });
+
+  requestAnimationFrame(draw);
+}
+
+resize();
+createNodes(72);
+draw();
+window.addEventListener('resize', () => { resize(); createNodes(72); });
+
+/* ── Navbar shadow on scroll ── */
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+  scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+/* ── Scroll reveal ── */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+reveals.forEach(r => observer.observe(r));
+
+/* ── Scroll to top ── */
+const scrollTopBtn = document.getElementById('scrollTop');
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>
