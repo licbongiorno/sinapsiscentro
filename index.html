@@ -1,13 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SINAPSIS – Centro de Salud Integral | Berazategui</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SINAPSIS – Centro de Salud Integral | Berazategui</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Agregada librería de iconos FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
 <style>
 /* ═══════════════════════════════════
    VARIABLES & RESET
@@ -27,7 +30,6 @@
   --text:       #0d2535;
   --text-mid:   #3a5a6a;
   --text-soft:  #6a8a9a;
-
   --easing: cubic-bezier(0.16, 1, 0.3, 1);
   --r: 18px;
   --r-lg: 28px;
@@ -73,6 +75,20 @@ body::before {
   opacity: 0.4; z-index: 0;
 }
 
+/* ── ESTILOS GLOBALES PARA ICONOS MEJORADOS ── */
+.icon i, .tile-icon i, .persona-big-icon i {
+  background: linear-gradient(135deg, var(--teal-deep), var(--teal-mid));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+.trust-card .tc-icon i, .cud-strip .icon i {
+  background: linear-gradient(135deg, var(--teal-pale), #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
 /* ═══════════════════════════════════
    NAVBAR
 ═══════════════════════════════════ */
@@ -83,7 +99,7 @@ nav {
   transition: all 0.4s var(--easing);
 }
 nav.solid {
-  background: rgba(8,32,46,0.92);
+  background: rgba(8,32,46,0.95);
   backdrop-filter: blur(20px);
   padding: 14px 6%;
   box-shadow: 0 2px 40px rgba(0,0,0,0.25);
@@ -94,8 +110,7 @@ nav.solid {
   text-decoration: none;
 }
 .logo-mark {
-  height: 46px;
-  width: auto;
+  height: 46px; width: auto;
   display: flex; align-items: center;
   background: none; box-shadow: none;
   filter: drop-shadow(0 2px 10px rgba(42,174,194,0.45));
@@ -349,7 +364,7 @@ nav.solid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
 }
 .pain-card {
-  background: white; border-radius: var(--r); padding: 22px 20px;
+  background: white; border-radius: var(--r); padding: 26px 22px;
   border: 1px solid rgba(42,174,194,0.1);
   transition: all 0.35s var(--easing);
   position: relative; overflow: hidden;
@@ -362,9 +377,9 @@ nav.solid {
 }
 .pain-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(26,122,138,0.12); }
 .pain-card:hover::before { transform: scaleY(1); }
-.pain-card .icon { font-size: 1.7rem; margin-bottom: 10px; }
-.pain-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
-.pain-card p { font-size: 0.8rem; color: var(--text-soft); line-height: 1.5; }
+.pain-card .icon { font-size: 1.8rem; margin-bottom: 14px; }
+.pain-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.pain-card p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.5; }
 
 /* ═══════════════════════════════════
    CÓMO FUNCIONA (3 pasos)
@@ -486,12 +501,12 @@ nav.solid {
 }
 .service-tile:hover .tile-icon { transform: scale(1.15) rotate(-4deg); }
 .service-tile h4 {
-  font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px;
+  font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 8px;
 }
-.service-tile p { font-size: 0.83rem; color: var(--text-soft); line-height: 1.6; }
+.service-tile p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.6; }
 .tile-tag {
   display: inline-block; margin-top: 14px; padding: 4px 12px; border-radius: 50px;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   background: var(--teal-pale); color: var(--teal);
 }
 
@@ -502,11 +517,11 @@ nav.solid {
   border-radius: var(--r-lg); padding: 32px 40px;
   display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
 }
-.cud-strip .icon { font-size: 2.2rem; }
+.cud-strip .icon { font-size: 2.4rem; }
 .cud-strip h4 {
   font-family: 'Playfair Display', serif; font-size: 1.4rem; color: white;
 }
-.cud-strip p { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-top: 4px; }
+.cud-strip p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin-top: 4px; }
 
 /* ═══════════════════════════════════
    PARA QUIÉN
@@ -533,13 +548,13 @@ nav.solid {
 .persona-card:nth-child(4) { background: linear-gradient(145deg, #e8f8ef, #d4f7e4); }
 .persona-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); border-color: rgba(42,174,194,0.2); }
 
-.persona-big-icon { font-size: 3rem; margin-bottom: 20px; display: block; transition: transform 0.3s var(--easing); }
-.persona-card:hover .persona-big-icon { transform: scale(1.2) rotate(-5deg); }
+.persona-big-icon { font-size: 2.8rem; margin-bottom: 20px; display: block; transition: transform 0.3s var(--easing); }
+.persona-card:hover .persona-big-icon { transform: scale(1.15) rotate(-5deg); }
 .persona-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--navy); margin-bottom: 12px; }
-.persona-card p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.65; }
+.persona-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
 .persona-card ul { margin-top: 14px; list-style: none; }
 .persona-card ul li {
-  font-size: 0.83rem; color: var(--text-soft); padding: 5px 0;
+  font-size: 0.85rem; color: var(--text-soft); padding: 5px 0;
   display: flex; align-items: center; gap: 8px;
 }
 .persona-card ul li::before { content:'·'; color: var(--teal-mid); font-size: 1.4rem; line-height: 0; }
@@ -599,7 +614,8 @@ nav.solid {
 .h-card:hover { transform: translateX(6px); }
 .h-card.lv { background: linear-gradient(135deg, var(--teal), var(--teal-mid)); }
 .h-card.sa { background: white; border: 1.5px solid var(--teal-pale); }
-.h-card .h-icon { font-size: 1.6rem; flex-shrink:0; }
+.h-card .h-icon { font-size: 1.8rem; flex-shrink:0; color: white; }
+.h-card.sa .h-icon { color: var(--teal-mid); }
 .h-card .h-day { font-weight: 700; font-size: 0.9rem; }
 .h-card .h-time { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.02em; }
 .h-card.lv .h-day, .h-card.lv .h-time { color: white; }
@@ -614,7 +630,10 @@ nav.solid {
   text-decoration: none; transition: all 0.25s; color: var(--text);
 }
 .c-pill:hover { border-color: var(--teal-mid); box-shadow: 0 4px 20px rgba(26,122,138,0.1); transform: translateX(4px); }
-.c-pill .ci { width: 38px; height: 38px; border-radius: 10px; background: var(--teal-pale); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.c-pill .ci {
+  width: 38px; height: 38px; border-radius: 10px; background: var(--teal-pale);
+  display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0;
+}
 .c-pill .cl { font-size: 0.68rem; text-transform:uppercase; letter-spacing:0.12em; color: var(--teal-mid); font-weight:700; margin-bottom:2px; }
 .c-pill .cv { font-size: 0.93rem; font-weight: 600; color: var(--navy); }
 
@@ -661,21 +680,24 @@ nav.solid {
 .btn-wa-main {
   background: #25D366; color: white;
   padding: 18px 38px; border-radius: 50px;
-  text-decoration: none; font-weight: 700; font-size: 1rem;
+  text-decoration: none; font-weight: 700; font-size: 1.05rem;
   display: flex; align-items: center; gap: 10px;
   box-shadow: 0 8px 28px rgba(37,211,102,0.4);
   transition: all 0.3s;
 }
 .btn-wa-main:hover { background: #1ebe5d; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
+.btn-wa-main i { font-size: 1.2rem; }
+
 .btn-ig {
   background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
   color: white; padding: 18px 38px; border-radius: 50px;
-  text-decoration: none; font-weight: 600; font-size: 1rem;
+  text-decoration: none; font-weight: 600; font-size: 1.05rem;
   display: flex; align-items: center; gap: 10px;
   box-shadow: 0 8px 28px rgba(253,29,29,0.3);
   transition: all 0.3s;
 }
-.btn-ig:hover { opacity: 0.9; transform: translateY(-3px); }
+.btn-ig:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(253,29,29,0.4); }
+.btn-ig i { font-size: 1.2rem; }
 
 /* ═══════════════════════════════════
    FOOTER
@@ -696,13 +718,13 @@ footer a:hover { color: white; }
   display: flex; align-items: center; gap: 12px;
   background: #25D366; color: white;
   padding: 15px 26px; border-radius: 50px;
-  text-decoration: none; font-weight: 700; font-size: 0.92rem;
+  text-decoration: none; font-weight: 700; font-size: 1rem;
   box-shadow: 0 8px 32px rgba(37,211,102,0.5);
   transition: all 0.3s;
   animation: fab-pulse 3s infinite;
 }
 .fab:hover { background: #1ebe5d; transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 48px rgba(37,211,102,0.6); animation: none; }
-.fab svg { width: 22px; height: 22px; fill: white; flex-shrink:0; }
+.fab i { font-size: 1.4rem; }
 @keyframes fab-pulse {
   0%,100%{ box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
   50%{ box-shadow: 0 8px 52px rgba(37,211,102,0.75); }
@@ -769,9 +791,9 @@ footer a:hover { color: white; }
 }
 .trust-card:hover { background: rgba(42,174,194,0.1); border-color: rgba(126,214,228,0.35); transform: translateY(-4px); }
 .trust-card:hover::before { transform: scaleX(1); }
-.trust-card .tc-icon { font-size: 1.8rem; margin-bottom: 10px; }
-.trust-card h4 { font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 6px; }
-.trust-card p { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.trust-card .tc-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.trust-card h4 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 6px; }
+.trust-card p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
 
 .promise-strip {
   max-width: 1160px; margin: 40px auto 0;
@@ -783,14 +805,14 @@ footer a:hover { color: white; }
 }
 .promise-item {
   display: flex; align-items: center; gap: 10px;
-  color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 600;
+  color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 600;
   letter-spacing: 0.04em;
 }
 .promise-item .pi-check {
-  width: 22px; height: 22px; border-radius: 50%;
+  width: 24px; height: 24px; border-radius: 50%;
   background: linear-gradient(135deg, var(--teal), var(--teal-mid));
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.65rem; flex-shrink: 0; color: white; font-weight: 700;
+  font-size: 0.75rem; flex-shrink: 0; color: white; font-weight: 700;
 }
 
 @media(max-width:768px){
@@ -902,22 +924,22 @@ footer a:hover { color: white; }
     </div>
     <div class="pain-cards rv from-right d1">
       <div class="pain-card">
-        <div class="icon">😔</div>
+        <div class="icon"><i class="fa-solid fa-school"></i></div>
         <h4>¿Tu hijo tiene dificultades en la escuela?</h4>
         <p>Evaluamos y acompañamos el aprendizaje desde una mirada integral.</p>
       </div>
       <div class="pain-card">
-        <div class="icon">🧠</div>
+        <div class="icon"><i class="fa-solid fa-brain"></i></div>
         <h4>¿Querés entender mejor cómo funciona tu mente?</h4>
         <p>Diagnóstico y terapia psicológica para adultos y adolescentes.</p>
       </div>
       <div class="pain-card">
-        <div class="icon">🗣️</div>
+        <div class="icon"><i class="fa-solid fa-comments"></i></div>
         <h4>¿Hay dificultades en el lenguaje o la comunicación?</h4>
         <p>Fonoaudiología y estimulación del desarrollo comunicativo.</p>
       </div>
       <div class="pain-card">
-        <div class="icon">💙</div>
+        <div class="icon"><i class="fa-solid fa-heart-pulse"></i></div>
         <h4>¿Sospechás que tu hijo podría estar en el espectro?</h4>
         <p>Evaluaciones especializadas ADOS 2 y ADI-R con equipo capacitado.</p>
       </div>
@@ -968,76 +990,78 @@ footer a:hover { color: white; }
   </div>
   <div class="services-tabs rv from-bottom d1">
     <div class="tab-btns">
-      <button class="tab-btn active" data-tab="terapias">🧩 Terapias</button>
-      <button class="tab-btn" data-tab="evaluaciones">🔍 Evaluaciones</button>
+      <button class="tab-btn active" data-tab="terapias"><i class="fa-solid fa-puzzle-piece" style="margin-right:6px"></i> Terapias</button>
+      <button class="tab-btn" data-tab="evaluaciones"><i class="fa-solid fa-magnifying-glass" style="margin-right:6px"></i> Evaluaciones</button>
     </div>
     <div class="tab-pane active" id="tab-terapias">
       <div class="service-tile rv scale-in d1">
-        <div class="tile-icon" style="background:#e8f8fb;">📚</div>
+        <div class="tile-icon" style="background:#e8f8fb;"><i class="fa-solid fa-book-open-reader"></i></div>
         <h4>Psicopedagogía</h4>
         <p>Acompañamiento en dificultades de aprendizaje, lecto-escritura, atención y organización escolar.</p>
         <span class="tile-tag">Aprendizaje</span>
       </div>
       <div class="service-tile rv scale-in d2">
-        <div class="tile-icon" style="background:#f0e8f8;">🧠</div>
+        <div class="tile-icon" style="background:#f0e8f8;"><i class="fa-solid fa-brain"></i></div>
         <h4>Psicología</h4>
         <p>Terapia individual para niños, adolescentes y adultos. Bienestar emocional y salud mental.</p>
         <span class="tile-tag">Salud mental</span>
       </div>
       <div class="service-tile rv scale-in d3">
-        <div class="tile-icon" style="background:#e8f4e8;">🤲</div>
+        <div class="tile-icon" style="background:#e8f4e8;"><i class="fa-solid fa-hands-holding-child"></i></div>
         <h4>Terapia Ocupacional</h4>
         <p>Integración sensorial, habilidades de la vida diaria y desarrollo funcional en todas las edades.</p>
         <span class="tile-tag">Funcionalidad</span>
       </div>
       <div class="service-tile rv scale-in d1">
-        <div class="tile-icon" style="background:#fff3e8;">🗣️</div>
+        <div class="tile-icon" style="background:#fff3e8;"><i class="fa-solid fa-head-side-cough"></i></div>
         <h4>Fonoaudiología</h4>
         <p>Lenguaje, habla, voz y deglución. Intervención en TEL, dislalias y comunicación aumentativa.</p>
         <span class="tile-tag">Comunicación</span>
       </div>
       <div class="service-tile rv scale-in d2">
-        <div class="tile-icon" style="background:#e8faf0;">🌱</div>
+        <div class="tile-icon" style="background:#e8faf0;"><i class="fa-solid fa-seedling"></i></div>
         <h4>Estimulación Temprana</h4>
         <p>Programa de acompañamiento para bebés y niños pequeños en sus primeros años de desarrollo.</p>
         <span class="tile-tag">0 a 6 años</span>
       </div>
       <div class="service-tile rv scale-in d3">
-        <div class="tile-icon" style="background:#f8e8ee;">⚡</div>
+        <div class="tile-icon" style="background:#f8e8ee;"><i class="fa-solid fa-bolt"></i></div>
         <h4>Estimulación Cognitiva</h4>
         <p>Rehabilitación y entrenamiento de funciones cognitivas: memoria, atención, funciones ejecutivas.</p>
         <span class="tile-tag">Cognición</span>
       </div>
       <div class="service-tile rv scale-in d1">
-        <div class="tile-icon" style="background:#fffbe8;">🔤</div>
+        <div class="tile-icon" style="background:#fffbe8;"><i class="fa-solid fa-spell-check"></i></div>
         <h4>Alfabetización</h4>
         <p>Intervención en procesos de adquisición de lectura y escritura para niños con dificultades específicas.</p>
         <span class="tile-tag">Lectoescritura</span>
       </div>
     </div>
+    
     <div class="tab-pane" id="tab-evaluaciones">
       <div class="service-tile rv scale-in d1">
-        <div class="tile-icon" style="background:#e8f8fb;">🔬</div>
+        <div class="tile-icon" style="background:#e8f8fb;"><i class="fa-solid fa-microscope"></i></div>
         <h4>Psicodiagnóstico</h4>
         <p>Evaluación psicológica completa con batería de instrumentos validados. Informe detallado y devolución personalizada.</p>
         <span class="tile-tag">Diagnóstico</span>
       </div>
       <div class="service-tile rv scale-in d2">
-        <div class="tile-icon" style="background:#fff0e8;">🔭</div>
+        <div class="tile-icon" style="background:#fff0e8;"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
         <h4>ADOS 2 y ADI-R</h4>
         <p>Evaluaciones estándar internacional para el diagnóstico del Trastorno del Espectro Autista (TEA) en niños y adultos.</p>
         <span class="tile-tag">TEA</span>
       </div>
       <div class="service-tile rv scale-in d3">
-        <div class="tile-icon" style="background:#f0ffe8;">🧩</div>
+        <div class="tile-icon" style="background:#f0ffe8;"><i class="fa-solid fa-laptop-medical"></i></div>
         <h4>Evaluaciones Neurocognitivas</h4>
         <p>Evaluación de funciones ejecutivas, memoria, atención y perfil neuropsicológico completo.</p>
         <span class="tile-tag">Neuropsicología</span>
       </div>
     </div>
   </div>
+  
   <div class="cud-strip rv from-bottom d2">
-    <div class="icon">✅</div>
+    <div class="icon"><i class="fa-solid fa-circle-check"></i></div>
     <div>
       <h4>Trabajamos con y sin CUD</h4>
       <p>Atendemos obras sociales, prepagas y pacientes particulares. Consulta por coberturas disponibles en tu caso.</p>
@@ -1054,7 +1078,7 @@ footer a:hover { color: white; }
   </div>
   <div class="personas-grid">
     <div class="persona-card rv from-bottom d1">
-      <span class="persona-big-icon">🧒</span>
+      <span class="persona-big-icon"><i class="fa-solid fa-child-reaching"></i></span>
       <h3>Niños</h3>
       <p>Los primeros años son fundacionales. Intervenimos temprano para garantizar el mejor punto de partida.</p>
       <ul>
@@ -1065,7 +1089,7 @@ footer a:hover { color: white; }
       </ul>
     </div>
     <div class="persona-card rv from-bottom d2">
-      <span class="persona-big-icon">🧑</span>
+      <span class="persona-big-icon"><i class="fa-solid fa-user-graduate"></i></span>
       <h3>Adolescentes</h3>
       <p>Una etapa de cambios que necesita acompañamiento real, sin juicios ni fórmulas prefabricadas.</p>
       <ul>
@@ -1076,7 +1100,7 @@ footer a:hover { color: white; }
       </ul>
     </div>
     <div class="persona-card rv from-bottom d3">
-      <span class="persona-big-icon">👤</span>
+      <span class="persona-big-icon"><i class="fa-solid fa-user"></i></span>
       <h3>Adultos</h3>
       <p>Nunca es tarde para entenderse mejor y trabajar en la propia salud mental y cognitiva.</p>
       <ul>
@@ -1087,7 +1111,7 @@ footer a:hover { color: white; }
       </ul>
     </div>
     <div class="persona-card rv from-bottom d4">
-      <span class="persona-big-icon">👨‍👩‍👧</span>
+      <span class="persona-big-icon"><i class="fa-solid fa-people-roof"></i></span>
       <h3>Familias</h3>
       <p>Cuando el sistema necesita apoyo. Acompañamos a toda la familia con una mirada sistémica e integradora.</p>
       <ul>
@@ -1164,33 +1188,33 @@ footer a:hover { color: white; }
     </div>
     <div class="trust-grid rv from-right d1">
       <div class="trust-card">
-        <div class="tc-icon">🎓</div>
+        <div class="tc-icon"><i class="fa-solid fa-graduation-cap"></i></div>
         <h4>Profesionales especializados</h4>
         <p>Cada área cubierta por profesionales con formación específica y actualización continua.</p>
       </div>
       <div class="trust-card">
-        <div class="tc-icon">🤝</div>
+        <div class="tc-icon"><i class="fa-solid fa-handshake-angle"></i></div>
         <h4>Trabajo en equipo real</h4>
         <p>El equipo coordina entre sí. Tus profesionales se hablan y trabajan juntos en tu caso.</p>
       </div>
       <div class="trust-card">
-        <div class="tc-icon">🗓️</div>
+        <div class="tc-icon"><i class="fa-regular fa-calendar-check"></i></div>
         <h4>Primera respuesta rápida</h4>
         <p>Primera entrevista disponible en menos de 48 horas. Sin listas de espera eternas.</p>
       </div>
       <div class="trust-card">
-        <div class="tc-icon">🧭</div>
+        <div class="tc-icon"><i class="fa-solid fa-compass"></i></div>
         <h4>Mirada integral</h4>
         <p>No tratamos síntomas aislados. Entendemos la situación completa de cada persona.</p>
       </div>
     </div>
   </div>
   <div class="promise-strip rv from-bottom d2">
-    <div class="promise-item"><span class="pi-check">✓</span>Sin derivación previa</div>
-    <div class="promise-item"><span class="pi-check">✓</span>Obras sociales y prepagas</div>
-    <div class="promise-item"><span class="pi-check">✓</span>Atención con y sin CUD</div>
-    <div class="promise-item"><span class="pi-check">✓</span>Turnos esta semana</div>
-    <div class="promise-item"><span class="pi-check">✓</span>Equipo interdisciplinario</div>
+    <div class="promise-item"><span class="pi-check"><i class="fa-solid fa-check"></i></span>Sin derivación previa</div>
+    <div class="promise-item"><span class="pi-check"><i class="fa-solid fa-check"></i></span>Obras sociales y prepagas</div>
+    <div class="promise-item"><span class="pi-check"><i class="fa-solid fa-check"></i></span>Atención con y sin CUD</div>
+    <div class="promise-item"><span class="pi-check"><i class="fa-solid fa-check"></i></span>Turnos esta semana</div>
+    <div class="promise-item"><span class="pi-check"><i class="fa-solid fa-check"></i></span>Equipo interdisciplinario</div>
   </div>
 </section>
 
@@ -1204,14 +1228,14 @@ footer a:hover { color: white; }
     <div class="info-left">
       <div class="horario-cards rv from-left d1">
         <div class="h-card lv">
-          <div class="h-icon">📅</div>
+          <div class="h-icon"><i class="fa-regular fa-calendar"></i></div>
           <div class="h-info">
             <div class="h-day">Lunes a Viernes</div>
             <div class="h-time">9:00 – 20:00 hs.</div>
           </div>
         </div>
         <div class="h-card sa">
-          <div class="h-icon">📆</div>
+          <div class="h-icon"><i class="fa-regular fa-calendar-days"></i></div>
           <div class="h-info">
             <div class="h-day">Sábados</div>
             <div class="h-time">9:00 – 13:00 hs.</div>
@@ -1220,28 +1244,28 @@ footer a:hover { color: white; }
       </div>
       <div class="contact-pills rv from-left d2">
         <a href="https://wa.me/5491168567160" target="_blank" class="c-pill">
-          <div class="ci">💬</div>
+          <div class="ci"><i class="fa-brands fa-whatsapp"></i></div>
           <div class="ct">
             <div class="cl">WhatsApp</div>
             <div class="cv">11 6856-7160</div>
           </div>
         </a>
         <a href="mailto:sinapsiscentro@gmail.com" class="c-pill">
-          <div class="ci">✉️</div>
+          <div class="ci"><i class="fa-regular fa-envelope"></i></div>
           <div class="ct">
             <div class="cl">Email</div>
             <div class="cv">sinapsiscentro@gmail.com</div>
           </div>
         </a>
         <a href="https://www.instagram.com/sinapsiscentro/" target="_blank" class="c-pill">
-          <div class="ci">📸</div>
+          <div class="ci"><i class="fa-brands fa-instagram"></i></div>
           <div class="ct">
             <div class="cl">Instagram</div>
             <div class="cv">@sinapsiscentro</div>
           </div>
         </a>
         <div class="c-pill">
-          <div class="ci">📍</div>
+          <div class="ci"><i class="fa-solid fa-location-dot"></i></div>
           <div class="ct">
             <div class="cl">Dirección</div>
             <div class="cv">Calle 27 Nº3907 esq. 139, Berazategui</div>
@@ -1275,11 +1299,11 @@ footer a:hover { color: white; }
     </p>
     <div class="cta-btn-group rv from-bottom d3">
       <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" class="btn-wa-main">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <i class="fa-brands fa-whatsapp"></i>
         Pedir turno por WhatsApp
       </a>
       <a href="https://www.instagram.com/sinapsiscentro/" target="_blank" class="btn-ig">
-        📸 Seguinos en Instagram
+        <i class="fa-brands fa-instagram"></i> Seguinos en Instagram
       </a>
     </div>
   </div>
@@ -1293,7 +1317,7 @@ footer a:hover { color: white; }
 
 <!-- FLOATING WA -->
 <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" class="fab" title="Pedir turno por WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <i class="fa-brands fa-whatsapp"></i>
   <span class="fab-txt">Pedir turno</span>
 </a>
 
@@ -1368,6 +1392,7 @@ footer a:hover { color: white; }
       ctx.arc(n.x,n.y,n.r*(0.8+0.4*Math.sin(n.pulse)),0,Math.PI*2);
       ctx.fillStyle=`rgba(126,214,228,${glow})`;
       ctx.fill();
+
       ctx.beginPath();
       ctx.arc(n.x,n.y,n.r*3,0,Math.PI*2);
       const gr = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*3);
@@ -1375,6 +1400,7 @@ footer a:hover { color: white; }
       gr.addColorStop(1,'transparent');
       ctx.fillStyle=gr;
       ctx.fill();
+
       n.x+=n.vx; n.y+=n.vy;
       if(n.x<0||n.x>W) n.vx*=-1;
       if(n.y<0||n.y>H) n.vy*=-1;
@@ -1385,6 +1411,7 @@ footer a:hover { color: white; }
 
   window.addEventListener('mousemove', e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
   window.addEventListener('resize', ()=>{ resize(); makeNodes(90); });
+
   resize(); makeNodes(90); draw();
 })();
 
@@ -1395,16 +1422,19 @@ const cur=document.getElementById('cur');
 const ring=document.getElementById('ring');
 const dot=document.getElementById('dot');
 let mx=0,my=0,rx=0,ry=0;
+
 document.addEventListener('mousemove',e=>{
   mx=e.clientX; my=e.clientY;
   dot.style.left=mx+'px'; dot.style.top=my+'px';
 });
+
 function animCursor(){
   rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
   ring.style.left=rx+'px'; ring.style.top=ry+'px';
   requestAnimationFrame(animCursor);
 }
 animCursor();
+
 document.querySelectorAll('a,button,.pain-card,.service-tile,.persona-card,.step-card,.faq-q').forEach(el=>{
   el.addEventListener('mouseenter',()=>cur.classList.add('hovering'));
   el.addEventListener('mouseleave',()=>cur.classList.remove('hovering'));
@@ -1415,6 +1445,7 @@ document.querySelectorAll('a,button,.pain-card,.service-tile,.persona-card,.step
 ════════════════════ */
 const navEl = document.getElementById('nav');
 const goTopBtn = document.getElementById('goTop');
+
 window.addEventListener('scroll',()=>{
   const scrolled = window.scrollY > 50;
   navEl.classList.toggle('solid', scrolled);
@@ -1430,8 +1461,14 @@ const rvEls = document.querySelectorAll('.rv');
 
 if ('IntersectionObserver' in window) {
   const rvObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); rvObs.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        rvObs.unobserve(e.target);
+      }
+    });
   }, { threshold: 0, rootMargin: '0px 0px 60px 0px' });
+
   rvEls.forEach(el => rvObs.observe(el));
 } else {
   rvEls.forEach(el => el.classList.add('visible'));
@@ -1453,6 +1490,7 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    
     btn.classList.add('active');
     document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
   });
@@ -1465,7 +1503,9 @@ document.querySelectorAll('.faq-q').forEach(q=>{
   q.addEventListener('click',()=>{
     const item = q.closest('.faq-item');
     const wasOpen = item.classList.contains('open');
+    
     document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    
     if(!wasOpen) item.classList.add('open');
   });
 });
