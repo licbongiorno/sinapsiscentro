@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -610,7 +609,7 @@ body.menu-open { overflow: hidden; }
   background: var(--teal-pale); color: var(--teal);
 }
 
-/* ── Tags con explicación (tooltip) ── */
+/* ── Tags con explicación (tooltip flotante, fuera del flujo de la tarjeta) ── */
 .tile-tag.has-tip {
   position: relative; cursor: help;
   padding-right: 26px;
@@ -625,31 +624,34 @@ body.menu-open { overflow: hidden; }
   display: flex; align-items: center; justify-content: center;
   line-height: 1;
 }
-.tag-tip {
-  position: absolute; left: 50%; bottom: calc(100% + 10px);
-  transform: translateX(-50%) translateY(6px);
-  width: 220px; max-width: 60vw;
+.tile-tag.has-tip.tip-open::before,
+.tile-tag.has-tip:hover::before,
+.tile-tag.has-tip:focus-visible::before {
+  background: var(--navy);
+}
+
+/* Tooltip único, montado en <body>, posicionado por JS con position:fixed
+   para no depender (ni ser recortado) por el overflow:hidden de .service-tile */
+#sharedTooltip {
+  position: fixed; left: 0; top: 0;
+  width: max-content; max-width: min(260px, 70vw);
   background: var(--navy); color: white;
-  font-size: 0.78rem; font-weight: 500; letter-spacing: normal; text-transform: none;
+  font-size: 0.8rem; font-weight: 500; letter-spacing: normal; text-transform: none;
   line-height: 1.5;
   padding: 12px 14px; border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(8,32,46,0.28);
+  box-shadow: 0 12px 30px rgba(8,32,46,0.3);
   opacity: 0; visibility: hidden; pointer-events: none;
-  transition: opacity 0.2s var(--easing), transform 0.2s var(--easing);
-  z-index: 20;
+  transform: translateY(4px);
+  transition: opacity 0.18s var(--easing), transform 0.18s var(--easing);
+  z-index: 9997;
 }
-.tag-tip::after {
-  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-  border: 6px solid transparent; border-top-color: var(--navy);
+#sharedTooltip::after {
+  content: ''; position: absolute; left: var(--arrow-x, 50%); transform: translateX(-50%);
+  border: 6px solid transparent;
 }
-.tile-tag.has-tip:hover .tag-tip,
-.tile-tag.has-tip:focus-visible .tag-tip,
-.tile-tag.has-tip.tip-open .tag-tip {
-  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
-}
-@media (max-width: 640px) {
-  .tag-tip { width: 180px; font-size: 0.74rem; }
-}
+#sharedTooltip.pos-top::after { top: 100%; border-top-color: var(--navy); }
+#sharedTooltip.pos-bottom::after { bottom: 100%; border-bottom-color: var(--navy); }
+#sharedTooltip.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
 /* CUD badge */
 .cud-strip {
@@ -1203,18 +1205,10 @@ footer a:hover { color: white; }
         <h4>Psicología</h4>
         <p>Un espacio de escucha para niños, adolescentes y adultos. Cada profesional trabaja desde el enfoque que mejor se adapte a vos: no hay una sola forma de acompañar un proceso.</p>
         <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">
-          <span class="tile-tag has-tip" tabindex="0">Gestalt
-            <span class="tag-tip">Pone el foco en lo que estás viviendo en el presente: cómo sentís, pensás y actuás acá y ahora, más que en analizar el pasado.</span>
-          </span>
-          <span class="tile-tag has-tip" tabindex="0">Cognitivo-conductual
-            <span class="tag-tip">Trabaja sobre pensamientos y conductas concretas para modificar patrones que generan malestar. Suele ser un enfoque breve y con herramientas prácticas.</span>
-          </span>
-          <span class="tile-tag has-tip" tabindex="0">Sistémica
-            <span class="tag-tip">Entiende lo que te pasa en relación a tus vínculos: familia, pareja, trabajo. El foco está en el contexto, no solo en la persona.</span>
-          </span>
-          <span class="tile-tag has-tip" tabindex="0">Psicoanálisis
-            <span class="tag-tip">Explora el inconsciente y tu historia personal para entender el origen de lo que te pasa, a través de la palabra y la asociación libre.</span>
-          </span>
+          <span class="tile-tag has-tip" tabindex="0" data-tip="Pone el foco en lo que estás viviendo en el presente: cómo sentís, pensás y actuás acá y ahora, más que en analizar el pasado.">Gestalt</span>
+          <span class="tile-tag has-tip" tabindex="0" data-tip="Trabaja sobre pensamientos y conductas concretas para modificar patrones que generan malestar. Suele ser un enfoque breve y con herramientas prácticas.">Cognitivo-conductual</span>
+          <span class="tile-tag has-tip" tabindex="0" data-tip="Entiende lo que te pasa en relación a tus vínculos: familia, pareja, trabajo. El foco está en el contexto, no solo en la persona.">Sistémica</span>
+          <span class="tile-tag has-tip" tabindex="0" data-tip="Explora el inconsciente y tu historia personal para entender el origen de lo que te pasa, a través de la palabra y la asociación libre.">Psicoanálisis</span>
         </div>
       </div>
       <div class="service-tile rv scale-in d3">
@@ -1260,17 +1254,13 @@ footer a:hover { color: white; }
         <div class="tile-icon" style="background:#fff0e8;"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
         <h4>ADOS-2 y ADI-R</h4>
         <p>Los instrumentos de referencia a nivel internacional para evaluar el Trastorno del Espectro Autista. El ADOS-2 observa la comunicación y el juego en distintas situaciones; el ADI-R es una entrevista en profundidad a la familia. Los aplicamos en niños y también en adultos, con equipo capacitado.</p>
-        <span class="tile-tag has-tip" tabindex="0">TEA
-          <span class="tag-tip">Trastorno del Espectro Autista: una condición del neurodesarrollo que afecta la comunicación, la interacción social y los intereses/comportamientos de la persona.</span>
-        </span>
+        <span class="tile-tag has-tip" tabindex="0" data-tip="Trastorno del Espectro Autista: una condición del neurodesarrollo que afecta la comunicación, la interacción social y los intereses/comportamientos de la persona.">TEA</span>
       </div>
       <div class="service-tile rv scale-in d3">
         <div class="tile-icon" style="background:#f0ffe8;"><i class="fa-solid fa-laptop-medical"></i></div>
         <h4>Evaluaciones Neurocognitivas</h4>
         <p>Medimos memoria, atención, lenguaje y funciones ejecutivas para construir un perfil neuropsicológico completo. Sirve para entender un ADHD, un deterioro cognitivo o simplemente cómo funciona tu cabeza.</p>
-        <span class="tile-tag has-tip" tabindex="0">Neuropsicología
-          <span class="tag-tip">Estudia cómo el funcionamiento del cerebro se relaciona con la memoria, la atención, el lenguaje y otras capacidades mentales.</span>
-        </span>
+        <span class="tile-tag has-tip" tabindex="0" data-tip="Estudia cómo el funcionamiento del cerebro se relaciona con la memoria, la atención, el lenguaje y otras capacidades mentales.">Neuropsicología</span>
       </div>
     </div>
   </div>
@@ -1790,26 +1780,74 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
 });
 
 /* ════════════════════
-   TAGS CON TOOLTIP (tap en mobile)
+   TAGS CON TOOLTIP (flotante, montado en <body>)
+   Funciona igual con hover (desktop) o tap (mobile/táctil),
+   y se reposiciona para no salirse de la pantalla.
 ════════════════════ */
 (function(){
-  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const tags = document.querySelectorAll('.tile-tag.has-tip');
   if (!tags.length) return;
 
-  if (canHover) return; // desktop ya usa :hover / :focus-visible en CSS
+  const tip = document.createElement('div');
+  tip.id = 'sharedTooltip';
+  tip.setAttribute('role', 'tooltip');
+  document.body.appendChild(tip);
+
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  let openTag = null;
+
+  function position(tag){
+    const r = tag.getBoundingClientRect();
+    tip.textContent = tag.dataset.tip || '';
+    tip.classList.remove('pos-top','pos-bottom');
+    // Medimos con opacidad 0 pero visible en layout para obtener tamaño real
+    tip.style.visibility = 'hidden';
+    tip.classList.add('show');
+    const tipRect = tip.getBoundingClientRect();
+
+    let top = r.top - tipRect.height - 12;
+    let placeBelow = false;
+    if (top < 8) { top = r.bottom + 12; placeBelow = true; }
+
+    let left = r.left + r.width/2 - tipRect.width/2;
+    const margin = 10;
+    left = Math.max(margin, Math.min(left, window.innerWidth - tipRect.width - margin));
+
+    const arrowX = (r.left + r.width/2 - left);
+    tip.style.setProperty('--arrow-x', arrowX + 'px');
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+    tip.classList.add(placeBelow ? 'pos-bottom' : 'pos-top');
+    tip.style.visibility = 'visible';
+  }
+
+  function openTip(tag){
+    openTag = tag;
+    position(tag);
+  }
+  function closeTip(){
+    openTag = null;
+    tip.classList.remove('show');
+  }
 
   tags.forEach(tag => {
-    tag.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const wasOpen = tag.classList.contains('tip-open');
-      tags.forEach(t => t.classList.remove('tip-open'));
-      if (!wasOpen) tag.classList.add('tip-open');
-    });
+    if (canHover) {
+      tag.addEventListener('mouseenter', () => openTip(tag));
+      tag.addEventListener('mouseleave', closeTip);
+      tag.addEventListener('focus', () => openTip(tag));
+      tag.addEventListener('blur', closeTip);
+    } else {
+      tag.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (openTag === tag) { closeTip(); }
+        else { openTip(tag); }
+      });
+    }
   });
-  document.addEventListener('click', () => {
-    tags.forEach(t => t.classList.remove('tip-open'));
-  });
+
+  document.addEventListener('click', () => { if (!canHover) closeTip(); });
+  window.addEventListener('scroll', () => { if (openTag) position(openTag); }, {passive:true});
+  window.addEventListener('resize', () => { if (openTag) position(openTag); });
 })();
 
 /* ════════════════════
