@@ -1,26 +1,28 @@
 /**
- * STORAGE.JS — Adaptador de persistencia
- * ========================================
- * Hoy guarda todo en localStorage, así la plataforma funciona
- * completa desde el primer momento, sin depender de configurar
- * Firebase para poder probarla.
+ * STORAGE.JS — Adaptador de persistencia (local + Firebase)
+ * =============================================================
+ * Sigue funcionando exactamente igual que antes si Firebase no está
+ * configurado: todo se lee/escribe en localStorage, de forma
+ * SINCRÓNICA, que es como lo usan game-engine.js, perfil.js,
+ * logros.js y los 120 juegos (ninguno de esos archivos cambia).
  *
- * La estructura de datos está calcada de la que se usaría en
- * Firestore (users/{uid}/profile, progress, achievements, scores),
- * así que el día de mañana alcanza con reemplazar las funciones de
- * este archivo por lecturas/escrituras a Firestore sin tocar
- * game-engine.js ni ningún juego individual — todos hablan sólo
- * con el objeto "Storage" de acá.
+ * Cuando hay una sesión de Google iniciada (ver auth.js), además:
+ *   - Al iniciar sesión: se trae el perfil desde Firestore y
+ *     reemplaza la copia local (o, si es la primera vez que esa
+ *     cuenta inicia sesión, sube el progreso local/invitado para no
+ *     perderlo).
+ *   - En cada escritura local: se programa un guardado en Firestore
+ *     (con un pequeño debounce, para no escribir en la nube en cada
+ *     click suelto).
  *
- * Para activar Firebase real:
- *  1. Completá firebase-config.js con las credenciales del proyecto.
- *  2. Descomentá el bloque FIREBASE al final de este archivo.
- *  3. Cambiá USAR_FIREBASE = true.
+ * Así, el resto del código sigue leyendo/escribiendo en localStorage
+ * de forma instantánea (nada se pone más lento ni más complicado
+ * para ellos), y Firestore queda como una copia de respaldo /
+ * sincronización entre dispositivos por debajo.
  */
 
-const USAR_FIREBASE = false; // ← cambiar a true cuando esté configurado firebase-config.js
-
 const NS = "sinapsis_juegos"; // prefijo de todas las claves en localStorage
+const DEBOUNCE_NUBE_MS = 1200;
 
 function leer(clave, porDefecto) {
   try {
@@ -51,6 +53,38 @@ const PERFIL_DEFAULT = () => ({
   creadoEl: new Date().toISOString(),
 });
 
+// ── Estado de sincronización con Firebase (nada de esto se usa si no hay sesión) ──
+let _uidNube = null; // uid de Firebase Auth mientras haya sesión iniciada
+let _timerNube = null;
+
+function _db() {
+  if (typeof firebase === "undefined" || !firebase.apps || !firebase.apps.length) return null;
+  return firebase.firestore();
+}
+
+function _snapshotLocal() {
+  return {
+    perfil: leer("perfil", null),
+    progreso: leer("progreso", {}),
+    logros: leer("logros", []),
+    racha: leer("racha", { dias: 0, ultimoDia: null, historial: [] }),
+    actualizadoEl: new Date().toISOString(),
+  };
+}
+
+function _programarSincronizacion() {
+  if (!_uidNube) return;
+  clearTimeout(_timerNube);
+  _timerNube = setTimeout(_empujarANube, DEBOUNCE_NUBE_MS);
+}
+
+function _empujarANube() {
+  const db = _db();
+  if (!db || !_uidNube) return;
+  db.collection("users").doc(_uidNube).set(_snapshotLocal(), { merge: true })
+    .catch((e) => console.warn("Storage: no se pudo sincronizar con Firestore", e));
+}
+
 const Storage = {
   // ── PERFIL ──
   getPerfil() {
@@ -63,6 +97,7 @@ const Storage = {
   },
   guardarPerfil(perfil) {
     escribir("perfil", perfil);
+    _programarSincronizacion();
     return perfil;
   },
   sumarXP(cantidad) {
@@ -86,6 +121,7 @@ const Storage = {
     actual.ultimaVez = new Date().toISOString();
     todos[juegoId] = actual;
     escribir("progreso", todos);
+    _programarSincronizacion();
     return actual;
   },
   getProgresoCompleto() {
@@ -114,6 +150,7 @@ const Storage = {
     if (logros.includes(id)) return false; // ya lo tenía
     logros.push(id);
     escribir("logros", logros);
+    _programarSincronizacion();
     return true; // recién desbloqueado
   },
 
@@ -131,10 +168,11 @@ const Storage = {
     racha.ultimoDia = hoy;
     racha.historial = [...(racha.historial || []).slice(-6), hoy];
     escribir("racha", racha);
+    _programarSincronizacion();
     return racha;
   },
 
-  // ── RANKING LOCAL (por dispositivo; ranking global real requiere Firebase) ──
+  // ── RANKING LOCAL (por dispositivo) + global si hay sesión ──
   getRankingLocal(juegoId) {
     const todos = leer("ranking", {});
     return (todos[juegoId] || []).sort((a, b) => b.puntaje - a.puntaje).slice(0, 10);
@@ -145,30 +183,62 @@ const Storage = {
     lista.push({ nombre: nombre || "Vos", puntaje, fecha: new Date().toISOString() });
     todos[juegoId] = lista.sort((a, b) => b.puntaje - a.puntaje).slice(0, 20);
     escribir("ranking", todos);
+
+    // Además, si hay sesión, sumamos el puntaje a una colección pública
+    // para un futuro ranking global (no se lee todavía desde el portal).
+    const db = _db();
+    if (db && _uidNube) {
+      db.collection("scores").doc(juegoId).collection("entries").add({
+        uid: _uidNube, nombre: nombre || "Anónimo", puntaje,
+        creadoEl: firebase.firestore.FieldValue.serverTimestamp(),
+      }).catch(() => {});
+    }
     return todos[juegoId];
   },
+
+  // ── Vínculo con la cuenta de Google (llamado desde auth.js) ──
+  /**
+   * Se llama cuando el usuario inicia sesión con Google. Trae su
+   * perfil desde Firestore si ya existía, o sube el progreso actual
+   * de este dispositivo si es la primera vez que esa cuenta entra.
+   * Devuelve una Promise que resuelve cuando la sincronización
+   * inicial terminó.
+   */
+  vincularUsuario(user) {
+    _uidNube = user.uid;
+    const db = _db();
+    if (!db) return Promise.resolve();
+
+    return db.collection("users").doc(user.uid).get().then((doc) => {
+      if (doc.exists) {
+        // Ya existía progreso en la nube (este usuario ya jugó antes,
+        // en este dispositivo o en otro): la nube manda.
+        const datos = doc.data();
+        if (datos.perfil) escribir("perfil", datos.perfil);
+        if (datos.progreso) escribir("progreso", datos.progreso);
+        if (datos.logros) escribir("logros", datos.logros);
+        if (datos.racha) escribir("racha", datos.racha);
+      } else {
+        // Primera vez que esta cuenta de Google inicia sesión: el
+        // progreso que ya tenía este dispositivo como invitado pasa
+        // a ser el punto de partida de su cuenta.
+        const perfil = Storage.getPerfil();
+        if (!perfil.nombre && user.displayName) perfil.nombre = user.displayName;
+        perfil.uid = user.uid;
+        escribir("perfil", perfil);
+      }
+      _empujarANube();
+    }).catch((e) => {
+      console.warn("Storage: no se pudo traer el perfil desde Firestore", e);
+    });
+  },
+
+  /** Se llama cuando el usuario cierra sesión: empieza de nuevo como invitado en este dispositivo. */
+  desvincularUsuario() {
+    _uidNube = null;
+    clearTimeout(_timerNube);
+    Object.keys(localStorage)
+      .filter(k => k.startsWith(`${NS}:`))
+      .forEach(k => localStorage.removeItem(k));
+  },
 };
-
-/* ═══════════════════════════════════════════════════════════
-   BLOQUE FIREBASE (comentado) — activar cuando haya credenciales
-   ═══════════════════════════════════════════════════════════
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, arrayUnion, collection, query, orderBy, limit, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-firestore.js";
-import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-auth.js";
-import { firebaseConfig } from "./firebase-config.js";
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-// Reemplazar cada método de Storage de arriba por su equivalente en:
-//   users/{uid}/profile         (doc)
-//   users/{uid}/progress/{juegoId}  (doc dentro de subcolección)
-//   users/{uid}/achievements    (doc con array de ids)
-//   scores/{juegoId}/entries    (colección para ranking global)
-// manteniendo exactamente la misma forma de los objetos que ya
-// devuelven las funciones de arriba, para no tener que tocar nada
-// del motor ni de los juegos.
-
-═══════════════════════════════════════════════════════════ */

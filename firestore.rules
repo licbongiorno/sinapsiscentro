@@ -1,0 +1,38 @@
+rules_version = '2';
+
+// REGLAS DE FIRESTORE — Sinapsis Juegos
+// ==========================================
+// Cómo instalarlas: consola de Firebase → Firestore Database →
+// pestaña "Reglas" → pegar este contenido completo → Publicar.
+//
+// Qué protegen:
+//  - users/{uid}: el perfil, progreso, logros y racha de cada
+//    persona. SOLO esa persona (autenticada con ese uid) puede leer
+//    o escribir su propio documento. Nadie puede ver ni tocar el
+//    perfil de otro usuario.
+//  - scores/{juegoId}/entries: puntajes pensados para un futuro
+//    ranking global. Cualquier usuario logueado puede leerlos (para
+//    armar una tabla de posiciones), pero cada quien sólo puede
+//    crear entradas a su propio nombre — nunca editar ni borrar
+//    puntajes, ni propios ni ajenos.
+//  - Todo lo demás queda cerrado por defecto (nadie puede leer ni
+//    escribir nada fuera de estas dos rutas).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    match /scores/{juegoId}/entries/{entryId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
