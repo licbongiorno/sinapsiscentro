@@ -1,15 +1,81 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SINAPSIS – Centro de Salud Integral | Berazategui</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Centro interdisciplinario en Berazategui: psicología, psicopedagogía, fonoaudiología, terapia ocupacional, estimulación temprana y evaluaciones (ADOS-2, ADI-R, neurocognitivas). Sin derivación previa, turnos esta semana, obras sociales y prepagas.">
+  <meta name="keywords" content="psicología Berazategui, psicopedagogía, fonoaudiología, terapia ocupacional, estimulación temprana, evaluación TEA, ADOS 2, neuropsicología, centro interdisciplinario">
+  <link rel="canonical" href="https://www.sinapsiscentro.com.ar/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / redes sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SINAPSIS – Centro de Salud Integral">
+  <meta property="og:title" content="SINAPSIS – Centro de Salud Integral | Berazategui">
+  <meta property="og:description" content="Psicología, psicopedagogía, fonoaudiología y terapia ocupacional en Berazategui. Primera entrevista en menos de 48 horas, sin derivación previa.">
+  <meta property="og:image" content="https://www.sinapsiscentro.com.ar/og-image.jpg">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:url" content="https://www.sinapsiscentro.com.ar/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SINAPSIS – Centro de Salud Integral | Berazategui">
+  <meta name="twitter:description" content="Psicología, psicopedagogía, fonoaudiología y terapia ocupacional en Berazategui. Primera entrevista en menos de 48 horas.">
+  <meta name="twitter:image" content="https://www.sinapsiscentro.com.ar/og-image.jpg">
+
+  <!-- Favicon (reemplazar por los archivos reales del centro) -->
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="apple-touch-icon" href="logo.svg">
+  <meta name="theme-color" content="#08202e">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Agregada librería de iconos FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Datos estructurados para Google (aparecer con horarios, teléfono y mapa en la búsqueda) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Sinapsis – Centro de Salud Integral",
+    "image": "https://www.sinapsiscentro.com.ar/og-image.jpg",
+    "telephone": "+5491168567160",
+    "email": "sinapsiscentro@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 27 Nº3907 esq. 139",
+      "addressLocality": "Berazategui",
+      "addressRegion": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -34.7800,
+      "longitude": -58.2080
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "13:00"
+      }
+    ],
+    "sameAs": ["https://www.instagram.com/sinapsiscentro/"],
+    "medicalSpecialty": ["Psychiatric", "Psychological", "Speech Therapy", "Occupational Therapy"]
+  }
+  </script>
   
 <style>
 /* ═══════════════════════════════════
@@ -37,6 +103,12 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--teal-soft);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 
 body {
   font-family: 'Nunito', sans-serif;
@@ -150,7 +222,39 @@ nav.solid {
 }
 .nav-cta::after { display:none !important; }
 .nav-cta:hover { background: var(--teal-soft) !important; color: var(--navy) !important; transform: translateY(-1px); }
-@media(max-width:768px){ .nav-links { display:none; } }
+
+.nav-burger {
+  display: none; width: 42px; height: 42px; border: none; background: rgba(126,214,228,0.1);
+  border-radius: 10px; cursor: pointer; flex-shrink: 0;
+  align-items: center; justify-content: center; gap: 4px; flex-direction: column;
+}
+.nav-burger span { width: 20px; height: 2px; background: white; border-radius: 2px; transition: transform 0.25s var(--easing), opacity 0.2s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+@media(max-width:768px){
+  .nav-burger { display: flex; }
+  .nav-links {
+    position: fixed; top: 0; right: 0; height: 100vh; width: min(78vw, 320px);
+    background: rgba(8,32,46,0.98); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: flex-start; justify-content: center;
+    gap: 28px; padding: 40px; z-index: 1001;
+    transform: translateX(100%); transition: transform 0.35s var(--easing);
+  }
+  .nav-links.open { transform: translateX(0); }
+  .nav-links a { font-size: 1.05rem; }
+  .nav-cta { width: 100%; text-align: center; }
+  .nav-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .nav-overlay.open { opacity: 1; pointer-events: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
 
 /* ═══════════════════════════════════
    HERO
@@ -840,14 +944,18 @@ footer a:hover { color: white; }
       <small>Centro de Salud Integral</small>
     </div>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#para-quien">Pacientes</a></li>
     <li><a href="#faq">Preguntas</a></li>
     <li><a href="#info">Ubicación</a></li>
-    <li><a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20una%20primera%20consulta." target="_blank" class="nav-cta">Primera consulta</a></li>
+    <li><a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20una%20primera%20consulta." target="_blank" rel="noopener" class="nav-cta">Primera consulta</a></li>
   </ul>
+  <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <!-- ═══ HERO ═══ -->
 <section id="hero">
@@ -867,7 +975,7 @@ footer a:hover { color: white; }
       En Sinapsis <strong>evaluamos, acompañamos y te damos respuestas claras desde la primera consulta</strong>. Sin listas de espera eternas. Sin trámites complicados. Con un equipo interdisciplinario que te espera.
     </p>
     <div class="hero-cta-row">
-      <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" class="btn-hero-main">
+      <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="btn-hero-main">
         <span>Hablar por WhatsApp ahora</span>
         <span class="arrow">→</span>
       </a>
@@ -972,7 +1080,7 @@ footer a:hover { color: white; }
     </div>
   </div>
   <div class="steps-cta rv from-bottom d2">
-    <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20obtener%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="btn-hero-main" style="display:inline-flex;">
+    <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20obtener%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener" class="btn-hero-main" style="display:inline-flex;">
       <span>Empezar ahora</span>
       <span class="arrow">→</span>
     </a>
@@ -1243,7 +1351,7 @@ footer a:hover { color: white; }
         </div>
       </div>
       <div class="contact-pills rv from-left d2">
-        <a href="https://wa.me/5491168567160" target="_blank" class="c-pill">
+        <a href="https://wa.me/5491168567160" target="_blank" rel="noopener" class="c-pill">
           <div class="ci"><i class="fa-brands fa-whatsapp"></i></div>
           <div class="ct">
             <div class="cl">WhatsApp</div>
@@ -1257,7 +1365,7 @@ footer a:hover { color: white; }
             <div class="cv">sinapsiscentro@gmail.com</div>
           </div>
         </a>
-        <a href="https://www.instagram.com/sinapsiscentro/" target="_blank" class="c-pill">
+        <a href="https://www.instagram.com/sinapsiscentro/" target="_blank" rel="noopener" class="c-pill">
           <div class="ci"><i class="fa-brands fa-instagram"></i></div>
           <div class="ct">
             <div class="cl">Instagram</div>
@@ -1298,11 +1406,11 @@ footer a:hover { color: white; }
       No hace falta saber exactamente qué está pasando para escribirnos. Contanos brevemente la situación y coordinaremos la primera entrevista juntos, sin complicaciones.
     </p>
     <div class="cta-btn-group rv from-bottom d3">
-      <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" class="btn-wa-main">
+      <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="btn-wa-main">
         <i class="fa-brands fa-whatsapp"></i>
         Pedir turno por WhatsApp
       </a>
-      <a href="https://www.instagram.com/sinapsiscentro/" target="_blank" class="btn-ig">
+      <a href="https://www.instagram.com/sinapsiscentro/" target="_blank" rel="noopener" class="btn-ig">
         <i class="fa-brands fa-instagram"></i> Seguinos en Instagram
       </a>
     </div>
@@ -1311,12 +1419,12 @@ footer a:hover { color: white; }
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 <strong style="color:rgba(255,255,255,0.5)">SINAPSIS</strong> — Centro de Salud Integral · Berazategui, Bs As.</p>
-  <p>Diseño por <a href="#">sinapsiscentro</a> &nbsp;·&nbsp; <a href="https://wa.me/5491168567160" target="_blank">Pedí tu turno</a></p>
+  <p>© <span id="footYear">2026</span> <strong style="color:rgba(255,255,255,0.5)">SINAPSIS</strong> — Centro de Salud Integral · Berazategui, Bs As.</p>
+  <p>Diseño por <a href="#">sinapsiscentro</a> &nbsp;·&nbsp; <a href="https://wa.me/5491168567160" target="_blank" rel="noopener">Pedí tu turno</a></p>
 </footer>
 
 <!-- FLOATING WA -->
-<a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" class="fab" title="Pedir turno por WhatsApp">
+<a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="fab" title="Pedir turno por WhatsApp">
   <i class="fa-brands fa-whatsapp"></i>
   <span class="fab-txt">Pedir turno</span>
 </a>
@@ -1334,6 +1442,11 @@ footer a:hover { color: white; }
   const canvas = document.getElementById('c');
   const ctx = canvas.getContext('2d');
   let W, H, nodes = [], mouse = { x: -999, y: -999 };
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.innerWidth <= 768;
+  let rafId = null, running = true;
+
+  if (reduceMotion) return; // no dibujar la red neuronal animada si el usuario prefiere menos movimiento
 
   function resize(){
     W = canvas.width = window.innerWidth;
@@ -1406,13 +1519,17 @@ footer a:hover { color: white; }
       if(n.y<0||n.y>H) n.vy*=-1;
     });
 
-    requestAnimationFrame(draw);
+    if (running) rafId = requestAnimationFrame(draw);
   }
 
   window.addEventListener('mousemove', e=>{ mouse.x=e.clientX; mouse.y=e.clientY; });
-  window.addEventListener('resize', ()=>{ resize(); makeNodes(90); });
+  window.addEventListener('resize', ()=>{ resize(); makeNodes(window.innerWidth<=768 ? 45 : 90); });
+  document.addEventListener('visibilitychange', () => {
+    running = !document.hidden;
+    if (running) draw(); else cancelAnimationFrame(rafId);
+  });
 
-  resize(); makeNodes(90); draw();
+  resize(); makeNodes(isMobile ? 45 : 90); draw();
 })();
 
 /* ════════════════════
@@ -1451,6 +1568,36 @@ window.addEventListener('scroll',()=>{
   navEl.classList.toggle('solid', scrolled);
   goTopBtn.classList.toggle('show', window.scrollY > 600);
 }, {passive:true});
+
+/* ════════════════════
+   MENÚ MOBILE
+════════════════════ */
+const navBurger = document.getElementById('navBurger');
+const navLinksEl = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
+
+function closeMobileNav(){
+  navBurger.classList.remove('open');
+  navLinksEl.classList.remove('open');
+  navOverlay.classList.remove('open');
+  navBurger.setAttribute('aria-expanded','false');
+  navBurger.setAttribute('aria-label','Abrir menú');
+}
+function toggleMobileNav(){
+  const isOpen = navLinksEl.classList.toggle('open');
+  navBurger.classList.toggle('open', isOpen);
+  navOverlay.classList.toggle('open', isOpen);
+  navBurger.setAttribute('aria-expanded', String(isOpen));
+  navBurger.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+}
+navBurger.addEventListener('click', toggleMobileNav);
+navOverlay.addEventListener('click', closeMobileNav);
+navLinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileNav));
+window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMobileNav(); });
+
+/* Año dinámico del footer */
+const footYearEl = document.getElementById('footYear');
+if (footYearEl) footYearEl.textContent = new Date().getFullYear();
 
 /* ════════════════════
    REVEAL ON SCROLL
@@ -1500,13 +1647,17 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
    FAQ
 ════════════════════ */
 document.querySelectorAll('.faq-q').forEach(q=>{
+  q.setAttribute('aria-expanded','false');
   q.addEventListener('click',()=>{
     const item = q.closest('.faq-item');
     const wasOpen = item.classList.contains('open');
     
-    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
     
-    if(!wasOpen) item.classList.add('open');
+    if(!wasOpen){ item.classList.add('open'); q.setAttribute('aria-expanded','true'); }
   });
 });
 
