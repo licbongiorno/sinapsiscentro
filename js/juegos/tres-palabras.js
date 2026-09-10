@@ -2,7 +2,20 @@
   const contenedor = document.getElementById("jgContenedor");
   const BANCO = ["nube","reloj","puente","semilla","espejo","tormenta","llave","sombra","farol","raíz",
     "océano","escalera","brújula","cometa","laberinto","caracol","lámpara","viento","puerta","hoguera",
-    "isla","cuaderno","eco","hilo","montaña","susurro","marea","ventana","jardín","estrella"];
+    "isla","cuaderno","eco","hilo","montaña","susurro","marea","ventana","jardín","estrella",
+    "campana","niebla","sendero","cicatriz","abrazo","piedra","cerradura","cosecha","invierno","alba",
+    "grieta","refugio","murmullo","tejado","desierto","cascada","bosque","umbral","destello","raíces",
+    "vela","tinta","espuma","cenizas","horizonte","nudo","polvo","manantial","corriente","eclipse",
+    "guante","botella","cofre","maleta","túnel","faro","semáforo","cortina","puñado","bisagra",
+    "andén","brasa","pluma","rocío","espina","trueno","molino","pasillo","retrato","reflejo",
+    "cuenco","abanico","cerrojo","estación","recodo","peldaño","cauce","orilla","matorral","vitral",
+    "pergamino","medalla","balcón","rejilla","colmena","barco","charco","puñal","ancla","vasija",
+    "acantilado","alambre","nudillo","chimenea","bitácora","compás","invernadero","telar","pantano","grillete",
+    "vagón","farola","muralla","dique","embudo","sótano","desagüe","tejido","cantera","cobertizo",
+    "pasadizo","cripta","mástil","vertiente","calendario","escudo","tapiz","fogón","cabestrillo","cuerda",
+    "carruaje","almanaque","ánfora","yunque","fanal","guarida","riachuelo","pértiga","veleta","catalejo",
+    "hoguera fría","astillero","cencerro","aljibe","polea","tarima","zaguán","trinchera","mirador","celosía",
+    "cántaro","tinaja","serrucho","altillo","espiral","cadena","claraboya","pozo","travesaño","cornisa"];
 
   function tresAlAzar() {
     const copia = [...BANCO];

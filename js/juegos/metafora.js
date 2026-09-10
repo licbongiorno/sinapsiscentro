@@ -1,6 +1,12 @@
 (function () {
   const contenedor = document.getElementById("jgContenedor");
-  const TEMAS = ["La vida", "El tiempo", "El amor", "El miedo", "La memoria", "Un buen día"];
+  const TEMAS = ["La vida", "El tiempo", "El amor", "El miedo", "La memoria", "Un buen día",
+    "La amistad", "El cambio", "La espera", "Un secreto", "La calma", "El enojo",
+    "La familia", "Un comienzo", "Una despedida", "La confianza", "El silencio", "La costumbre",
+    "Un error", "La curiosidad", "El cansancio", "Una decisión", "El perdón", "La rutina",
+    "La soledad", "Un logro", "La paciencia", "El coraje", "Una promesa", "El hogar",
+    "La duda", "Un recuerdo", "La gratitud", "El cambio de planes", "La rutina diaria", "Una segunda oportunidad",
+    "El primer día", "La nostalgia", "Un abrazo", "La incertidumbre"];
   let orden = [...TEMAS].sort(() => Math.random() - 0.5).slice(0, 3);
   let i = 0;
 

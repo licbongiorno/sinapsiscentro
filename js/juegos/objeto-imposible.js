@@ -1,7 +1,15 @@
 (function () {
   const contenedor = document.getElementById("jgContenedor");
-  const MATERIALES = ["vidrio", "humo", "goma", "hielo que no se derrite", "luz", "papel", "arena", "metal líquido", "algodón", "madera flexible"];
-  const FUNCIONES = ["guardar recuerdos", "medir el tiempo al revés", "escuchar pensamientos", "iluminar sin electricidad", "viajar sin moverse", "guardar silencio", "atrapar sueños", "enfriar el enojo", "abrir puertas invisibles", "recordar olores"];
+  const MATERIALES = ["vidrio", "humo", "goma", "hielo que no se derrite", "luz", "papel", "arena", "metal líquido", "algodón", "madera flexible",
+    "agua congelada a la mitad", "telaraña", "nubes compactadas", "sombra sólida", "seda de acero", "cera tibia", "espejo líquido", "raíces trenzadas",
+    "escarcha", "burbujas de jabón resistentes", "papel de diario", "piedra porosa", "cristal de sal", "pluma metálica", "barro seco", "corcho", "hueso tallado", "cuero de nube",
+    "vapor solidificado", "musgo tejido", "arcilla luminosa", "ceniza compactada", "resina de árbol", "hielo tibio", "arena magnética", "cristal blando", "tela de araña dorada", "madera translúcida",
+    "polvo de estrellas", "goma de borrar gigante", "cáscara de huevo reforzada", "vidrio soplado a mano", "lana de nube", "piel de tambor", "cartón encerado", "alambre trenzado con seda"];
+  const FUNCIONES = ["guardar recuerdos", "medir el tiempo al revés", "escuchar pensamientos", "iluminar sin electricidad", "viajar sin moverse", "guardar silencio", "atrapar sueños", "enfriar el enojo", "abrir puertas invisibles", "recordar olores",
+    "traducir el llanto", "guardar promesas", "medir la nostalgia", "despertar recuerdos dormidos", "guardar el eco de una risa", "detener una discusión", "iluminar sólo lo importante", "avisar cuando alguien miente sin querer",
+    "guardar el primer día de algo", "hacer más liviana una despedida", "escuchar lo que no se dijo", "conservar el calor de un abrazo", "mapear los caminos no elegidos", "devolver el tiempo prestado", "coleccionar segundas oportunidades", "convertir el ruido en calma",
+    "medir cuánto falta para sanar", "guardar el sonido de una casa vacía", "hacer visible lo que se siente", "avisar cuando alguien necesita ayuda sin pedirla", "conservar el primer intento de algo", "traducir un silencio incómodo",
+    "medir la distancia entre dos personas", "guardar el peso de una decisión", "recordar quién fuiste antes de un cambio", "hacer que una disculpa llegue a tiempo", "conservar el entusiasmo de un comienzo", "avisar cuando ya es momento de soltar"];
 
   function combinacion() {
     return {

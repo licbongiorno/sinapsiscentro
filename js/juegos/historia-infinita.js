@@ -1,6 +1,16 @@
 (function () {
   const contenedor = document.getElementById("jgContenedor");
-  const INICIOS = ["Todo empezó una noche de tormenta, cuando", "Nadie recuerda cómo llegó ahí, pero", "El mapa mostraba un lugar que no existía, hasta que"];
+  const INICIOS = ["Todo empezó una noche de tormenta, cuando", "Nadie recuerda cómo llegó ahí, pero", "El mapa mostraba un lugar que no existía, hasta que",
+    "En el fondo del cajón más viejo de la casa apareció", "La última persona en salir del pueblo fue",
+    "Cuando el reloj de la plaza dejó de andar, todos notaron que", "El barco llegó sin nadie a bordo, salvo",
+    "Cada vez que alguien mencionaba ese nombre, algo cambiaba: por ejemplo", "La carta nunca llegó a destino porque",
+    "En esa casa, las puertas se abrían solas cuando", "Nadie sabía por qué el bosque crecía más rápido cada",
+    "El día que se fue la luz de todo el barrio, alguien vio", "La última página del diario decía sólo",
+    "Todos los relojes de la ciudad marcaban una hora distinta, excepto", "El tren fantasma volvió a pasar la noche que",
+    "El único testigo de lo que pasó fue", "Nadie quiso volver a ese lugar después de", "La leyenda del pueblo empezó cuando",
+    "En el fondo del lago apareció algo que nadie esperaba:", "Cada vez que llovía, en esa casa se escuchaba",
+    "El forastero que llegó esa tarde traía", "Todos los años, en la misma fecha, el pueblo entero", "La puerta trasera del teatro llevaba a",
+    "En el último cajón de su escritorio guardaba", "Cuando por fin abrieron la caja fuerte, encontraron"];
   let oraciones = [INICIOS[Math.floor(Math.random() * INICIOS.length)]];
   const LIMITE = 8;
 

@@ -1,6 +1,12 @@
 (function () {
   const contenedor = document.getElementById("jgContenedor");
-  const INVENTADAS = ["Flurbeo","Zampalindo","Trocantín","Miscabudo","Farolengo","Chundelaje","Petropludo","Vencilargo"];
+  const INVENTADAS = ["Flurbeo","Zampalindo","Trocantín","Miscabudo","Farolengo","Chundelaje","Petropludo","Vencilargo",
+    "Grimoloso","Pantufloide","Recontrajo","Malimbroso","Cachurumbo","Tembeleque","Fosforengo","Nucaramba",
+    "Sopetrán","Batifundio","Chirimango","Cangalapo","Trebolinda","Marfujenco","Pespuntoso","Galimoto",
+    "Rebuznante","Sacapuntoso","Balandroso","Espelunca","Zarapondo","Bicharraco",
+    "Trapisondo","Cachivachudo","Merengoso","Pelaguampa","Sarasondo","Vichivento","Golondrango","Mazacote",
+    "Chipilongo","Trastabillo","Bambaleco","Perendengue","Zanganeta","Fofolengo","Trompeludo","Bolindango",
+    "Cachirulete","Marimoño","Tarantundo","Escobajo","Pintarrajo","Zambumbudo","Trapichongo","Garabulengo"];
   let orden = [...INVENTADAS].sort(() => Math.random() - 0.5).slice(0, 3);
   let i = 0;
 

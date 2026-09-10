@@ -1,6 +1,10 @@
 (function () {
   const contenedor = document.getElementById("jgContenedor");
-  const PALABRAS = ["Libertad","Fuego","Puente","Espejo","Camino","Tiempo","Semilla"];
+  const PALABRAS = ["Libertad","Fuego","Puente","Espejo","Camino","Tiempo","Semilla",
+    "Hogar","Coraje","Distancia","Raíz","Horizonte","Silencio","Cambio",
+    "Confianza","Música","Infancia","Tormenta","Refugio","Despertar",
+    "Equilibrio","Ternura","Frontera","Memoria","Vértigo","Cosecha",
+    "Origen","Umbral","Latido","Asombro","Constancia","Abismo","Resiliencia","Vínculo","Presencia"];
   const palabra = PALABRAS[Math.floor(Math.random() * PALABRAS.length)];
   let ideas = [];
 

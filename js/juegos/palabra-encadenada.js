@@ -1,6 +1,11 @@
 (function () {
   const contenedor = document.getElementById("jgContenedor");
-  const INICIO = ["CASA","AMOR","LUNA","SOL","RIO","FLOR","MAR","PAN"];
+  const INICIO = ["CASA","AMOR","LUNA","SOL","RIO","FLOR","MAR","PAN",
+    "GATO","LIBRO","NUBE","FUEGO","VERDE","NOCHE","CIELO","TREN",
+    "PUENTE","ARBOL","CAMINO","ESTRELLA","VIENTO","PLAYA","MONTAÑA","JARDIN",
+    "LLAVE","ESPEJO","RELOJ","BOSQUE","ISLA","BARCO","NIDO","LLUVIA",
+    "FIESTA","AMIGO","MUSICA","DANZA","COLOR","PIEDRA","FUENTE","VALLE",
+    "TORRE","CAMPANA","SENDA","AURORA","OCEANO","CRISTAL","HORIZONTE"];
   let cadena = [INICIO[Math.floor(Math.random() * INICIO.length)]];
   const LIMITE = 12;
 

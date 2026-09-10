@@ -1,6 +1,14 @@
 (function () {
   const contenedor = document.getElementById("jgContenedor");
-  const BANCO = ["gato","maleta","lluvia","secreto","escalera","fantasma","carta","reloj","bosque","espejo","tren","cometa"];
+  const BANCO = ["gato","maleta","lluvia","secreto","escalera","fantasma","carta","reloj","bosque","espejo","tren","cometa",
+    "isla","vecino","cuaderno","linterna","abuela","sótano","mapa","botella","abrigo","jardín",
+    "trueno","álbum","muñeca","balcón","semáforo","paraguas","barco","desván","fogata","cerradura",
+    "sombrero","violín","cicatriz","ascensor","vitrina","hormiga","cortina","rompecabezas","farol","cueva",
+    "moneda","biblioteca","canción","huella","invierno","brújula","escondite","reloj de arena","telaraña","veleta",
+    "pañuelo","retrato","cofre","cartero","farola","cometa de papel","maceta","antifaz","cascabel","pluma",
+    "pescador","muelle","sombra","espantapájaros","tetera","cuadro","pasillo","botón","guitarra","jaula",
+    "faro","medalla","cajón","cabra","túnel","cortejo","cuervo","lupa","estampilla","lampara",
+    "collar","cencerro","molino","chaleco","amuleto","panadería","cascada","abanico","brasero","cantimplora"];
   function tres() {
     const c = [...BANCO]; const r = [];
     for (let n = 0; n < 3; n++) r.push(c.splice(Math.floor(Math.random() * c.length), 1)[0]);
