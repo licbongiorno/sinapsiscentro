@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juegos | SINAPSIS — Centro de Salud Integral</title>
+<meta name="description" content="Juegos breves para entrenar memoria, atención, emociones y más. Una plataforma de Sinapsis, Centro de Salud Integral en Berazategui.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/juegos.css">
+</head>
+<body>
+
+<header class="jp-header">
+  <div class="jp-topbar">
+    <a href="index.html" class="jp-brand"><span class="mark">🧠</span> Sinapsis</a>
+    <button class="jp-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
+  </div>
+  <div class="jp-saludo">
+    <h1 id="saludoNombre">Hola 👋</h1>
+    <p>¿Qué hacemos hoy?</p>
+  </div>
+  <div class="jp-stats-row">
+    <div class="jp-stat-chip">🔥 <span id="statRacha">0</span> día(s)</div>
+    <div class="jp-stat-chip">⭐ Nivel <span id="statNivel">1</span></div>
+    <div class="jp-stat-chip">🏆 <span id="statLogros">0</span>/<span id="statLogrosTotal">0</span></div>
+  </div>
+</header>
+
+<section class="jp-animo">
+  <div class="jp-animo-card">
+    <h2>¿Cómo estás hoy?</h2>
+    <div class="jp-animo-grid" id="animoGrid"></div>
+  </div>
+</section>
+
+<div class="jp-azar">
+  <button class="jp-azar-btn" id="btnAzar">🎲 Jugar al azar</button>
+</div>
+
+<section class="jp-seccion" id="seccionContinuar" hidden>
+  <h2>⭐ Seguí jugando</h2>
+  <div class="jp-juegos-lista" id="continuarLista"></div>
+</section>
+
+<section class="jp-seccion">
+  <h2>Categorías</h2>
+  <div class="jp-categorias-grid" id="categoriasGrid"></div>
+</section>
+
+<section class="jp-seccion" id="seccionCategoriaDetalle" hidden>
+  <h2><span id="catDetalleIcono"></span> <span id="catDetalleNombre"></span></h2>
+  <div class="jp-juegos-lista" id="catDetalleLista"></div>
+</section>
+
+<section class="jp-seccion">
+  <h2>🏆 Logros <span class="ver-todo" id="verTodosLogros">ver todos</span></h2>
+  <div class="jp-logros-scroll" id="logrosScroll"></div>
+</section>
+
+<!-- MODAL PERFIL -->
+<div class="jp-modal-overlay" id="modalPerfil" hidden>
+  <div class="jp-modal">
+    <h2>Mi perfil</h2>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Elegí tu avatar</label>
+    <div class="jp-avatares" id="avataresLista"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Tu nombre</label>
+    <input type="text" id="inputNombre" placeholder="¿Cómo te llamamos?" maxlength="24">
+    <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-soft); font-weight:700;">
+      <span>Nivel <span id="modalNivel">1</span></span>
+      <span id="modalXpTexto">0 / 50 XP</span>
+    </div>
+    <div class="jp-nivel-barra"><div class="jp-nivel-barra-fill" id="modalNivelFill"></div></div>
+    <button class="jp-modal-cerrar" id="btnGuardarPerfil">Guardar</button>
+  </div>
+</div>
+
+<script src="data/juegos-catalogo.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/perfil.js"></script>
+<script src="js/logros.js"></script>
+<script>
+const MOODS = [
+  { emoji: "😵", texto: "Saturado", cats: ["calma", "atencion"] },
+  { emoji: "😴", texto: "Cansado", cats: ["calma"] },
+  { emoji: "🧠", texto: "Activar la cabeza", cats: ["logica", "memoria", "numeros"] },
+  { emoji: "🎨", texto: "Crear", cats: ["creatividad"] },
+  { emoji: "❤️", texto: "Entender algo", cats: ["emociones", "vinculos"] },
+  { emoji: "🧘", texto: "Bajar un cambio", cats: ["calma"] },
+  { emoji: "🤔", texto: "Pensar", cats: ["logica", "flexibilidad"] },
+  { emoji: "🎲", texto: "Sorprendeme", cats: null },
+];
+
+function irAJuego(id) { window.location.href = `juego.html?id=${id}`; }
+
+function elegirJuegoPorCategorias(cats) {
+  const disponibles = CatalogoJuegos.disponibles();
+  const pool = cats ? disponibles.filter(j => cats.includes(j.categoria)) : disponibles;
+  const lista = pool.length ? pool : disponibles;
+  return lista[Math.floor(Math.random() * lista.length)];
+}
+
+function render() {
+  const perfil = Storage.getPerfil();
+  const racha = Storage.getRacha();
+  const logros = Storage.getLogros();
+
+  document.getElementById("saludoNombre").textContent = perfil.nombre ? `Hola, ${perfil.nombre} 👋` : "Hola 👋";
+  document.getElementById("statRacha").textContent = racha.dias;
+  document.getElementById("statNivel").textContent = perfil.nivel;
+  document.getElementById("statLogros").textContent = logros.length;
+  document.getElementById("statLogrosTotal").textContent = Logros.catalogo().length;
+
+  // Ánimo
+  const animoGrid = document.getElementById("animoGrid");
+  animoGrid.innerHTML = MOODS.map((m, i) => `
+    <button class="jp-animo-btn" data-i="${i}">
+      <span class="emoji">${m.emoji}</span>${m.texto}
+    </button>`).join("");
+  animoGrid.querySelectorAll(".jp-animo-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const mood = MOODS[Number(btn.dataset.i)];
+      const juego = elegirJuegoPorCategorias(mood.cats);
+      irAJuego(juego.id);
+    });
+  });
+
+  // Continuar jugando (últimos jugados)
+  const progreso = Storage.getProgresoCompleto();
+  const jugados = Object.keys(progreso)
+    .filter(id => CatalogoJuegos.porId(id))
+    .sort((a, b) => new Date(progreso[b].ultimaVez) - new Date(progreso[a].ultimaVez))
+    .slice(0, 3);
+  if (jugados.length) {
+    document.getElementById("seccionContinuar").hidden = false;
+    document.getElementById("continuarLista").innerHTML = jugados.map(id => tarjetaJuego(CatalogoJuegos.porId(id))).join("");
+    document.getElementById("continuarLista").querySelectorAll("[data-juego]").forEach(el =>
+      el.addEventListener("click", () => irAJuego(el.dataset.juego)));
+  }
+
+  // Categorías
+  const catGrid = document.getElementById("categoriasGrid");
+  catGrid.innerHTML = CatalogoJuegos.categorias().map(cat => {
+    const n = CatalogoJuegos.porCategoria(cat.id).filter(j => j.disponible).length;
+    return `<button class="jp-cat-card" data-cat="${cat.id}">
+      <span class="emoji">${cat.icono}</span>
+      <span class="nombre">${cat.nombre}</span>
+      <span class="cantidad">${n} juego${n === 1 ? "" : "s"}</span>
+    </button>`;
+  }).join("");
+  catGrid.querySelectorAll("[data-cat]").forEach(el =>
+    el.addEventListener("click", () => mostrarCategoria(el.dataset.cat)));
+
+  // Logros
+  const logrosScroll = document.getElementById("logrosScroll");
+  logrosScroll.innerHTML = Logros.catalogo().map(l => {
+    const tiene = logros.includes(l.id);
+    return `<div class="jp-logro-card ${tiene ? "" : "bloqueado"}">
+      <span class="emoji">${l.icono}</span>
+      <span class="nombre">${l.nombre}</span>
+    </div>`;
+  }).join("");
+}
+
+function tarjetaJuego(juego) {
+  const cat = CatalogoJuegos.categoriaPorId(juego.categoria);
+  return `<div class="jp-juego-card ${juego.disponible ? "" : "proximamente"}" ${juego.disponible ? `data-juego="${juego.id}"` : ""} style="${juego.disponible ? "cursor:pointer" : ""}">
+    <div class="icono">${cat.icono}</div>
+    <div class="info">
+      <div class="nombre">${juego.nombre}</div>
+      <div class="desc">${juego.descripcion}</div>
+    </div>
+    <div class="meta">${juego.disponible ? juego.duracion : "Próximamente"}</div>
+  </div>`;
+}
+
+function mostrarCategoria(catId) {
+  const cat = CatalogoJuegos.categoriaPorId(catId);
+  const juegos = CatalogoJuegos.porCategoria(catId);
+  document.getElementById("seccionCategoriaDetalle").hidden = false;
+  document.getElementById("catDetalleIcono").textContent = cat.icono;
+  document.getElementById("catDetalleNombre").textContent = cat.nombre;
+  document.getElementById("catDetalleLista").innerHTML = juegos.map(tarjetaJuego).join("") || `<p class="jp-vacio">Todavía no hay juegos acá.</p>`;
+  document.getElementById("catDetalleLista").querySelectorAll("[data-juego]").forEach(el =>
+    el.addEventListener("click", () => irAJuego(el.dataset.juego)));
+  document.getElementById("seccionCategoriaDetalle").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.getElementById("btnAzar").addEventListener("click", () => irAJuego(elegirJuegoPorCategorias(null).id));
+document.getElementById("verTodosLogros").addEventListener("click", () => {
+  document.getElementById("logrosScroll").style.flexWrap = "wrap";
+  document.getElementById("logrosScroll").style.overflowX = "visible";
+});
+
+// ── Modal perfil ──
+const modalPerfil = document.getElementById("modalPerfil");
+document.getElementById("btnPerfil").addEventListener("click", abrirModalPerfil);
+modalPerfil.addEventListener("click", (e) => { if (e.target === modalPerfil) modalPerfil.hidden = true; });
+document.getElementById("btnGuardarPerfil").addEventListener("click", () => {
+  const nombre = document.getElementById("inputNombre").value;
+  Perfil.actualizarNombre(nombre);
+  modalPerfil.hidden = true;
+  render();
+});
+
+function abrirModalPerfil() {
+  const perfil = Storage.getPerfil();
+  document.getElementById("inputNombre").value = perfil.nombre || "";
+  const avataresLista = document.getElementById("avataresLista");
+  avataresLista.innerHTML = AVATARES.map(a => `<button class="jp-avatar-opcion ${a === perfil.avatar ? "activo" : ""}" data-av="${a}">${a}</button>`).join("");
+  avataresLista.querySelectorAll("[data-av]").forEach(el => el.addEventListener("click", () => {
+    Perfil.actualizarAvatar(el.dataset.av);
+    avataresLista.querySelectorAll(".jp-avatar-opcion").forEach(x => x.classList.remove("activo"));
+    el.classList.add("activo");
+  }));
+  const info = Perfil.progresoNivelActual(perfil.xp);
+  document.getElementById("modalNivel").textContent = info.nivel;
+  document.getElementById("modalXpTexto").textContent = `${info.xpEnNivel} / ${info.xpParaSiguiente} XP`;
+  document.getElementById("modalNivelFill").style.width = `${Math.min(100, (info.xpEnNivel / info.xpParaSiguiente) * 100)}%`;
+  modalPerfil.hidden = false;
+}
+
+render();
+</script>
+</body>
+</html>

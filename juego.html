@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cargando juego… | SINAPSIS</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/juego.css">
+</head>
+<body>
+
+<main id="juego-area">
+  <h1 class="jg-titulo" id="jgTitulo">Cargando…</h1>
+  <p class="jg-instruccion" id="jgInstruccion"></p>
+  <div id="jgContenedor"></div>
+</main>
+
+<div id="jgError" hidden style="text-align:center; padding: 100px 20px;">
+  <p style="font-size:1.1rem; color:#3a5a6a; margin-bottom:20px;">No encontramos ese juego, o todavía está en camino 🚧</p>
+  <a href="juegos.html" style="color:#1a7a8a; font-weight:700;">← Volver al portal de juegos</a>
+</div>
+
+<script src="data/juegos-catalogo.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/perfil.js"></script>
+<script src="js/logros.js"></script>
+<script src="js/game-engine.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const juegoId = params.get("id");
+  const juego = juegoId ? CatalogoJuegos.porId(juegoId) : null;
+
+  if (!juego || !juego.disponible) {
+    document.getElementById("juego-area").hidden = true;
+    document.getElementById("jgError").hidden = false;
+  } else {
+    document.title = `${juego.nombre} | SINAPSIS`;
+    document.getElementById("jgTitulo").textContent = juego.nombre;
+    document.getElementById("jgInstruccion").textContent = juego.descripcion;
+    const script = document.createElement("script");
+    script.src = juego.archivo;
+    document.body.appendChild(script);
+  }
+</script>
+</body>
+</html>
