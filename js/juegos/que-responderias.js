@@ -13,8 +13,16 @@
       "Explico mi situación y ofrezco ayudar en otro momento.", "Digo que sí igual, para no quedar mal.", "Digo que no, sin dar explicaciones." ] },
     { situacion: "Alguien hace un comentario que te incomoda, frente a otras personas.", opciones: [
       "Lo hablo con esa persona después, a solas.", "Respondo con humor y sigo la charla.", "Me quedo callado/a y lo pienso todo el día." ] },
+    { situacion: "Un familiar opina sobre una decisión personal que ya tomaste.", opciones: [
+      "Agradezco la opinión y explico que ya lo decidí.", "Discuto hasta convencerlo de que tengo razón.", "Cambio de tema para evitar el choque." ] },
+    { situacion: "Te enterás de que hablaron mal de vos a tus espaldas.", opciones: [
+      "Hablo directamente con esa persona sobre lo que pasó.", "Empiezo a hablar mal de esa persona también.", "Lo dejo pasar aunque me siga molestando." ] },
+    { situacion: "Alguien te copia constantemente lo que hacés o decís.", opciones: [
+      "Se lo comento con humor, sin darle mucha vuelta.", "Me molesta pero no digo nada.", "Cambio todo lo que hago para que no me copie más." ] },
+    { situacion: "Un grupo de amigos arma un plan sin incluirte, sin querer.", opciones: [
+      "Les pregunto directamente si puedo sumarme.", "Me quedo con la bronca sin decir nada.", "Dejo de responder mensajes del grupo por un tiempo." ] },
   ];
-  let orden = [...ESCENARIOS].sort(() => Math.random() - 0.5);
+  let orden = [...ESCENARIOS].sort(() => Math.random() - 0.5).slice(0, 5);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "que-responderias", vidas: null, tiempoSegundos: null });

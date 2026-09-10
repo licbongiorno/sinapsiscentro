@@ -6,6 +6,13 @@
     "Seguí el aire entrando y saliendo, sin cambiarlo.",
     "Notá la temperatura del aire en tu piel.",
     "Aflojá los hombros, aunque no sientas que están tensos.",
+    "Fijate en algo de color azul que tengas cerca.",
+    "Notá el contacto de tus pies con el piso o el calzado.",
+    "Prestá atención al peso de tus manos, apoyadas o sueltas.",
+    "Notá si hay tensión en tu mandíbula, y aflojala si podés.",
+    "Escuchá el sonido más lejano que puedas percibir ahora.",
+    "Notá cómo se siente tragar saliva, un detalle que casi nunca notamos.",
+    "Fijate en la textura de la ropa que tenés puesta.",
   ];
   const consigna = CONSIGNAS[Math.floor(Math.random() * CONSIGNAS.length)];
   let segundos = 60;

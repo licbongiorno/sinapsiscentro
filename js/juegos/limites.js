@@ -17,8 +17,28 @@
       { texto: "Le digo, con calma, que ese comentario me incomodó.", asertiva: true },
       { texto: "Me quedo callado y lo pienso el resto del día.", asertiva: false },
       { texto: "Respondo con un comentario hiriente también.", asertiva: false } ] },
+    { situacion: "Alguien te llama fuera de horario laboral, seguido, por temas de trabajo.", opciones: [
+      { texto: "Le contesto siempre, aunque me quite tiempo personal.", asertiva: false },
+      { texto: "Le explico con buena onda que fuera de horario prefiero no atender temas laborales.", asertiva: true },
+      { texto: "Dejo de contestarle el teléfono directamente.", asertiva: false } ] },
+    { situacion: "Un conocido te pide que le hagas un favor grande, sin ofrecer nada a cambio.", opciones: [
+      { texto: "Lo hago igual aunque me cueste, para no quedar mal.", asertiva: false },
+      { texto: "Le digo que puedo ayudar en parte, pero no con todo.", asertiva: true },
+      { texto: "Le digo que sí y después lo hago de mala gana.", asertiva: false } ] },
+    { situacion: "Tu pareja quiere pasar todo el tiempo libre juntos y vos necesitás tu espacio.", opciones: [
+      { texto: "Le explico que necesito algo de tiempo para mí, sin que eso signifique menos cariño.", asertiva: true },
+      { texto: "Acepto siempre, aunque me agote.", asertiva: false },
+      { texto: "Empiezo a inventar excusas para tener espacio.", asertiva: false } ] },
+    { situacion: "Un compañero te interrumpe todo el tiempo cuando hablás en las reuniones.", opciones: [
+      { texto: "Le pido, en el momento, que me deje terminar la idea.", asertiva: true },
+      { texto: "Dejo de hablar en las reuniones directamente.", asertiva: false },
+      { texto: "Lo interrumpo yo también, cada vez más fuerte.", asertiva: false } ] },
+    { situacion: "Alguien opina sobre decisiones personales tuyas sin que se lo pidas.", opciones: [
+      { texto: "Le agradezco la intención y le aclaro que ya lo decidí.", asertiva: true },
+      { texto: "Cambio mi decisión para que no siga opinando.", asertiva: false },
+      { texto: "Le respondo mal para que no vuelva a opinar.", asertiva: false } ] },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 5);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "limites", vidas: null, tiempoSegundos: null });

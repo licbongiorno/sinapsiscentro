@@ -9,8 +9,14 @@
     "Alguien te grita sin motivo aparente.",
     "Te piden disculpas por algo que te dolió.",
     "Ves una noticia que te preocupa.",
+    "Alguien te compara desfavorablemente con otra persona.",
+    "Te avisan un cambio de planes a último momento.",
+    "Recibís un halago inesperado de alguien que respetás.",
+    "Tenés que esperar mucho más de lo previsto por algo importante.",
+    "Alguien cumple una promesa que casi habías olvidado.",
+    "Te piden que tomes una decisión rápida bajo presión.",
   ];
-  let orden = [...SITUACIONES].sort(() => Math.random() - 0.5);
+  let orden = [...SITUACIONES].sort(() => Math.random() - 0.5).slice(0, 6);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "termometro-emocional", vidas: null, tiempoSegundos: null });

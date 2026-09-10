@@ -5,9 +5,15 @@
     "Alguien te dice algo que te llena de alegría.",
     "Estás muy enojado por una injusticia.",
     "Sentís mucha vergüenza por algo que dijiste.",
+    "Estás esperando un resultado importante.",
+    "Alguien te abraza después de mucho tiempo sin verse.",
+    "Te acaban de dar una mala noticia de golpe.",
+    "Sentís alivio después de resolver algo que te preocupaba.",
+    "Estás muy concentrado terminando algo importante.",
+    "Sentís nostalgia al escuchar una canción vieja.",
   ];
   const ZONAS = ["Cabeza", "Pecho", "Estómago", "Manos", "Todo el cuerpo"];
-  let orden = [...SITUACIONES].sort(() => Math.random() - 0.5);
+  let orden = [...SITUACIONES].sort(() => Math.random() - 0.5).slice(0, 5);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "mapa-emociones", vidas: null, tiempoSegundos: null });

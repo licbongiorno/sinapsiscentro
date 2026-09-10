@@ -5,8 +5,14 @@
     { frase: "Seguro todos piensan que dije algo estúpido.", correcta: "Lectura de mente", opciones: ["Lectura de mente", "Todo o nada", "Generalización"] },
     { frase: "Si llego tarde una vez, van a pensar que soy un desastre para siempre.", correcta: "Generalización", opciones: ["Generalización", "Catastrofización", "Todo o nada"] },
     { frase: "Si me equivoco en la entrevista, va a ser el fin de mi carrera.", correcta: "Catastrofización", opciones: ["Catastrofización", "Lectura de mente", "Generalización"] },
+    { frase: "Fue mi culpa que la reunión saliera mal, aunque nadie dijo eso.", correcta: "Personalización", opciones: ["Personalización", "Todo o nada", "Filtro mental"] },
+    { frase: "Debería poder con todo sin pedir ayuda nunca.", correcta: "Debería", opciones: ["Debería", "Lectura de mente", "Etiquetado"] },
+    { frase: "Soy un inútil, listo, así soy yo.", correcta: "Etiquetado", opciones: ["Etiquetado", "Generalización", "Catastrofización"] },
+    { frase: "De todo lo que salió bien en el día, sólo puedo pensar en el único error que cometí.", correcta: "Filtro mental", opciones: ["Filtro mental", "Todo o nada", "Personalización"] },
+    { frase: "Ella lo hace todo mejor que yo, siempre.", correcta: "Comparación", opciones: ["Comparación", "Debería", "Lectura de mente"] },
+    { frase: "Como no me contestó el mensaje, seguro está enojado conmigo.", correcta: "Lectura de mente", opciones: ["Lectura de mente", "Filtro mental", "Etiquetado"] },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 6);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "detective-pensamientos", vidas: 3, tiempoSegundos: null });

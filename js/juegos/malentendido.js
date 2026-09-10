@@ -13,6 +13,36 @@
         "A: Siempre pasa lo mismo con vos, nunca revisás bien.",
         "B: Recién lo encontré en spam.",
       ], idxMalentendido: 2, explicacion: "A asumió que era culpa de B antes de confirmar qué había pasado." },
+    { lineas: [
+        "A: ¿Podés ayudarme con esto el sábado?",
+        "B: Tengo un compromiso, pero después puedo.",
+        "A: Ok, entendido, no cuento con vos entonces.",
+        "B: Esperá, dije que SÍ puedo, más tarde.",
+      ], idxMalentendido: 2, explicacion: "A se quedó con la primera parte de la frase y no escuchó el resto." },
+    { lineas: [
+        "A: ¿Cómo te fue en la entrevista?",
+        "B: Bien, supongo.",
+        "A: Ah, seguro no te interesaba el puesto.",
+        "B: No, para nada, estoy nervioso esperando la respuesta.",
+      ], idxMalentendido: 2, explicacion: "A confundió cautela o nerviosismo con desinterés." },
+    { lineas: [
+        "A: ¿Vas a comer con nosotros?",
+        "B: Ya comí algo antes, gracias.",
+        "A: Bueno, como quieras, ya no insisto más.",
+        "B: No es que no quiera, es que ya no tengo hambre.",
+      ], idxMalentendido: 2, explicacion: "A leyó un rechazo personal donde sólo había una cuestión de horarios." },
+    { lineas: [
+        "A: El informe todavía no está listo.",
+        "B: ¿Cómo? Necesitaba eso para hoy.",
+        "A: Nadie me avisó que era urgente.",
+        "B: Te lo escribí en el mensaje del lunes.",
+      ], idxMalentendido: 1, explicacion: "B asumió que A había visto y entendido la urgencia sin confirmarlo." },
+    { lineas: [
+        "A: Estuve pensando en lo que hablamos.",
+        "B: ¿Y? ¿Qué decidiste?",
+        "A: Todavía nada, sigo pensando.",
+        "B: Ah, entonces ya decidiste que no.",
+      ], idxMalentendido: 3, explicacion: "B interpretó una respuesta abierta como un \"no\" definitivo." },
   ];
   const caso = CASOS[Math.floor(Math.random() * CASOS.length)];
 

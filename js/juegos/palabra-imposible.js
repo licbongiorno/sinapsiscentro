@@ -5,8 +5,13 @@
     { pistas: ["Es un objeto", "Marca la hora", "Tiene agujas o número"], correcta: "RELOJ", opciones: ["RELOJ", "ESPEJO", "LIBRO"] },
     { pistas: ["Es un animal", "Vuela", "Hace nido"], correcta: "PÁJARO", opciones: ["PÁJARO", "PEZ", "GATO"] },
     { pistas: ["Es una emoción", "Aparece con lo inesperado", "Puede ser buena o mala"], correcta: "SORPRESA", opciones: ["SORPRESA", "CALMA", "ABURRIMIENTO"] },
+    { pistas: ["Es un mueble", "Sirve para dormir", "Suele tener sábanas"], correcta: "CAMA", opciones: ["CAMA", "SILLA", "MESA"] },
+    { pistas: ["Es un lugar", "Tiene libros", "Se puede pedir silencio ahí"], correcta: "BIBLIOTECA", opciones: ["BIBLIOTECA", "COCINA", "GIMNASIO"] },
+    { pistas: ["Es un fenómeno natural", "Hace ruido", "Suele venir con lluvia"], correcta: "TRUENO", opciones: ["TRUENO", "TERREMOTO", "ARCOÍRIS"] },
+    { pistas: ["Es un sentimiento", "Aparece cuando perdés algo", "Puede doler bastante"], correcta: "TRISTEZA", opciones: ["TRISTEZA", "ALEGRÍA", "CALMA"] },
+    { pistas: ["Es un objeto", "Sirve para ver mejor de lejos o de cerca", "Se usa en la cara"], correcta: "LENTES", opciones: ["LENTES", "GUANTES", "SOMBRERO"] },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 5);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "palabra-imposible", vidas: 3, tiempoSegundos: null });

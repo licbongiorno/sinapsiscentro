@@ -7,8 +7,16 @@
     { frase: "El que mucho abarca, poco ___.", correcta: "aprieta", opciones: ["aprieta", "camina", "duerme"] },
     { frase: "A caballo regalado no se le mira el ___.", correcta: "diente", opciones: ["diente", "casco", "pelo"] },
     { frase: "Quien siembra vientos, cosecha ___.", correcta: "tempestades", opciones: ["tempestades", "flores", "frutas"] },
+    { frase: "Al mal tiempo, buena ___.", correcta: "cara", opciones: ["cara", "ropa", "suerte"] },
+    { frase: "No todo lo que brilla es ___.", correcta: "oro", opciones: ["oro", "plata", "vidrio"] },
+    { frase: "En boca cerrada no entran ___.", correcta: "moscas", opciones: ["moscas", "hormigas", "abejas"] },
+    { frase: "Camarón que se duerme, se lo lleva la ___.", correcta: "corriente", opciones: ["corriente", "marea", "ola"] },
+    { frase: "Más vale tarde que ___.", correcta: "nunca", opciones: ["nunca", "temprano", "mañana"] },
+    { frase: "Perro que ladra no ___.", correcta: "muerde", opciones: ["muerde", "corre", "duerme"] },
+    { frase: "Zapatero, a tus ___.", correcta: "zapatos", opciones: ["zapatos", "cosas", "clavos"] },
+    { frase: "No dejes para mañana lo que puedas hacer ___.", correcta: "hoy", opciones: ["hoy", "después", "luego"] },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 6);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "completa-frase", vidas: 3, tiempoSegundos: null });

@@ -5,8 +5,14 @@
     { escena: "Marina revisa el celular cada dos minutos esperando una respuesta.", correcta: "Ansiedad", opciones: ["Ansiedad", "Calma", "Enojo", "Alivio"] },
     { escena: "Pedro sonríe y camina más erguido después de recibir el premio.", correcta: "Orgullo", opciones: ["Orgullo", "Tristeza", "Miedo", "Vergüenza"] },
     { escena: "Sol se queda mirando fijo la pantalla, sin poder concentrarse en nada más.", correcta: "Preocupación", opciones: ["Preocupación", "Alegría", "Calma", "Aburrimiento"] },
+    { escena: "Tomás suelta los hombros y respira hondo después de terminar el examen.", correcta: "Alivio", opciones: ["Alivio", "Enojo", "Sorpresa", "Vergüenza"] },
+    { escena: "Cami aprieta los puños y habla más fuerte de lo habitual.", correcta: "Enojo", opciones: ["Enojo", "Calma", "Ternura", "Aburrimiento"] },
+    { escena: "Bruno da un salto y abre bien los ojos al escuchar la noticia.", correcta: "Sorpresa", opciones: ["Sorpresa", "Tristeza", "Aburrimiento", "Calma"] },
+    { escena: "Lucía mira el reloj cada un rato y bosteza varias veces en la reunión.", correcta: "Aburrimiento", opciones: ["Aburrimiento", "Miedo", "Orgullo", "Sorpresa"] },
+    { escena: "Fede se queda callado, con la mirada baja, después de que le llamaran la atención.", correcta: "Vergüenza", opciones: ["Vergüenza", "Alegría", "Entusiasmo", "Calma"] },
+    { escena: "Naty abraza fuerte a su amiga y no puede dejar de sonreír.", correcta: "Alegría", opciones: ["Alegría", "Enojo", "Miedo", "Aburrimiento"] },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 5);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "detective-emocional", vidas: null, tiempoSegundos: null });

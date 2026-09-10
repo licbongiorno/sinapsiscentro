@@ -9,8 +9,13 @@
     { situacion: "Terminaste un proyecto en el que trabajaste mucho tiempo.", correcta: "Orgullo", opciones: ["Orgullo", "Vergüenza", "Miedo", "Enojo"] },
     { situacion: "Te comparan todo el tiempo con otra persona.", correcta: "Incomodidad", opciones: ["Incomodidad", "Alegría", "Sorpresa", "Calma"] },
     { situacion: "Estás esperando un resultado médico importante.", correcta: "Ansiedad", opciones: ["Ansiedad", "Aburrimiento", "Orgullo", "Alivio"] },
+    { situacion: "Alguien te agradece algo que hiciste sin esperar nada a cambio.", correcta: "Satisfacción", opciones: ["Satisfacción", "Enojo", "Aburrimiento", "Tristeza"] },
+    { situacion: "Ves una película muy triste y se te llenan los ojos de lágrimas.", correcta: "Tristeza", opciones: ["Tristeza", "Alegría", "Aburrimiento", "Enojo"] },
+    { situacion: "Te enterás de que un plan que esperabas mucho se canceló.", correcta: "Decepción", opciones: ["Decepción", "Alivio", "Sorpresa", "Calma"] },
+    { situacion: "Empezás algo completamente nuevo, sin saber muy bien cómo va a salir.", correcta: "Incertidumbre", opciones: ["Incertidumbre", "Aburrimiento", "Calma total", "Orgullo"] },
+    { situacion: "Alguien te trata injustamente delante de otras personas.", correcta: "Indignación", opciones: ["Indignación", "Alegría", "Calma", "Ternura"] },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 6);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "que-siento", vidas: null, tiempoSegundos: null });

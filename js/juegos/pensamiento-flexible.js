@@ -5,8 +5,14 @@
     "Si esto sale mal, va a ser un desastre total.",
     "Seguro piensan mal de mí.",
     "No sirvo para esto.",
+    "Siempre termino arruinando todo.",
+    "Si no lo hago perfecto, no vale la pena hacerlo.",
+    "Nadie me va a entender si lo cuento.",
+    "Ya es tarde para cambiar esto.",
+    "Si pido ayuda, van a pensar que no puedo solo.",
+    "Todo el mundo lo hace mejor que yo.",
   ];
-  let orden = [...PENSAMIENTOS].sort(() => Math.random() - 0.5).slice(0, 3);
+  let orden = [...PENSAMIENTOS].sort(() => Math.random() - 0.5).slice(0, 4);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "pensamiento-flexible", vidas: null, tiempoSegundos: null });

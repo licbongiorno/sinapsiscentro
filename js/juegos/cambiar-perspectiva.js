@@ -5,8 +5,14 @@
     "Tu pareja canceló un plan a último momento.",
     "Alguien no respondió tu mensaje en todo el día.",
     "Un amigo se fue temprano de tu cumpleaños.",
+    "Un familiar no comentó nada sobre algo que lograste.",
+    "Alguien te miró serio mientras hablabas.",
+    "Un compañero de trabajo no te invitó a un almuerzo grupal.",
+    "Tu jefe te pidió una reunión sin dar más detalles.",
+    "Un amigo tardó en devolverte algo que le prestaste.",
+    "Alguien cambió de planes sin avisarte antes.",
   ];
-  let orden = [...SITUACIONES].sort(() => Math.random() - 0.5).slice(0, 3);
+  let orden = [...SITUACIONES].sort(() => Math.random() - 0.5).slice(0, 5);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "cambiar-perspectiva", vidas: null, tiempoSegundos: null });

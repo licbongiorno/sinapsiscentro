@@ -4,8 +4,15 @@
     { a: "Quiere salir todos los fines de semana.", b: "Prefiere quedarse tranquilo en casa." },
     { a: "Le gusta planificar todo con anticipación.", b: "Prefiere improvisar sobre la marcha." },
     { a: "Necesita hablar las cosas apenas pasan.", b: "Necesita procesarlas en silencio primero." },
+    { a: "Quiere ahorrar para el futuro.", b: "Prefiere disfrutar el presente." },
+    { a: "Le gusta tener la casa siempre ordenada.", b: "No le molesta el desorden mientras esté cómodo." },
+    { a: "Prefiere resolver los conflictos hablando en el momento.", b: "Prefiere darse un tiempo antes de hablar de algo tenso." },
+    { a: "Le gusta compartir todo con el grupo de amigos.", b: "Prefiere mantener ciertas cosas más privadas." },
+    { a: "Quiere mudarse a otra ciudad.", b: "Está muy arraigado a donde vive." },
+    { a: "Prefiere decidir rápido y avanzar.", b: "Prefiere pensarlo bien antes de decidir." },
+    { a: "Necesita mucho tiempo a solas para recargar energía.", b: "Se recarga estando rodeado de gente." },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 4);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "puentes-vinculos", vidas: null, tiempoSegundos: null });

@@ -6,8 +6,12 @@
     { situacion: "Está ansioso antes de un examen para el que no estudió mucho.", correcta: "Preparación", opciones: ["Preparación", "Compañía", "Descanso"] },
     { situacion: "Está agotado después de una semana sin parar.", correcta: "Descanso", opciones: ["Descanso", "Más trabajo", "Reconocimiento"] },
     { situacion: "Se siente inseguro después de que le dijeran que se equivocó, en público.", correcta: "Validación", opciones: ["Validación", "Distancia", "Competencia"] },
+    { situacion: "Se siente abrumado con demasiadas cosas por resolver a la vez.", correcta: "Organización", opciones: ["Organización", "Más pendientes", "Aislamiento"] },
+    { situacion: "Está frustrado porque siente que nadie reconoce su esfuerzo.", correcta: "Reconocimiento", opciones: ["Reconocimiento", "Dinero", "Silencio"] },
+    { situacion: "Está nervioso porque tiene que tomar una decisión importante solo.", correcta: "Acompañamiento", opciones: ["Acompañamiento", "Presión extra", "Distancia"] },
+    { situacion: "Se siente solo después de mudarse a una ciudad nueva.", correcta: "Pertenencia", opciones: ["Pertenencia", "Más trabajo", "Silencio total"] },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 5);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "que-necesita", vidas: null, tiempoSegundos: null });

@@ -9,6 +9,16 @@
     "¿Qué le dirías a la versión de vos de hace un año?",
     "¿Qué te gustaría que los demás entendieran de vos?",
     "¿Qué pequeña cosa te hizo sonreír últimamente?",
+    "¿Qué necesitás escuchar hoy?",
+    "¿Qué cosa postergaste que te gustaría retomar?",
+    "¿Qué persona te hace sentir en paz?",
+    "¿Qué harías si supieras que no vas a fracasar?",
+    "¿Qué es algo que aprendiste de un momento difícil?",
+    "¿Qué costumbre te gustaría empezar?",
+    "¿A qué le tenés miedo y casi nunca lo decís?",
+    "¿Qué momento del día disfrutás más?",
+    "¿Qué te gustaría perdonarte a vos mismo?",
+    "¿Qué persona te acompañó en un momento clave de tu vida?",
   ];
   let vueltas = 0;
   const MAX = 3;

@@ -1,8 +1,12 @@
 (function () {
-  const PARES = [
+  const BANCO = [
     ["😊","Te dan una buena noticia"], ["😢","Perdés algo importante"],
     ["😠","Alguien te falta el respeto"], ["😨","Enfrentás algo desconocido"],
+    ["😲","Pasa algo que no esperabas"], ["😌","Todo está tranquilo y en orden"],
+    ["😳","Te equivocás delante de otros"], ["🥹","Alguien tiene un gesto tierno con vos"],
+    ["😤","Algo no sale como querías, de nuevo"],
   ];
+  const PARES = [...BANCO].sort(() => Math.random() - 0.5).slice(0, 4);
   const contenedor = document.getElementById("jgContenedor");
   let cartas = [];
   PARES.forEach((p, g) => { cartas.push({ g, txt: p[0], grande: true }, { g, txt: p[1], grande: false }); });

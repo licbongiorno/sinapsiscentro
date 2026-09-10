@@ -17,8 +17,28 @@
       { texto: "Le cuento cómo resolví yo un problema parecido.", empatica: false },
       { texto: "Le pregunto qué necesita en este momento.", empatica: true },
       { texto: "Cambio de tema para no incomodar.", empatica: false } ] },
+    { situacion: "Un amigo te cuenta que está muy orgulloso de algo que logró.", opciones: [
+      { texto: "Le digo que se lo merece y le pregunto cómo lo logró.", empatica: true },
+      { texto: "Le resto importancia porque a mí no me parece tanto.", empatica: false },
+      { texto: "Cambio el tema hacia algo que logré yo.", empatica: false } ] },
+    { situacion: "Alguien está frustrado porque algo no le salió como esperaba.", opciones: [
+      { texto: "Le digo que tiene razón en sentirse así, sin querer arreglarlo enseguida.", empatica: true },
+      { texto: "Le digo que no es para tanto.", empatica: false },
+      { texto: "Le explico todo lo que hizo mal.", empatica: false } ] },
+    { situacion: "Un amigo te confiesa que tiene miedo de algo que le parece una tontería.", opciones: [
+      { texto: "Le digo que ningún miedo es una tontería si a él le afecta.", empatica: true },
+      { texto: "Me río, porque sí suena medio ridículo.", empatica: false },
+      { texto: "Le digo que se deje de pavadas.", empatica: false } ] },
+    { situacion: "Alguien te cuenta que discutió fuerte con su pareja.", opciones: [
+      { texto: "Le pregunto cómo se siente, sin juzgar a ninguno de los dos.", empatica: true },
+      { texto: "Directamente le digo con quién tiene razón.", empatica: false },
+      { texto: "Le digo que seguro exagera.", empatica: false } ] },
+    { situacion: "Un compañero de estudio está agobiado por la cantidad de materias que le quedan.", opciones: [
+      { texto: "Le digo que entiendo que se sienta así, y le pregunto si quiere organizar un plan juntos.", empatica: true },
+      { texto: "Le digo que a mí me quedan más y no me quejo.", empatica: false },
+      { texto: "Le digo que se apure porque se está quedando atrás.", empatica: false } ] },
   ];
-  let orden = [...CASOS].sort(() => Math.random() - 0.5);
+  let orden = [...CASOS].sort(() => Math.random() - 0.5).slice(0, 5);
   let i = 0;
 
   GameEngine.iniciar({ juegoId: "empatia", vidas: null, tiempoSegundos: null });
