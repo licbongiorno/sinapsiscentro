@@ -57,6 +57,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
   background: rgba(8,32,46,0.7); backdrop-filter: blur(6px);
   display: flex; align-items: center; justify-content: center; padding: 20px;
 }
+.ge-overlay[hidden] { display: none; }
 .ge-card {
   background: white; border-radius: var(--r-lg);
   padding: 40px 32px; max-width: 380px; width: 100%;
