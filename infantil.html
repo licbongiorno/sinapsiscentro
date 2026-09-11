@@ -141,10 +141,13 @@ function renderActividades() {
   if (categoriaFiltro) lista = lista.filter(a => a.categoria === categoriaFiltro);
   document.getElementById("actividadesGrid").innerHTML = lista.map(a => {
     const cat = CatalogoInfantil.categoriaPorId(a.categoria);
+    const cantidad = a.contenido.rondas?.length || a.contenido.pares?.length || a.contenido.items?.length || Object.keys(a.contenido.nodos || {}).length;
+    const etiqueta = cantidad ? `${cantidad} ${a.tipo === "memoria" ? "parejas" : a.tipo === "historia" ? "escenas" : "desafíos"}` : "Actividad creativa";
     return `<button class="ih-actividad-card" data-id="${a.id}">
       <span class="emoji">${cat ? cat.icono : "🧸"}</span>
       <span class="titulo">${a.titulo}</span>
-      <span class="desc">${a.duracion} min</span>
+      <span class="desc">${a.descripcion}</span>
+      <span class="ih-actividad-meta">${etiqueta} · ${a.duracion} min</span>
     </button>`;
   }).join("");
   document.querySelectorAll("#actividadesGrid [data-id]").forEach(btn => btn.addEventListener("click", () => irAActividad(btn.dataset.id)));
