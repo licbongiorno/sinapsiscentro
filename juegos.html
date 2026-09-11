@@ -37,36 +37,54 @@
   </div>
 </header>
 
-<section class="jp-animo">
-  <div class="jp-animo-card">
-    <h2>¿Cómo estás hoy?</h2>
-    <div class="jp-animo-grid" id="animoGrid"></div>
-  </div>
-</section>
-
-<div class="jp-azar">
-  <button class="jp-azar-btn" id="btnAzar">🎲 Jugar al azar</button>
+<div class="jp-buscador">
+  <input type="text" id="inputBuscarJuego" placeholder="¿Qué juego estás buscando?">
 </div>
 
-<section class="jp-seccion" id="seccionContinuar" hidden>
-  <h2>⭐ Seguí jugando</h2>
-  <div class="jp-juegos-lista" id="continuarLista"></div>
-</section>
+<div id="vistaExploracionJuegos">
+  <section class="jp-animo">
+    <div class="jp-animo-card">
+      <h2>¿Cómo estás hoy?</h2>
+      <div class="jp-animo-grid" id="animoGrid"></div>
+    </div>
+  </section>
 
-<section class="jp-seccion">
-  <h2>Categorías</h2>
-  <div class="jp-categorias-grid" id="categoriasGrid"></div>
-</section>
+  <div class="jp-azar">
+    <button class="jp-azar-btn" id="btnAzar">🎲 Jugar al azar</button>
+  </div>
 
-<section class="jp-seccion" id="seccionCategoriaDetalle" hidden>
-  <h2><span id="catDetalleIcono"></span> <span id="catDetalleNombre"></span></h2>
-  <div class="jp-juegos-lista" id="catDetalleLista"></div>
-</section>
+  <section class="jp-seccion" id="seccionContinuar" hidden>
+    <h2>⭐ Seguí jugando</h2>
+    <div class="jp-juegos-lista" id="continuarLista"></div>
+  </section>
 
-<section class="jp-seccion">
-  <h2>🏆 Logros <span class="ver-todo" id="verTodosLogros">ver todos</span></h2>
-  <div class="jp-logros-scroll" id="logrosScroll"></div>
-</section>
+  <section class="jp-seccion" id="seccionFavoritosJuegos" hidden>
+    <h2>❤️ Tus favoritos</h2>
+    <div class="jp-juegos-lista" id="favoritosJuegosLista"></div>
+  </section>
+
+  <section class="jp-seccion">
+    <h2>Categorías</h2>
+    <div class="jp-categorias-grid" id="categoriasGrid"></div>
+  </section>
+
+  <section class="jp-seccion" id="seccionCategoriaDetalle" hidden>
+    <h2><span id="catDetalleIcono"></span> <span id="catDetalleNombre"></span></h2>
+    <div class="jp-juegos-lista" id="catDetalleLista"></div>
+  </section>
+
+  <section class="jp-seccion">
+    <h2>🏆 Logros <span class="ver-todo" id="verTodosLogros">ver todos</span></h2>
+    <div class="jp-logros-scroll" id="logrosScroll"></div>
+  </section>
+</div>
+
+<div id="vistaResultadosJuegos" hidden>
+  <section class="jp-seccion">
+    <h2 id="resultadosJuegosTitulo">Resultados</h2>
+    <div class="jp-juegos-lista" id="resultadosJuegosLista"></div>
+  </section>
+</div>
 
 <!-- MODAL PERFIL -->
 <div class="jp-modal-overlay" id="modalPerfil" hidden>
@@ -148,12 +166,10 @@ function render() {
     .filter(id => CatalogoJuegos.porId(id))
     .sort((a, b) => new Date(progreso[b].ultimaVez) - new Date(progreso[a].ultimaVez))
     .slice(0, 3);
-  if (jugados.length) {
-    document.getElementById("seccionContinuar").hidden = false;
-    document.getElementById("continuarLista").innerHTML = jugados.map(id => tarjetaJuego(CatalogoJuegos.porId(id))).join("");
-    document.getElementById("continuarLista").querySelectorAll("[data-juego]").forEach(el =>
-      el.addEventListener("click", () => irAJuego(el.dataset.juego)));
-  }
+  document.getElementById("seccionContinuar").hidden = jugados.length === 0;
+  if (jugados.length) pintarListaJuegos("continuarLista", jugados.map(id => CatalogoJuegos.porId(id)), "");
+
+  renderFavoritosJuegos();
 
   // Categorías
   const catGrid = document.getElementById("categoriasGrid");
@@ -181,6 +197,7 @@ function render() {
 
 function tarjetaJuego(juego) {
   const cat = CatalogoJuegos.categoriaPorId(juego.categoria);
+  const fav = juego.disponible && Storage.esFavoritoJuego(juego.id);
   return `<div class="jp-juego-card ${juego.disponible ? "" : "proximamente"}" ${juego.disponible ? `data-juego="${juego.id}"` : ""} style="${juego.disponible ? "cursor:pointer" : ""}">
     <div class="icono">${cat.icono}</div>
     <div class="info">
@@ -188,7 +205,32 @@ function tarjetaJuego(juego) {
       <div class="desc">${juego.descripcion}</div>
     </div>
     <div class="meta">${juego.disponible ? juego.duracion : "Próximamente"}</div>
+    ${juego.disponible ? `<button class="fav-btn" data-fav="${juego.id}" aria-label="Favorito">${fav ? "❤️" : "🤍"}</button>` : ""}
   </div>`;
+}
+
+/** Pinta una lista de juegos en el contenedor dado, cableando el click (ir al juego) y el botón de favorito. */
+function pintarListaJuegos(contenedorId, juegos, vacioTexto) {
+  const el = document.getElementById(contenedorId);
+  if (!juegos.length) { el.innerHTML = `<p class="jp-vacio">${vacioTexto}</p>`; return; }
+  el.innerHTML = juegos.map(tarjetaJuego).join("");
+  el.querySelectorAll("[data-juego]").forEach(card => {
+    card.addEventListener("click", (e) => { if (!e.target.closest("[data-fav]")) irAJuego(card.dataset.juego); });
+  });
+  el.querySelectorAll("[data-fav]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const ahora = Storage.toggleFavoritoJuego(btn.dataset.fav);
+      btn.textContent = ahora ? "❤️" : "🤍";
+      renderFavoritosJuegos();
+    });
+  });
+}
+
+function renderFavoritosJuegos() {
+  const favoritos = Storage.getFavoritosJuegos().map(id => CatalogoJuegos.porId(id)).filter(Boolean);
+  document.getElementById("seccionFavoritosJuegos").hidden = favoritos.length === 0;
+  if (favoritos.length) pintarListaJuegos("favoritosJuegosLista", favoritos, "");
 }
 
 function mostrarCategoria(catId) {
@@ -197,11 +239,27 @@ function mostrarCategoria(catId) {
   document.getElementById("seccionCategoriaDetalle").hidden = false;
   document.getElementById("catDetalleIcono").textContent = cat.icono;
   document.getElementById("catDetalleNombre").textContent = cat.nombre;
-  document.getElementById("catDetalleLista").innerHTML = juegos.map(tarjetaJuego).join("") || `<p class="jp-vacio">Todavía no hay juegos acá.</p>`;
-  document.getElementById("catDetalleLista").querySelectorAll("[data-juego]").forEach(el =>
-    el.addEventListener("click", () => irAJuego(el.dataset.juego)));
+  pintarListaJuegos("catDetalleLista", juegos, "Todavía no hay juegos acá.");
   document.getElementById("seccionCategoriaDetalle").scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
+// ── Búsqueda ──
+let filtroTextoJuego = "";
+
+function actualizarVistaJuegos() {
+  const activo = filtroTextoJuego.trim().length > 0;
+  document.getElementById("vistaExploracionJuegos").hidden = activo;
+  document.getElementById("vistaResultadosJuegos").hidden = !activo;
+  if (!activo) return;
+  const lista = CatalogoJuegos.buscar(filtroTextoJuego);
+  document.getElementById("resultadosJuegosTitulo").textContent = `${lista.length} resultado${lista.length === 1 ? "" : "s"}`;
+  pintarListaJuegos("resultadosJuegosLista", lista, "No encontramos juegos con ese nombre.");
+}
+
+document.getElementById("inputBuscarJuego").addEventListener("input", (e) => {
+  filtroTextoJuego = e.target.value;
+  actualizarVistaJuegos();
+});
 
 document.getElementById("btnAzar").addEventListener("click", () => irAJuego(elegirJuegoPorCategorias(null).id));
 document.getElementById("verTodosLogros").addEventListener("click", () => {

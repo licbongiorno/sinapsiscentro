@@ -68,6 +68,7 @@ function _snapshotLocal() {
     progreso: leer("progreso", {}),
     logros: leer("logros", []),
     racha: leer("racha", { dias: 0, ultimoDia: null, historial: [] }),
+    favoritosJuegos: leer("favoritosJuegos", []),
     favoritosEjercicios: leer("favoritosEjercicios", []),
     progresoEjercicios: leer("progresoEjercicios", {}),
     reflexiones: leer("reflexiones", []),
@@ -199,6 +200,22 @@ const Storage = {
     return todos[juegoId];
   },
 
+  // ── JUEGOS: favoritos ──
+  getFavoritosJuegos() {
+    return leer("favoritosJuegos", []); // array de ids
+  },
+  esFavoritoJuego(id) {
+    return Storage.getFavoritosJuegos().includes(id);
+  },
+  toggleFavoritoJuego(id) {
+    const favs = leer("favoritosJuegos", []);
+    const idx = favs.indexOf(id);
+    if (idx >= 0) favs.splice(idx, 1); else favs.push(id);
+    escribir("favoritosJuegos", favs);
+    _programarSincronizacion();
+    return idx < 0; // true si quedó marcado como favorito
+  },
+
   // ── EJERCICIOS: favoritos, progreso/historial y reflexiones ──
   getFavoritosEjercicios() {
     return leer("favoritosEjercicios", []); // array de ids
@@ -298,6 +315,7 @@ const Storage = {
         if (datos.progreso) escribir("progreso", datos.progreso);
         if (datos.logros) escribir("logros", datos.logros);
         if (datos.racha) escribir("racha", datos.racha);
+        if (datos.favoritosJuegos) escribir("favoritosJuegos", datos.favoritosJuegos);
         if (datos.favoritosEjercicios) escribir("favoritosEjercicios", datos.favoritosEjercicios);
         if (datos.progresoEjercicios) escribir("progresoEjercicios", datos.progresoEjercicios);
         if (datos.reflexiones) escribir("reflexiones", datos.reflexiones);
