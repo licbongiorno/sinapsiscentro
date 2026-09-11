@@ -32,7 +32,7 @@ const ACTIVIDADES = [
   // ═══════ 🐣 3–5 AÑOS ═══════
   { id: "memoria-animales-chicos", titulo: "Memoria de animales", descripcion: "Encontrá las parejas de animalitos.",
     edadMin: 3, edadMax: 5, categoria: "memoria", tipo: "memoria", duracion: 4,
-    contenido: { pares: ["🐶", "🐱", "🐰"] }, activo: true, version: 1 },
+    contenido: { pares: ["🐶", "🐱", "🐰", "🦁"] }, activo: true, version: 2 },
 
   { id: "que-animal-es", titulo: "¿Qué animal es?", descripcion: "Adiviná el animal por sus características.",
     edadMin: 3, edadMax: 5, categoria: "animales", tipo: "seleccion", duracion: 3,
@@ -114,7 +114,7 @@ const ACTIVIDADES = [
 
   { id: "memoria-sonidos-chicos", titulo: "Memoria de sonidos", descripcion: "Encontrá las parejas de sonidos iguales.",
     edadMin: 3, edadMax: 5, categoria: "sonidos", tipo: "memoria", duracion: 4,
-    contenido: { pares: ["🔔", "📯", "🥁"] }, activo: true, version: 1 },
+    contenido: { pares: ["🔔", "📯", "🥁", "🎵"] }, activo: true, version: 2 },
 
   { id: "que-sigue-patron-simple", titulo: "¿Qué sigue?", descripcion: "Un patrón fácil de colores.",
     edadMin: 3, edadMax: 5, categoria: "formas-colores", tipo: "seleccion", duracion: 3,
@@ -122,11 +122,13 @@ const ACTIVIDADES = [
       { pregunta: "🔴 🔵 🔴 🔵 ¿Qué sigue?", opciones: ["🔴", "🟢", "🟡"], correctaIdx: 0 },
       { pregunta: "⭐ ⭐ 🌙 ⭐ ⭐ ¿Qué sigue?", opciones: ["🌙", "⭐", "☀️"], correctaIdx: 0 },
       { pregunta: "🟩 🟨 🟩 🟨 ¿Qué sigue?", opciones: ["🟩", "🟦", "🟥"], correctaIdx: 0 },
-    ] }, activo: true, version: 1 },
+      { pregunta: "🐶 🐱 🐶 🐱 ¿Qué sigue?", opciones: ["🐶", "🐰", "🐱"], correctaIdx: 0 },
+      { pregunta: "1 2 1 2 ¿Qué sigue?", opciones: ["1", "3", "2"], correctaIdx: 0 },
+    ] }, activo: true, version: 2 },
 
   // ═══════ 🦊 6–8 AÑOS ═══════
   { id: "encontra-el-objeto", titulo: "Encontrá el objeto", descripcion: "Prestá atención y encontrá lo que se pide.",
-    edadMin: 6, edadMax: 8, categoria: "atencion", tipo: "seleccion", duracion: 3,
+    edadMin: 6, edadMax: 8, categoria: "atencion", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "¿Cuál de estos se usa para escribir?", opciones: ["✏️ Lápiz", "🍎 Manzana", "⚽ Pelota"], correctaIdx: 0 },
       { pregunta: "¿Cuál de estos vuela?", opciones: ["✈️ Avión", "🚗 Auto", "🚲 Bici"], correctaIdx: 0 },
@@ -140,11 +142,13 @@ const ACTIVIDADES = [
       { pregunta: "Antes había 🔵🔵🔵. Ahora hay 🔵🔴🔵. ¿Qué cambió?", opciones: ["Un color", "La cantidad", "Nada"], correctaIdx: 0 },
       { pregunta: "Antes había ⭐⭐⭐. Ahora hay ⭐⭐. ¿Qué cambió?", opciones: ["Faltó una estrella", "Se agregó una", "Nada"], correctaIdx: 0 },
       { pregunta: "Antes había 🟩🟦. Ahora hay 🟦🟩. ¿Qué cambió?", opciones: ["El orden", "El color", "Nada"], correctaIdx: 0 },
-    ] }, activo: true, version: 1 },
+      { pregunta: "Antes había 🐶🐱. Ahora hay 🐶🐱🐰. ¿Qué cambió?", opciones: ["Se agregó un animal", "Cambió el orden", "Nada"], correctaIdx: 0 },
+      { pregunta: "Antes había ☀️. Ahora hay 🌙. ¿Qué cambió?", opciones: ["Pasó de día a noche", "Hay más cosas", "Nada"], correctaIdx: 0 },
+    ] }, activo: true, version: 2 },
 
   { id: "memoria-parejas-personajes", titulo: "Memoria de personajes", descripcion: "Encontrá las parejas.",
     edadMin: 6, edadMax: 8, categoria: "memoria", tipo: "memoria", duracion: 4,
-    contenido: { pares: ["🦸", "🧙", "🧜", "🦹"] }, activo: true, version: 1 },
+    contenido: { pares: ["🦸", "🧙", "🧜", "🦹", "🕵️"] }, activo: true, version: 2 },
 
   { id: "que-sigue-secuencia", titulo: "¿Qué sigue?", descripcion: "Descubrí el patrón y elegí lo que sigue.",
     edadMin: 6, edadMax: 8, categoria: "secuencias", tipo: "seleccion", duracion: 3,
@@ -157,8 +161,8 @@ const ACTIVIDADES = [
 
   { id: "ordena-la-historia", titulo: "Ordená la historia", descripcion: "Poné estas partes en el orden correcto.",
     edadMin: 6, edadMax: 8, categoria: "historias", tipo: "secuencia", duracion: 4,
-    contenido: { instruccion: "Ordená lo que pasó primero, después y al final.", items: ["Sofía se despertó", "Desayunó con su familia", "Se fue a la escuela"] },
-    activo: true, version: 1 },
+    contenido: { instruccion: "Ordená lo que pasó primero, después y al final.", items: ["Sofía se despertó", "Desayunó con su familia", "Se lavó los dientes", "Se fue a la escuela"] },
+    activo: true, version: 2 },
 
   { id: "que-paso-que-siento", titulo: "¿Qué pasó? ¿Qué siento?", descripcion: "Pensá cómo se siente cada personaje.",
     edadMin: 6, edadMax: 8, categoria: "emociones", tipo: "seleccion", duracion: 4,
@@ -219,7 +223,9 @@ const ACTIVIDADES = [
       { pregunta: "Un amigo está triste porque perdió su juguete favorito. ¿Qué podrías decirle?", opciones: ["\"¿Querés que lo busquemos juntos?\"", "\"No es para tanto\"", "No decirle nada"], correctaIdx: 0 },
       { pregunta: "Un compañero no entiende la tarea. ¿Qué podrías hacer?", opciones: ["Explicarle lo que yo entendí", "Reírme", "Seguir con lo mío nomás"], correctaIdx: 0 },
       { pregunta: "Alguien nuevo llegó a tu clase y está solo. ¿Qué podrías hacer?", opciones: ["Invitarlo a jugar", "No hacer nada", "Esperar a que se acerque él solo"], correctaIdx: 0 },
-    ] }, activo: true, version: 1 },
+      { pregunta: "Sin querer chocaste a alguien y se le cayeron los útiles. ¿Qué podrías decir?", opciones: ["\"Perdón, ¿te ayudo a juntarlos?\"", "\"No fue nada\"", "Irme sin mirar"], correctaIdx: 0 },
+      { pregunta: "Tu amigo quiere jugar a otra cosa. ¿Qué podrías hacer?", opciones: ["Buscar un juego que les guste a los dos", "Enojarme y no hablar", "Decir que sólo vale mi idea"], correctaIdx: 0 },
+    ] }, activo: true, version: 2 },
 
   { id: "el-libro-perdido", titulo: "El libro perdido", descripcion: "Una pequeña historia donde vos decidís qué pasa.",
     edadMin: 6, edadMax: 8, categoria: "historias", tipo: "historia", duracion: 4,
@@ -310,7 +316,9 @@ const ACTIVIDADES = [
       { pregunta: "A, C, E, G, ¿qué sigue? (se saltea una letra)", opciones: ["I", "H", "F"], correctaIdx: 0 },
       { pregunta: "Z, Y, X, W, ¿qué sigue?", opciones: ["V", "U", "T"], correctaIdx: 0 },
       { pregunta: "B, D, F, H, ¿qué sigue?", opciones: ["J", "I", "G"], correctaIdx: 0 },
-    ] }, activo: true, version: 1 },
+      { pregunta: "C, F, I, L, ¿qué sigue? (avanza de tres en tres)", opciones: ["O", "M", "P"], correctaIdx: 0 },
+      { pregunta: "A, D, G, J, ¿qué sigue?", opciones: ["M", "K", "L"], correctaIdx: 0 },
+    ] }, activo: true, version: 2 },
 
   { id: "mas-pistas-el-cuaderno", titulo: "El cuaderno desaparecido", descripcion: "Otro caso para resolver con pistas.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "historia", duracion: 4,
