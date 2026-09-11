@@ -1,0 +1,286 @@
+/**
+ * INFANTIL-ENGINE.JS — Motor de actividades de la Zona Infantil
+ * ===================================================================
+ * Cada actividad es sólo datos (ver data/infantil-datos.js). Nunca hay
+ * "juego terminado" por error ni cuenta de vidas: las respuestas
+ * incorrectas se acompañan con aliento ("¡Casi! Probemos de nuevo")
+ * en vez de penalizarse. El objetivo es explorar, no fallar.
+ */
+
+const InfantilEngine = (() => {
+  let actividad = null;
+  let contenedor = null;
+  let estrellasGanadas = 0;
+  let timers = [];
+
+  function limpiarTimers() { timers.forEach(clearTimeout); timers = []; }
+
+  function crearBarra() {
+    let barra = document.getElementById("ieBarra");
+    if (barra) return barra;
+    barra = document.createElement("div");
+    barra.id = "ieBarra";
+    barra.className = "ie-barra";
+    barra.innerHTML = `<button class="ie-volver" id="ieVolver" aria-label="Volver">←</button><div class="ie-estrellas" id="ieEstrellas">⭐ 0</div>`;
+    document.body.prepend(barra);
+    document.getElementById("ieVolver").addEventListener("click", () => { window.location.href = "infantil.html"; });
+    return barra;
+  }
+  function actualizarEstrellas() {
+    const el = document.getElementById("ieEstrellas");
+    if (el) el.textContent = `⭐ ${estrellasGanadas}`;
+  }
+  function sumarEstrella(n = 1) { estrellasGanadas += n; actualizarEstrellas(); }
+
+  function iniciar(datosActividad) {
+    actividad = datosActividad;
+    estrellasGanadas = 0;
+    contenedor = document.getElementById("ieContenedor");
+    crearBarra();
+    pantallaInicio();
+  }
+
+  function pantallaInicio() {
+    contenedor.innerHTML = `
+      <div class="ie-intro">
+        <div class="ie-intro-emoji">${(CatalogoInfantil.categoriaPorId(actividad.categoria) || {}).icono || "🧸"}</div>
+        <h1 class="ie-intro-titulo">${actividad.titulo}</h1>
+        <p class="ie-intro-desc">${actividad.descripcion}</p>
+        <button class="ie-btn ie-btn-principal" id="ieComenzar">¡Jugar!</button>
+      </div>`;
+    document.getElementById("ieBarra").style.display = "none";
+    document.getElementById("ieComenzar").addEventListener("click", () => {
+      document.getElementById("ieBarra").style.display = "flex";
+      arrancarTipo();
+    });
+  }
+
+  function arrancarTipo() {
+    const handlers = {
+      memoria: iniciarMemoria, seleccion: iniciarSeleccion, clasificar: iniciarClasificar,
+      secuencia: iniciarSecuencia, historia: iniciarHistoria, dibujo: iniciarDibujo,
+      respiracion: iniciarRespiracion, escritura: iniciarEscritura,
+    };
+    (handlers[actividad.tipo] || iniciarSeleccion)();
+  }
+
+  function pantallaFinal(mensaje) {
+    limpiarTimers();
+    InfantilStorage.registrarActividadCompletada(actividad.id);
+    InfantilStorage.sumarEstrellas(estrellasGanadas || 1);
+    const nuevosLogros = InfantilStorage.evaluarLogros();
+    contenedor.innerHTML = `
+      <div class="ie-final">
+        <div class="ie-final-emoji">🎉</div>
+        <h1 class="ie-final-titulo">${mensaje || "¡Muy bien!"}</h1>
+        <p class="ie-final-estrellas">⭐ Ganaste ${estrellasGanadas || 1} estrella${(estrellasGanadas || 1) === 1 ? "" : "s"}</p>
+        ${nuevosLogros.length ? `<div class="ie-logros-nuevos">${nuevosLogros.map(l => `<div class="ie-logro-chip">${l.icono} ${l.nombre}</div>`).join("")}</div>` : ""}
+        <div class="ie-final-botones">
+          <button class="ie-btn ie-btn-principal" id="ieJugarDeNuevo">Jugar de nuevo</button>
+          <button class="ie-btn ie-btn-secundario" id="ieOtraActividad">Otra actividad</button>
+        </div>
+      </div>`;
+    document.getElementById("ieJugarDeNuevo").addEventListener("click", () => { estrellasGanadas = 0; arrancarTipo(); });
+    document.getElementById("ieOtraActividad").addEventListener("click", () => { window.location.href = "infantil.html"; });
+  }
+
+  // ── MEMORIA ──
+  function iniciarMemoria() {
+    const pares = actividad.contenido.pares;
+    let cartas = [];
+    pares.forEach((p, g) => cartas.push({ g, s: p }, { g, s: p }));
+    cartas = cartas.map((c, id) => ({ ...c, id, volteada: false, encontrada: false })).sort(() => Math.random() - 0.5);
+    let primera = null, bloqueado = false, aciertos = 0;
+
+    function render() {
+      contenedor.innerHTML = `<div class="ie-tablero">
+        ${cartas.map(c => `<div class="ie-carta ${c.volteada || c.encontrada ? "volteada" : ""}" data-id="${c.id}">${c.volteada || c.encontrada ? c.s : "❓"}</div>`).join("")}
+      </div>`;
+      contenedor.querySelectorAll(".ie-carta").forEach(el => el.addEventListener("click", () => voltear(Number(el.dataset.id))));
+    }
+    function voltear(id) {
+      if (bloqueado) return;
+      const c = cartas.find(x => x.id === id);
+      if (!c || c.volteada || c.encontrada) return;
+      c.volteada = true; render();
+      if (!primera) { primera = c; return; }
+      if (primera.g === c.g) {
+        primera.encontrada = true; c.encontrada = true; primera = null; aciertos += 1;
+        sumarEstrella();
+        if (aciertos === pares.length) timers.push(setTimeout(() => pantallaFinal("¡Encontraste todos los pares!"), 500));
+      } else {
+        bloqueado = true;
+        timers.push(setTimeout(() => { primera.volteada = false; c.volteada = false; primera = null; bloqueado = false; render(); }, 900));
+      }
+    }
+    render();
+  }
+
+  // ── SELECCIÓN (preguntas de opción múltiple, amable con los errores) ──
+  function iniciarSeleccion() {
+    const rondas = actividad.contenido.rondas;
+    let i = 0;
+    function render() {
+      if (i >= rondas.length) { pantallaFinal("¡Completaste la actividad!"); return; }
+      const r = rondas[i];
+      contenedor.innerHTML = `
+        <div class="ie-paso">
+          ${r.emoji ? `<div class="ie-pregunta-emoji">${r.emoji}</div>` : ""}
+          <p class="ie-pregunta">${r.pregunta}</p>
+          <div class="ie-opciones">${r.opciones.map((o, idx) => `<button class="ie-opcion" data-i="${idx}">${o}</button>`).join("")}</div>
+          <p class="ie-progreso">${i + 1} / ${rondas.length}</p>
+        </div>`;
+      contenedor.querySelectorAll(".ie-opcion").forEach(btn => btn.addEventListener("click", () => {
+        const acierto = Number(btn.dataset.i) === r.correctaIdx;
+        if (acierto) { btn.classList.add("ie-correcta"); sumarEstrella(); timers.push(setTimeout(() => { i += 1; render(); }, 600)); }
+        else {
+          btn.classList.add("ie-intenta-de-nuevo");
+          btn.disabled = true;
+          timers.push(setTimeout(() => { btn.classList.remove("ie-intenta-de-nuevo"); }, 700));
+        }
+      }));
+    }
+    render();
+  }
+
+  // ── CLASIFICAR (arrastrar/tocar para elegir grupo) ──
+  function iniciarClasificar() {
+    const { instruccion, grupoA, grupoB, items } = actividad.contenido;
+    let restantes = [...items];
+    let aciertos = 0;
+    function render() {
+      if (!restantes.length) { pantallaFinal("¡Clasificaste todo!"); return; }
+      const item = restantes[0];
+      contenedor.innerHTML = `
+        <div class="ie-paso">
+          <p class="ie-pregunta">${instruccion}</p>
+          <div class="ie-item-clasificar">${item.emoji || item.texto}</div>
+          <div class="ie-grupos">
+            <button class="ie-grupo-btn" data-g="A">${grupoA.emoji} ${grupoA.nombre}</button>
+            <button class="ie-grupo-btn" data-g="B">${grupoB.emoji} ${grupoB.nombre}</button>
+          </div>
+          <p class="ie-progreso">${items.length - restantes.length + 1} / ${items.length}</p>
+        </div>`;
+      contenedor.querySelectorAll(".ie-grupo-btn").forEach(btn => btn.addEventListener("click", () => {
+        if (btn.dataset.g === item.grupo) { sumarEstrella(); aciertos += 1; restantes.shift(); render(); }
+        else { btn.classList.add("ie-intenta-de-nuevo"); timers.push(setTimeout(() => btn.classList.remove("ie-intenta-de-nuevo"), 500)); }
+      }));
+    }
+    render();
+  }
+
+  // ── SECUENCIA (ordenar tocando en orden) ──
+  function iniciarSecuencia() {
+    const { instruccion, items } = actividad.contenido;
+    const mezclado = [...items].sort(() => Math.random() - 0.5);
+    let elegidos = [];
+    function render() {
+      contenedor.innerHTML = `
+        <div class="ie-paso">
+          <p class="ie-pregunta">${instruccion}</p>
+          <div class="ie-secuencia-elegidos">${elegidos.map((t, i) => `<div class="ie-secuencia-item">${i + 1}. ${t}</div>`).join("") || "<span style='opacity:.4'>Tocá en orden…</span>"}</div>
+          <div class="ie-secuencia-disponibles">${mezclado.map((t, idx) => elegidos.includes(t) ? "" : `<button class="ie-secuencia-btn" data-idx="${idx}">${t}</button>`).join("")}</div>
+        </div>`;
+      contenedor.querySelectorAll(".ie-secuencia-btn").forEach(btn => btn.addEventListener("click", () => {
+        elegidos.push(mezclado[Number(btn.dataset.idx)]);
+        sumarEstrella();
+        if (elegidos.length === items.length) timers.push(setTimeout(() => pantallaFinal("¡Ordenaste todo!"), 500));
+        else render();
+      }));
+    }
+    render();
+  }
+
+  // ── HISTORIA (ramificada, elige tu propia aventura) ──
+  function iniciarHistoria() {
+    const { inicio, nodos } = actividad.contenido;
+    function render(nodoId) {
+      const nodo = nodos[nodoId];
+      if (!nodo.opciones || !nodo.opciones.length) {
+        sumarEstrella(2);
+        contenedor.innerHTML = `<div class="ie-paso"><p class="ie-pregunta" style="font-family:'Playfair Display',serif;font-size:1.2rem;">${nodo.texto}</p></div>`;
+        timers.push(setTimeout(() => pantallaFinal("¡Terminaste la historia!"), 1800));
+        return;
+      }
+      contenedor.innerHTML = `
+        <div class="ie-paso">
+          <p class="ie-pregunta" style="font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.6;">${nodo.texto}</p>
+          <div class="ie-opciones">${nodo.opciones.map((o, idx) => `<button class="ie-opcion" data-idx="${idx}">${o.texto}</button>`).join("")}</div>
+        </div>`;
+      contenedor.querySelectorAll(".ie-opcion").forEach(btn => btn.addEventListener("click", () => {
+        sumarEstrella();
+        render(nodo.opciones[Number(btn.dataset.idx)].siguiente);
+      }));
+    }
+    render(inicio);
+  }
+
+  // ── DIBUJO ──
+  function iniciarDibujo() {
+    const COLORES = ["#0d2535", "#e08a8a", "#2aaec2", "#f0c14b", "#8ac9a9", "#c98ac2"];
+    contenedor.innerHTML = `
+      <div class="ie-paso" style="text-align:center;">
+        <p class="ie-pregunta">${actividad.contenido.texto}</p>
+        <canvas id="ieLienzo" width="290" height="270" class="ie-lienzo"></canvas>
+        <div class="ie-lienzo-colores">${COLORES.map(c => `<button data-c="${c}" style="background:${c}"></button>`).join("")}<button data-limpiar="1" class="ie-lienzo-limpiar">Borrar</button></div>
+        <button class="ie-btn ie-btn-principal" id="ieListoDibujo" style="margin-top:16px;">¡Listo!</button>
+      </div>`;
+    const canvas = document.getElementById("ieLienzo");
+    const ctx = canvas.getContext("2d");
+    ctx.lineWidth = 6; ctx.lineCap = "round"; ctx.strokeStyle = COLORES[0];
+    let dibujando = false;
+    function pos(e) { const r = canvas.getBoundingClientRect(); const p = e.touches ? e.touches[0] : e; return { x: (p.clientX - r.left) * (canvas.width / r.width), y: (p.clientY - r.top) * (canvas.height / r.height) }; }
+    function empezar(e) { dibujando = true; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }
+    function dibujar(e) { if (!dibujando) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); }
+    canvas.addEventListener("mousedown", empezar); canvas.addEventListener("mousemove", dibujar); window.addEventListener("mouseup", () => dibujando = false);
+    canvas.addEventListener("touchstart", empezar, { passive: false }); canvas.addEventListener("touchmove", dibujar, { passive: false }); canvas.addEventListener("touchend", () => dibujando = false);
+    contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => ctx.strokeStyle = btn.dataset.c));
+    contenedor.querySelector("[data-limpiar]").addEventListener("click", () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+    document.getElementById("ieListoDibujo").addEventListener("click", () => { sumarEstrella(2); pantallaFinal("¡Qué lindo dibujo!"); });
+  }
+
+  // ── RESPIRACIÓN ──
+  function iniciarRespiracion() {
+    const { texto, ciclos = 3, fases } = actividad.contenido;
+    let ciclo = 0, fase = 0;
+    contenedor.innerHTML = `
+      <div class="ie-paso" style="text-align:center;">
+        <p class="ie-pregunta">${texto}</p>
+        <div class="ie-circulo"><span id="ieFaseTexto">…</span></div>
+        <p class="ie-progreso" id="ieCicloTexto">1 / ${ciclos}</p>
+      </div>`;
+    function siguienteFase() {
+      if (ciclo >= ciclos) { sumarEstrella(2); pantallaFinal("¡Qué bien respiraste!"); return; }
+      const f = fases[fase];
+      const circulo = document.querySelector(".ie-circulo");
+      const t = document.getElementById("ieFaseTexto");
+      if (!circulo) return;
+      t.textContent = f.nombre;
+      circulo.style.transition = `transform ${f.segundos}s ease-in-out`;
+      circulo.style.transform = `scale(${f.nombre.toLowerCase().includes("solt") || f.nombre.toLowerCase().includes("exhal") ? 1 : 1.3})`;
+      timers.push(setTimeout(() => {
+        fase = (fase + 1) % fases.length;
+        if (fase === 0) { ciclo += 1; const ct = document.getElementById("ieCicloTexto"); if (ct) ct.textContent = `${Math.min(ciclo + 1, ciclos)} / ${ciclos}`; }
+        siguienteFase();
+      }, f.segundos * 1000));
+    }
+    timers.push(setTimeout(siguienteFase, 400));
+  }
+
+  // ── ESCRITURA (para los más grandes; se guarda sólo localmente, nunca a la nube) ──
+  function iniciarEscritura() {
+    contenedor.innerHTML = `
+      <div class="ie-paso">
+        <p class="ie-pregunta">${actividad.contenido.pregunta}</p>
+        <textarea class="ie-textarea" id="ieTextarea" placeholder="${actividad.contenido.placeholder || "Escribí lo que quieras…"}"></textarea>
+        <button class="ie-btn ie-btn-principal" id="ieListoEscritura" style="margin-top:14px;">¡Listo!</button>
+      </div>`;
+    document.getElementById("ieListoEscritura").addEventListener("click", () => {
+      const texto = document.getElementById("ieTextarea").value.trim();
+      if (texto.length > 2) sumarEstrella(2);
+      pantallaFinal("¡Muy buena idea!");
+    });
+  }
+
+  return { iniciar };
+})();

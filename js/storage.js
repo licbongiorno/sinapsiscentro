@@ -68,6 +68,9 @@ function _snapshotLocal() {
     progreso: leer("progreso", {}),
     logros: leer("logros", []),
     racha: leer("racha", { dias: 0, ultimoDia: null, historial: [] }),
+    favoritosEjercicios: leer("favoritosEjercicios", []),
+    progresoEjercicios: leer("progresoEjercicios", {}),
+    reflexiones: leer("reflexiones", []),
     actualizadoEl: new Date().toISOString(),
   };
 }
@@ -196,6 +199,83 @@ const Storage = {
     return todos[juegoId];
   },
 
+  // ── EJERCICIOS: favoritos, progreso/historial y reflexiones ──
+  getFavoritosEjercicios() {
+    return leer("favoritosEjercicios", []); // array de ids
+  },
+  esFavoritoEjercicio(id) {
+    return Storage.getFavoritosEjercicios().includes(id);
+  },
+  toggleFavoritoEjercicio(id) {
+    const favs = leer("favoritosEjercicios", []);
+    const idx = favs.indexOf(id);
+    if (idx >= 0) favs.splice(idx, 1); else favs.push(id);
+    escribir("favoritosEjercicios", favs);
+    _programarSincronizacion();
+    return idx < 0; // true si quedó marcado como favorito
+  },
+
+  getProgresoEjercicio(id) {
+    const todos = leer("progresoEjercicios", {});
+    return todos[id] || { vecesCompletado: 0, ultimaVez: null, ultimoFeedback: null, tiempoTotalMin: 0 };
+  },
+  getHistorialEjercicios() {
+    const todos = leer("progresoEjercicios", {});
+    return Object.entries(todos)
+      .filter(([, p]) => p.ultimaVez)
+      .sort((a, b) => new Date(b[1].ultimaVez) - new Date(a[1].ultimaVez))
+      .map(([id, p]) => ({ id, ...p }));
+  },
+  registrarEjercicioCompletado(id, { minutos = 0 } = {}) {
+    const todos = leer("progresoEjercicios", {});
+    const actual = todos[id] || { vecesCompletado: 0, ultimaVez: null, ultimoFeedback: null, tiempoTotalMin: 0 };
+    actual.vecesCompletado += 1;
+    actual.ultimaVez = new Date().toISOString();
+    actual.tiempoTotalMin = (actual.tiempoTotalMin || 0) + minutos;
+    todos[id] = actual;
+    escribir("progresoEjercicios", todos);
+    Storage.registrarActividadHoy();
+    _programarSincronizacion();
+    return actual;
+  },
+  guardarFeedbackEjercicio(id, emoji) {
+    const todos = leer("progresoEjercicios", {});
+    if (!todos[id]) return;
+    todos[id].ultimoFeedback = emoji;
+    escribir("progresoEjercicios", todos);
+    _programarSincronizacion();
+  },
+  getTotalMinutosEjercicios() {
+    return Object.values(leer("progresoEjercicios", {})).reduce((acc, p) => acc + (p.tiempoTotalMin || 0), 0);
+  },
+  getCategoriasEjerciciosExploradas() {
+    const todos = leer("progresoEjercicios", {});
+    const exploradas = new Set();
+    Object.keys(todos).forEach(id => {
+      const ej = typeof CatalogoEjercicios !== "undefined" ? CatalogoEjercicios.porId(id) : null;
+      if (ej && todos[id].vecesCompletado > 0) exploradas.add(ej.categoria);
+    });
+    return exploradas;
+  },
+
+  // Reflexiones: sólo se guardan si el usuario decide explícitamente
+  // guardarlas. Nunca se envían a analytics ni se usan en logros/rankings.
+  guardarReflexion(ejercicioId, texto) {
+    const reflexiones = leer("reflexiones", []);
+    reflexiones.unshift({ id: "r" + Date.now(), ejercicioId, texto, creadoEl: new Date().toISOString() });
+    escribir("reflexiones", reflexiones.slice(0, 200));
+    _programarSincronizacion();
+  },
+  getReflexiones(ejercicioId) {
+    const todas = leer("reflexiones", []);
+    return ejercicioId ? todas.filter(r => r.ejercicioId === ejercicioId) : todas;
+  },
+  eliminarReflexion(id) {
+    const reflexiones = leer("reflexiones", []).filter(r => r.id !== id);
+    escribir("reflexiones", reflexiones);
+    _programarSincronizacion();
+  },
+
   // ── Vínculo con la cuenta de Google (llamado desde auth.js) ──
   /**
    * Se llama cuando el usuario inicia sesión con Google. Trae su
@@ -218,6 +298,9 @@ const Storage = {
         if (datos.progreso) escribir("progreso", datos.progreso);
         if (datos.logros) escribir("logros", datos.logros);
         if (datos.racha) escribir("racha", datos.racha);
+        if (datos.favoritosEjercicios) escribir("favoritosEjercicios", datos.favoritosEjercicios);
+        if (datos.progresoEjercicios) escribir("progresoEjercicios", datos.progresoEjercicios);
+        if (datos.reflexiones) escribir("reflexiones", datos.reflexiones);
       } else {
         // Primera vez que esta cuenta de Google inicia sesión: el
         // progreso que ya tenía este dispositivo como invitado pasa

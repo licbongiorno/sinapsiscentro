@@ -37,6 +37,19 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => (Storage.getProgreso("letras-compartidas").partidas || 0) >= 1 },
   { id: "un-minuto-calma", nombre: "Un momento de calma", descripcion: "Jugaste un juego de la categoría Calma.", icono: "🧘",
     cumple: (ctx) => ctx.categoriasJugadas.has("calma") },
+  // ── Ejercicios (Biblioteca de ejercicios) ──
+  { id: "ejercicio-primer-paso", nombre: "Primer paso", descripcion: "Completaste tu primer ejercicio.", icono: "🌱",
+    cumple: (ctx) => ctx.totalEjercicios >= 1 },
+  { id: "ejercicio-diez", nombre: "Constancia", descripcion: "Completaste 10 ejercicios.", icono: "🔥",
+    cumple: (ctx) => ctx.totalEjercicios >= 10 },
+  { id: "ejercicio-explorador-emocional", nombre: "Explorador emocional", descripcion: "Probaste 5 ejercicios de la categoría Emociones.", icono: "❤️",
+    cumple: (ctx) => ctx.ejerciciosPorCategoria.emociones >= 5 },
+  { id: "ejercicio-curioso", nombre: "Curioso", descripcion: "Exploraste 5 categorías distintas de ejercicios.", icono: "🪶",
+    cumple: (ctx) => ctx.categoriasEjerciciosExploradas.size >= 5 },
+  { id: "ejercicio-tiempo-para-vos", nombre: "Tiempo para vos", descripcion: "Acumulaste 60 minutos de práctica.", icono: "🌿",
+    cumple: (ctx) => ctx.minutosEjercicios >= 60 },
+  { id: "ejercicio-pausa", nombre: "Pausa", descripcion: "Completaste 10 ejercicios de la categoría Calma.", icono: "🧘",
+    cumple: (ctx) => ctx.ejerciciosPorCategoria.calma >= 10 },
 ];
 
 const Logros = {
@@ -55,6 +68,41 @@ const Logros = {
       categoriasJugadas: Storage.getCategoriasJugadas(),
       perfil: Storage.getPerfil(),
       mejoroRecordEnEstaPartida,
+    };
+    const yaTenia = new Set(Storage.getLogros());
+    const nuevos = [];
+    for (const logro of LOGROS_CATALOGO) {
+      if (yaTenia.has(logro.id)) continue;
+      if (logro.cumple(ctx)) {
+        Storage.desbloquearLogro(logro.id);
+        nuevos.push(logro);
+      }
+    }
+    return nuevos;
+  },
+
+  /**
+   * Igual que evaluarTrasPartida, pero para el contexto de ejercicios
+   * (biblioteca de ejercicios). Comparte el mismo catálogo de logros.
+   */
+  evaluarTrasEjercicio() {
+    const historial = Storage.getHistorialEjercicios();
+    const porCategoria = {};
+    historial.forEach(h => {
+      const ej = typeof CatalogoEjercicios !== "undefined" ? CatalogoEjercicios.porId(h.id) : null;
+      if (!ej) return;
+      porCategoria[ej.categoria] = (porCategoria[ej.categoria] || 0) + (h.vecesCompletado || 0);
+    });
+    const ctx = {
+      totalPartidas: Storage.getTotalPartidas(),
+      racha: Storage.getRacha(),
+      categoriasJugadas: Storage.getCategoriasJugadas(),
+      perfil: Storage.getPerfil(),
+      mejoroRecordEnEstaPartida: false,
+      totalEjercicios: historial.reduce((acc, h) => acc + (h.vecesCompletado || 0), 0),
+      ejerciciosPorCategoria: porCategoria,
+      categoriasEjerciciosExploradas: Storage.getCategoriasEjerciciosExploradas(),
+      minutosEjercicios: Storage.getTotalMinutosEjercicios(),
     };
     const yaTenia = new Set(Storage.getLogros());
     const nuevos = [];
