@@ -166,6 +166,7 @@ nav {
   position: fixed; top: 0; left:0; right:0; z-index:1000;
   padding: 20px 6%;
   display: flex; align-items: center; justify-content: space-between;
+  flex-direction: row-reverse; /* ESTO INVIERTE LOS LADOS (LOGO DERECHA, MENU IZQUIERDA) */
   transition: all 0.4s var(--easing);
 }
 nav.solid {
@@ -238,7 +239,7 @@ nav.solid {
     background: rgba(8,32,46,0.98); backdrop-filter: blur(20px);
     flex-direction: column; align-items: flex-start; justify-content: center;
     gap: 28px; padding: 40px; z-index: 1001;
-    transform: translateX(-100%); transition: transform 0.35s var(--easing);
+    transform: translateX(-100%); transition: transform 0.35s var(--easing); /* DESPLIEGA DESDE LA IZQ */
   }
   .nav-links.open { transform: translateX(0); }
   .nav-links a { font-size: 1.05rem; }
@@ -1593,7 +1594,21 @@ function toggleMobileNav(){
 }
 navBurger.addEventListener('click', toggleMobileNav);
 navOverlay.addEventListener('click', closeMobileNav);
-navLinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileNav));
+
+/* Arreglo para que los links en móvil dejen navegar antes de destruir el menú */
+navLinksEl.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      // Es un link de la misma hoja (scroll), cerramos al instante
+      closeMobileNav();
+    } else {
+      // Es un link a otra página (juegos.html, etc.), damos margen para que navegue
+      setTimeout(closeMobileNav, 300);
+    }
+  });
+});
+
 window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMobileNav(); });
 
 /* Año dinámico del footer */
