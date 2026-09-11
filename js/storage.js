@@ -324,4 +324,7 @@ const Storage = {
       .filter(k => k.startsWith(`${NS}:`))
       .forEach(k => localStorage.removeItem(k));
   },
+
+  /** Prefijo de namespace de localStorage, para juegos que necesiten guardar algo propio con la misma convención de claves (ver js/juegos/letras-compartidas.js). */
+  NS,
 };

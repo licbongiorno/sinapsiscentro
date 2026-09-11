@@ -5,6 +5,20 @@
 
 const AVATARES = ["🙂", "🐱", "🦊", "🐼", "🦁", "🐧", "🦉", "🐢", "🐬", "🦋"];
 
+/**
+ * Escapa texto antes de insertarlo dentro de un innerHTML. Necesario
+ * para cualquier dato que el usuario controle (nombre de cuenta de
+ * Google, nombre elegido en el perfil) — sin esto, alguien podría
+ * poner HTML/script en su propio nombre de cuenta de Google y que se
+ * ejecute en la página de quien lo mire (por ejemplo, un futuro
+ * ranking público).
+ */
+function escapeHtml(texto) {
+  const div = document.createElement("div");
+  div.textContent = texto == null ? "" : String(texto);
+  return div.innerHTML;
+}
+
 // Curva de XP: cada nivel pide un poco más que el anterior.
 const XP_POR_NIVEL = (nivel) => 50 * nivel;
 

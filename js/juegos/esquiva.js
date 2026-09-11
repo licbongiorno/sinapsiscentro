@@ -74,12 +74,9 @@
   }
   requestAnimationFrame(loop);
 
-  const terminarOriginal = GameEngine.terminar;
-  GameEngine.terminar = function (...args) {
+  GameEngine.alFinalizar(() => {
     activo = false;
     clearInterval(spawnInterval);
     clearInterval(velocidadInterval);
-    GameEngine.terminar = terminarOriginal;
-    GameEngine.terminar(...args);
-  };
+  });
 })();

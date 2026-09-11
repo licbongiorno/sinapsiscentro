@@ -20,16 +20,7 @@ const ExerciseEngine = (() => {
 
   function limpiarTimers() { timers.forEach(clearTimeout); timers.forEach(clearInterval); timers = []; }
 
-  function beep(frecuencia = 660, duracionMs = 150) {
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const o = ctx.createOscillator(), g = ctx.createGain();
-      o.type = "sine"; o.frequency.value = frecuencia; g.gain.value = 0.05;
-      o.connect(g).connect(ctx.destination); o.start();
-      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duracionMs / 1000);
-      o.stop(ctx.currentTime + duracionMs / 1000);
-    } catch (e) {}
-  }
+  // beep() vive en js/beep.js (compartido con game-engine.js).
 
   function crearBarra() {
     let barra = document.getElementById("eeBarra");
@@ -270,21 +261,9 @@ const ExerciseEngine = (() => {
         <button class="ee-btn ee-btn-principal" id="eeSiguiente" style="margin-top:18px;">Continuar</button>
       </div>`;
     const canvas = document.getElementById("eeLienzo");
-    const ctx = canvas.getContext("2d");
-    ctx.lineWidth = 4; ctx.lineCap = "round"; ctx.strokeStyle = COLORES[0];
-    let dibujando = false;
-    function pos(e) {
-      const r = canvas.getBoundingClientRect();
-      const p = e.touches ? e.touches[0] : e;
-      return { x: (p.clientX - r.left) * (canvas.width / r.width), y: (p.clientY - r.top) * (canvas.height / r.height) };
-    }
-    function empezar(e) { dibujando = true; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }
-    function dibujar(e) { if (!dibujando) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); }
-    function fin() { dibujando = false; }
-    canvas.addEventListener("mousedown", empezar); canvas.addEventListener("mousemove", dibujar); window.addEventListener("mouseup", fin);
-    canvas.addEventListener("touchstart", empezar, { passive: false }); canvas.addEventListener("touchmove", dibujar, { passive: false }); canvas.addEventListener("touchend", fin);
-    contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => { ctx.strokeStyle = btn.dataset.c; }));
-    contenedor.querySelector("[data-limpiar]").addEventListener("click", () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+    const lienzo = crearLienzoDibujable(canvas, { colorInicial: COLORES[0] });
+    contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => lienzo.setColor(btn.dataset.c)));
+    contenedor.querySelector("[data-limpiar]").addEventListener("click", () => lienzo.limpiar());
     document.getElementById("eeSiguiente").addEventListener("click", avanzar);
   }
 

@@ -34,11 +34,8 @@
 
   const intervalo = setInterval(crearBurbuja, 650);
 
-  const terminarOriginal = GameEngine.terminar;
-  GameEngine.terminar = function (...args) {
+  GameEngine.alFinalizar(() => {
     activo = false;
     clearInterval(intervalo);
-    GameEngine.terminar = terminarOriginal;
-    GameEngine.terminar(...args);
-  };
+  });
 })();

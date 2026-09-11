@@ -22,7 +22,14 @@ const firebaseConfig = {
 
 // Sólo inicializamos si ya se completaron los datos reales, para no
 // tirar un error en consola apenas se abre la página sin configurar.
-if (firebaseConfig.apiKey !== "TU_API_KEY") {
+// También nos cubrimos por si el SDK de Firebase no llegó a cargar
+// (por ejemplo, sin conexión o con el CDN de Google bloqueado): sin
+// este chequeo, "firebase" no existiría y esta misma línea tiraría un
+// error sin manejar en vez de degradar a modo invitado como el resto
+// del código (auth.js, storage.js) ya sabe hacer.
+if (typeof firebase === "undefined") {
+  console.warn("firebase-config.js: no se pudo cargar el SDK de Firebase (revisá la conexión) — la plataforma sigue funcionando en modo invitado.");
+} else if (firebaseConfig.apiKey !== "TU_API_KEY") {
   firebase.initializeApp(firebaseConfig);
 } else {
   console.warn("firebase-config.js: todavía tiene los datos de ejemplo. Completalo con tu proyecto real para activar el login.");

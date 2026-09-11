@@ -24,22 +24,11 @@
   }
   dibujarGarabatoBase();
 
-  ctx.lineWidth = 4; ctx.lineCap = "round"; ctx.strokeStyle = "#0d2535";
-  let dibujando = false, trazos = 0;
-  function pos(e) {
-    const r = canvas.getBoundingClientRect();
-    const p = e.touches ? e.touches[0] : e;
-    return { x: (p.clientX - r.left) * (canvas.width / r.width), y: (p.clientY - r.top) * (canvas.height / r.height) };
-  }
-  function empezar(e) { dibujando = true; trazos += 1; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }
-  function dibujar(e) { if (!dibujando) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); }
-  function fin() { dibujando = false; }
-  canvas.addEventListener("mousedown", empezar); canvas.addEventListener("mousemove", dibujar); window.addEventListener("mouseup", fin);
-  canvas.addEventListener("touchstart", empezar, { passive: false }); canvas.addEventListener("touchmove", dibujar, { passive: false }); canvas.addEventListener("touchend", fin);
+  const lienzo = crearLienzoDibujable(canvas, { colorInicial: "#0d2535" });
 
   document.getElementById("btnLimpiarGar").addEventListener("click", dibujarGarabatoBase);
   document.getElementById("btnListoGar").addEventListener("click", () => {
-    if (trazos > 0) GameEngine.sumarPuntos(8);
+    if (lienzo.trazos() > 0) GameEngine.sumarPuntos(8);
     GameEngine.terminar({ puntaje: 0, exito: true, mensaje: "¡Buen ojo para transformar un garabato! 🎨" });
   });
 })();
