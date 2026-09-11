@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -138,7 +137,7 @@ body::before {
    NAVBAR
 ═══════════════════════════════════ */
 nav {
-  position: fixed; top: 0; left:0; right:0; z-index:1000;
+  position: fixed; top: 0; left:0; right:0; z-index:1002;
   padding: 20px 6%;
   display: flex; align-items: center; justify-content: space-between;
   transition: all 0.4s var(--easing);
@@ -152,7 +151,7 @@ nav.solid {
 
 .nav-brand {
   display: flex; align-items: center; gap: 13px;
-  text-decoration: none;
+  text-decoration: none; order: 2;
 }
 .logo-mark {
   height: 46px; width: auto;
@@ -175,7 +174,7 @@ nav.solid {
   color: var(--teal-soft); font-weight: 500;
 }
 
-.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; order: 1; }
 .nav-links a {
   color: rgba(255,255,255,0.7); text-decoration: none;
   font-size: 0.87rem; font-weight: 500; letter-spacing: 0.04em;
@@ -200,7 +199,7 @@ nav.solid {
 .nav-burger {
   display: none; width: 42px; height: 42px; border: none; background: rgba(126,214,228,0.1);
   border-radius: 10px; cursor: pointer; flex-shrink: 0;
-  align-items: center; justify-content: center; gap: 4px; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4px; flex-direction: column; order: 1;
 }
 .nav-burger span { width: 20px; height: 2px; background: white; border-radius: 2px; transition: transform 0.25s var(--easing), opacity 0.2s; }
 .nav-burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -208,19 +207,20 @@ nav.solid {
 .nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 @media(max-width:768px){
+  .nav-brand { margin-left: auto; }
   .nav-burger { display: flex; }
   .nav-links {
-    position: fixed; top: 0; right: 0; height: 100vh; width: min(78vw, 320px);
+    position: fixed; top: 0; left: 0; right: auto; height: 100vh; width: min(78vw, 320px);
     background: rgba(8,32,46,0.98); backdrop-filter: blur(20px);
     flex-direction: column; align-items: flex-start; justify-content: center;
-    gap: 28px; padding: 40px; z-index: 1001;
-    transform: translateX(100%); transition: transform 0.35s var(--easing);
+    gap: 28px; padding: 90px 40px 40px; z-index: 1003;
+    transform: translateX(-100%); transition: transform 0.35s var(--easing);
   }
   .nav-links.open { transform: translateX(0); }
   .nav-links a { font-size: 1.05rem; }
   .nav-cta { width: 100%; text-align: center; }
   .nav-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000;
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1001;
     opacity: 0; pointer-events: none; transition: opacity 0.3s;
   }
   .nav-overlay.open { opacity: 1; pointer-events: auto; }
@@ -509,6 +509,8 @@ nav.solid {
   background: var(--bg);
   position: relative;
 }
+
+body.menu-open { overflow: hidden; }
 
 #recursos { padding: 100px 6%; background: white; }
 #recursos .persona-card { text-decoration: none; color: inherit; }
@@ -1356,7 +1358,7 @@ footer a:hover { color: white; }
 <!-- FOOTER -->
 <footer>
   <p>© <span id="footYear">2026</span> <strong style="color:rgba(255,255,255,0.5)">SINAPSIS</strong> — Centro de Salud Integral · Berazategui, Bs As.</p>
-  <p>Diseño por <a href="#">sinapsiscentro</a> &nbsp;·&nbsp; <a href="https://wa.me/5491168567160" target="_blank" rel="noopener">Pedí tu turno</a></p>
+  <p>Diseño por sinapsiscentro &nbsp;·&nbsp; <a href="https://wa.me/5491168567160" target="_blank" rel="noopener">Pedí tu turno</a></p>
 </footer>
 
 <!-- FLOATING WA -->
@@ -1488,24 +1490,35 @@ const navBurger = document.getElementById('navBurger');
 const navLinksEl = document.getElementById('navLinks');
 const navOverlay = document.getElementById('navOverlay');
 
-function closeMobileNav(){
-  navBurger.classList.remove('open');
-  navLinksEl.classList.remove('open');
-  navOverlay.classList.remove('open');
-  navBurger.setAttribute('aria-expanded','false');
-  navBurger.setAttribute('aria-label','Abrir menú');
-}
-function toggleMobileNav(){
-  const isOpen = navLinksEl.classList.toggle('open');
+function setMobileMenuState(isOpen){
   navBurger.classList.toggle('open', isOpen);
+  navLinksEl.classList.toggle('open', isOpen);
   navOverlay.classList.toggle('open', isOpen);
+  document.body.classList.toggle('menu-open', isOpen);
   navBurger.setAttribute('aria-expanded', String(isOpen));
   navBurger.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+
+  if (window.innerWidth <= 768) {
+    navLinksEl.inert = !isOpen;
+    navLinksEl.setAttribute('aria-hidden', String(!isOpen));
+  } else {
+    navLinksEl.inert = false;
+    navLinksEl.removeAttribute('aria-hidden');
+  }
 }
+function closeMobileNav(){ setMobileMenuState(false); }
+function toggleMobileNav(){ setMobileMenuState(!navLinksEl.classList.contains('open')); }
 navBurger.addEventListener('click', toggleMobileNav);
 navOverlay.addEventListener('click', closeMobileNav);
 navLinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileNav));
-window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMobileNav(); });
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && navLinksEl.classList.contains('open')) {
+    closeMobileNav();
+    navBurger.focus();
+  }
+});
+window.addEventListener('resize', () => closeMobileNav());
+setMobileMenuState(false);
 
 /* Año dinámico del footer */
 const footYearEl = document.getElementById('footYear');
