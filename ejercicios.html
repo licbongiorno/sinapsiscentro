@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicios | SINAPSIS — Centro de Salud Integral</title>
+<meta name="description" content="Ejercicios breves de calma, regulación emocional y autoconocimiento. Un espacio de Sinapsis para detenerte unos minutos.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/ejercicios.css">
+</head>
+<body>
+
+<header class="eh-header">
+  <div class="eh-topbar">
+    <a href="index.html" class="eh-brand"><span>🧠</span> Sinapsis</a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:700;">🎮 Juegos</a>
+      <a href="infantil.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Zona Infantil">🧸</a>
+      <button class="eh-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
+    </div>
+  </div>
+  <div class="eh-intro">
+    <h1>Un momento para vos</h1>
+    <p>Explorá ejercicios breves para bajar el ritmo, ordenar lo que sentís, concentrarte, reflexionar o simplemente hacer una pausa.</p>
+  </div>
+</header>
+
+<section class="eh-selector">
+  <div class="eh-selector-card">
+    <h2>⏱ ¿Cuánto tiempo tenés?</h2>
+    <div class="eh-tiempo-grid" id="tiempoGrid"></div>
+    <h2>🎲 ¿Qué necesitás ahora?</h2>
+    <div class="eh-necesidad-grid" id="necesidadGrid"></div>
+  </div>
+</section>
+
+<div class="eh-sorprendeme">
+  <button class="eh-sorprendeme-btn" id="btnSorprendeme">🎲 Sorprendeme</button>
+</div>
+
+<section class="eh-recomendacion" id="seccionRecomendacion" hidden>
+  <p class="eh-recomendacion-titulo">Te recomendamos</p>
+  <div class="eh-lista" id="recomendacionLista"></div>
+</section>
+
+<div class="eh-buscador">
+  <input type="text" id="inputBuscar" placeholder="¿Qué estás buscando?">
+</div>
+<div class="eh-filtros" id="filtrosFila"></div>
+
+<div id="vistaExploracion">
+  <section class="eh-seccion" id="seccionDelDia">
+    <h2>🌱 Ejercicio del día</h2>
+    <div class="eh-lista" id="delDiaLista"></div>
+  </section>
+
+  <section class="eh-seccion" id="seccionFavoritos" hidden>
+    <h2>⭐ Tus favoritos</h2>
+    <div class="eh-lista" id="favoritosLista"></div>
+  </section>
+
+  <section class="eh-seccion" id="seccionRecientes" hidden>
+    <h2>🕘 Recientes</h2>
+    <div class="eh-lista" id="recientesLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>⏱ Breves</h2>
+    <p class="eh-seccion-sub">1 a 3 minutos</p>
+    <div class="eh-lista" id="brevesLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>❤️ Para entender lo que sentís</h2>
+    <div class="eh-lista" id="emocionesLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>🧘 Para bajar un cambio</h2>
+    <div class="eh-lista" id="calmaLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>✍️ Para escribir</h2>
+    <div class="eh-lista" id="escrituraLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>Categorías</h2>
+    <div class="eh-categorias-grid" id="categoriasGrid"></div>
+  </section>
+
+  <section class="eh-seccion" id="seccionCategoriaDetalle" hidden>
+    <h2><span id="catDetalleIcono"></span> <span id="catDetalleNombre"></span></h2>
+    <div class="eh-lista" id="catDetalleLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>Mi espacio</h2>
+    <div class="eh-stats-grid" id="statsGrid"></div>
+  </section>
+</div>
+
+<div id="vistaResultados" hidden>
+  <section class="eh-seccion">
+    <h2 id="resultadosTitulo">Resultados</h2>
+    <div class="eh-lista" id="resultadosLista"></div>
+  </section>
+</div>
+
+<p style="text-align:center; font-size:0.7rem; color:var(--text-soft); max-width:420px; margin:36px auto 0; padding:0 20px; line-height:1.6;">
+  Estos ejercicios son recursos de orientación y bienestar. No sustituyen una evaluación ni un tratamiento profesional.
+</p>
+
+<!-- MODAL PERFIL -->
+<div class="eh-modal-overlay" id="modalPerfil" hidden>
+  <div class="eh-modal">
+    <h2 style="margin-bottom:16px;">Mi perfil</h2>
+    <div id="modalCuentaGoogle" style="margin-bottom:18px;"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Elegí tu avatar</label>
+    <div id="avataresLista" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px;"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Tu nombre</label>
+    <input type="text" id="inputNombre" placeholder="¿Cómo te llamamos?" maxlength="24"
+      style="width:100%;border:2px solid var(--teal-pale);border-radius:50px;padding:12px 18px;font-family:inherit;font-size:1rem;margin:8px 0 18px;">
+    <button class="ee-btn ee-btn-principal" id="btnGuardarPerfil" style="width:100%;">Guardar</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+<script src="data/ejercicios.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/perfil.js"></script>
+<script src="js/logros.js"></script>
+<script>
+const TIEMPOS = [
+  { min: 1, texto: "1 min" }, { min: 3, texto: "3 min" }, { min: 5, texto: "5 min" },
+  { min: 10, texto: "10 min" }, { min: 99, texto: "15+ min" },
+];
+let tiempoElegido = null;
+let necesidadElegida = null;
+
+let filtroTexto = "", filtroDuracion = null, filtroDificultad = null, filtroEstado = null;
+
+function irAEjercicio(id) { window.location.href = `ejercicio.html?id=${id}`; }
+
+function filaEjercicio(ej) {
+  const cat = CatalogoEjercicios.categoriaPorId(ej.categoria);
+  const fav = Storage.esFavoritoEjercicio(ej.id);
+  return `<div class="eh-fila" data-ej="${ej.id}">
+    <div class="icono">${cat ? cat.icono : "🌱"}</div>
+    <div class="info">
+      <div class="titulo">${ej.titulo}</div>
+      <div class="desc">${ej.descripcion}</div>
+    </div>
+    <div class="meta">${ej.duracion} min</div>
+    <button class="fav-btn" data-fav="${ej.id}" aria-label="Favorito">${fav ? "❤️" : "🤍"}</button>
+  </div>`;
+}
+
+function pintarLista(contenedorId, ejercicios, vacioTexto) {
+  const el = document.getElementById(contenedorId);
+  if (!ejercicios.length) { el.innerHTML = `<p class="eh-vacio">${vacioTexto}</p>`; return; }
+  el.innerHTML = ejercicios.map(filaEjercicio).join("");
+  el.querySelectorAll("[data-ej]").forEach(fila => {
+    fila.addEventListener("click", (e) => { if (!e.target.closest("[data-fav]")) irAEjercicio(fila.dataset.ej); });
+  });
+  el.querySelectorAll("[data-fav]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const ahora = Storage.toggleFavoritoEjercicio(btn.dataset.fav);
+      btn.textContent = ahora ? "❤️" : "🤍";
+      renderMiEspacio();
+    });
+  });
+}
+
+function render() {
+  // Tiempos
+  document.getElementById("tiempoGrid").innerHTML = TIEMPOS.map(t =>
+    `<button class="eh-tiempo-btn ${tiempoElegido === t.min ? "activo" : ""}" data-min="${t.min}">${t.texto}</button>`).join("");
+  document.getElementById("tiempoGrid").querySelectorAll("[data-min]").forEach(btn =>
+    btn.addEventListener("click", () => { tiempoElegido = tiempoElegido === Number(btn.dataset.min) ? null : Number(btn.dataset.min); render(); }));
+
+  // Necesidades
+  document.getElementById("necesidadGrid").innerHTML = CatalogoEjercicios.necesidades().map(n =>
+    `<button class="eh-necesidad-btn ${necesidadElegida === n.id ? "activo" : ""}" data-n="${n.id}"><span class="emoji">${n.emoji}</span>${n.texto}</button>`).join("");
+  document.getElementById("necesidadGrid").querySelectorAll("[data-n]").forEach(btn =>
+    btn.addEventListener("click", () => { necesidadElegida = necesidadElegida === btn.dataset.n ? null : btn.dataset.n; render(); }));
+
+  // Recomendación
+  const seccionRec = document.getElementById("seccionRecomendacion");
+  if (tiempoElegido || necesidadElegida) {
+    seccionRec.hidden = false;
+    const recomendados = CatalogoEjercicios.recomendar({ minutos: tiempoElegido || undefined, necesidadId: necesidadElegida });
+    pintarLista("recomendacionLista", recomendados, "No encontramos una coincidencia exacta, pero explorá las categorías de abajo.");
+  } else {
+    seccionRec.hidden = true;
+  }
+
+  renderMiEspacio();
+  renderExploracion();
+}
+
+function renderMiEspacio() {
+  const favoritos = Storage.getFavoritosEjercicios().map(id => CatalogoEjercicios.porId(id)).filter(Boolean);
+  document.getElementById("seccionFavoritos").hidden = favoritos.length === 0;
+  if (favoritos.length) pintarLista("favoritosLista", favoritos, "");
+
+  const historial = Storage.getHistorialEjercicios().slice(0, 5).map(h => CatalogoEjercicios.porId(h.id)).filter(Boolean);
+  document.getElementById("seccionRecientes").hidden = historial.length === 0;
+  if (historial.length) pintarLista("recientesLista", historial, "");
+
+  const totalCompletados = Storage.getHistorialEjercicios().reduce((acc, h) => acc + h.vecesCompletado, 0);
+  const minutos = Storage.getTotalMinutosEjercicios();
+  const categorias = Storage.getCategoriasEjerciciosExploradas().size;
+  document.getElementById("statsGrid").innerHTML = `
+    <div class="eh-stat-card"><div class="valor">${totalCompletados}</div><div class="etiqueta">ejercicios hechos</div></div>
+    <div class="eh-stat-card"><div class="valor">${minutos}</div><div class="etiqueta">minutos totales</div></div>
+    <div class="eh-stat-card"><div class="valor">${categorias}</div><div class="etiqueta">categorías exploradas</div></div>`;
+}
+
+function renderExploracion() {
+  pintarLista("delDiaLista", [CatalogoEjercicios.delDia()], "");
+  pintarLista("brevesLista", CatalogoEjercicios.filtrar({ duracionMax: 3 }).slice(0, 5), "");
+  pintarLista("emocionesLista", CatalogoEjercicios.porCategoria("emociones").slice(0, 4), "");
+  pintarLista("calmaLista", CatalogoEjercicios.porCategoria("calma").slice(0, 4), "");
+  pintarLista("escrituraLista", CatalogoEjercicios.porCategoria("escritura").slice(0, 4), "");
+
+  document.getElementById("categoriasGrid").innerHTML = CatalogoEjercicios.categorias().map(cat => {
+    return `<button class="eh-cat-card" data-cat="${cat.id}">
+      <span class="emoji">${cat.icono}</span>
+      <span class="nombre">${cat.nombre}</span>
+    </button>`;
+  }).join("");
+  document.getElementById("categoriasGrid").querySelectorAll("[data-cat]").forEach(el =>
+    el.addEventListener("click", () => mostrarCategoria(el.dataset.cat)));
+}
+
+function mostrarCategoria(catId) {
+  const cat = CatalogoEjercicios.categoriaPorId(catId);
+  document.getElementById("seccionCategoriaDetalle").hidden = false;
+  document.getElementById("catDetalleIcono").textContent = cat.icono;
+  document.getElementById("catDetalleNombre").textContent = cat.nombre;
+  pintarLista("catDetalleLista", CatalogoEjercicios.porCategoria(catId), "Todavía no hay ejercicios acá.");
+  document.getElementById("seccionCategoriaDetalle").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// ── Búsqueda y filtros ──
+function renderFiltros() {
+  const chips = [
+    { id: "dur-3", label: "1-3 min", activo: filtroDuracion === 3, accion: () => filtroDuracion = filtroDuracion === 3 ? null : 3 },
+    { id: "dur-5", label: "3-5 min", activo: filtroDuracion === 5, accion: () => filtroDuracion = filtroDuracion === 5 ? null : 5 },
+    { id: "dur-10", label: "5-10 min", activo: filtroDuracion === 10, accion: () => filtroDuracion = filtroDuracion === 10 ? null : 10 },
+    { id: "dif-facil", label: "Fácil", activo: filtroDificultad === "facil", accion: () => filtroDificultad = filtroDificultad === "facil" ? null : "facil" },
+    { id: "dif-intermedio", label: "Intermedio", activo: filtroDificultad === "intermedio", accion: () => filtroDificultad = filtroDificultad === "intermedio" ? null : "intermedio" },
+    { id: "dif-profundo", label: "Profundo", activo: filtroDificultad === "profundo", accion: () => filtroDificultad = filtroDificultad === "profundo" ? null : "profundo" },
+    { id: "est-favoritos", label: "Favoritos", activo: filtroEstado === "favoritos", accion: () => filtroEstado = filtroEstado === "favoritos" ? null : "favoritos" },
+    { id: "est-no-realizados", label: "No realizados", activo: filtroEstado === "no-realizados", accion: () => filtroEstado = filtroEstado === "no-realizados" ? null : "no-realizados" },
+    { id: "est-realizados", label: "Realizados", activo: filtroEstado === "realizados", accion: () => filtroEstado = filtroEstado === "realizados" ? null : "realizados" },
+  ];
+  document.getElementById("filtrosFila").innerHTML = chips.map(c => `<button class="eh-filtro-chip ${c.activo ? "activo" : ""}" data-id="${c.id}">${c.label}</button>`).join("");
+  chips.forEach(c => document.querySelector(`[data-id="${c.id}"]`).addEventListener("click", () => { c.accion(); actualizarVista(); renderFiltros(); }));
+}
+
+function hayFiltrosActivos() {
+  return filtroTexto.trim().length > 0 || filtroDuracion || filtroDificultad || filtroEstado;
+}
+
+function actualizarVista() {
+  const activo = hayFiltrosActivos();
+  document.getElementById("vistaExploracion").hidden = activo;
+  document.getElementById("vistaResultados").hidden = !activo;
+  if (!activo) return;
+
+  let lista = filtroTexto.trim() ? CatalogoEjercicios.buscar(filtroTexto) : CatalogoEjercicios.todos();
+  if (filtroDuracion) lista = lista.filter(e => e.duracion <= filtroDuracion);
+  if (filtroDificultad) lista = lista.filter(e => e.dificultad === filtroDificultad);
+  if (filtroEstado === "favoritos") lista = lista.filter(e => Storage.esFavoritoEjercicio(e.id));
+  if (filtroEstado === "realizados") lista = lista.filter(e => Storage.getProgresoEjercicio(e.id).vecesCompletado > 0);
+  if (filtroEstado === "no-realizados") lista = lista.filter(e => Storage.getProgresoEjercicio(e.id).vecesCompletado === 0);
+
+  document.getElementById("resultadosTitulo").textContent = `${lista.length} resultado${lista.length === 1 ? "" : "s"}`;
+  pintarLista("resultadosLista", lista, "No encontramos ejercicios con esos filtros.");
+}
+
+document.getElementById("inputBuscar").addEventListener("input", (e) => { filtroTexto = e.target.value; actualizarVista(); });
+
+document.getElementById("btnSorprendeme").addEventListener("click", () => {
+  const ej = CatalogoEjercicios.aleatorio({ duracionMax: tiempoElegido || undefined });
+  irAEjercicio(ej.id);
+});
+
+// ── Sesión con Google (mismo patrón que juegos.html) ──
+function actualizarBotonPerfil(user) {
+  const btn = document.getElementById("btnPerfil");
+  if (user && user.photoURL) btn.innerHTML = `<img src="${user.photoURL}" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
+  else btn.textContent = "👤";
+}
+Auth.onCambio((user) => {
+  actualizarBotonPerfil(user);
+  if (user) Storage.vincularUsuario(user).then(render);
+  else render();
+});
+
+const modalPerfil = document.getElementById("modalPerfil");
+document.getElementById("btnPerfil").addEventListener("click", abrirModalPerfil);
+modalPerfil.addEventListener("click", (e) => { if (e.target === modalPerfil) modalPerfil.hidden = true; });
+document.getElementById("btnGuardarPerfil").addEventListener("click", () => {
+  Perfil.actualizarNombre(document.getElementById("inputNombre").value);
+  modalPerfil.hidden = true;
+});
+
+function abrirModalPerfil() {
+  const perfil = Storage.getPerfil();
+  const user = Auth.usuarioActual();
+  const cuentaDiv = document.getElementById("modalCuentaGoogle");
+  if (user) {
+    cuentaDiv.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:var(--r);padding:10px 14px;">
+        <img src="${user.photoURL || ""}" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;background:var(--teal-pale);">
+        <div style="flex:1;min-width:0;">
+          <div style="font-weight:700;font-size:0.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${user.displayName || "Tu cuenta"}</div>
+          <div style="font-size:0.72rem;color:var(--text-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${user.email || ""}</div>
+        </div>
+        <button id="btnCerrarSesion" style="border:none;background:none;color:var(--teal);font-weight:700;font-size:0.78rem;cursor:pointer;">Salir</button>
+      </div>`;
+    document.getElementById("btnCerrarSesion").addEventListener("click", () => {
+      Auth.cerrarSesion().then(() => { Storage.desvincularUsuario(); modalPerfil.hidden = true; render(); });
+    });
+  } else {
+    cuentaDiv.innerHTML = `
+      <button id="btnLoginGoogle" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:2px solid var(--teal-pale);background:white;border-radius:50px;padding:12px;font-weight:700;color:var(--text);cursor:pointer;">
+        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.9v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.17.28-1.7V4.97H.9A9 9 0 0 0 0 9c0 1.45.35 2.83.9 4.03l3.05-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .9 4.97L3.95 7.3C4.66 5.17 6.65 3.58 9 3.58z"/></svg>
+        Iniciar sesión con Google
+      </button>
+      <p style="font-size:0.72rem;color:var(--text-soft);text-align:center;margin-top:8px;">Tu progreso ya se está guardando en este dispositivo. Iniciá sesión para no perderlo si cambiás de celular o navegador.</p>`;
+    document.getElementById("btnLoginGoogle").addEventListener("click", () => {
+      Auth.iniciarSesion().then(() => {
+        const u = Auth.usuarioActual();
+        if (u) Storage.vincularUsuario(u).then(() => { render(); abrirModalPerfil(); });
+      });
+    });
+  }
+  document.getElementById("inputNombre").value = perfil.nombre || "";
+  const avataresLista = document.getElementById("avataresLista");
+  avataresLista.innerHTML = AVATARES.map(a => `<button class="jp-avatar-opcion ${a === perfil.avatar ? "activo" : ""}" data-av="${a}" style="width:40px;height:40px;border-radius:50%;border:2px solid transparent;background:var(--bg);font-size:1.2rem;cursor:pointer;">${a}</button>`).join("");
+  avataresLista.querySelectorAll("[data-av]").forEach(el => el.addEventListener("click", () => {
+    Perfil.actualizarAvatar(el.dataset.av);
+    avataresLista.querySelectorAll("button").forEach(x => x.style.borderColor = "transparent");
+    el.style.borderColor = "var(--teal-mid)";
+  }));
+  modalPerfil.hidden = false;
+}
+
+renderFiltros();
+render();
+</script>
+</body>
+</html>

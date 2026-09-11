@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cargando… | SINAPSIS</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/infantil.css">
+</head>
+<body>
+
+<main id="ieContenedor">
+  <p style="text-align:center;color:var(--text-soft);">Cargando…</p>
+</main>
+
+<div id="ieError" hidden style="text-align:center; padding: 100px 20px;">
+  <p style="font-size:1.1rem; color:#3a5a6a; margin-bottom:20px;">No encontramos esa actividad 🧸</p>
+  <a href="infantil.html" style="color:#1a7a8a; font-weight:700;">← Volver a la Zona Infantil</a>
+</div>
+
+<script src="data/infantil-datos.js"></script>
+<script src="js/infantil-storage.js"></script>
+<script src="js/infantil-engine.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const actividadId = params.get("id");
+  const actividad = actividadId ? CatalogoInfantil.porId(actividadId) : null;
+
+  if (!actividad || !actividad.activo) {
+    document.getElementById("ieContenedor").hidden = true;
+    document.getElementById("ieError").hidden = false;
+  } else {
+    document.title = `${actividad.titulo} | SINAPSIS`;
+    InfantilEngine.iniciar(actividad);
+  }
+</script>
+</body>
+</html>
