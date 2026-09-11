@@ -1,17 +1,30 @@
 (function () {
-  const ANIMALES = ["🐶","🐱","🐰","🐻","🦁","🐸"];
+  const BANCO = ["🐶","🐱","🐰","🐻","🦁","🐸","🐵","🐷","🐮","🐭","🦊","🐨","🐔","🐢"];
   const contenedor = document.getElementById("jgContenedor");
-
-  let cartas = [...ANIMALES, ...ANIMALES]
-    .sort(() => Math.random() - 0.5)
-    .map((s, i) => ({ id: i, simbolo: s, volteada: false, encontrada: false }));
-
-  let primera = null, bloqueado = false, aciertos = 0;
+  const NIVELES = [4, 6, 8]; // pares por nivel
+  let nivel = 0;
+  let cartas, primera, bloqueado, aciertos;
 
   GameEngine.iniciar({ juegoId: "memoria-animales", vidas: null, tiempoSegundos: null });
 
+  function nuevoNivel() {
+    if (nivel >= NIVELES.length) {
+      GameEngine.terminar({ puntaje: GameEngine.puntosActuales(), exito: true, mensaje: "¡Completaste los tres niveles! 🎉" });
+      return;
+    }
+    const cantidad = NIVELES[nivel];
+    const elegidos = [...BANCO].sort(() => Math.random() - 0.5).slice(0, cantidad);
+    cartas = [...elegidos, ...elegidos]
+      .sort(() => Math.random() - 0.5)
+      .map((s, i) => ({ id: i, simbolo: s, volteada: false, encontrada: false }));
+    primera = null; bloqueado = false; aciertos = 0;
+    render();
+  }
+
   function render() {
-    contenedor.innerHTML = `<div class="jg-tablero" style="grid-template-columns: repeat(3, 1fr);">
+    contenedor.innerHTML = `
+      <p style="text-align:center;color:var(--text-mid);font-size:0.85rem;margin-bottom:10px;">Nivel ${nivel + 1} de ${NIVELES.length} — ${NIVELES[nivel]} pares</p>
+      <div class="jg-tablero" style="grid-template-columns: repeat(4, 1fr);">
       ${cartas.map(c => `
         <div class="jg-carta ${c.volteada || c.encontrada ? "volteada" : ""} ${c.encontrada ? "encontrada" : ""}" data-id="${c.id}" style="font-size:2.2rem;">
           ${c.volteada || c.encontrada ? c.simbolo : "🐾"}
@@ -36,10 +49,9 @@
       primera = null;
       aciertos += 1;
       GameEngine.sumarPuntos(10);
-      if (aciertos === ANIMALES.length) {
-        setTimeout(() => GameEngine.terminar({
-          puntaje: GameEngine.puntosActuales(), exito: true, mensaje: "¡Encontraste todos los animalitos! 🎉",
-        }), 400);
+      if (aciertos === NIVELES[nivel]) {
+        nivel += 1;
+        setTimeout(nuevoNivel, 600);
       }
     } else {
       bloqueado = true;
@@ -50,5 +62,5 @@
     }
   }
 
-  render();
+  nuevoNivel();
 })();
