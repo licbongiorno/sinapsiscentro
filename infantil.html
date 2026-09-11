@@ -1,42 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zona Infantil | SINAPSIS — Centro de Salud Integral</title>
+<meta name="description" content="Juegos y actividades pensados para cada etapa: explorar, descubrir y desafiar. Un espacio de Sinapsis para jugar y aprender.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zona Infantil | SINAPSIS">
+<meta property="og:description" content="Juegos y actividades pensados para cada etapa: explorar, descubrir y desafiar. Un espacio de Sinapsis para jugar y aprender.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/infantil.css">
+</head>
+<body>
 
-  <meta name="keywords" content="psicología Berazategui, psicopedagogía, fonoaudiología, terapia ocupacional, estimulación temprana, evaluación TEA, ADOS 2, neuropsicología, centro interdisciplinario">
-  <link rel="canonical" href="https://www.sinapsiscentro.com.ar/">
-  <meta name="robots" content="index, follow">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<header class="ih-header">
+  <div class="ih-topbar">
+    <a href="index.html" class="ih-brand"><span>🧸</span> Sinapsis</a>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Juegos">🎮</a>
+      <a href="ejercicios.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Ejercicios">🧠</a>
+    </div>
+  </div>
+  <div class="ih-intro">
+    <h1>Zona Infantil</h1>
+    <p>Un lugar para jugar, descubrir y aprender sobre vos.</p>
+  </div>
+</header>
 
-  <!-- Open Graph / redes sociales -->
-  <meta property="og:type" content="website">
+<!-- VISTA: PUERTAS (inicio) -->
+<div id="vistaPuertas">
+  <div class="ih-puertas" id="puertasGrid"></div>
+  <div class="ih-sorprendeme">
+    <button class="ih-sorprendeme-btn" id="btnSorprendeme">🎲 Sorprendeme</button>
+  </div>
+  <section class="ih-seccion">
+    <h2>Mi progreso</h2>
+    <div class="ih-stats-grid" id="statsGrid"></div>
+  </section>
+</div>
 
-  <meta name="theme-color" content="#08202e">
+<!-- VISTA: ACTIVIDADES DE UNA BANDA -->
+<div id="vistaBanda" hidden>
+  <div class="ih-banda-header">
+    <button class="ih-volver-btn" id="btnVolverBanda">←</button>
+    <h1 class="ih-banda-titulo" id="bandaTitulo"></h1>
+  </div>
+  <section class="ih-seccion">
+    <div class="ih-categorias-fila" id="categoriasFila"></div>
+    <div class="ih-actividades-grid" id="actividadesGrid"></div>
+  </section>
+</div>
 
-  <!-- Google Analytics 4 -->
-  <!-- Para activarlo: reemplazá "G-XXXXXXXXXX" por tu Measurement ID real
-       (Google Analytics → Administrar → Flujos de datos → tu flujo web).
-       Mientras tenga este valor de ejemplo, no se envía ningún dato a
-       ningún lado — igual que js/firebase-config.js con sus credenciales. -->
-  <script>
-  (function () {
-    var GA_ID = "G-XXXXXXXXXX";
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { dataLayer.push(arguments); };
-    if (GA_ID === "G-XXXXXXXXXX") {
-      console.warn("Google Analytics: todavía tiene el ID de ejemplo (G-XXXXXXXXXX). Reemplazalo en el <head> de index.html para activar las estadísticas.");
-      return;
-    }
-    gtag("js", new Date());
-    gtag("config", GA_ID);
-    var s = document.createElement("script");
-    s.async = true;
-    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-    document.head.appendChild(s);
-  })();
-  </script>
+<!-- VISTA: PARA FAMILIAS -->
+<div id="vistaFamilias" hidden>
+  <div class="ih-banda-header">
+    <button class="ih-volver-btn" id="btnVolverFamilias">←</button>
+    <h1 class="ih-banda-titulo">Para familias</h1>
+  </div>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  font-size: 0.75rem; flex-shrink: 0; color: white; font-weight: 700;
+  <section class="ih-seccion">
+    <h2>🔎 Guía evolutiva por edad</h2>
+    <p style="font-size:0.85rem;color:var(--text-soft);margin-bottom:14px;">Referencias generales, no una lista de requisitos — cada chico tiene su propio ritmo.</p>
+    <div class="ih-familia-tabs" id="guiaTabs"></div>
+    <div id="guiaContenido"></div>
+    <div class="ih-consultar-card">
+      <h3>💡 ¿Cuándo conviene consultar?</h3>
+      <p>Si algo te preocupa de manera persistente sobre el desarrollo o el bienestar de tu hijo/a, hablarlo con un profesional puede ayudarte a entender mejor qué está pasando. Esta guía es sólo orientativa y no reemplaza una evaluación profesional.</p>
+    </div>
+  </section>
+
+  <section class="ih-seccion">
+    <h2>🧸 Jugamos juntos</h2>
+    <p style="font-size:0.85rem;color:var(--text-soft);margin-bottom:14px;">Actividades para hacer entre adulto y chico — sin pantalla.</p>
+    <div id="juntosLista"></div>
+  </section>
+
+  <section class="ih-seccion">
+    <h2>Elegí un avatar</h2>
+    <div class="ih-avatar-selector" id="avatarSelector"></div>
+  </section>
+</div>
+
+<script src="data/infantil-datos.js"></script>
+<script src="js/infantil-storage.js"></script>
+<script>
+const AVATARES_INFANTIL = ["🦊", "🐰", "🐼", "🦁", "🐧", "🦉", "🐢", "🐬", "🦋", "🐙"];
+let vistaActual = "puertas";
+let bandaActual = null;
+let categoriaFiltro = null;
+let bandaGuiaActual = "3-5";
+
+function irAActividad(id) { window.location.href = `infantil-actividad.html?id=${id}`; }
+
+function mostrarVista(v) {
+  vistaActual = v;
+  document.getElementById("vistaPuertas").hidden = v !== "puertas";
+  document.getElementById("vistaBanda").hidden = v !== "banda";
+  document.getElementById("vistaFamilias").hidden = v !== "familias";
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/* ═══════════════════════════════════
-   TESTIMONIOS (reseñas reales de Google)
+function renderPuertas() {
+  const bandas = CatalogoInfantil.bandas();
+  document.getElementById("puertasGrid").innerHTML =
+    bandas.map(b => `<button class="ih-puerta" data-banda="${b.id}"><span class="emoji">${b.emoji}</span><span class="titulo">Tengo ${b.nombre}</span><span class="sub">${b.titulo}</span></button>`).join("") +
+    `<button class="ih-puerta familias" data-familias="1"><span class="emoji">👨‍👩‍👧</span><span class="titulo">Soy adulto</span><span class="sub">Acompañar</span></button>`;
+  document.querySelectorAll("[data-banda]").forEach(btn => btn.addEventListener("click", () => abrirBanda(btn.dataset.banda)));
+  document.querySelector("[data-familias]").addEventListener("click", () => abrirFamilias());
+
+  const perfil = InfantilStorage.getPerfil();
+  const racha = InfantilStorage.getRacha();
+  document.getElementById("statsGrid").innerHTML = `
+    <div class="ih-stat-card"><div class="valor">⭐ ${perfil.estrellas || 0}</div><div class="etiqueta">estrellas</div></div>
+    <div class="ih-stat-card"><div class="valor">${InfantilStorage.getTotalActividades()}</div><div class="etiqueta">actividades</div></div>
+    <div class="ih-stat-card"><div class="valor">🔥 ${racha.dias}</div><div class="etiqueta">días seguidos</div></div>`;
+}
+
+function abrirBanda(bandaId) {
+  bandaActual = bandaId; categoriaFiltro = null;
+  const b = CatalogoInfantil.bandaPorId(bandaId);
+  document.getElementById("bandaTitulo").textContent = `${b.emoji} ${b.titulo}`;
+  renderCategoriasFila();
+  renderActividades();
+  mostrarVista("banda");
+}
+
+function renderCategoriasFila() {
+  const actividadesBanda = CatalogoInfantil.porBanda(bandaActual);
+  const catIds = [...new Set(actividadesBanda.map(a => a.categoria))];
+  const cats = catIds.map(id => CatalogoInfantil.categoriaPorId(id)).filter(Boolean);
+  document.getElementById("categoriasFila").innerHTML =
+    `<button class="ih-cat-chip ${!categoriaFiltro ? "activo" : ""}" data-cat="">Todas</button>` +
+    cats.map(c => `<button class="ih-cat-chip ${categoriaFiltro === c.id ? "activo" : ""}" data-cat="${c.id}">${c.icono} ${c.nombre}</button>`).join("");
+  document.querySelectorAll("#categoriasFila [data-cat]").forEach(btn =>
+    btn.addEventListener("click", () => { categoriaFiltro = btn.dataset.cat || null; renderCategoriasFila(); renderActividades(); }));
+}
+
+function renderActividades() {
+  let lista = CatalogoInfantil.porBanda(bandaActual);
+  if (categoriaFiltro) lista = lista.filter(a => a.categoria === categoriaFiltro);
+  document.getElementById("actividadesGrid").innerHTML = lista.map(a => {
+    const cat = CatalogoInfantil.categoriaPorId(a.categoria);
+    const cantidad = a.contenido.rondas?.length || a.contenido.pares?.length || a.contenido.items?.length || Object.keys(a.contenido.nodos || {}).length;
+    const etiqueta = cantidad ? `${cantidad} ${a.tipo === "memoria" ? "parejas" : a.tipo === "historia" ? "escenas" : "desafíos"}` : "Actividad creativa";
+    return `<button class="ih-actividad-card" data-id="${a.id}">
+      <span class="emoji">${cat ? cat.icono : "🧸"}</span>
+      <span class="titulo">${a.titulo}</span>
+      <span class="desc">${a.descripcion}</span>
+      <span class="ih-actividad-meta">${etiqueta} · ${a.duracion} min</span>
+    </button>`;
+  }).join("");
+  document.querySelectorAll("#actividadesGrid [data-id]").forEach(btn => btn.addEventListener("click", () => irAActividad(btn.dataset.id)));
+}
+
+function abrirFamilias() {
+  renderGuiaTabs();
+  renderGuiaContenido();
+  renderJuntos();
+  renderAvatarSelector();
+  mostrarVista("familias");
+}
+
+function renderGuiaTabs() {
+  document.getElementById("guiaTabs").innerHTML = CatalogoInfantil.bandas().map(b =>
+    `<button class="ih-familia-tab ${bandaGuiaActual === b.id ? "activo" : ""}" data-b="${b.id}">${b.emoji} ${b.nombre}</button>`).join("");
+  document.querySelectorAll("#guiaTabs [data-b]").forEach(btn =>
+    btn.addEventListener("click", () => { bandaGuiaActual = btn.dataset.b; renderGuiaTabs(); renderGuiaContenido(); }));
+}
+
+function renderGuiaContenido() {
+  const g = CatalogoInfantil.guiaPorBanda(bandaGuiaActual);
+  const secciones = [
+    ["🧠 Cognición", g.cognicion], ["🗣️ Lenguaje", g.lenguaje], ["❤️ Emociones", g.emociones],
+    ["🤝 Social", g.social], ["🎯 Atención", g.atencion], ["🧩 Autonomía", g.autonomia], ["🎨 Juego", g.juego],
+  ];
+  document.getElementById("guiaContenido").innerHTML = `
+    <div class="ih-guia-card">
+      ${secciones.map(([titulo, texto]) => `<h3>${titulo}</h3><p>${texto}</p>`).join("")}
+      <p style="font-size:0.78rem;color:var(--text-soft);font-style:italic;">Cada niño tiene su propio ritmo. Estas son referencias generales, no una lista de requisitos.</p>
+    </div>`;
+}
+
+function renderJuntos() {
+  document.getElementById("juntosLista").innerHTML = CatalogoInfantil.jugamosJuntos().map(j =>
+    `<div class="ih-juntos-card"><span class="emoji">${j.icono}</span><p>${j.consigna}</p></div>`).join("");
+}
+
+function renderAvatarSelector() {
+  const perfil = InfantilStorage.getPerfil();
+  document.getElementById("avatarSelector").innerHTML = AVATARES_INFANTIL.map(a =>
+    `<button class="ih-avatar-opcion ${perfil.avatar === a ? "activo" : ""}" data-a="${a}">${a}</button>`).join("");
+  document.querySelectorAll("#avatarSelector [data-a]").forEach(btn => btn.addEventListener("click", () => {
+    InfantilStorage.elegirAvatar(btn.dataset.a);
+    renderAvatarSelector();
+  }));
+}
+
+document.getElementById("btnSorprendeme").addEventListener("click", () => {
+  const act = CatalogoInfantil.aleatorio(bandaActual);
+  irAActividad(act.id);
+});
+document.getElementById("btnVolverBanda").addEventListener("click", () => { renderPuertas(); mostrarVista("puertas"); });
+document.getElementById("btnVolverFamilias").addEventListener("click", () => { renderPuertas(); mostrarVista("puertas"); });
+
+renderPuertas();
+</script>
+</body>
+</html>
