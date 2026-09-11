@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -236,11 +234,11 @@ nav.solid {
 @media(max-width:768px){
   .nav-burger { display: flex; }
   .nav-links {
-    position: fixed; top: 0; right: 0; height: 100vh; width: min(78vw, 320px);
+    position: fixed; top: 0; left: 0; height: 100vh; width: min(78vw, 320px);
     background: rgba(8,32,46,0.98); backdrop-filter: blur(20px);
     flex-direction: column; align-items: flex-start; justify-content: center;
     gap: 28px; padding: 40px; z-index: 1001;
-    transform: translateX(100%); transition: transform 0.35s var(--easing);
+    transform: translateX(-100%); transition: transform 0.35s var(--easing);
   }
   .nav-links.open { transform: translateX(0); }
   .nav-links a { font-size: 1.05rem; }
