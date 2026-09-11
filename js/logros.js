@@ -52,6 +52,47 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => ctx.ejerciciosPorCategoria.calma >= 10 },
 ];
 
+/**
+ * Datos de ejercicios que necesitan algunos logros del catálogo
+ * (ej. "Explorador emocional", "Pausa"). Se calculan siempre, sin
+ * importar si lo que disparó la evaluación fue un juego o un
+ * ejercicio, porque el catálogo de logros es uno solo y compartido:
+ * si faltaran estos campos, cualquier `cumple(ctx)` que los use
+ * tiraría un error al leer una propiedad de `undefined` (por ejemplo
+ * `ctx.ejerciciosPorCategoria.emociones`) y cortaría en seco la
+ * evaluación de logros — que es lo que pasaba antes al terminar
+ * CUALQUIER juego, sin llegar nunca a mostrar la pantalla final.
+ */
+function _contextoEjercicios() {
+  const historial = Storage.getHistorialEjercicios();
+  const porCategoria = {};
+  historial.forEach(h => {
+    const ej = typeof CatalogoEjercicios !== "undefined" ? CatalogoEjercicios.porId(h.id) : null;
+    if (!ej) return;
+    porCategoria[ej.categoria] = (porCategoria[ej.categoria] || 0) + (h.vecesCompletado || 0);
+  });
+  return {
+    totalEjercicios: historial.reduce((acc, h) => acc + (h.vecesCompletado || 0), 0),
+    ejerciciosPorCategoria: porCategoria,
+    categoriasEjerciciosExploradas: Storage.getCategoriasEjerciciosExploradas(),
+    minutosEjercicios: Storage.getTotalMinutosEjercicios(),
+  };
+}
+
+/** Recorre el catálogo, desbloquea lo que corresponda y devuelve lo nuevo. */
+function _evaluar(ctx) {
+  const yaTenia = new Set(Storage.getLogros());
+  const nuevos = [];
+  for (const logro of LOGROS_CATALOGO) {
+    if (yaTenia.has(logro.id)) continue;
+    if (logro.cumple(ctx)) {
+      Storage.desbloquearLogro(logro.id);
+      nuevos.push(logro);
+    }
+  }
+  return nuevos;
+}
+
 const Logros = {
   catalogo: () => LOGROS_CATALOGO,
   desbloqueados: () => Storage.getLogros(),
@@ -62,23 +103,14 @@ const Logros = {
    * acaban de desbloquear (para mostrar un aviso en pantalla).
    */
   evaluarTrasPartida({ mejoroRecordEnEstaPartida = false } = {}) {
-    const ctx = {
+    return _evaluar({
       totalPartidas: Storage.getTotalPartidas(),
       racha: Storage.getRacha(),
       categoriasJugadas: Storage.getCategoriasJugadas(),
       perfil: Storage.getPerfil(),
       mejoroRecordEnEstaPartida,
-    };
-    const yaTenia = new Set(Storage.getLogros());
-    const nuevos = [];
-    for (const logro of LOGROS_CATALOGO) {
-      if (yaTenia.has(logro.id)) continue;
-      if (logro.cumple(ctx)) {
-        Storage.desbloquearLogro(logro.id);
-        nuevos.push(logro);
-      }
-    }
-    return nuevos;
+      ..._contextoEjercicios(),
+    });
   },
 
   /**
@@ -86,33 +118,13 @@ const Logros = {
    * (biblioteca de ejercicios). Comparte el mismo catálogo de logros.
    */
   evaluarTrasEjercicio() {
-    const historial = Storage.getHistorialEjercicios();
-    const porCategoria = {};
-    historial.forEach(h => {
-      const ej = typeof CatalogoEjercicios !== "undefined" ? CatalogoEjercicios.porId(h.id) : null;
-      if (!ej) return;
-      porCategoria[ej.categoria] = (porCategoria[ej.categoria] || 0) + (h.vecesCompletado || 0);
-    });
-    const ctx = {
+    return _evaluar({
       totalPartidas: Storage.getTotalPartidas(),
       racha: Storage.getRacha(),
       categoriasJugadas: Storage.getCategoriasJugadas(),
       perfil: Storage.getPerfil(),
       mejoroRecordEnEstaPartida: false,
-      totalEjercicios: historial.reduce((acc, h) => acc + (h.vecesCompletado || 0), 0),
-      ejerciciosPorCategoria: porCategoria,
-      categoriasEjerciciosExploradas: Storage.getCategoriasEjerciciosExploradas(),
-      minutosEjercicios: Storage.getTotalMinutosEjercicios(),
-    };
-    const yaTenia = new Set(Storage.getLogros());
-    const nuevos = [];
-    for (const logro of LOGROS_CATALOGO) {
-      if (yaTenia.has(logro.id)) continue;
-      if (logro.cumple(ctx)) {
-        Storage.desbloquearLogro(logro.id);
-        nuevos.push(logro);
-      }
-    }
-    return nuevos;
+      ..._contextoEjercicios(),
+    });
   },
 };

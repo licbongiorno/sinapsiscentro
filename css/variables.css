@@ -1,0 +1,27 @@
+/**
+ * VARIABLES.CSS — Tokens de color/espaciado compartidos
+ * ==========================================================
+ * Antes este mismo bloque :root estaba copiado y pegado, letra por
+ * letra, en juegos.css, juego.css, ejercicios.css e infantil.css.
+ * Cada una de esas hojas lo importa con @import y, si necesita algún
+ * valor propio (infantil.css cambia --bg y agrega los --kid-*; juego.css
+ * usa un --r-lg distinto), lo sobreescribe después del @import.
+ */
+:root {
+  --navy: #08202e;
+  --teal-deep: #0e4d5c;
+  --teal: #1a7a8a;
+  --teal-mid: #2aaec2;
+  --teal-soft: #7ed6e4;
+  --teal-pale: #d4f2f7;
+  --cream: #f7f2eb;
+  --warm: #c9a97e;
+  --warm-lt: #f0e6d3;
+  --bg: #f5fafc;
+  --text: #0d2535;
+  --text-mid: #3a5a6a;
+  --text-soft: #6a8a9a;
+  --easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --r: 18px;
+  --r-lg: 26px;
+}

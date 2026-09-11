@@ -23,22 +23,9 @@
 
 const GameEngine = (() => {
   let estado = null;
-  let audioCtx = null;
+  let alFinalizarCallback = null;
 
-  function beep(frecuencia = 440, duracionMs = 120, tipo = "sine", volumen = 0.05) {
-    try {
-      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = tipo;
-      osc.frequency.value = frecuencia;
-      gain.gain.value = volumen;
-      osc.connect(gain).connect(audioCtx.destination);
-      osc.start();
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duracionMs / 1000);
-      osc.stop(audioCtx.currentTime + duracionMs / 1000);
-    } catch (e) { /* audio no disponible; no es crítico */ }
-  }
+  // beep() vive en js/beep.js (compartido con exercise-engine.js).
 
   function vibrar(patron = 30) {
     if (navigator.vibrate) navigator.vibrate(patron);
@@ -124,6 +111,7 @@ const GameEngine = (() => {
     /** Inicializa una partida nueva. */
     iniciar({ juegoId, vidas = null, tiempoSegundos = null }) {
       document.querySelectorAll(".ge-hud").forEach(h => h.remove());
+      alFinalizarCallback = null;
       estado = {
         juegoId, vidas, tiempoSegundos,
         tiempoRestante: tiempoSegundos,
@@ -177,6 +165,7 @@ const GameEngine = (() => {
       if (!estado || estado.terminado) return;
       estado.terminado = true;
       if (estado.timerId) clearInterval(estado.timerId);
+      if (alFinalizarCallback) alFinalizarCallback();
 
       const juego = CatalogoJuegos.porId(estado.juegoId);
       const progresoAnterior = Storage.getProgreso(estado.juegoId);
@@ -201,6 +190,16 @@ const GameEngine = (() => {
 
     reiniciar() {
       window.location.reload();
+    },
+
+    /**
+     * Registra una función que se ejecuta justo antes de que termine
+     * la partida (por ejemplo, para limpiar setInterval/requestAnimationFrame
+     * propios de un juego). Reemplaza la necesidad de sobreescribir
+     * GameEngine.terminar manualmente desde cada juego.
+     */
+    alFinalizar(fn) {
+      alFinalizarCallback = fn;
     },
   };
 

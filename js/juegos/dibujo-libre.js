@@ -16,30 +16,12 @@
     </div>`;
 
   const canvas = document.getElementById("lienzo");
-  const ctx = canvas.getContext("2d");
-  ctx.lineWidth = 4; ctx.lineCap = "round"; ctx.strokeStyle = COLORES[0];
-  let dibujando = false, trazos = 0;
+  const lienzo = crearLienzoDibujable(canvas, { colorInicial: COLORES[0] });
 
-  function pos(e) {
-    const r = canvas.getBoundingClientRect();
-    const p = e.touches ? e.touches[0] : e;
-    return { x: (p.clientX - r.left) * (canvas.width / r.width), y: (p.clientY - r.top) * (canvas.height / r.height) };
-  }
-  function empezar(e) { dibujando = true; trazos += 1; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }
-  function dibujar(e) { if (!dibujando) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); }
-  function terminarTrazo() { dibujando = false; }
-
-  canvas.addEventListener("mousedown", empezar);
-  canvas.addEventListener("mousemove", dibujar);
-  window.addEventListener("mouseup", terminarTrazo);
-  canvas.addEventListener("touchstart", empezar, { passive: false });
-  canvas.addEventListener("touchmove", dibujar, { passive: false });
-  canvas.addEventListener("touchend", terminarTrazo);
-
-  contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => { ctx.strokeStyle = btn.dataset.c; }));
-  document.getElementById("btnLimpiar").addEventListener("click", () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+  contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => lienzo.setColor(btn.dataset.c)));
+  document.getElementById("btnLimpiar").addEventListener("click", () => lienzo.limpiar());
   document.getElementById("btnListoDibujo").addEventListener("click", () => {
-    if (trazos > 0) GameEngine.sumarPuntos(5);
+    if (lienzo.trazos() > 0) GameEngine.sumarPuntos(5);
     GameEngine.terminar({ puntaje: 0, exito: true, mensaje: "¡Lindo dibujo! 🎨" });
   });
 })();

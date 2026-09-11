@@ -235,16 +235,9 @@ const InfantilEngine = (() => {
         <button class="ie-btn ie-btn-principal" id="ieListoDibujo" style="margin-top:16px;">¡Listo!</button>
       </div>`;
     const canvas = document.getElementById("ieLienzo");
-    const ctx = canvas.getContext("2d");
-    ctx.lineWidth = 6; ctx.lineCap = "round"; ctx.strokeStyle = COLORES[0];
-    let dibujando = false;
-    function pos(e) { const r = canvas.getBoundingClientRect(); const p = e.touches ? e.touches[0] : e; return { x: (p.clientX - r.left) * (canvas.width / r.width), y: (p.clientY - r.top) * (canvas.height / r.height) }; }
-    function empezar(e) { dibujando = true; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }
-    function dibujar(e) { if (!dibujando) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); }
-    canvas.addEventListener("mousedown", empezar); canvas.addEventListener("mousemove", dibujar); window.addEventListener("mouseup", () => dibujando = false);
-    canvas.addEventListener("touchstart", empezar, { passive: false }); canvas.addEventListener("touchmove", dibujar, { passive: false }); canvas.addEventListener("touchend", () => dibujando = false);
-    contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => ctx.strokeStyle = btn.dataset.c));
-    contenedor.querySelector("[data-limpiar]").addEventListener("click", () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+    const lienzo = crearLienzoDibujable(canvas, { colorInicial: COLORES[0], grosor: 6 });
+    contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => lienzo.setColor(btn.dataset.c)));
+    contenedor.querySelector("[data-limpiar]").addEventListener("click", () => lienzo.limpiar());
     document.getElementById("ieListoDibujo").addEventListener("click", () => { sumarEstrella(2); pantallaFinal("¡Qué lindo dibujo!"); });
   }
 

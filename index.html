@@ -12,6 +12,7 @@
   <meta name="keywords" content="psicología Berazategui, psicopedagogía, fonoaudiología, terapia ocupacional, estimulación temprana, evaluación TEA, ADOS 2, neuropsicología, centro interdisciplinario">
   <link rel="canonical" href="https://www.sinapsiscentro.com.ar/">
   <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <!-- Open Graph / redes sociales -->
   <meta property="og:type" content="website">
@@ -25,6 +26,29 @@
   <meta name="twitter:description" content="Psicología, psicopedagogía, fonoaudiología y terapia ocupacional en Berazategui. Primera entrevista en menos de 48 horas.">
 
   <meta name="theme-color" content="#08202e">
+
+  <!-- Google Analytics 4 -->
+  <!-- Para activarlo: reemplazá "G-XXXXXXXXXX" por tu Measurement ID real
+       (Google Analytics → Administrar → Flujos de datos → tu flujo web).
+       Mientras tenga este valor de ejemplo, no se envía ningún dato a
+       ningún lado — igual que js/firebase-config.js con sus credenciales. -->
+  <script>
+  (function () {
+    var GA_ID = "G-XXXXXXXXXX";
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    if (GA_ID === "G-XXXXXXXXXX") {
+      console.warn("Google Analytics: todavía tiene el ID de ejemplo (G-XXXXXXXXXX). Reemplazalo en el <head> de index.html para activar las estadísticas.");
+      return;
+    }
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+  })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -876,6 +900,25 @@ footer a:hover { color: white; }
   font-size: 0.75rem; flex-shrink: 0; color: white; font-weight: 700;
 }
 
+/* ═══════════════════════════════════
+   TESTIMONIOS (reseñas reales de Google)
+═══════════════════════════════════ */
+#testimonios { background: var(--cream); padding: 110px 6%; }
+.testimonios-google-card {
+  max-width: 640px; margin: 50px auto 0; background: white; border-radius: var(--r-lg);
+  padding: 40px 32px; text-align: center;
+  border: 1.5px solid rgba(42,174,194,0.1); box-shadow: 0 10px 34px rgba(8,32,46,0.06);
+}
+.tgc-icono { font-size: 2.6rem; color: #4285F4; margin-bottom: 16px; }
+.tgc-texto h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 8px; }
+.tgc-texto p { font-size: 0.92rem; color: var(--text-mid); margin-bottom: 24px; line-height: 1.6; }
+.btn-google {
+  display: inline-flex; align-items: center; gap: 10px; background: #4285F4; color: white;
+  padding: 15px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(66,133,244,0.35); transition: all 0.3s;
+}
+.btn-google:hover { background: #3367d6; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(66,133,244,0.45); }
+
 @media(max-width:768px){
   .hero-inner { padding: 120px 20px 80px !important; }
   .hero-title { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
@@ -1263,6 +1306,31 @@ footer a:hover { color: white; }
   </div>
 </section>
 
+<!-- ═══ TESTIMONIOS ═══ -->
+<!--
+  Enlaza directo al perfil real de Google Business de Sinapsis — sin
+  reseñas inventadas. Si en algún momento se quieren mostrar 2-3 citas
+  puntuales como texto (además de este botón), hay que pegar acá el
+  texto real de cada reseña y el nombre público de quien la escribió.
+-->
+<section id="testimonios">
+  <div style="max-width:1160px;margin:0 auto;text-align:center;">
+    <div class="section-tag rv from-bottom" style="justify-content:center;">Lo que dicen quienes ya confiaron</div>
+    <h2 class="section-title rv from-bottom d1">Reseñas reales en <em>Google</em></h2>
+    <p class="section-body rv from-bottom d2" style="margin:14px auto 0;">Mirá la opinión de pacientes y familias que ya pasaron por Sinapsis, directamente en nuestro perfil de Google — sin editar.</p>
+  </div>
+  <div class="testimonios-google-card rv from-bottom d3">
+    <div class="tgc-icono"><i class="fa-brands fa-google"></i></div>
+    <div class="tgc-texto">
+      <h3>Sinapsis en Google</h3>
+      <p>Reseñas verificadas de pacientes reales.</p>
+    </div>
+    <a href="https://share.google/qZVdE7h6rWEFEprKg" target="_blank" rel="noopener" class="btn-google">
+      <i class="fa-solid fa-star"></i> Ver reseñas en Google
+    </a>
+  </div>
+</section>
+
 <!-- ═══ HORARIOS + MAPA ═══ -->
 <section id="info">
   <div style="max-width:1160px;margin:0 auto;">
@@ -1295,7 +1363,7 @@ footer a:hover { color: white; }
             <div class="cv">11 6856-7160</div>
           </div>
         </a>
-        <a href="mailto:sinapsiscentro@gmail.com" class="c-pill">
+        <a href="mailto:sinapsiscentro@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%2C%20quisiera%20pedir%20una%20primera%20entrevista.%20Mi%20situaci%C3%B3n%20es%3A%20" class="c-pill">
           <div class="ci"><i class="fa-regular fa-envelope"></i></div>
           <div class="ct">
             <div class="cl">Email</div>
@@ -1351,7 +1419,7 @@ footer a:hover { color: white; }
         <i class="fa-brands fa-instagram"></i> Seguinos en Instagram
       </a>
     </div>
-    <p class="cta-alt-contact rv from-bottom d3">¿Preferís otro canal? <a href="mailto:sinapsiscentro@gmail.com">Escribinos por email</a>.</p>
+    <p class="cta-alt-contact rv from-bottom d3">¿Preferís otro canal? <a href="mailto:sinapsiscentro@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%2C%20quisiera%20pedir%20una%20primera%20entrevista.%20Mi%20situaci%C3%B3n%20es%3A%20">Escribinos por email</a>.</p>
   </div>
 </section>
 
@@ -1604,6 +1672,28 @@ document.querySelectorAll('.faq-q').forEach((q, index)=>{
 ════════════════════ */
 document.getElementById('goTop').addEventListener('click',()=>{
   window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ════════════════════
+   ANALYTICS: clics en los CTAs de contacto
+   (no hace nada si Google Analytics no está activado, ver <head>)
+════════════════════ */
+document.querySelectorAll('a[href^="https://wa.me/"]').forEach((a) => {
+  a.addEventListener('click', () => {
+    if (!window.gtag) return;
+    const ubicacion = a.classList.contains('fab') ? 'boton-flotante' : (a.closest('section,nav,footer')?.id || 'otro');
+    gtag('event', 'click_whatsapp', { ubicacion });
+  });
+});
+document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
+  a.addEventListener('click', () => {
+    if (!window.gtag) return;
+    const ubicacion = a.closest('section,nav,footer')?.id || 'otro';
+    gtag('event', 'click_email', { ubicacion });
+  });
+});
+document.querySelectorAll('.btn-google').forEach((a) => {
+  a.addEventListener('click', () => { if (window.gtag) gtag('event', 'click_resenas_google'); });
 });
 </script>
 </body>

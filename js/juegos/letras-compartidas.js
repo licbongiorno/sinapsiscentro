@@ -84,7 +84,7 @@
   function terminar() {
     // Guardamos la historia en una pequeña galería local, propia de este juego.
     try {
-      const clave = "sinapsis_juegos:historias-compartidas";
+      const clave = `${Storage.NS}:historias-compartidas`;
       const historias = JSON.parse(localStorage.getItem(clave) || "[]");
       historias.unshift({ texto: palabras.join(" "), fecha: new Date().toISOString() });
       localStorage.setItem(clave, JSON.stringify(historias.slice(0, 20)));

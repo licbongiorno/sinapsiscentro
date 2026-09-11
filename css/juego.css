@@ -1,19 +1,6 @@
-:root {
-  --navy: #08202e;
-  --teal-deep: #0e4d5c;
-  --teal: #1a7a8a;
-  --teal-mid: #2aaec2;
-  --teal-soft: #7ed6e4;
-  --teal-pale: #d4f2f7;
-  --cream: #f7f2eb;
-  --warm: #c9a97e;
-  --bg: #f5fafc;
-  --text: #0d2535;
-  --text-mid: #3a5a6a;
-  --easing: cubic-bezier(0.16, 1, 0.3, 1);
-  --r: 18px;
-  --r-lg: 28px;
-}
+@import url("variables.css");
+/* juego.css usa un --r-lg más redondeado que el resto del sitio (28px vs 26px) */
+:root { --r-lg: 28px; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: 'Nunito', sans-serif;
@@ -23,6 +10,10 @@ body {
   overflow-x: hidden;
 }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
 
 #juego-area {
   padding-top: 76px;
