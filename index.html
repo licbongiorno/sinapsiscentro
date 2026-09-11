@@ -27,6 +27,29 @@
 
   <meta name="theme-color" content="#08202e">
 
+  <!-- Google Analytics 4 -->
+  <!-- Para activarlo: reemplazá "G-XXXXXXXXXX" por tu Measurement ID real
+       (Google Analytics → Administrar → Flujos de datos → tu flujo web).
+       Mientras tenga este valor de ejemplo, no se envía ningún dato a
+       ningún lado — igual que js/firebase-config.js con sus credenciales. -->
+  <script>
+  (function () {
+    var GA_ID = "G-XXXXXXXXXX";
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    if (GA_ID === "G-XXXXXXXXXX") {
+      console.warn("Google Analytics: todavía tiene el ID de ejemplo (G-XXXXXXXXXX). Reemplazalo en el <head> de index.html para activar las estadísticas.");
+      return;
+    }
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+  })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -877,6 +900,28 @@ footer a:hover { color: white; }
   font-size: 0.75rem; flex-shrink: 0; color: white; font-weight: 700;
 }
 
+/* ═══════════════════════════════════
+   TESTIMONIOS
+═══════════════════════════════════ */
+#testimonios { background: var(--cream); padding: 110px 6%; }
+.testimonios-grid {
+  max-width: 1160px; margin: 50px auto 0;
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 22px;
+}
+@media(max-width:900px){ .testimonios-grid { grid-template-columns:1fr; } }
+.testimonio-card {
+  background: white; border-radius: var(--r-lg); padding: 32px 28px;
+  border: 1.5px solid rgba(42,174,194,0.08);
+  box-shadow: 0 6px 24px rgba(8,32,46,0.05);
+}
+.testimonio-quote { font-size: 2rem; color: var(--teal-mid); line-height: 1; font-family: 'Playfair Display', serif; }
+.testimonio-texto { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; margin: 10px 0 18px; font-style: italic; }
+.testimonio-autor { font-size: 0.82rem; color: var(--text-soft); font-weight: 700; }
+.testimonios-aviso {
+  max-width: 640px; margin: 28px auto 0; text-align: center;
+  font-size: 0.82rem; color: var(--text-soft); line-height: 1.6;
+}
+
 @media(max-width:768px){
   .hero-inner { padding: 120px 20px 80px !important; }
   .hero-title { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
@@ -1264,6 +1309,38 @@ footer a:hover { color: white; }
   </div>
 </section>
 
+<!-- ═══ TESTIMONIOS ═══ -->
+<!--
+  IMPORTANTE: las 3 tarjetas de abajo son EJEMPLOS, no testimonios reales.
+  Antes de publicar, reemplazalas por reseñas reales de pacientes (con su
+  consentimiento) o pasame el link de tu perfil de Google Business y las
+  cargamos desde ahí. No dejes estos textos de ejemplo en producción.
+-->
+<section id="testimonios">
+  <div style="max-width:1160px;margin:0 auto;text-align:center;">
+    <div class="section-tag rv from-bottom" style="justify-content:center;">Lo que dicen quienes ya confiaron</div>
+    <h2 class="section-title rv from-bottom d1">Testimonios de <em>nuestros pacientes</em></h2>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio-card rv from-bottom d1">
+      <div class="testimonio-quote">&ldquo;</div>
+      <p class="testimonio-texto">Ejemplo de testimonio — reemplazar por una reseña real de un paciente o familia, contando brevemente su experiencia en Sinapsis.</p>
+      <p class="testimonio-autor">— Testimonio de ejemplo</p>
+    </div>
+    <div class="testimonio-card rv from-bottom d2">
+      <div class="testimonio-quote">&ldquo;</div>
+      <p class="testimonio-texto">Ejemplo de testimonio — reemplazar por una reseña real, por ejemplo sobre la primera entrevista o el acompañamiento del equipo.</p>
+      <p class="testimonio-autor">— Testimonio de ejemplo</p>
+    </div>
+    <div class="testimonio-card rv from-bottom d3">
+      <div class="testimonio-quote">&ldquo;</div>
+      <p class="testimonio-texto">Ejemplo de testimonio — reemplazar por una reseña real sobre algún servicio puntual (evaluación, terapia, estimulación temprana, etc.).</p>
+      <p class="testimonio-autor">— Testimonio de ejemplo</p>
+    </div>
+  </div>
+  <p class="testimonios-aviso">¿Ya tenés reseñas en tu perfil de Google Business? Pasanos el link y las cargamos acá en vez de estos ejemplos.</p>
+</section>
+
 <!-- ═══ HORARIOS + MAPA ═══ -->
 <section id="info">
   <div style="max-width:1160px;margin:0 auto;">
@@ -1296,7 +1373,7 @@ footer a:hover { color: white; }
             <div class="cv">11 6856-7160</div>
           </div>
         </a>
-        <a href="mailto:sinapsiscentro@gmail.com" class="c-pill">
+        <a href="mailto:sinapsiscentro@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%2C%20quisiera%20pedir%20una%20primera%20entrevista.%20Mi%20situaci%C3%B3n%20es%3A%20" class="c-pill">
           <div class="ci"><i class="fa-regular fa-envelope"></i></div>
           <div class="ct">
             <div class="cl">Email</div>
@@ -1352,7 +1429,7 @@ footer a:hover { color: white; }
         <i class="fa-brands fa-instagram"></i> Seguinos en Instagram
       </a>
     </div>
-    <p class="cta-alt-contact rv from-bottom d3">¿Preferís otro canal? <a href="mailto:sinapsiscentro@gmail.com">Escribinos por email</a>.</p>
+    <p class="cta-alt-contact rv from-bottom d3">¿Preferís otro canal? <a href="mailto:sinapsiscentro@gmail.com?subject=Consulta%20desde%20la%20web&body=Hola%2C%20quisiera%20pedir%20una%20primera%20entrevista.%20Mi%20situaci%C3%B3n%20es%3A%20">Escribinos por email</a>.</p>
   </div>
 </section>
 
@@ -1605,6 +1682,25 @@ document.querySelectorAll('.faq-q').forEach((q, index)=>{
 ════════════════════ */
 document.getElementById('goTop').addEventListener('click',()=>{
   window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ════════════════════
+   ANALYTICS: clics en los CTAs de contacto
+   (no hace nada si Google Analytics no está activado, ver <head>)
+════════════════════ */
+document.querySelectorAll('a[href^="https://wa.me/"]').forEach((a) => {
+  a.addEventListener('click', () => {
+    if (!window.gtag) return;
+    const ubicacion = a.classList.contains('fab') ? 'boton-flotante' : (a.closest('section,nav,footer')?.id || 'otro');
+    gtag('event', 'click_whatsapp', { ubicacion });
+  });
+});
+document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
+  a.addEventListener('click', () => {
+    if (!window.gtag) return;
+    const ubicacion = a.closest('section,nav,footer')?.id || 'otro';
+    gtag('event', 'click_email', { ubicacion });
+  });
 });
 </script>
 </body>
