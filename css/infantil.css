@@ -48,11 +48,12 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ih-cat-chip.activo { background: var(--navy); border-color: var(--navy); color: white; }
 
 .ih-actividades-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.ih-actividad-card { background: white; border-radius: var(--r); padding: 16px 10px; text-align: center; box-shadow: 0 6px 18px rgba(8,32,46,0.06); border: 1px solid rgba(42,174,194,0.08); cursor: pointer; transition: transform 0.2s; }
+.ih-actividad-card { background: white; border-radius: var(--r); padding: 16px 12px; text-align: center; box-shadow: 0 6px 18px rgba(8,32,46,0.06); border: 1px solid rgba(42,174,194,0.08); cursor: pointer; transition: transform 0.2s; }
 .ih-actividad-card:hover { transform: translateY(-3px); }
 .ih-actividad-card .emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
 .ih-actividad-card .titulo { font-size: 0.8rem; font-weight: 700; }
-.ih-actividad-card .desc { font-size: 0.68rem; color: var(--text-soft); margin-top: 3px; }
+.ih-actividad-card .desc { display:block; font-size: 0.68rem; color: var(--text-soft); margin-top: 5px; line-height: 1.35; }
+.ih-actividad-meta { display:inline-block; margin-top:8px; padding:3px 7px; border-radius:50px; background:var(--teal-pale); color:var(--teal-deep); font-size:.64rem; font-weight:800; }
 
 /* Familias */
 .ih-familia-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
@@ -122,6 +123,7 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ie-secuencia-item { background: var(--teal-pale); color: var(--teal-deep); border-radius: 10px; padding: 8px 14px; margin-bottom: 6px; font-weight: 700; }
 .ie-secuencia-disponibles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .ie-secuencia-btn { background: white; border: 3px solid var(--teal-pale); border-radius: 10px; padding: 10px 16px; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+.ie-secuencia-btn.ie-intenta-de-nuevo { border-color: var(--kid-orange); background: #ffe8d6; animation: ieShake 0.4s; }
 
 .ie-lienzo { background: white; border-radius: var(--r-lg); border: 3px solid var(--teal-pale); touch-action: none; max-width: 90vw; margin: 14px auto; display: block; }
 .ie-lienzo-colores { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
