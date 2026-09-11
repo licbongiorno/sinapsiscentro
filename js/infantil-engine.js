@@ -180,12 +180,21 @@ const InfantilEngine = (() => {
           <p class="ie-pregunta">${instruccion}</p>
           <div class="ie-secuencia-elegidos">${elegidos.map((t, i) => `<div class="ie-secuencia-item">${i + 1}. ${t}</div>`).join("") || "<span style='opacity:.4'>Tocá en orden…</span>"}</div>
           <div class="ie-secuencia-disponibles">${mezclado.map((t, idx) => elegidos.includes(t) ? "" : `<button class="ie-secuencia-btn" data-idx="${idx}">${t}</button>`).join("")}</div>
+          <p class="ie-progreso">${elegidos.length} / ${items.length}</p>
         </div>`;
       contenedor.querySelectorAll(".ie-secuencia-btn").forEach(btn => btn.addEventListener("click", () => {
-        elegidos.push(mezclado[Number(btn.dataset.idx)]);
-        sumarEstrella();
-        if (elegidos.length === items.length) timers.push(setTimeout(() => pantallaFinal("¡Ordenaste todo!"), 500));
-        else render();
+        const elegido = mezclado[Number(btn.dataset.idx)];
+        const esElSiguiente = elegido === items[elegidos.length];
+        if (esElSiguiente) {
+          elegidos.push(elegido);
+          sumarEstrella();
+          if (elegidos.length === items.length) timers.push(setTimeout(() => pantallaFinal("¡Ordenaste todo!"), 500));
+          else render();
+        } else {
+          btn.classList.add("ie-intenta-de-nuevo");
+          btn.disabled = true;
+          timers.push(setTimeout(() => { btn.classList.remove("ie-intenta-de-nuevo"); btn.disabled = false; }, 650));
+        }
       }));
     }
     render();
