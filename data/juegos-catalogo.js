@@ -199,6 +199,16 @@ const CatalogoJuegos = {
     const disp = CatalogoJuegos.disponibles();
     return disp[Math.floor(Math.random() * disp.length)];
   },
+
+  /** Busca por nombre, descripción o categoría entre los juegos disponibles. */
+  buscar(query) {
+    const q = query.trim().toLowerCase();
+    if (!q) return CatalogoJuegos.disponibles();
+    return CatalogoJuegos.disponibles().filter(j =>
+      j.nombre.toLowerCase().includes(q) ||
+      j.descripcion.toLowerCase().includes(q) ||
+      (CatalogoJuegos.categoriaPorId(j.categoria)?.nombre || "").toLowerCase().includes(q));
+  },
 };
 
 if (typeof module !== "undefined") module.exports = { JUEGOS, CATEGORIAS, CatalogoJuegos };
