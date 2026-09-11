@@ -901,26 +901,23 @@ footer a:hover { color: white; }
 }
 
 /* ═══════════════════════════════════
-   TESTIMONIOS
+   TESTIMONIOS (reseñas reales de Google)
 ═══════════════════════════════════ */
 #testimonios { background: var(--cream); padding: 110px 6%; }
-.testimonios-grid {
-  max-width: 1160px; margin: 50px auto 0;
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 22px;
+.testimonios-google-card {
+  max-width: 640px; margin: 50px auto 0; background: white; border-radius: var(--r-lg);
+  padding: 40px 32px; text-align: center;
+  border: 1.5px solid rgba(42,174,194,0.1); box-shadow: 0 10px 34px rgba(8,32,46,0.06);
 }
-@media(max-width:900px){ .testimonios-grid { grid-template-columns:1fr; } }
-.testimonio-card {
-  background: white; border-radius: var(--r-lg); padding: 32px 28px;
-  border: 1.5px solid rgba(42,174,194,0.08);
-  box-shadow: 0 6px 24px rgba(8,32,46,0.05);
+.tgc-icono { font-size: 2.6rem; color: #4285F4; margin-bottom: 16px; }
+.tgc-texto h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 8px; }
+.tgc-texto p { font-size: 0.92rem; color: var(--text-mid); margin-bottom: 24px; line-height: 1.6; }
+.btn-google {
+  display: inline-flex; align-items: center; gap: 10px; background: #4285F4; color: white;
+  padding: 15px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(66,133,244,0.35); transition: all 0.3s;
 }
-.testimonio-quote { font-size: 2rem; color: var(--teal-mid); line-height: 1; font-family: 'Playfair Display', serif; }
-.testimonio-texto { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; margin: 10px 0 18px; font-style: italic; }
-.testimonio-autor { font-size: 0.82rem; color: var(--text-soft); font-weight: 700; }
-.testimonios-aviso {
-  max-width: 640px; margin: 28px auto 0; text-align: center;
-  font-size: 0.82rem; color: var(--text-soft); line-height: 1.6;
-}
+.btn-google:hover { background: #3367d6; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(66,133,244,0.45); }
 
 @media(max-width:768px){
   .hero-inner { padding: 120px 20px 80px !important; }
@@ -1311,34 +1308,27 @@ footer a:hover { color: white; }
 
 <!-- ═══ TESTIMONIOS ═══ -->
 <!--
-  IMPORTANTE: las 3 tarjetas de abajo son EJEMPLOS, no testimonios reales.
-  Antes de publicar, reemplazalas por reseñas reales de pacientes (con su
-  consentimiento) o pasame el link de tu perfil de Google Business y las
-  cargamos desde ahí. No dejes estos textos de ejemplo en producción.
+  Enlaza directo al perfil real de Google Business de Sinapsis — sin
+  reseñas inventadas. Si en algún momento se quieren mostrar 2-3 citas
+  puntuales como texto (además de este botón), hay que pegar acá el
+  texto real de cada reseña y el nombre público de quien la escribió.
 -->
 <section id="testimonios">
   <div style="max-width:1160px;margin:0 auto;text-align:center;">
     <div class="section-tag rv from-bottom" style="justify-content:center;">Lo que dicen quienes ya confiaron</div>
-    <h2 class="section-title rv from-bottom d1">Testimonios de <em>nuestros pacientes</em></h2>
+    <h2 class="section-title rv from-bottom d1">Reseñas reales en <em>Google</em></h2>
+    <p class="section-body rv from-bottom d2" style="margin:14px auto 0;">Mirá la opinión de pacientes y familias que ya pasaron por Sinapsis, directamente en nuestro perfil de Google — sin editar.</p>
   </div>
-  <div class="testimonios-grid">
-    <div class="testimonio-card rv from-bottom d1">
-      <div class="testimonio-quote">&ldquo;</div>
-      <p class="testimonio-texto">Ejemplo de testimonio — reemplazar por una reseña real de un paciente o familia, contando brevemente su experiencia en Sinapsis.</p>
-      <p class="testimonio-autor">— Testimonio de ejemplo</p>
+  <div class="testimonios-google-card rv from-bottom d3">
+    <div class="tgc-icono"><i class="fa-brands fa-google"></i></div>
+    <div class="tgc-texto">
+      <h3>Sinapsis en Google</h3>
+      <p>Reseñas verificadas de pacientes reales.</p>
     </div>
-    <div class="testimonio-card rv from-bottom d2">
-      <div class="testimonio-quote">&ldquo;</div>
-      <p class="testimonio-texto">Ejemplo de testimonio — reemplazar por una reseña real, por ejemplo sobre la primera entrevista o el acompañamiento del equipo.</p>
-      <p class="testimonio-autor">— Testimonio de ejemplo</p>
-    </div>
-    <div class="testimonio-card rv from-bottom d3">
-      <div class="testimonio-quote">&ldquo;</div>
-      <p class="testimonio-texto">Ejemplo de testimonio — reemplazar por una reseña real sobre algún servicio puntual (evaluación, terapia, estimulación temprana, etc.).</p>
-      <p class="testimonio-autor">— Testimonio de ejemplo</p>
-    </div>
+    <a href="https://share.google/qZVdE7h6rWEFEprKg" target="_blank" rel="noopener" class="btn-google">
+      <i class="fa-solid fa-star"></i> Ver reseñas en Google
+    </a>
   </div>
-  <p class="testimonios-aviso">¿Ya tenés reseñas en tu perfil de Google Business? Pasanos el link y las cargamos acá en vez de estos ejemplos.</p>
 </section>
 
 <!-- ═══ HORARIOS + MAPA ═══ -->
@@ -1701,6 +1691,9 @@ document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
     const ubicacion = a.closest('section,nav,footer')?.id || 'otro';
     gtag('event', 'click_email', { ubicacion });
   });
+});
+document.querySelectorAll('.btn-google').forEach((a) => {
+  a.addEventListener('click', () => { if (window.gtag) gtag('event', 'click_resenas_google'); });
 });
 </script>
 </body>
