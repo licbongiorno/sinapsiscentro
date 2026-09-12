@@ -288,6 +288,10 @@ if (!actividad || !actividad.activo) {
       tipo, titulo: actividad.titulo, contenido,
       meta: { actividadId: actividad.id, resultado },
     });
+    if (!creacion) {
+      alert("No se pudo guardar: el almacenamiento de este dispositivo está lleno. Probá borrar alguna creación vieja desde Mi galería y volvé a intentar.");
+      return;
+    }
     // Reutiliza el mismo store de progreso que Ejercicios/Mindfulness
     // (keyeado por id, no por catálogo) para que "Realizados" y los
     // minutos totales funcionen igual acá que en el resto del sitio.

@@ -74,7 +74,8 @@ function _snapshotLocal() {
     reflexiones: leer("reflexiones", []),
     mezclasSonido: leer("mezclasSonido", []),
     progresoSonido: leer("progresoSonido", { minutosTotales: 0, sesiones: 0 }),
-    creaciones: leer("creaciones", []),
+    // "creaciones" queda afuera a propósito — ver comentario en
+    // Storage.guardarCreacion sobre el límite de 1MB por documento.
     progresoCreatividad: leer("progresoCreatividad", { total: 0, porTipo: {} }),
     actualizadoEl: new Date().toISOString(),
   };
@@ -329,6 +330,16 @@ const Storage = {
   // Creatividad): nunca se manda a analytics ni se usa para comparar
   // usuarios entre sí. `contenido` es texto para historias/poemas/
   // personajes/mundos, o un dataURL de imagen para dibujos.
+  //
+  // IMPORTANTE — "creaciones" NO se sincroniza a Firestore (a
+  // propósito, no se incluye en _snapshotLocal): los dibujos guardan
+  // el PNG como dataURL en base64 (puede pesar decenas de KB cada
+  // uno), y todos los datos de un usuario viven en UN SOLO documento
+  // de Firestore compartido con perfil/progreso/logros/reflexiones,
+  // que tiene un límite duro de 1MB. Con unos pocos cientos de
+  // dibujos guardados, ese límite se alcanza y la sincronización de
+  // TODO (no sólo Creatividad) empezaría a fallar en silencio. La
+  // galería, entonces, vive sólo en este dispositivo por ahora.
   getCreaciones(tipo) {
     const todas = leer("creaciones", []);
     return tipo ? todas.filter(c => c.tipo === tipo) : todas;
@@ -336,6 +347,7 @@ const Storage = {
   getCreacion(id) {
     return leer("creaciones", []).find(c => c.id === id) || null;
   },
+  /** Devuelve la creación guardada, o `null` si no se pudo guardar (ej. cuota de almacenamiento local agotada) — quien llama debe avisarle al usuario en ese caso, nunca asumir éxito. */
   guardarCreacion({ tipo, titulo, contenido, meta = {} }) {
     const creaciones = leer("creaciones", []);
     const nueva = {
@@ -343,23 +355,24 @@ const Storage = {
       contenido, meta, favorito: false, creadoEl: new Date().toISOString(),
     };
     creaciones.unshift(nueva);
-    escribir("creaciones", creaciones.slice(0, 300));
+    if (!escribir("creaciones", creaciones.slice(0, 300))) return null;
     Storage.registrarActividadHoy();
     const progreso = leer("progresoCreatividad", { total: 0, porTipo: {} });
     progreso.total += 1;
     progreso.porTipo[tipo] = (progreso.porTipo[tipo] || 0) + 1;
     escribir("progresoCreatividad", progreso);
-    _programarSincronizacion();
+    _programarSincronizacion(); // sólo empuja progresoCreatividad (liviano) — "creaciones" no viaja a la nube, ver comentario arriba
     return nueva;
   },
+  /** Devuelve la creación actualizada, o `null` si no existía o no se pudo guardar. */
   actualizarCreacion(id, cambios) {
     const creaciones = leer("creaciones", []);
     const idx = creaciones.findIndex(c => c.id === id);
     if (idx < 0) return null;
-    creaciones[idx] = { ...creaciones[idx], ...cambios };
-    escribir("creaciones", creaciones);
-    _programarSincronizacion();
-    return creaciones[idx];
+    const actualizada = { ...creaciones[idx], ...cambios };
+    creaciones[idx] = actualizada;
+    if (!escribir("creaciones", creaciones)) return null;
+    return actualizada;
   },
   duplicarCreacion(id) {
     const original = Storage.getCreacion(id);
@@ -372,7 +385,6 @@ const Storage = {
   eliminarCreacion(id) {
     const creaciones = leer("creaciones", []).filter(c => c.id !== id);
     escribir("creaciones", creaciones);
-    _programarSincronizacion();
   },
   toggleFavoritoCreacion(id) {
     const creaciones = leer("creaciones", []);
@@ -380,7 +392,6 @@ const Storage = {
     if (!c) return false;
     c.favorito = !c.favorito;
     escribir("creaciones", creaciones);
-    _programarSincronizacion();
     return c.favorito;
   },
   getProgresoCreatividad() {
@@ -464,7 +475,10 @@ const Storage = {
         if (datos.reflexiones) escribir("reflexiones", datos.reflexiones);
         if (datos.mezclasSonido) escribir("mezclasSonido", datos.mezclasSonido);
         if (datos.progresoSonido) escribir("progresoSonido", datos.progresoSonido);
-        if (datos.creaciones) escribir("creaciones", datos.creaciones);
+        // "creaciones" ya no se restaura desde la nube (ver comentario en
+        // guardarCreacion) — si un documento viejo todavía tiene ese campo
+        // de antes de este cambio, se ignora a propósito para no pisar la
+        // galería local (más completa) con una copia vieja/parcial.
         if (datos.progresoCreatividad) escribir("progresoCreatividad", datos.progresoCreatividad);
       } else {
         // Primera vez que esta cuenta de Google inicia sesión: el
