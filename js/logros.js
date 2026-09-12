@@ -23,6 +23,7 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => ctx.categoriasJugadas.size >= 3 },
   { id: "curioso-total", nombre: "Curioso total", descripcion: "Probaste al menos un juego de cada categoría disponible.", icono: "🗺️",
     cumple: (ctx) => {
+      if (typeof CatalogoJuegos === "undefined") return false; // este logro es de juegos; en páginas de ejercicios ese catálogo no está cargado
       const catsDisponibles = new Set(CatalogoJuegos.disponibles().map(j => j.categoria));
       for (const cat of catsDisponibles) if (!ctx.categoriasJugadas.has(cat)) return false;
       return true;

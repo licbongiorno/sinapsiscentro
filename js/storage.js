@@ -135,6 +135,7 @@ const Storage = {
   getCategoriasJugadas() {
     const progreso = leer("progreso", {});
     const jugadas = new Set();
+    if (typeof CatalogoJuegos === "undefined") return jugadas; // catálogo de juegos no cargado en esta página (p. ej. ejercicio.html)
     Object.keys(progreso).forEach(juegoId => {
       const juego = CatalogoJuegos.porId(juegoId);
       if (juego && progreso[juegoId].partidas > 0) jugadas.add(juego.categoria);
