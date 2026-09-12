@@ -258,6 +258,11 @@ function actualizarVistaJuegos() {
   pintarListaJuegos("resultadosJuegosLista", lista, "No encontramos juegos con ese nombre.");
 }
 
+// ── Modal perfil (lógica compartida con ejercicios.html) ──
+// Se activa primero, antes que cualquier otro listener: así el login
+// nunca queda inutilizado si algo más abajo llegara a fallar.
+PerfilModal.iniciar(render);
+
 document.getElementById("inputBuscarJuego").addEventListener("input", (e) => {
   filtroTextoJuego = e.target.value;
   actualizarVistaJuegos();
@@ -268,9 +273,6 @@ document.getElementById("verTodosLogros").addEventListener("click", () => {
   document.getElementById("logrosScroll").style.flexWrap = "wrap";
   document.getElementById("logrosScroll").style.overflowX = "visible";
 });
-
-// ── Modal perfil (lógica compartida con ejercicios.html) ──
-PerfilModal.iniciar(render);
 </script>
 </body>
 </html>

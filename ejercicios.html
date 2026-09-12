@@ -398,11 +398,15 @@ document.getElementById("btnSorprendeme").addEventListener("click", () => {
   irAEjercicio(ej.id);
 });
 
-document.getElementById("btnDescargarReflexionesTxt").addEventListener("click", descargarReflexionesTxt);
-document.getElementById("btnImprimirReflexiones").addEventListener("click", imprimirReflexiones);
-
 // ── Modal perfil (lógica compartida con juegos.html) ──
+// Se activa primero, antes que cualquier otro listener: así el login
+// nunca queda inutilizado si algo más abajo llegara a fallar.
 PerfilModal.iniciar(render);
+
+const btnDescargarReflexionesTxt = document.getElementById("btnDescargarReflexionesTxt");
+if (btnDescargarReflexionesTxt) btnDescargarReflexionesTxt.addEventListener("click", descargarReflexionesTxt);
+const btnImprimirReflexiones = document.getElementById("btnImprimirReflexiones");
+if (btnImprimirReflexiones) btnImprimirReflexiones.addEventListener("click", imprimirReflexiones);
 
 renderFiltros();
 render();
