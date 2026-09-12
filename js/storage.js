@@ -57,9 +57,9 @@ const PERFIL_DEFAULT = () => ({
 let _uidNube = null; // uid de Firebase Auth mientras haya sesión iniciada
 let _timerNube = null;
 
-/** Devuelve el puente al SDK modular de Firebase que arma firebase-config.js (módulo), o null si no está disponible. */
-function _fb() {
-  return window.__firebaseModular || null;
+function _db() {
+  if (typeof firebase === "undefined" || !firebase.apps || !firebase.apps.length) return null;
+  return firebase.firestore();
 }
 
 function _snapshotLocal() {
@@ -83,10 +83,9 @@ function _programarSincronizacion() {
 }
 
 function _empujarANube() {
-  const fb = _fb();
-  if (!fb || !_uidNube) return;
-  const ref = fb.doc(fb.db, "users", _uidNube);
-  fb.setDoc(ref, _snapshotLocal(), { merge: true })
+  const db = _db();
+  if (!db || !_uidNube) return;
+  db.collection("users").doc(_uidNube).set(_snapshotLocal(), { merge: true })
     .catch((e) => console.warn("Storage: no se pudo sincronizar con Firestore", e));
 }
 
@@ -192,12 +191,11 @@ const Storage = {
 
     // Además, si hay sesión, sumamos el puntaje a una colección pública
     // para un futuro ranking global (no se lee todavía desde el portal).
-    const fb = _fb();
-    if (fb && _uidNube) {
-      const entriesRef = fb.collection(fb.db, "scores", juegoId, "entries");
-      fb.addDoc(entriesRef, {
+    const db = _db();
+    if (db && _uidNube) {
+      db.collection("scores").doc(juegoId).collection("entries").add({
         uid: _uidNube, nombre: nombre || "Anónimo", puntaje,
-        creadoEl: fb.serverTimestamp(),
+        creadoEl: firebase.firestore.FieldValue.serverTimestamp(),
       }).catch(() => {});
     }
     return todos[juegoId];
@@ -306,15 +304,14 @@ const Storage = {
    */
   vincularUsuario(user) {
     _uidNube = user.uid;
-    const fb = _fb();
-    if (!fb) return Promise.resolve();
+    const db = _db();
+    if (!db) return Promise.resolve();
 
-    const ref = fb.doc(fb.db, "users", user.uid);
-    return fb.getDoc(ref).then((snap) => {
-      if (snap.exists()) {
+    return db.collection("users").doc(user.uid).get().then((doc) => {
+      if (doc.exists) {
         // Ya existía progreso en la nube (este usuario ya jugó antes,
         // en este dispositivo o en otro): la nube manda.
-        const datos = snap.data();
+        const datos = doc.data();
         if (datos.perfil) escribir("perfil", datos.perfil);
         if (datos.progreso) escribir("progreso", datos.progreso);
         if (datos.logros) escribir("logros", datos.logros);
