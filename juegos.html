@@ -206,7 +206,7 @@ function tarjetaJuego(juego) {
       <div class="desc">${juego.descripcion}</div>
     </div>
     <div class="meta">${juego.disponible ? juego.duracion : "Próximamente"}</div>
-    ${juego.disponible ? `<button class="fav-btn" data-fav="${juego.id}" aria-label="Favorito">${fav ? "❤️" : "🤍"}</button>` : ""}
+    ${juego.disponible ? `<button class="fav-btn" data-fav="${juego.id}" aria-label="Favorito" aria-pressed="${fav}">${fav ? "❤️" : "🤍"}</button>` : ""}
   </div>`;
 }
 
@@ -223,6 +223,7 @@ function pintarListaJuegos(contenedorId, juegos, vacioTexto) {
       e.stopPropagation();
       const ahora = Storage.toggleFavoritoJuego(btn.dataset.fav);
       btn.textContent = ahora ? "❤️" : "🤍";
+      btn.setAttribute("aria-pressed", ahora);
       renderFavoritosJuegos();
     });
   });

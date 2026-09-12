@@ -79,7 +79,7 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 .eh-fila .info .titulo { font-weight: 700; font-size: 0.9rem; }
 .eh-fila .info .desc { font-size: 0.76rem; color: var(--text-soft); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .eh-fila .meta { font-size: 0.7rem; color: var(--teal); font-weight: 700; flex-shrink: 0; text-align: right; }
-.eh-fila .fav-btn { flex-shrink: 0; background: none; border: none; font-size: 1.1rem; cursor: pointer; padding: 4px; }
+.eh-fila .fav-btn { flex-shrink: 0; background: none; border: none; font-size: 1.1rem; cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
 .eh-vacio { color: var(--text-soft); font-size: 0.85rem; text-align: center; padding: 26px 20px; }
 
 /* ── MI ESPACIO ── */

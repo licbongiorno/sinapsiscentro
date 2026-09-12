@@ -169,7 +169,7 @@ function filaEjercicio(ej) {
       <div class="desc">${ej.descripcion}</div>
     </div>
     <div class="meta">${ej.duracion} min</div>
-    <button class="fav-btn" data-fav="${ej.id}" aria-label="Favorito">${fav ? "❤️" : "🤍"}</button>
+    <button class="fav-btn" data-fav="${ej.id}" aria-label="Favorito" aria-pressed="${fav}">${fav ? "❤️" : "🤍"}</button>
   </div>`;
 }
 
@@ -185,6 +185,7 @@ function pintarLista(contenedorId, ejercicios, vacioTexto) {
       e.stopPropagation();
       const ahora = Storage.toggleFavoritoEjercicio(btn.dataset.fav);
       btn.textContent = ahora ? "❤️" : "🤍";
+      btn.setAttribute("aria-pressed", ahora);
       renderMiEspacio();
     });
   });
