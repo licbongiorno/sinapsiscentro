@@ -1,4 +1,5 @@
 @import url("variables.css");
+@import url("perfil-modal.css");
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); padding-bottom: 70px; }
@@ -87,12 +88,7 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 .eh-stat-card .valor { font-size: 1.3rem; font-weight: 800; color: var(--teal-deep); font-family: 'Playfair Display', serif; }
 .eh-stat-card .etiqueta { font-size: 0.68rem; color: var(--text-soft); margin-top: 2px; }
 
-/* ── MODAL PERFIL (idéntico patrón al del portal de juegos) ── */
-.eh-modal-overlay { position: fixed; inset: 0; background: rgba(8,32,46,0.6); backdrop-filter: blur(6px); display: flex; align-items: flex-end; justify-content: center; z-index: 900; }
-.eh-modal-overlay[hidden] { display: none; }
-.eh-modal { background: white; border-radius: 26px 26px 0 0; padding: 28px 22px 34px; width: 100%; max-width: 480px; animation: ehModalIn 0.3s var(--easing) both; }
-@media(min-width: 560px) { .eh-modal-overlay { align-items: center; } .eh-modal { border-radius: var(--r-lg); } }
-@keyframes ehModalIn { from { transform: translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+/* Modal de perfil: ver css/perfil-modal.css (compartido con juegos.css) */
 
 @media(min-width: 700px) {
   .eh-categorias-grid { grid-template-columns: repeat(4, 1fr); }
