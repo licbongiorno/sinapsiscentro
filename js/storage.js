@@ -136,10 +136,14 @@ const Storage = {
   getCategoriasJugadas() {
     const progreso = leer("progreso", {});
     const jugadas = new Set();
-    if (typeof CatalogoJuegos === "undefined") return jugadas; // catálogo de juegos no cargado en esta página (p. ej. ejercicio.html)
     Object.keys(progreso).forEach(juegoId => {
-      const juego = CatalogoJuegos.porId(juegoId);
-      if (juego && progreso[juegoId].partidas > 0) jugadas.add(juego.categoria);
+      if (progreso[juegoId].partidas <= 0) return;
+      // Los juegos de Mindfulness (ex-categoría "calma") se movieron de
+      // JUEGOS a MINDFULNESS, pero el progreso ya guardado sigue viviendo
+      // acá — probamos ambos catálogos para no perder esa información.
+      const juego = (typeof CatalogoJuegos !== "undefined" && CatalogoJuegos.porId(juegoId))
+        || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(juegoId));
+      if (juego) jugadas.add(juego.categoria);
     });
     return jugadas;
   },
@@ -272,8 +276,13 @@ const Storage = {
     const todos = leer("progresoEjercicios", {});
     const exploradas = new Set();
     Object.keys(todos).forEach(id => {
-      const ej = typeof CatalogoEjercicios !== "undefined" ? CatalogoEjercicios.porId(id) : null;
-      if (ej && todos[id].vecesCompletado > 0) exploradas.add(ej.categoria);
+      if (todos[id].vecesCompletado <= 0) return;
+      // Los ejercicios de Mindfulness (ex-categoría "calma") se movieron de
+      // EJERCICIOS a MINDFULNESS, pero el progreso ya guardado sigue
+      // viviendo acá — probamos ambos catálogos para no perder esa info.
+      const ej = (typeof CatalogoEjercicios !== "undefined" && CatalogoEjercicios.porId(id))
+        || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(id));
+      if (ej) exploradas.add(ej.categoria);
     });
     return exploradas;
   },

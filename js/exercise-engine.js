@@ -22,6 +22,21 @@ const ExerciseEngine = (() => {
 
   // beep() vive en js/beep.js (compartido con game-engine.js).
 
+  /**
+   * Este motor reproduce ejercicios de dos secciones distintas
+   * (Biblioteca de Ejercicios y Mindfulness), cada una con su propio
+   * catálogo y sus propias páginas de portal/reproductor. Un ítem
+   * vive en un solo catálogo, así que resolvemos a cuál pertenece el
+   * ejercicio en curso para saber a dónde "volver" y de dónde sacar
+   * "otro ejercicio al azar".
+   */
+  function _destino() {
+    if (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(ejercicio.id)) {
+      return { lista: "mindfulness.html", item: "mindfulness-item.html", catalogo: CatalogoMindfulness };
+    }
+    return { lista: "ejercicios.html", item: "ejercicio.html", catalogo: typeof CatalogoEjercicios !== "undefined" ? CatalogoEjercicios : null };
+  }
+
   function crearBarra() {
     let barra = document.getElementById("eeBarra");
     if (barra) return barra;
@@ -29,11 +44,11 @@ const ExerciseEngine = (() => {
     barra.id = "eeBarra";
     barra.className = "ee-barra";
     barra.innerHTML = `
-      <button class="ee-volver" id="eeVolver" aria-label="Volver a ejercicios">←</button>
+      <button class="ee-volver" id="eeVolver" aria-label="Volver">←</button>
       <div class="ee-puntos" id="eePuntos"></div>
       <div style="width:38px;"></div>`;
     document.body.prepend(barra);
-    document.getElementById("eeVolver").addEventListener("click", () => { window.location.href = "ejercicios.html"; });
+    document.getElementById("eeVolver").addEventListener("click", () => { window.location.href = _destino().lista; });
     return barra;
   }
 
@@ -54,9 +69,15 @@ const ExerciseEngine = (() => {
   }
 
   function pantallaInicio() {
+    // ExerciseEngine también reproduce los ítems "ejercicio" de Mindfulness
+    // (mindfulness.html), que usan sus propias categorías — probamos ambos
+    // catálogos para mostrar la etiqueta correcta en cualquiera de los dos.
+    const catInfo = (typeof CatalogoEjercicios !== "undefined" && CatalogoEjercicios.categoriaPorId(ejercicio.categoria))
+      || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.categoriaPorId(ejercicio.categoria))
+      || {};
     contenedor.innerHTML = `
       <div class="ee-intro">
-        <p class="ee-intro-cat">${(CatalogoEjercicios.categoriaPorId(ejercicio.categoria) || {}).nombre || ""}</p>
+        <p class="ee-intro-cat">${catInfo.nombre || ""}</p>
         <h1 class="ee-intro-titulo">${ejercicio.titulo}</h1>
         <p class="ee-intro-duracion">${ejercicio.duracion} min · ${etiquetaDificultad(ejercicio.dificultad)}</p>
         <p class="ee-intro-desc">${ejercicio.mensajeInicial || ejercicio.descripcion}</p>
@@ -293,7 +314,7 @@ const ExerciseEngine = (() => {
           <button class="ee-btn ee-btn-secundario" id="eeFavorito">${yaEsFavorito ? "❤️ Guardado" : "🤍 Guardar"}</button>
         </div>
         <div class="ee-final-botones">
-          <button class="ee-btn ee-btn-texto" id="eeVolverLista">← Volver a ejercicios</button>
+          <button class="ee-btn ee-btn-texto" id="eeVolverLista">← Volver</button>
           <button class="ee-btn ee-btn-texto" id="eeOtro">Otro ejercicio 🎲</button>
         </div>
       </div>`;
@@ -315,10 +336,11 @@ const ExerciseEngine = (() => {
       const ahora = Storage.toggleFavoritoEjercicio(ejercicio.id);
       e.target.textContent = ahora ? "❤️ Guardado" : "🤍 Guardar";
     });
-    document.getElementById("eeVolverLista").addEventListener("click", () => { window.location.href = "ejercicios.html"; });
+    document.getElementById("eeVolverLista").addEventListener("click", () => { window.location.href = _destino().lista; });
     document.getElementById("eeOtro").addEventListener("click", () => {
-      const otro = CatalogoEjercicios.aleatorio();
-      window.location.href = `ejercicio.html?id=${otro.id}`;
+      const destino = _destino();
+      const otro = destino.catalogo.aleatorio();
+      window.location.href = `${destino.item}?id=${otro.id}`;
     });
 
     if (nuevos.length) {

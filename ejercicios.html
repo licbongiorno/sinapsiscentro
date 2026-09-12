@@ -25,6 +25,7 @@
     <a href="index.html" class="eh-brand"><span>🧠</span> Sinapsis</a>
     <div style="display:flex;align-items:center;gap:10px;">
       <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:700;">🎮 Juegos</a>
+      <a href="mindfulness.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Mindfulness">🧘</a>
       <a href="sonidos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Biblioteca Sonora">🎧</a>
       <a href="infantil.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Zona Infantil">🧸</a>
       <button class="eh-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
@@ -88,7 +89,14 @@
 
   <section class="eh-seccion">
     <h2>🧘 Para bajar un cambio</h2>
-    <div class="eh-lista" id="calmaLista"></div>
+    <p class="eh-seccion-sub">Respiración, grounding y pausas — ahora todo junto en Mindfulness.</p>
+    <a class="eh-fila" href="mindfulness.html">
+      <div class="icono">🧘</div>
+      <div class="info">
+        <div class="titulo">Ir a Mindfulness</div>
+        <div class="desc">Más de 50 prácticas de respiración, atención plena y autocompasión.</div>
+      </div>
+    </a>
   </section>
 
   <section class="eh-seccion">
@@ -335,7 +343,6 @@ function renderExploracion() {
   pintarLista("delDiaLista", [CatalogoEjercicios.delDia()], "");
   pintarLista("brevesLista", CatalogoEjercicios.filtrar({ duracionMax: 3 }).slice(0, 5), "");
   pintarLista("emocionesLista", CatalogoEjercicios.porCategoria("emociones").slice(0, 4), "");
-  pintarLista("calmaLista", CatalogoEjercicios.porCategoria("calma").slice(0, 4), "");
   pintarLista("escrituraLista", CatalogoEjercicios.porCategoria("escritura").slice(0, 4), "");
 
   document.getElementById("categoriasGrid").innerHTML = CatalogoEjercicios.categorias().map(cat => {

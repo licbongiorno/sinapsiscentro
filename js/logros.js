@@ -36,8 +36,11 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => ctx.perfil.nivel >= 10 },
   { id: "letras-compartidas-fan", nombre: "Cuentacuentos", descripcion: "Jugaste Letras compartidas.", icono: "🪶",
     cumple: (ctx) => (Storage.getProgreso("letras-compartidas").partidas || 0) >= 1 },
-  { id: "un-minuto-calma", nombre: "Un momento de calma", descripcion: "Jugaste un juego de la categoría Calma.", icono: "🧘",
-    cumple: (ctx) => ctx.categoriasJugadas.has("calma") },
+  { id: "un-minuto-calma", nombre: "Un momento de calma", descripcion: "Probaste una práctica de Mindfulness.", icono: "🧘",
+    // Antes era "categoría Calma" de Juegos; esa categoría se centralizó
+    // en la sección Mindfulness bajo varias categorías nuevas — "presente"
+    // agrupa las prácticas animadas migradas (jardín zen, piedras, etc.).
+    cumple: (ctx) => ctx.categoriasJugadas.has("calma") || ctx.categoriasJugadas.has("presente") },
   // ── Ejercicios (Biblioteca de ejercicios) ──
   { id: "ejercicio-primer-paso", nombre: "Primer paso", descripcion: "Completaste tu primer ejercicio.", icono: "🌱",
     cumple: (ctx) => ctx.totalEjercicios >= 1 },
@@ -77,7 +80,11 @@ function _contextoEjercicios() {
   const historial = Storage.getHistorialEjercicios();
   const porCategoria = {};
   historial.forEach(h => {
-    const ej = typeof CatalogoEjercicios !== "undefined" ? CatalogoEjercicios.porId(h.id) : null;
+    // Los ejercicios de Mindfulness (ex-categoría "calma") se movieron de
+    // EJERCICIOS a MINDFULNESS, pero el historial ya guardado sigue
+    // viviendo acá — probamos ambos catálogos para no perder esa info.
+    const ej = (typeof CatalogoEjercicios !== "undefined" && CatalogoEjercicios.porId(h.id))
+      || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(h.id));
     if (!ej) return;
     porCategoria[ej.categoria] = (porCategoria[ej.categoria] || 0) + (h.vecesCompletado || 0);
   });

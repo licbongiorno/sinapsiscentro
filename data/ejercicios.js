@@ -22,7 +22,6 @@
  */
 
 const CATEGORIAS_EJERCICIOS = [
-  { id: "calma", nombre: "Calma y regulación", icono: "🧘", color: "#2aaec2" },
   { id: "emociones", nombre: "Emociones", icono: "❤️", color: "#e08a8a" },
   { id: "atencion", nombre: "Atención y concentración", icono: "🧠", color: "#1a7a8a" },
   { id: "pensamientos", nombre: "Pensamientos", icono: "💭", color: "#3a5a6a" },
@@ -37,79 +36,21 @@ const CATEGORIAS_EJERCICIOS = [
 ];
 
 const NECESIDADES = [
-  { id: "saturado", emoji: "😵", texto: "Estoy saturado", categorias: ["calma", "atencion"] },
-  { id: "ansiedad", emoji: "😰", texto: "Quiero bajar la ansiedad", categorias: ["calma", "emociones"] },
+  { id: "saturado", emoji: "😵", texto: "Estoy saturado", categorias: ["atencion"] },
+  { id: "ansiedad", emoji: "😰", texto: "Quiero bajar la ansiedad", categorias: ["emociones"] },
   { id: "concentrarme", emoji: "🧠", texto: "Quiero concentrarme", categorias: ["atencion"] },
   { id: "entender", emoji: "❤️", texto: "Quiero entender lo que siento", categorias: ["emociones"] },
   { id: "bajoneado", emoji: "😔", texto: "Estoy bajoneado", categorias: ["emociones", "autoconocimiento"] },
-  { id: "enojado", emoji: "😡", texto: "Estoy enojado", categorias: ["emociones", "calma"] },
+  { id: "enojado", emoji: "😡", texto: "Estoy enojado", categorias: ["emociones"] },
   { id: "conocerme", emoji: "🪞", texto: "Quiero conocerme mejor", categorias: ["autoconocimiento", "valores"] },
   { id: "ordenar", emoji: "🌱", texto: "Quiero ordenar mi cabeza", categorias: ["pensamientos", "escritura"] },
-  { id: "relajarme", emoji: "🧘", texto: "Quiero relajarme", categorias: ["calma", "sueno"] },
+  { id: "relajarme", emoji: "🧘", texto: "Quiero relajarme", categorias: ["sueno"] },
   { id: "pensar", emoji: "💭", texto: "Quiero pensar", categorias: ["pensamientos", "valores"] },
   { id: "escribir", emoji: "✍️", texto: "Quiero escribir", categorias: ["escritura"] },
   { id: "creativo", emoji: "🎨", texto: "Quiero hacer algo creativo", categorias: ["creatividad"] },
 ];
 
 const EJERCICIOS = [
-  // ═══════ 🧘 CALMA Y REGULACIÓN ═══════
-  { id: "respiracion-guiada", titulo: "Respiración guiada", descripcion: "Una práctica simple para acompañar la respiración y bajar el ritmo.",
-    objetivo: "Puede ayudarte a hacer una pausa y aflojar la tensión del cuerpo.", categoria: "calma", etiquetas: ["respiración", "calma"],
-    duracion: 3, dificultad: "facil", tipo: "respiracion",
-    mensajeInicial: "Buscá una posición cómoda, sentado o parado. Vamos a acompañar la respiración durante unos minutos.",
-    pasos: [
-      { tipo: "mensaje", texto: "Cerrá los ojos si te resulta cómodo, o simplemente bajá la mirada.", duracionSeg: 4 },
-      { tipo: "respiracion", ciclos: 5, fases: [{ nombre: "Inhalá", segundos: 4 }, { nombre: "Sostené", segundos: 2 }, { nombre: "Exhalá", segundos: 6 }] },
-      { tipo: "mensaje", texto: "Cuando quieras, abrí los ojos y volvé al ritmo habitual." },
-    ], activo: true, version: 1 },
-
-  { id: "respiracion-ola", titulo: "Respiración de la ola", descripcion: "Una práctica breve para acompañar la respiración y bajar el ritmo, siguiendo el vaivén de una ola.",
-    objetivo: "Puede ayudarte a encontrar un ritmo más calmo.", categoria: "calma", etiquetas: ["respiración", "calma"],
-    duracion: 3, dificultad: "facil", tipo: "respiracion",
-    mensajeInicial: "Vamos a acompañar la respiración durante unos minutos, como el vaivén de una ola.",
-    pasos: [
-      { tipo: "respiracion", ciclos: 6, fases: [{ nombre: "La ola sube — Inhalá", segundos: 4 }, { nombre: "La ola baja — Exhalá", segundos: 5 }] },
-      { tipo: "mensaje", texto: "Tomate un momento más antes de seguir." },
-    ], activo: true, version: 1 },
-
-  { id: "respiracion-cuadrada", titulo: "Respiración cuadrada", descripcion: "Cuatro fases de igual duración: inhalar, sostener, exhalar, sostener.",
-    objetivo: "Puede ayudarte a regular el ritmo de la respiración de forma pareja.", categoria: "calma", etiquetas: ["respiración", "calma"],
-    duracion: 3, dificultad: "facil", tipo: "respiracion",
-    mensajeInicial: "Las cuatro fases duran lo mismo. Sólo tenés que seguir el ritmo.",
-    pasos: [
-      { tipo: "respiracion", ciclos: 5, fases: [{ nombre: "Inhalá", segundos: 4 }, { nombre: "Sostené", segundos: 4 }, { nombre: "Exhalá", segundos: 4 }, { nombre: "Sostené", segundos: 4 }] },
-    ], activo: true, version: 1 },
-
-  { id: "grounding-54321", titulo: "Grounding 5-4-3-2-1", descripcion: "Una técnica para volver al momento presente usando los sentidos.",
-    objetivo: "Puede ayudarte a bajar la intensidad de un momento de ansiedad, conectando con lo que hay alrededor.", categoria: "calma", etiquetas: ["grounding", "ansiedad", "mindfulness"],
-    duracion: 5, dificultad: "facil", tipo: "mindfulness",
-    mensajeInicial: "Vamos a recorrer los cinco sentidos, de a uno.",
-    pasos: [
-      { tipo: "mensaje", texto: "Mirá a tu alrededor y encontrá 5 cosas que podés ver.", duracionSeg: 15 },
-      { tipo: "mensaje", texto: "Ahora notá 4 cosas que podés tocar (la ropa, una superficie, el aire).", duracionSeg: 15 },
-      { tipo: "mensaje", texto: "Escuchá 3 sonidos distintos, aunque sean sutiles.", duracionSeg: 15 },
-      { tipo: "mensaje", texto: "Notá 2 olores, aunque sea el del ambiente.", duracionSeg: 10 },
-      { tipo: "mensaje", texto: "Por último, notá 1 sabor en tu boca, o el sabor del aire.", duracionSeg: 8 },
-    ], activo: true, version: 1 },
-
-  { id: "escaneo-corporal-breve", titulo: "Escaneo corporal breve", descripcion: "Un recorrido corto por el cuerpo, notando sensaciones sin cambiarlas.",
-    objetivo: "Puede ayudarte a notar tensión que no habías registrado.", categoria: "calma", etiquetas: ["mindfulness", "cuerpo"],
-    duracion: 4, dificultad: "facil", tipo: "mindfulness",
-    mensajeInicial: "No hace falta cambiar nada, sólo notar.",
-    pasos: [
-      { tipo: "mensaje", texto: "Notá el contacto de tus pies con el piso.", duracionSeg: 8 },
-      { tipo: "mensaje", texto: "Subí la atención a las piernas. ¿Están tensas o relajadas?", duracionSeg: 8 },
-      { tipo: "mensaje", texto: "Notá la panza y el pecho, subiendo y bajando con cada respiración.", duracionSeg: 8 },
-      { tipo: "mensaje", texto: "Notá los hombros. Si están levantados, dejalos caer.", duracionSeg: 8 },
-      { tipo: "mensaje", texto: "Por último, notá la cara: la frente, la mandíbula. Aflojá lo que puedas.", duracionSeg: 8 },
-    ], activo: true, version: 1 },
-
-  { id: "pausa-consciente", titulo: "Pausa consciente", descripcion: "Un minuto entero sin hacer nada más que estar.",
-    objetivo: "Puede ayudarte a cortar el piloto automático por un momento.", categoria: "calma", etiquetas: ["mindfulness", "pausa"],
-    duracion: 1, dificultad: "facil", tipo: "mindfulness",
-    mensajeInicial: "Sólo un minuto. No hace falta hacer nada más que estar acá.",
-    pasos: [{ tipo: "temporizador", duracionSeg: 60, texto: "Quedate quieto, respirando a tu ritmo." }], activo: true, version: 1 },
-
   // ═══════ ❤️ EMOCIONES ═══════
   { id: "termometro-emocional", titulo: "Termómetro emocional", descripcion: "Registrá qué tan intensa es una emoción que estás sintiendo ahora.",
     objetivo: "Puede ayudarte a tomar distancia de la intensidad de lo que sentís.", categoria: "emociones", etiquetas: ["emociones", "escala"],

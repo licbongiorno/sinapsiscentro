@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindfulness | SINAPSIS — Centro de Salud Integral</title>
+<meta name="description" content="Más de 50 prácticas breves de respiración, atención plena y autocompasión. Un espacio de Sinapsis para detenerte unos minutos.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#08202e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mindfulness | SINAPSIS">
+<meta property="og:description" content="Más de 50 prácticas breves de respiración, atención plena y autocompasión.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/ejercicios.css">
+</head>
+<body>
+
+<header class="eh-header">
+  <div class="eh-topbar">
+    <a href="index.html" class="eh-brand"><span>🧠</span> Sinapsis</a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Juegos">🎮</a>
+      <a href="ejercicios.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Ejercicios">🌱</a>
+      <a href="sonidos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Biblioteca Sonora">🎧</a>
+      <button class="eh-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
+    </div>
+  </div>
+  <div class="eh-intro">
+    <h1>Mindfulness</h1>
+    <p>Más de 50 prácticas breves de respiración, atención plena y autocompasión, para volver al presente cuando lo necesites.</p>
+  </div>
+</header>
+
+<section class="eh-selector">
+  <div class="eh-selector-card">
+    <h2>⏱ ¿Cuánto tiempo tenés?</h2>
+    <div class="eh-tiempo-grid" id="tiempoGrid"></div>
+    <h2>🎲 ¿Qué necesitás ahora?</h2>
+    <div class="eh-necesidad-grid" id="necesidadGrid"></div>
+  </div>
+</section>
+
+<div class="eh-sorprendeme">
+  <button class="eh-sorprendeme-btn" id="btnSorprendeme">🎲 Sorprendeme</button>
+</div>
+
+<section class="eh-recomendacion" id="seccionRecomendacion" hidden>
+  <p class="eh-recomendacion-titulo">Te recomendamos</p>
+  <div class="eh-lista" id="recomendacionLista"></div>
+</section>
+
+<div class="eh-buscador">
+  <input type="text" id="inputBuscar" placeholder="¿Qué estás buscando?">
+</div>
+<div class="eh-filtros" id="filtrosFila"></div>
+
+<div id="vistaExploracion">
+  <section class="eh-seccion" id="seccionDelDia">
+    <h2>🌱 Práctica del día</h2>
+    <div class="eh-lista" id="delDiaLista"></div>
+  </section>
+
+  <section class="eh-seccion" id="seccionFavoritos" hidden>
+    <h2>⭐ Tus favoritos</h2>
+    <div class="eh-lista" id="favoritosLista"></div>
+  </section>
+
+  <section class="eh-seccion" id="seccionRecientes" hidden>
+    <h2>🕘 Recientes</h2>
+    <div class="eh-lista" id="recientesLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>⏱ Breves</h2>
+    <p class="eh-seccion-sub">1 a 2 minutos</p>
+    <div class="eh-lista" id="brevesLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>Categorías</h2>
+    <div class="eh-categorias-grid" id="categoriasGrid"></div>
+  </section>
+
+  <section class="eh-seccion" id="seccionCategoriaDetalle" hidden>
+    <h2><span id="catDetalleIcono"></span> <span id="catDetalleNombre"></span></h2>
+    <div class="eh-lista" id="catDetalleLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>Mi espacio</h2>
+    <div class="eh-stats-grid" id="statsGrid"></div>
+  </section>
+</div>
+
+<div id="vistaResultados" hidden>
+  <section class="eh-seccion">
+    <h2 id="resultadosTitulo">Resultados</h2>
+    <div class="eh-lista" id="resultadosLista"></div>
+  </section>
+</div>
+
+<p style="text-align:center; font-size:0.7rem; color:var(--text-soft); max-width:420px; margin:36px auto 0; padding:0 20px; line-height:1.6;">
+  Estas prácticas son recursos de orientación y bienestar. No sustituyen una evaluación ni un tratamiento profesional.
+</p>
+
+<!-- MODAL PERFIL -->
+<div class="jp-modal-overlay" id="modalPerfil" hidden>
+  <div class="jp-modal">
+    <h2>Mi perfil</h2>
+    <div id="modalCuentaGoogle" style="margin-bottom:18px;"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Elegí tu avatar</label>
+    <div class="jp-avatares" id="avataresLista"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Tu nombre</label>
+    <input type="text" id="inputNombre" placeholder="¿Cómo te llamamos?" maxlength="24">
+    <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-soft); font-weight:700;">
+      <span>Nivel <span id="modalNivel">1</span></span>
+      <span id="modalXpTexto">0 / 50 XP</span>
+    </div>
+    <div class="jp-nivel-barra"><div class="jp-nivel-barra-fill" id="modalNivelFill"></div></div>
+    <button class="jp-modal-cerrar" id="btnGuardarPerfil">Guardar</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+<script src="data/mindfulness-datos.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/perfil.js"></script>
+<script src="js/logros.js"></script>
+<script src="js/perfil-modal.js"></script>
+<script type="module">
+const TIEMPOS = [
+  { min: 1, texto: "1 min" }, { min: 2, texto: "2 min" }, { min: 3, texto: "3 min" },
+  { min: 5, texto: "5 min" }, { min: 99, texto: "10+ min" },
+];
+let tiempoElegido = null;
+let necesidadElegida = null;
+
+let filtroTexto = "", filtroDuracion = null, filtroDificultad = null, filtroEstado = null;
+
+function irAPractica(id) { window.location.href = `mindfulness-item.html?id=${id}`; }
+
+function filaPractica(m) {
+  const cat = CatalogoMindfulness.categoriaPorId(m.categoria);
+  const fav = Storage.esFavoritoEjercicio(m.id);
+  return `<div class="eh-fila" data-m="${m.id}">
+    <div class="icono">${cat ? cat.icono : "🧘"}</div>
+    <div class="info">
+      <div class="titulo">${m.titulo}</div>
+      <div class="desc">${m.descripcion}</div>
+    </div>
+    <div class="meta">${m.duracion} min</div>
+    <button class="fav-btn" data-fav="${m.id}" aria-label="Favorito" aria-pressed="${fav}">${fav ? "❤️" : "🤍"}</button>
+  </div>`;
+}
+
+function pintarLista(contenedorId, practicas, vacioTexto) {
+  const el = document.getElementById(contenedorId);
+  if (!practicas.length) { el.innerHTML = `<p class="eh-vacio">${vacioTexto}</p>`; return; }
+  el.innerHTML = practicas.map(filaPractica).join("");
+  el.querySelectorAll("[data-m]").forEach(fila => {
+    fila.addEventListener("click", (e) => { if (!e.target.closest("[data-fav]")) irAPractica(fila.dataset.m); });
+  });
+  el.querySelectorAll("[data-fav]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const ahora = Storage.toggleFavoritoEjercicio(btn.dataset.fav);
+      btn.textContent = ahora ? "❤️" : "🤍";
+      btn.setAttribute("aria-pressed", ahora);
+      renderMiEspacio();
+    });
+  });
+}
+
+function render() {
+  document.getElementById("tiempoGrid").innerHTML = TIEMPOS.map(t =>
+    `<button class="eh-tiempo-btn ${tiempoElegido === t.min ? "activo" : ""}" data-min="${t.min}">${t.texto}</button>`).join("");
+  document.getElementById("tiempoGrid").querySelectorAll("[data-min]").forEach(btn =>
+    btn.addEventListener("click", () => { tiempoElegido = tiempoElegido === Number(btn.dataset.min) ? null : Number(btn.dataset.min); render(); }));
+
+  document.getElementById("necesidadGrid").innerHTML = CatalogoMindfulness.necesidades().map(n =>
+    `<button class="eh-necesidad-btn ${necesidadElegida === n.id ? "activo" : ""}" data-n="${n.id}"><span class="emoji">${n.emoji}</span>${n.texto}</button>`).join("");
+  document.getElementById("necesidadGrid").querySelectorAll("[data-n]").forEach(btn =>
+    btn.addEventListener("click", () => { necesidadElegida = necesidadElegida === btn.dataset.n ? null : btn.dataset.n; render(); }));
+
+  const seccionRec = document.getElementById("seccionRecomendacion");
+  if (tiempoElegido || necesidadElegida) {
+    seccionRec.hidden = false;
+    const recomendados = CatalogoMindfulness.recomendar({ minutos: tiempoElegido || undefined, necesidadId: necesidadElegida });
+    pintarLista("recomendacionLista", recomendados, "No encontramos una coincidencia exacta, pero explorá las categorías de abajo.");
+  } else {
+    seccionRec.hidden = true;
+  }
+
+  renderMiEspacio();
+  renderExploracion();
+}
+
+function renderMiEspacio() {
+  const favoritos = Storage.getFavoritosEjercicios().map(id => CatalogoMindfulness.porId(id)).filter(Boolean);
+  document.getElementById("seccionFavoritos").hidden = favoritos.length === 0;
+  if (favoritos.length) pintarLista("favoritosLista", favoritos, "");
+
+  const historial = Storage.getHistorialEjercicios()
+    .map(h => CatalogoMindfulness.porId(h.id)).filter(Boolean).slice(0, 5);
+  document.getElementById("seccionRecientes").hidden = historial.length === 0;
+  if (historial.length) pintarLista("recientesLista", historial, "");
+
+  const historialMindfulness = Storage.getHistorialEjercicios().filter(h => CatalogoMindfulness.porId(h.id));
+  const totalCompletadas = historialMindfulness.reduce((acc, h) => acc + h.vecesCompletado, 0);
+  const idsMindfulness = new Set(CatalogoMindfulness.todos().map(m => m.id));
+  const categorias = new Set();
+  historialMindfulness.forEach(h => {
+    const m = CatalogoMindfulness.porId(h.id);
+    if (m) categorias.add(m.categoria);
+  });
+  document.getElementById("statsGrid").innerHTML = `
+    <div class="eh-stat-card"><div class="valor">${totalCompletadas}</div><div class="etiqueta">prácticas hechas</div></div>
+    <div class="eh-stat-card"><div class="valor">${categorias.size}</div><div class="etiqueta">categorías exploradas</div></div>
+    <div class="eh-stat-card"><div class="valor">${idsMindfulness.size}</div><div class="etiqueta">prácticas disponibles</div></div>`;
+}
+
+function renderExploracion() {
+  pintarLista("delDiaLista", [CatalogoMindfulness.delDia()], "");
+  pintarLista("brevesLista", CatalogoMindfulness.filtrar({ duracionMax: 2 }).slice(0, 5), "");
+
+  document.getElementById("categoriasGrid").innerHTML = CatalogoMindfulness.categorias().map(cat => {
+    return `<button class="eh-cat-card" data-cat="${cat.id}">
+      <span class="emoji">${cat.icono}</span>
+      <span class="nombre">${cat.nombre}</span>
+    </button>`;
+  }).join("");
+  document.getElementById("categoriasGrid").querySelectorAll("[data-cat]").forEach(el =>
+    el.addEventListener("click", () => mostrarCategoria(el.dataset.cat)));
+}
+
+function mostrarCategoria(catId) {
+  const cat = CatalogoMindfulness.categoriaPorId(catId);
+  document.getElementById("seccionCategoriaDetalle").hidden = false;
+  document.getElementById("catDetalleIcono").textContent = cat.icono;
+  document.getElementById("catDetalleNombre").textContent = cat.nombre;
+  pintarLista("catDetalleLista", CatalogoMindfulness.porCategoria(catId), "Todavía no hay prácticas acá.");
+  document.getElementById("seccionCategoriaDetalle").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// ── Búsqueda y filtros ──
+function renderFiltros() {
+  const chips = [
+    { id: "dur-2", label: "1-2 min", activo: filtroDuracion === 2, accion: () => filtroDuracion = filtroDuracion === 2 ? null : 2 },
+    { id: "dur-3", label: "2-3 min", activo: filtroDuracion === 3, accion: () => filtroDuracion = filtroDuracion === 3 ? null : 3 },
+    { id: "dur-5", label: "3-5 min", activo: filtroDuracion === 5, accion: () => filtroDuracion = filtroDuracion === 5 ? null : 5 },
+    { id: "dif-facil", label: "Fácil", activo: filtroDificultad === "facil", accion: () => filtroDificultad = filtroDificultad === "facil" ? null : "facil" },
+    { id: "dif-intermedio", label: "Intermedio", activo: filtroDificultad === "intermedio", accion: () => filtroDificultad = filtroDificultad === "intermedio" ? null : "intermedio" },
+    { id: "est-favoritos", label: "Favoritos", activo: filtroEstado === "favoritos", accion: () => filtroEstado = filtroEstado === "favoritos" ? null : "favoritos" },
+    { id: "est-no-realizados", label: "No realizados", activo: filtroEstado === "no-realizados", accion: () => filtroEstado = filtroEstado === "no-realizados" ? null : "no-realizados" },
+    { id: "est-realizados", label: "Realizados", activo: filtroEstado === "realizados", accion: () => filtroEstado = filtroEstado === "realizados" ? null : "realizados" },
+  ];
+  document.getElementById("filtrosFila").innerHTML = chips.map(c => `<button class="eh-filtro-chip ${c.activo ? "activo" : ""}" data-id="${c.id}">${c.label}</button>`).join("");
+  chips.forEach(c => document.querySelector(`[data-id="${c.id}"]`).addEventListener("click", () => { c.accion(); actualizarVista(); renderFiltros(); }));
+}
+
+function hayFiltrosActivos() {
+  return filtroTexto.trim().length > 0 || filtroDuracion || filtroDificultad || filtroEstado;
+}
+
+function actualizarVista() {
+  const activo = hayFiltrosActivos();
+  document.getElementById("vistaExploracion").hidden = activo;
+  document.getElementById("vistaResultados").hidden = !activo;
+  if (!activo) return;
+
+  let lista = filtroTexto.trim() ? CatalogoMindfulness.buscar(filtroTexto) : CatalogoMindfulness.todos();
+  if (filtroDuracion) lista = lista.filter(m => m.duracion <= filtroDuracion);
+  if (filtroDificultad) lista = lista.filter(m => m.dificultad === filtroDificultad);
+  if (filtroEstado === "favoritos") lista = lista.filter(m => Storage.esFavoritoEjercicio(m.id));
+  if (filtroEstado === "realizados") lista = lista.filter(m => Storage.getProgresoEjercicio(m.id).vecesCompletado > 0);
+  if (filtroEstado === "no-realizados") lista = lista.filter(m => Storage.getProgresoEjercicio(m.id).vecesCompletado === 0);
+
+  document.getElementById("resultadosTitulo").textContent = `${lista.length} resultado${lista.length === 1 ? "" : "s"}`;
+  pintarLista("resultadosLista", lista, "No encontramos prácticas con esos filtros.");
+}
+
+document.getElementById("inputBuscar").addEventListener("input", (e) => { filtroTexto = e.target.value; actualizarVista(); });
+
+document.getElementById("btnSorprendeme").addEventListener("click", () => {
+  const m = CatalogoMindfulness.aleatorio({ duracionMax: tiempoElegido || undefined });
+  irAPractica(m.id);
+});
+
+// ── Modal perfil (lógica compartida con juegos.html/ejercicios.html) ──
+// Se activa primero, antes que cualquier otro listener: así el login
+// nunca queda inutilizado si algo más abajo llegara a fallar.
+PerfilModal.iniciar(render);
+
+renderFiltros();
+render();
+</script>
+</body>
+</html>

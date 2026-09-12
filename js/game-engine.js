@@ -19,6 +19,12 @@
  *   GameEngine.sumarPuntos(10);
  *   GameEngine.restarVida();
  *   GameEngine.terminar({ puntaje: 120, exito: true, mensaje: "¡Muy bien!" });
+ *
+ * Los botones de "volver"/"pausa: salir"/"otro juego" van a juegos.html
+ * por defecto, pero algunos de estos mismos juegos (js/juegos/*.js) ahora
+ * también se reproducen desde Mindfulness (mindfulness-item.html), que
+ * setea `window.__geVolverA = "mindfulness.html"` ANTES de inyectar el
+ * script del juego para que esos botones vuelvan al portal correcto.
  */
 
 const GameEngine = (() => {
@@ -45,7 +51,7 @@ const GameEngine = (() => {
     `;
     document.body.prepend(hud);
     document.getElementById("geVolver").addEventListener("click", () => {
-      window.location.href = "juegos.html";
+      window.location.href = window.__geVolverA || "juegos.html";
     });
     document.getElementById("gePausa").addEventListener("click", () => GameEngine.alternarPausa());
     return hud;
@@ -103,7 +109,7 @@ const GameEngine = (() => {
       </div>`;
     document.body.appendChild(overlay);
     document.getElementById("geReanudar").addEventListener("click", () => GameEngine.alternarPausa());
-    document.getElementById("geSalirPausa").addEventListener("click", () => window.location.href = "juegos.html");
+    document.getElementById("geSalirPausa").addEventListener("click", () => window.location.href = window.__geVolverA || "juegos.html");
     return overlay;
   }
 
@@ -167,7 +173,14 @@ const GameEngine = (() => {
       if (estado.timerId) clearInterval(estado.timerId);
       if (alFinalizarCallback) alFinalizarCallback();
 
-      const juego = CatalogoJuegos.porId(estado.juegoId);
+      // Igual que en logros.js/storage.js: algunos de estos juegos ahora
+      // también se reproducen desde Mindfulness (mindfulness-item.html),
+      // que no carga data/juegos-catalogo.js — sin esta guarda,
+      // CatalogoJuegos quedaría indefinido ahí y esto cortaría en seco
+      // antes de llegar a mostrar la pantalla final.
+      const juego = (typeof CatalogoJuegos !== "undefined" && CatalogoJuegos.porId(estado.juegoId))
+        || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(estado.juegoId))
+        || null;
       const progresoAnterior = Storage.getProgreso(estado.juegoId);
       const mejoroRecord = puntaje > (progresoAnterior.mejorPuntaje || 0) && puntaje > 0;
 
@@ -231,6 +244,6 @@ const GameEngine = (() => {
         </div>
       </div>`;
     document.getElementById("geJugarDeNuevo").addEventListener("click", () => window.location.reload());
-    document.getElementById("geOtroJuego").addEventListener("click", () => window.location.href = "juegos.html");
+    document.getElementById("geOtroJuego").addEventListener("click", () => window.location.href = window.__geVolverA || "juegos.html");
   }
 })();

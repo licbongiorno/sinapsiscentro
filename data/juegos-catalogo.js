@@ -31,7 +31,6 @@ const CATEGORIAS = [
   { id: "reflejos",     nombre: "Reflejos",      icono: "⚡", color: "#c9a97e" },
   { id: "palabras",     nombre: "Palabras",      icono: "🔤", color: "#7ed6e4" },
   { id: "emociones",    nombre: "Emociones",     icono: "❤️", color: "#e08a8a" },
-  { id: "calma",        nombre: "Calma",         icono: "🧘", color: "#8ac9a9" },
   { id: "creatividad",  nombre: "Creatividad",   icono: "🎨", color: "#c98ac2" },
   { id: "logica",       nombre: "Lógica",        icono: "🧩", color: "#0e4d5c" },
   { id: "numeros",      nombre: "Números",       icono: "🔢", color: "#3a5a6a" },
@@ -110,18 +109,6 @@ const JUEGOS = [
   { id: "detective-pensamientos", nombre: "El detective de pensamientos", descripcion: "Identificá distorsiones cognitivas comunes.", categoria: "emociones", edadMin: 14, dificultad: "dificil", duracion: "5-8 min", tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true, archivo: "js/juegos/detective-pensamientos.js" },
   { id: "pensamiento-flexible", nombre: "Pensamiento flexible", descripcion: "Encontrá interpretaciones alternativas.", categoria: "emociones", edadMin: 12, dificultad: "media", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/pensamiento-flexible.js" },
   { id: "amigo-interior", nombre: "El amigo interior", descripcion: "Elegí respuestas autocompasivas ante un error.", categoria: "emociones", edadMin: 12, dificultad: "media", duracion: "3-5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/amigo-interior.js" },
-
-  // ───────── 🧘 CALMA ─────────
-  { id: "respira", nombre: "Respira", descripcion: "Respiración guiada con una animación que marca el ritmo.", categoria: "calma", edadMin: 6, dificultad: "facil", duracion: "2-5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/respira.js" },
-  { id: "respiracion-cuadrada", nombre: "Respiración cuadrada", descripcion: "Cuatro fases: inhalar, sostener, exhalar, sostener.", categoria: "calma", edadMin: 8, dificultad: "facil", duracion: "3-5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/respiracion-cuadrada.js" },
-  { id: "la-ola", nombre: "La ola", descripcion: "Sincronizá tu respiración con una ola animada.", categoria: "calma", edadMin: 6, dificultad: "facil", duracion: "3 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/la-ola.js" },
-  { id: "jardin-zen", nombre: "Jardín zen", descripcion: "Vas creando un jardín a medida que respirás.", categoria: "calma", edadMin: 6, dificultad: "facil", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/jardin-zen.js" },
-  { id: "piedras", nombre: "Piedras", descripcion: "Apilá piedras virtuales, despacio.", categoria: "calma", edadMin: 6, dificultad: "facil", duracion: "3 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/piedras.js" },
-  { id: "ojo-de-agua", nombre: "Ojo de agua", descripcion: "Observá ondas en el agua y seguí su ritmo.", categoria: "calma", edadMin: 6, dificultad: "facil", duracion: "3 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/ojo-de-agua.js" },
-  { id: "campana", nombre: "Campana", descripcion: "Atención plena guiada por sonidos.", categoria: "calma", edadMin: 8, dificultad: "facil", duracion: "3-5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/campana.js" },
-  { id: "un-minuto", nombre: "Un minuto", descripcion: "Permanecé atento y quieto durante 60 segundos.", categoria: "calma", edadMin: 6, dificultad: "facil", duracion: "1 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/un-minuto.js" },
-  { id: "escaneo-corporal", nombre: "Escaneo corporal", descripcion: "Pequeñas consignas de atención al cuerpo.", categoria: "calma", edadMin: 10, dificultad: "facil", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/escaneo-corporal.js" },
-  { id: "soltar", nombre: "Soltar", descripcion: "Tocá y dejá desaparecer pensamientos o palabras.", categoria: "calma", edadMin: 8, dificultad: "facil", duracion: "2-4 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/soltar.js" },
 
   // ───────── 🎨 CREATIVIDAD ─────────
   { id: "tres-palabras", nombre: "Tres palabras", descripcion: "Creá algo (una frase, una idea) con tres palabras al azar.", categoria: "creatividad", edadMin: 8, dificultad: "facil", duracion: "3-5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/tres-palabras.js" },

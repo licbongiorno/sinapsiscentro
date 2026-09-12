@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cargando práctica… | SINAPSIS</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#08202e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/juego.css">
+<link rel="stylesheet" href="css/ejercicios.css">
+</head>
+<body>
+
+<main id="eeContenedor">
+  <p style="text-align:center;color:var(--text-soft);">Cargando…</p>
+</main>
+
+<main id="juego-area" hidden>
+  <h1 class="jg-titulo" id="jgTitulo">Cargando…</h1>
+  <p class="jg-instruccion" id="jgInstruccion"></p>
+  <div id="jgContenedor"></div>
+</main>
+
+<div id="mfError" hidden style="text-align:center; padding: 100px 20px;">
+  <p style="font-size:1.1rem; color:#3a5a6a; margin-bottom:20px;">No encontramos esa práctica 🧘</p>
+  <a href="mindfulness.html" style="color:#1a7a8a; font-weight:700;">← Volver a Mindfulness</a>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+<script src="data/mindfulness-datos.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/perfil.js"></script>
+<script src="js/logros.js"></script>
+<script src="js/beep.js"></script>
+<script src="js/lienzo.js"></script>
+<script src="js/exercise-engine.js"></script>
+<script src="js/game-engine.js"></script>
+<script type="module">
+  const params = new URLSearchParams(window.location.search);
+  const practicaId = params.get("id");
+  const practica = practicaId ? CatalogoMindfulness.porId(practicaId) : null;
+
+  if (!practica || !practica.activo) {
+    document.getElementById("eeContenedor").hidden = true;
+    document.getElementById("mfError").hidden = false;
+  } else {
+    document.title = `${practica.titulo} | SINAPSIS`;
+
+    // Las prácticas de motor "juego" (heredadas de Juegos) usan GameEngine
+    // y vuelven a "juegos.html" por defecto — acá las reproducimos desde
+    // Mindfulness, así que le indicamos al motor a dónde volver realmente.
+    // Ver comentario en js/game-engine.js.
+    if (practica.motor === "juego") {
+      window.__geVolverA = "mindfulness.html";
+      document.getElementById("eeContenedor").hidden = true;
+      document.getElementById("juego-area").hidden = false;
+      document.getElementById("jgTitulo").textContent = practica.titulo;
+      document.getElementById("jgInstruccion").textContent = practica.descripcion;
+    }
+
+    let arrancado = false;
+    Auth.onCambio((user) => {
+      if (arrancado) return;
+      arrancado = true;
+      const listo = () => {
+        if (practica.motor === "juego") {
+          const script = document.createElement("script");
+          script.src = practica.archivo;
+          document.body.appendChild(script);
+        } else {
+          ExerciseEngine.iniciar(practica);
+        }
+      };
+      if (user) Storage.vincularUsuario(user).then(listo);
+      else listo();
+    });
+  }
+</script>
+</body>
+</html>
