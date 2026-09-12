@@ -72,6 +72,8 @@ function _snapshotLocal() {
     favoritosEjercicios: leer("favoritosEjercicios", []),
     progresoEjercicios: leer("progresoEjercicios", {}),
     reflexiones: leer("reflexiones", []),
+    mezclasSonido: leer("mezclasSonido", []),
+    progresoSonido: leer("progresoSonido", { minutosTotales: 0, sesiones: 0 }),
     actualizadoEl: new Date().toISOString(),
   };
 }
@@ -294,6 +296,41 @@ const Storage = {
     _programarSincronizacion();
   },
 
+  // ── BIBLIOTECA SONORA: mezclas guardadas ──
+  // Una mezcla guarda sólo la configuración (qué pistas + qué volumen),
+  // nunca audio — es un preset, no una grabación.
+  getMezclasGuardadas() {
+    return leer("mezclasSonido", []);
+  },
+  guardarMezcla(nombre, pistas) {
+    const mezclas = leer("mezclasSonido", []);
+    const nueva = { id: "m" + Date.now(), nombre: nombre.trim().slice(0, 40) || "Mi mezcla", pistas, creadaEl: new Date().toISOString() };
+    mezclas.unshift(nueva);
+    escribir("mezclasSonido", mezclas.slice(0, 30));
+    _programarSincronizacion();
+    return nueva;
+  },
+  eliminarMezcla(id) {
+    const mezclas = leer("mezclasSonido", []).filter(m => m.id !== id);
+    escribir("mezclasSonido", mezclas);
+    _programarSincronizacion();
+  },
+
+  // Tiempo de escucha (para logros y XP; no guarda qué pista puntual, sólo minutos y cantidad de sesiones)
+  getProgresoSonido() {
+    return leer("progresoSonido", { minutosTotales: 0, sesiones: 0 });
+  },
+  registrarSesionSonido(minutos) {
+    if (!minutos || minutos <= 0) return Storage.getProgresoSonido();
+    const p = Storage.getProgresoSonido();
+    p.minutosTotales = Math.round((p.minutosTotales + minutos) * 10) / 10;
+    p.sesiones += 1;
+    escribir("progresoSonido", p);
+    Storage.registrarActividadHoy();
+    _programarSincronizacion();
+    return p;
+  },
+
   // ── Vínculo con la cuenta de Google (llamado desde auth.js) ──
   /**
    * Se llama cuando el usuario inicia sesión con Google. Trae su
@@ -320,6 +357,8 @@ const Storage = {
         if (datos.favoritosEjercicios) escribir("favoritosEjercicios", datos.favoritosEjercicios);
         if (datos.progresoEjercicios) escribir("progresoEjercicios", datos.progresoEjercicios);
         if (datos.reflexiones) escribir("reflexiones", datos.reflexiones);
+        if (datos.mezclasSonido) escribir("mezclasSonido", datos.mezclasSonido);
+        if (datos.progresoSonido) escribir("progresoSonido", datos.progresoSonido);
       } else {
         // Primera vez que esta cuenta de Google inicia sesión: el
         // progreso que ya tenía este dispositivo como invitado pasa

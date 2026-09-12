@@ -51,6 +51,15 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => ctx.minutosEjercicios >= 60 },
   { id: "ejercicio-pausa", nombre: "Pausa", descripcion: "Completaste 10 ejercicios de la categoría Calma.", icono: "🧘",
     cumple: (ctx) => ctx.ejerciciosPorCategoria.calma >= 10 },
+  // ── Biblioteca Sonora ──
+  { id: "sonido-primera-mezcla", nombre: "Primera mezcla", descripcion: "Guardaste tu primera mezcla de sonidos.", icono: "🎚️",
+    cumple: (ctx) => ctx.mezclasGuardadas >= 1 },
+  { id: "sonido-cinco-mezclas", nombre: "Curador de ambientes", descripcion: "Guardaste 5 mezclas distintas.", icono: "🎧",
+    cumple: (ctx) => ctx.mezclasGuardadas >= 5 },
+  { id: "sonido-binaural", nombre: "Exploración sonora", descripcion: "Probaste el explorador de beats binaurales.", icono: "🧠",
+    cumple: (ctx) => ctx.proboBinaural === true },
+  { id: "sonido-treinta-min", nombre: "Media hora de calma", descripcion: "Acumulaste 30 minutos escuchando la Biblioteca Sonora.", icono: "🌙",
+    cumple: (ctx) => ctx.minutosSonido >= 30 },
 ];
 
 /**
@@ -125,6 +134,26 @@ const Logros = {
       categoriasJugadas: Storage.getCategoriasJugadas(),
       perfil: Storage.getPerfil(),
       mejoroRecordEnEstaPartida: false,
+      ..._contextoEjercicios(),
+    });
+  },
+
+  /**
+   * Igual que las anteriores, pero para el contexto de la Biblioteca
+   * Sonora. `proboBinaural` se pasa explícitamente porque el motor de
+   * audio no persiste "probó el explorador" en ningún lado — lo sabe
+   * sólo la página en el momento en que lo usa.
+   */
+  evaluarTrasSonido({ proboBinaural = false } = {}) {
+    return _evaluar({
+      totalPartidas: Storage.getTotalPartidas(),
+      racha: Storage.getRacha(),
+      categoriasJugadas: Storage.getCategoriasJugadas(),
+      perfil: Storage.getPerfil(),
+      mejoroRecordEnEstaPartida: false,
+      mezclasGuardadas: Storage.getMezclasGuardadas().length,
+      proboBinaural,
+      minutosSonido: Storage.getProgresoSonido().minutosTotales,
       ..._contextoEjercicios(),
     });
   },

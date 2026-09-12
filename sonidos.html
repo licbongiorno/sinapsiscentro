@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Sonora | SINAPSIS — Centro de Salud Integral</title>
+<meta name="description" content="Ruido, campanas y beats binaurales generados en vivo. Armá tu propio ambiente sonoro y guardalo.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#08202e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Biblioteca Sonora | SINAPSIS">
+<meta property="og:description" content="Ruido, campanas y beats binaurales generados en vivo. Armá tu propio ambiente sonoro y guardalo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/sonidos.css">
+</head>
+<body>
+
+<header class="sh-header">
+  <div class="sh-topbar">
+    <a href="index.html" class="sh-brand"><span>🎧</span> Sinapsis</a>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="ejercicios.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Ejercicios">🧠</a>
+      <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Juegos">🎮</a>
+      <a href="infantil.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Zona Infantil">🧸</a>
+      <button class="sh-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
+    </div>
+  </div>
+  <div class="sh-intro">
+    <h1>Biblioteca Sonora</h1>
+    <p>Ruido, campanas y tonos generados en vivo. Armá tu propio ambiente y guardalo para volver a usarlo.</p>
+  </div>
+</header>
+
+<section class="sh-necesidades">
+  <div class="sh-necesidades-card">
+    <h2>¿Qué necesitás?</h2>
+    <div class="sh-necesidad-grid" id="necesidadGrid"></div>
+  </div>
+</section>
+
+<div id="sinAudioAviso" hidden class="sh-seccion">
+  <div class="sh-audio-no-disponible">
+    <p>Tu navegador no permite reproducir audio interactivo acá. Probá con un navegador más reciente (Chrome, Safari o Firefox actualizados).</p>
+  </div>
+</div>
+
+<div id="contenidoPrincipal">
+  <section class="sh-seccion">
+    <h2>Explorar por categoría</h2>
+    <p class="sub">🔊 Ruido y 🔔 Campanas funcionan ya mismo. 🌧️ Ambientes y 🎵 Música todavía están en camino.</p>
+    <div class="sh-categorias-tabs" id="categoriasTabs"></div>
+    <div class="sh-pistas-grid" id="pistasGrid"></div>
+  </section>
+
+  <section class="sh-seccion">
+    <h2>🧠 Explorador de beats binaurales</h2>
+    <p class="sub">Un tono distinto en cada oído. Tu cerebro percibe la diferencia entre ambos.</p>
+    <div class="sh-explorador-grid" id="exploradorGrid"></div>
+    <div class="sh-bandas-grid" id="bandasGrid"></div>
+    <div class="sh-banda-desc" id="bandaDescripcion"></div>
+    <div class="sh-binaural-controles">
+      <div class="sh-binaural-fila">
+        <label>Frecuencia base</label>
+        <input type="range" id="binauralBase" min="100" max="500" value="200" step="5">
+        <span class="valor" id="binauralBaseValor">200 Hz</span>
+      </div>
+      <div class="sh-binaural-fila">
+        <label>Diferencia (beat)</label>
+        <input type="range" id="binauralBeat" min="1" max="40" value="10" step="1">
+        <span class="valor" id="binauralBeatValor">10 Hz</span>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="sh-btn sh-btn-principal" id="btnBinauralPlay" style="flex:1;">▶ Escuchar</button>
+        <button class="sh-btn sh-btn-secundario" id="btnBinauralStop" style="flex:1;" hidden>■ Detener</button>
+      </div>
+    </div>
+    <div class="sh-aviso">
+      La frecuencia hace referencia al ritmo diferencial del estímulo. Escucharla no significa que se vaya a producir automáticamente ese estado cerebral — la evidencia sobre los beats binaurales es mixta y depende de qué se esté evaluando. Esto es una herramienta de exploración, no un tratamiento.
+    </div>
+  </section>
+
+  <section class="sh-seccion">
+    <h2>Mi progreso</h2>
+    <div class="sh-stats-grid" id="statsSonidoGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div>
+  </section>
+
+  <section class="sh-seccion">
+    <h2>💾 Mis mezclas guardadas</h2>
+    <div id="mezclasGuardadasLista"></div>
+  </section>
+</div>
+
+<!-- Mezclador persistente -->
+<div class="sh-mezclador" id="mezclador">
+  <div class="sh-mezclador-handle" id="mezcladorHandle">
+    <span class="titulo">🎚 Tu mezcla <span id="mezcladorContador"></span></span>
+    <span id="mezcladorFlecha">▲</span>
+  </div>
+  <div class="sh-mezclador-contenido">
+    <div id="pistasEnMezclaLista"></div>
+    <div class="sh-mezclador-controles">
+      <select class="sh-temporizador-select" id="temporizadorSelect">
+        <option value="">Sin temporizador</option>
+        <option value="5">5 min</option>
+        <option value="15">15 min</option>
+        <option value="30">30 min</option>
+        <option value="45">45 min</option>
+        <option value="60">60 min</option>
+      </select>
+      <button class="sh-btn sh-btn-secundario" id="btnDetenerTodo">Detener todo</button>
+      <button class="sh-btn sh-btn-principal" id="btnGuardarMezcla">💾 Guardar mezcla</button>
+    </div>
+    <p id="temporizadorEstado" style="font-size:0.76rem;color:var(--text-soft);margin-top:8px;"></p>
+  </div>
+</div>
+
+<div class="sh-barra-flotante" id="barraFlotante" hidden>
+  <span class="info" id="barraFlotanteInfo">🎧 Sonando</span>
+  <button class="sh-btn sh-btn-secundario" id="btnAbrirMezclador" style="padding:8px 16px;">Ver mezcla</button>
+</div>
+
+<div class="sh-logro-toast" id="logroToast"></div>
+
+<!-- MODAL PERFIL -->
+<div class="jp-modal-overlay" id="modalPerfil" hidden>
+  <div class="jp-modal">
+    <h2>Mi perfil</h2>
+    <div id="modalCuentaGoogle" style="margin-bottom:18px;"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Elegí tu avatar</label>
+    <div class="jp-avatares" id="avataresLista"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Tu nombre</label>
+    <input type="text" id="inputNombre" placeholder="¿Cómo te llamamos?" maxlength="24">
+    <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-soft); font-weight:700;">
+      <span>Nivel <span id="modalNivel">1</span></span>
+      <span id="modalXpTexto">0 / 50 XP</span>
+    </div>
+    <div class="jp-nivel-barra"><div class="jp-nivel-barra-fill" id="modalNivelFill"></div></div>
+    <button class="jp-modal-cerrar" id="btnGuardarPerfil">Guardar</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+<script src="data/sonidos-datos.js"></script>
+<script src="js/audio-engine.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/perfil.js"></script>
+<script src="js/logros.js"></script>
+<script src="js/perfil-modal.js"></script>
+<script>
+// ── Modal perfil (lógica compartida con juegos.html/ejercicios.html) ──
+// Se activa primero, antes que cualquier otro listener: así el login
+// nunca queda inutilizado si algo más abajo llegara a fallar.
+PerfilModal.iniciar(() => { renderStatsSonido(); renderMezclasGuardadas(); });
+
+let categoriaActiva = "ruido";
+let pistasEnMezcla = {}; // id -> volumen (0-1)
+let binauralActivo = false;
+let bandaSeleccionada = null;
+let mezcladorAbierto = false;
+let inicioSesionMs = null;
+let proboBinauralAlgunaVez = false;
+
+function haySesionActiva() { return Object.keys(pistasEnMezcla).length > 0 || binauralActivo; }
+function marcarInicioSesionSiHaceFalta() { if (!inicioSesionMs && haySesionActiva()) inicioSesionMs = Date.now(); }
+
+function mostrarLogroToast(logro) {
+  const toast = document.getElementById("logroToast");
+  toast.textContent = `${logro.icono} ${logro.nombre}`;
+  toast.classList.add("mostrar");
+  setTimeout(() => toast.classList.remove("mostrar"), 2800);
+}
+
+function renderStatsSonido() {
+  const p = Storage.getProgresoSonido();
+  const mezclas = Storage.getMezclasGuardadas().length;
+  const logrosSonido = ["sonido-primera-mezcla", "sonido-cinco-mezclas", "sonido-binaural", "sonido-treinta-min"];
+  const logrosDesbloqueados = Storage.getLogros().filter(id => logrosSonido.includes(id)).length;
+  document.getElementById("statsSonidoGrid").innerHTML = `
+    <div class="sh-stat-card"><div class="valor">${p.minutosTotales}</div><div class="etiqueta">minutos escuchados</div></div>
+    <div class="sh-stat-card"><div class="valor">${mezclas}</div><div class="etiqueta">mezclas guardadas</div></div>
+    <div class="sh-stat-card"><div class="valor">🏅 ${logrosDesbloqueados}/${logrosSonido.length}</div><div class="etiqueta">logros de sonido</div></div>`;
+}
+
+/** Se llama cuando se detiene toda la reproducción: cierra la sesión, suma XP y evalúa logros. */
+function finalizarSesionSonido() {
+  if (!inicioSesionMs) return;
+  const minutos = (Date.now() - inicioSesionMs) / 60000;
+  inicioSesionMs = null;
+  if (minutos < 0.05) return; // sesiones casi instantáneas (pruebas, clicks accidentales) no cuentan
+  Storage.registrarSesionSonido(minutos);
+  Storage.sumarXP(Math.min(20, Math.round(minutos * 2)));
+  const nuevos = Logros.evaluarTrasSonido({ proboBinaural: proboBinauralAlgunaVez });
+  nuevos.forEach((l, i) => setTimeout(() => mostrarLogroToast(l), i * 3000));
+  renderStatsSonido();
+}
+
+if (!AudioEngine.disponible()) {
+  document.getElementById("sinAudioAviso").hidden = false;
+  document.getElementById("contenidoPrincipal").hidden = true;
+}
+
+function irAExplorador() { document.querySelector('.sh-seccion:nth-of-type(2)').scrollIntoView({ behavior: "smooth" }); }
+
+function renderNecesidades() {
+  document.getElementById("necesidadGrid").innerHTML = CatalogoSonidos.necesidades().map(n =>
+    `<button class="sh-necesidad-btn" data-n="${n.id}"><span class="emoji">${n.emoji}</span>${n.texto}</button>`).join("");
+  document.querySelectorAll("#necesidadGrid [data-n]").forEach(btn => btn.addEventListener("click", () => aplicarNecesidad(btn.dataset.n)));
+}
+
+function aplicarNecesidad(id) {
+  const n = CatalogoSonidos.necesidadPorId(id);
+  if (!n) return;
+  if (n.irABinaural) { irAExplorador(); return; }
+  n.mezcla.forEach(item => activarPista(item.pista, item.volumen));
+  if (n.campanaInicial) AudioEngine.tocarCampana(n.campanaInicial);
+  abrirMezclador(true);
+}
+
+function renderCategorias() {
+  document.getElementById("categoriasTabs").innerHTML = CatalogoSonidos.categorias().map(c =>
+    `<button class="sh-cat-tab ${categoriaActiva === c.id ? "activo" : ""}" data-cat="${c.id}">${c.icono} ${c.nombre}</button>`).join("");
+  document.querySelectorAll("#categoriasTabs [data-cat]").forEach(btn =>
+    btn.addEventListener("click", () => { categoriaActiva = btn.dataset.cat; renderCategorias(); renderPistas(); }));
+  renderPistas();
+}
+
+function renderPistas() {
+  const lista = CatalogoSonidos.porCategoria(categoriaActiva);
+  document.getElementById("pistasGrid").innerHTML = lista.map(p => {
+    const disponible = p.tipo === "procedural" || !!p.audioUrl;
+    const activa = pistasEnMezcla[p.id] !== undefined;
+    const esAproximacion = p.tipo === "procedural" && (p.generador === "lluvia" || p.generador === "viento");
+    return `<button class="sh-pista-card ${activa ? "activa" : ""} ${disponible ? "" : "no-disponible"}" data-pista="${p.id}" ${disponible ? "" : "disabled"} ${p.descripcion ? `title="${p.descripcion}"` : ""}>
+      <span class="emoji">${p.icono}</span>
+      <span class="titulo">${p.titulo}</span>
+      <span class="estado">${disponible ? (activa ? "Sonando" : "Tocar") : "Próximamente"}${esAproximacion ? " · síntesis aprox." : ""}</span>
+    </button>`;
+  }).join("");
+  document.querySelectorAll("#pistasGrid [data-pista]:not([disabled])").forEach(btn =>
+    btn.addEventListener("click", () => manejarClickPista(btn.dataset.pista)));
+}
+
+function manejarClickPista(pistaId) {
+  const p = CatalogoSonidos.pistaPorId(pistaId);
+  if (!p) return;
+  if (p.campana) { AudioEngine.tocarCampana(p.campana); return; } // sonido corto, no queda en loop
+  if (pistasEnMezcla[pistaId] !== undefined) {
+    desactivarPista(pistaId);
+  } else {
+    activarPista(pistaId, 0.5);
+    abrirMezclador(true);
+  }
+}
+
+function activarPista(pistaId, volumen) {
+  const p = CatalogoSonidos.pistaPorId(pistaId);
+  if (!p || p.tipo !== "procedural" || p.campana) return;
+  AudioEngine.iniciarPistaProcedural(pistaId, p.generador);
+  AudioEngine.setVolumen(pistaId, volumen);
+  pistasEnMezcla[pistaId] = volumen;
+  marcarInicioSesionSiHaceFalta();
+  renderPistas(); renderMezclador(); actualizarBarraFlotante();
+}
+function desactivarPista(pistaId) {
+  AudioEngine.detenerPista(pistaId);
+  delete pistasEnMezcla[pistaId];
+  if (!haySesionActiva()) finalizarSesionSonido();
+  renderPistas(); renderMezclador(); actualizarBarraFlotante();
+}
+
+function renderMezclador() {
+  const ids = Object.keys(pistasEnMezcla);
+  const cont = document.getElementById("pistasEnMezclaLista");
+  document.getElementById("mezcladorContador").textContent = (ids.length + (binauralActivo ? 1 : 0)) ? `(${ids.length + (binauralActivo ? 1 : 0)})` : "";
+  if (!ids.length && !binauralActivo) { cont.innerHTML = `<p class="sh-mezclador-vacio">Todavía no agregaste ninguna pista. Tocá cualquiera de 🔊 Ruido para empezar.</p>`; return; }
+  let html = ids.map(id => {
+    const p = CatalogoSonidos.pistaPorId(id);
+    return `<div class="sh-pista-slider" data-slider="${id}">
+      <span class="emoji">${p.icono}</span>
+      <span class="nombre">${p.titulo}</span>
+      <input type="range" min="0" max="100" value="${Math.round(pistasEnMezcla[id] * 100)}" data-vol="${id}">
+      <button class="quitar" data-quitar="${id}" aria-label="Quitar">✕</button>
+    </div>`;
+  }).join("");
+  if (binauralActivo) {
+    html += `<div class="sh-pista-slider" data-slider="binaural">
+      <span class="emoji">🧠</span>
+      <span class="nombre">Binaural</span>
+      <input type="range" min="0" max="100" value="40" data-vol="binaural">
+      <button class="quitar" data-quitar="binaural" aria-label="Quitar">✕</button>
+    </div>`;
+  }
+  cont.innerHTML = html;
+  cont.querySelectorAll("[data-vol]").forEach(inp => inp.addEventListener("input", () => {
+    AudioEngine.setVolumen(inp.dataset.vol, Number(inp.value) / 100);
+    if (inp.dataset.vol !== "binaural") pistasEnMezcla[inp.dataset.vol] = Number(inp.value) / 100;
+  }));
+  cont.querySelectorAll("[data-quitar]").forEach(btn => btn.addEventListener("click", () => {
+    if (btn.dataset.quitar === "binaural") pararBinaural();
+    else desactivarPista(btn.dataset.quitar);
+  }));
+}
+
+function abrirMezclador(abrir) {
+  mezcladorAbierto = abrir;
+  document.getElementById("mezclador").classList.toggle("abierto", abrir);
+  document.getElementById("mezcladorFlecha").textContent = abrir ? "▼" : "▲";
+  actualizarBarraFlotante();
+}
+document.getElementById("mezcladorHandle").addEventListener("click", () => abrirMezclador(!mezcladorAbierto));
+
+function actualizarBarraFlotante() {
+  const hayAlgo = Object.keys(pistasEnMezcla).length > 0 || binauralActivo;
+  const barra = document.getElementById("barraFlotante");
+  barra.hidden = !hayAlgo || mezcladorAbierto;
+  if (hayAlgo) {
+    const n = Object.keys(pistasEnMezcla).length + (binauralActivo ? 1 : 0);
+    document.getElementById("barraFlotanteInfo").textContent = `🎧 Sonando (${n})`;
+  }
+}
+document.getElementById("btnAbrirMezclador").addEventListener("click", () => abrirMezclador(true));
+
+document.getElementById("btnDetenerTodo").addEventListener("click", () => {
+  AudioEngine.detenerTodo();
+  finalizarSesionSonido();
+  pistasEnMezcla = {};
+  binauralActivo = false;
+  document.getElementById("btnBinauralPlay").hidden = false;
+  document.getElementById("btnBinauralStop").hidden = true;
+  document.getElementById("temporizadorEstado").textContent = "";
+  renderPistas(); renderMezclador(); actualizarBarraFlotante();
+});
+
+// ── Temporizador ──
+document.getElementById("temporizadorSelect").addEventListener("change", (e) => {
+  const min = Number(e.target.value);
+  if (!min) { AudioEngine.cancelarTemporizador(); document.getElementById("temporizadorEstado").textContent = ""; return; }
+  AudioEngine.iniciarTemporizador(min, () => {
+    finalizarSesionSonido();
+    pistasEnMezcla = {}; binauralActivo = false;
+    document.getElementById("btnBinauralPlay").hidden = false;
+    document.getElementById("btnBinauralStop").hidden = true;
+    document.getElementById("temporizadorEstado").textContent = "Se detuvo automáticamente.";
+    renderPistas(); renderMezclador(); actualizarBarraFlotante();
+  });
+  document.getElementById("temporizadorEstado").textContent = `Se va a detener con un fundido suave en ${min} minutos.`;
+});
+
+// ── Guardar mezcla ──
+document.getElementById("btnGuardarMezcla").addEventListener("click", () => {
+  const ids = Object.keys(pistasEnMezcla);
+  if (!ids.length) { alert("Agregá al menos una pista antes de guardar."); return; }
+  const nombre = prompt("¿Cómo querés llamar a esta mezcla?", "Mi mezcla");
+  if (nombre === null) return;
+  const pistas = ids.map(id => ({ pista: id, volumen: pistasEnMezcla[id] }));
+  Storage.guardarMezcla(nombre, pistas);
+  renderMezclasGuardadas();
+});
+
+function renderMezclasGuardadas() {
+  const mezclas = Storage.getMezclasGuardadas();
+  const cont = document.getElementById("mezclasGuardadasLista");
+  if (!mezclas.length) { cont.innerHTML = `<p class="sh-vacio">Todavía no guardaste ninguna mezcla. Armá una combinación en 🔊 Ruido y tocá "Guardar mezcla".</p>`; return; }
+  cont.innerHTML = mezclas.map(m => `
+    <div class="sh-mezcla-guardada" data-mezcla="${m.id}">
+      <div><div class="nombre">${m.nombre}</div><div class="detalle">${m.pistas.length} pista${m.pistas.length === 1 ? "" : "s"}</div></div>
+      <div class="sh-mezcla-acciones">
+        <button data-cargar="${m.id}">▶ Usar</button>
+        <button class="eliminar" data-eliminar="${m.id}">Eliminar</button>
+      </div>
+    </div>`).join("");
+  cont.querySelectorAll("[data-cargar]").forEach(btn => btn.addEventListener("click", () => cargarMezcla(btn.dataset.cargar)));
+  cont.querySelectorAll("[data-eliminar]").forEach(btn => btn.addEventListener("click", () => {
+    Storage.eliminarMezcla(btn.dataset.eliminar);
+    renderMezclasGuardadas();
+  }));
+}
+function cargarMezcla(id) {
+  const m = Storage.getMezclasGuardadas().find(x => x.id === id);
+  if (!m) return;
+  AudioEngine.detenerTodo(); pistasEnMezcla = {};
+  m.pistas.forEach(item => activarPista(item.pista, item.volumen));
+  abrirMezclador(true);
+}
+
+// ── Explorador de binaurales ──
+function renderExplorador() {
+  document.getElementById("exploradorGrid").innerHTML = CatalogoSonidos.explorador().map(e =>
+    `<button class="sh-explorador-btn" data-bandas="${e.bandas.join(",")}">${e.emoji} ${e.necesidad}</button>`).join("");
+  document.querySelectorAll("#exploradorGrid [data-bandas]").forEach(btn =>
+    btn.addEventListener("click", () => seleccionarBanda(btn.dataset.bandas.split(",")[0])));
+}
+function renderBandas() {
+  document.getElementById("bandasGrid").innerHTML = CatalogoSonidos.bandasCerebrales().map(b =>
+    `<button class="sh-banda-card ${bandaSeleccionada === b.id ? "activa" : ""}" data-banda="${b.id}" style="${bandaSeleccionada === b.id ? `border-color:${b.color}` : ""}">
+      <div class="nombre" style="color:${b.color}">${b.nombre}</div>
+      <div class="rango">${b.rango}</div>
+    </button>`).join("");
+  document.querySelectorAll("#bandasGrid [data-banda]").forEach(btn => btn.addEventListener("click", () => seleccionarBanda(btn.dataset.banda)));
+  actualizarDescripcionBanda();
+}
+function seleccionarBanda(bandaId) {
+  bandaSeleccionada = bandaId;
+  const b = CatalogoSonidos.bandaPorId(bandaId);
+  if (b) document.getElementById("binauralBeat").value = b.beatSugerido;
+  actualizarValoresBinaural();
+  renderBandas();
+}
+function actualizarDescripcionBanda() {
+  const b = CatalogoSonidos.bandaPorId(bandaSeleccionada) || CatalogoSonidos.bandasCerebrales()[2];
+  document.getElementById("bandaDescripcion").innerHTML = `<b style="color:${b.color}">${b.nombre}</b> (${b.rango}) — ${b.descripcion}`;
+}
+function actualizarValoresBinaural() {
+  document.getElementById("binauralBaseValor").textContent = `${document.getElementById("binauralBase").value} Hz`;
+  document.getElementById("binauralBeatValor").textContent = `${document.getElementById("binauralBeat").value} Hz`;
+}
+document.getElementById("binauralBase").addEventListener("input", actualizarValoresBinaural);
+document.getElementById("binauralBeat").addEventListener("input", () => {
+  actualizarValoresBinaural();
+  if (binauralActivo) reiniciarBinaural();
+});
+function reiniciarBinaural() {
+  const base = Number(document.getElementById("binauralBase").value);
+  const beat = Number(document.getElementById("binauralBeat").value);
+  AudioEngine.iniciarBinaural("binaural", base, beat);
+  AudioEngine.setVolumen("binaural", 0.4);
+}
+document.getElementById("btnBinauralPlay").addEventListener("click", () => {
+  reiniciarBinaural();
+  binauralActivo = true;
+  proboBinauralAlgunaVez = true;
+  marcarInicioSesionSiHaceFalta();
+  document.getElementById("btnBinauralPlay").hidden = true;
+  document.getElementById("btnBinauralStop").hidden = false;
+  renderMezclador(); abrirMezclador(true);
+});
+function pararBinaural() {
+  AudioEngine.detenerPista("binaural");
+  binauralActivo = false;
+  document.getElementById("btnBinauralPlay").hidden = false;
+  document.getElementById("btnBinauralStop").hidden = true;
+  if (!haySesionActiva()) finalizarSesionSonido();
+  renderMezclador(); actualizarBarraFlotante();
+}
+document.getElementById("btnBinauralStop").addEventListener("click", pararBinaural);
+
+// ── Inicio ──
+if (AudioEngine.disponible()) {
+  renderNecesidades();
+  renderCategorias();
+  renderExplorador();
+  renderBandas();
+  renderMezclador();
+  renderMezclasGuardadas();
+  renderStatsSonido();
+  actualizarValoresBinaural();
+}
+</script>
+</body>
+</html>
