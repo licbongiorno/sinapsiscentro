@@ -54,13 +54,15 @@ const PerfilModal = (() => {
           const u = Auth.usuarioActual();
           if (u) Storage.vincularUsuario(u).then(() => { onCambioCallback(); abrir(); });
         }).catch((err) => {
-          // Auth.iniciarSesion() ya se encarga de avisar con un alert cuando
-          // Firebase sí está inicializado pero el login falla (ver auth.js).
-          // Acá cubrimos el otro caso: Firebase nunca llegó a inicializarse
-          // (bloqueado por el navegador, sin conexión, etc.) — sin este
-          // catch, el click no hacía absolutamente nada visible.
+          // Sin este catch, cualquier error acá (Firebase nunca inicializado,
+          // dominio no autorizado, lo que sea) quedaba completamente en
+          // silencio y el click no hacía nada visible. Ahora se loguea y se
+          // avisa SIEMPRE, no sólo para el caso de "Firebase no configurado".
+          console.error("Auth: no se pudo iniciar sesión", err);
           if (err && err.message === "Firebase no configurado") {
             alert("No se pudo conectar con Google en este momento (puede ser un bloqueador de scripts o un problema de conexión). Podés seguir usando la app sin iniciar sesión: tu progreso se sigue guardando en este dispositivo.");
+          } else {
+            alert("No se pudo iniciar sesión con Google" + (err && err.code ? " (" + err.code + ")" : "") + ". Probá de nuevo.");
           }
         });
       });
