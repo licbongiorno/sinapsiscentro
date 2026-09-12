@@ -182,8 +182,9 @@ const GameEngine = (() => {
       }
 
       const logrosNuevos = Logros.evaluarTrasPartida({ mejoroRecordEnEstaPartida: mejoroRecord });
+      const ranking = (juego && juego.puntuable) ? Storage.getRankingLocal(estado.juegoId) : [];
 
-      mostrarPantallaFin({ juego, puntaje, exito, mensaje, xpGanada, perfil, racha, mejoroRecord, logrosNuevos });
+      mostrarPantallaFin({ juego, puntaje, exito, mensaje, xpGanada, perfil, racha, mejoroRecord, logrosNuevos, ranking });
       vibrar(exito ? [30, 40, 30] : 60);
       beep(exito ? 880 : 220, 200, exito ? "triangle" : "sawtooth", 0.05);
     },
@@ -203,7 +204,7 @@ const GameEngine = (() => {
     },
   };
 
-  function mostrarPantallaFin({ juego, puntaje, exito, mensaje, xpGanada, perfil, racha, mejoroRecord, logrosNuevos }) {
+  function mostrarPantallaFin({ juego, puntaje, exito, mensaje, xpGanada, perfil, racha, mejoroRecord, logrosNuevos, ranking = [] }) {
     const overlay = document.getElementById("geFin");
     overlay.hidden = false;
     overlay.innerHTML = `
@@ -216,6 +217,13 @@ const GameEngine = (() => {
         ${logrosNuevos.length ? `
           <div class="ge-logros-nuevos">
             ${logrosNuevos.map(l => `<div class="ge-logro-chip">${l.icono} ${l.nombre}</div>`).join("")}
+          </div>` : ""}
+        ${ranking.length ? `
+          <div class="ge-ranking">
+            <p class="ge-ranking-titulo">🏆 Tus mejores puntajes en este juego</p>
+            <ol class="ge-ranking-lista">
+              ${ranking.slice(0, 5).map((r, i) => `<li class="${r.puntaje === puntaje && mejoroRecord && i === 0 ? "actual" : ""}">${i + 1}. ${r.puntaje} pts</li>`).join("")}
+            </ol>
           </div>` : ""}
         <div class="ge-fin-botones">
           <button class="ge-btn ge-btn-principal" id="geJugarDeNuevo">Jugar de nuevo</button>
