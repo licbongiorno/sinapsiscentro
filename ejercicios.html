@@ -26,6 +26,7 @@
     <div style="display:flex;align-items:center;gap:10px;">
       <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:700;">🎮 Juegos</a>
       <a href="mindfulness.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Mindfulness">🧘</a>
+      <a href="creatividad.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Creatividad">🎨</a>
       <a href="sonidos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Biblioteca Sonora">🎧</a>
       <a href="infantil.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Zona Infantil">🧸</a>
       <button class="eh-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
@@ -169,6 +170,7 @@
 <script src="js/perfil.js"></script>
 <script src="js/logros.js"></script>
 <script src="js/perfil-modal.js"></script>
+<script src="js/exportar.js"></script>
 <script type="module">
 const TIEMPOS = [
   { min: 1, texto: "1 min" }, { min: 3, texto: "3 min" }, { min: 5, texto: "5 min" },
@@ -292,51 +294,25 @@ function renderReflexiones() {
     : "Lo que escribiste en los ejercicios de escritura, guardado en este dispositivo. Iniciá sesión con Google para respaldarlo también en tu cuenta.";
 }
 
-function textoReflexionesParaExportar() {
-  const reflexiones = Storage.getReflexiones();
-  if (!reflexiones.length) return null;
-  return reflexiones.map(r => {
+function bloquesReflexiones() {
+  return Storage.getReflexiones().map(r => {
     const ej = CatalogoEjercicios.porId(r.ejercicioId);
     const fecha = new Date(r.creadoEl).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" });
-    return `${ej ? ej.titulo : "Ejercicio"} — ${fecha}\n${r.texto}`;
-  }).join("\n\n──────────\n\n");
+    return { titulo: ej ? ej.titulo : "Ejercicio", fecha, texto: r.texto };
+  });
 }
 
 function descargarReflexionesTxt() {
-  const texto = textoReflexionesParaExportar();
-  if (!texto) { alert("Todavía no guardaste ninguna reflexión."); return; }
-  const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "mis-reflexiones-sinapsis.txt";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
+  const bloques = bloquesReflexiones();
+  if (!bloques.length) { alert("Todavía no guardaste ninguna reflexión."); return; }
+  const contenido = bloques.map(b => `${b.titulo} — ${b.fecha}\n${b.texto}`).join("\n\n──────────\n\n");
+  Exportar.descargarTxt({ contenido, nombreArchivo: Exportar.nombreArchivo({ tipo: "Reflexiones", extension: "txt" }) });
 }
 
 function imprimirReflexiones() {
-  const reflexiones = Storage.getReflexiones();
-  if (!reflexiones.length) { alert("Todavía no guardaste ninguna reflexión."); return; }
-  const filas = reflexiones.map(r => {
-    const ej = CatalogoEjercicios.porId(r.ejercicioId);
-    const fecha = new Date(r.creadoEl).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" });
-    return `<div style="margin-bottom:26px;">
-      <p style="font-weight:700;margin-bottom:6px;">${escapeHtml(ej ? ej.titulo : "Ejercicio")} — ${escapeHtml(fecha)}</p>
-      <p style="white-space:pre-wrap;line-height:1.6;">${escapeHtml(r.texto)}</p>
-    </div>`;
-  }).join("");
-  const ventana = window.open("", "_blank");
-  if (!ventana) { alert("Tu navegador bloqueó la ventana de impresión. Permití los pop-ups para esta página e intentá de nuevo."); return; }
-  ventana.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
-    <title>Mis reflexiones — SINAPSIS</title>
-    <style>body{font-family:Georgia,serif;max-width:640px;margin:40px auto;padding:0 20px;color:#0d2535;}
-    h1{margin-bottom:24px;}</style></head>
-    <body><h1>Mis reflexiones</h1>${filas}</body></html>`);
-  ventana.document.close();
-  ventana.focus();
-  ventana.print();
+  const bloques = bloquesReflexiones();
+  if (!bloques.length) { alert("Todavía no guardaste ninguna reflexión."); return; }
+  Exportar.imprimir({ tituloPagina: "Mis reflexiones", bloques });
 }
 
 function renderExploracion() {

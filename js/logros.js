@@ -63,6 +63,13 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => ctx.proboBinaural === true },
   { id: "sonido-treinta-min", nombre: "Media hora de calma", descripcion: "Acumulaste 30 minutos escuchando la Biblioteca Sonora.", icono: "🌙",
     cumple: (ctx) => ctx.minutosSonido >= 30 },
+  // ── Creatividad ──
+  { id: "creatividad-primera", nombre: "Primera creación", descripcion: "Guardaste tu primera creación en Creatividad.", icono: "🎨",
+    cumple: (ctx) => ctx.totalCreaciones >= 1 },
+  { id: "creatividad-diez", nombre: "Mente creativa", descripcion: "Guardaste 10 creaciones.", icono: "✨",
+    cumple: (ctx) => ctx.totalCreaciones >= 10 },
+  { id: "creatividad-variada", nombre: "Todoterreno creativo", descripcion: "Guardaste creaciones de al menos 4 tipos distintos (historia, dibujo, personaje, etc.).", icono: "🌈",
+    cumple: (ctx) => ctx.tiposCreacionDistintos >= 4 },
 ];
 
 /**
@@ -161,6 +168,21 @@ const Logros = {
       mezclasGuardadas: Storage.getMezclasGuardadas().length,
       proboBinaural,
       minutosSonido: Storage.getProgresoSonido().minutosTotales,
+      ..._contextoEjercicios(),
+    });
+  },
+
+  /** Igual que las anteriores, pero para el contexto de Creatividad. */
+  evaluarTrasCreacion() {
+    const creaciones = Storage.getCreaciones();
+    return _evaluar({
+      totalPartidas: Storage.getTotalPartidas(),
+      racha: Storage.getRacha(),
+      categoriasJugadas: Storage.getCategoriasJugadas(),
+      perfil: Storage.getPerfil(),
+      mejoroRecordEnEstaPartida: false,
+      totalCreaciones: creaciones.length,
+      tiposCreacionDistintos: new Set(creaciones.map(c => c.tipo)).size,
       ..._contextoEjercicios(),
     });
   },

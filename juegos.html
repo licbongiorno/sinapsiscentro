@@ -26,6 +26,7 @@
     <div style="display:flex;align-items:center;gap:10px;">
       <a href="ejercicios.html" style="color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:700;">🧠 Ejercicios</a>
       <a href="mindfulness.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Mindfulness">🧘</a>
+      <a href="creatividad.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Creatividad">🎨</a>
       <a href="sonidos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Biblioteca Sonora">🎧</a>
       <a href="infantil.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Zona Infantil">🧸</a>
       <button class="jp-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
@@ -71,6 +72,13 @@
   <section class="jp-seccion">
     <h2>Categorías</h2>
     <div class="jp-categorias-grid" id="categoriasGrid"></div>
+    <a href="creatividad.html" class="jp-juego-card" style="margin-top:10px;text-decoration:none;">
+      <div class="icono">🎨</div>
+      <div class="info">
+        <div class="nombre">Ir a Creatividad</div>
+        <div class="desc">Historias, dibujos, personajes y mundos — ahora en su propio espacio.</div>
+      </div>
+    </a>
   </section>
 
   <section class="jp-seccion" id="seccionCategoriaDetalle" hidden>
@@ -124,7 +132,7 @@ const MOODS = [
   { emoji: "😵", texto: "Saturado", cats: ["atencion"] },
   { emoji: "😴", texto: "Cansado", irA: "mindfulness.html" },
   { emoji: "🧠", texto: "Activar la cabeza", cats: ["logica", "memoria", "numeros"] },
-  { emoji: "🎨", texto: "Crear", cats: ["creatividad"] },
+  { emoji: "🎨", texto: "Crear", irA: "creatividad.html" },
   { emoji: "❤️", texto: "Entender algo", cats: ["emociones", "vinculos"] },
   { emoji: "🧘", texto: "Bajar un cambio", irA: "mindfulness.html" },
   { emoji: "🤔", texto: "Pensar", cats: ["logica", "flexibilidad"] },

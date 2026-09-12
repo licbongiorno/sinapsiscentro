@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creatividad | SINAPSIS — Centro de Salud Integral</title>
+<meta name="description" content="Historias, dibujos, ideas, personajes y desafíos para imaginar y crear. Un espacio de Sinapsis sin una única manera de crear.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#08202e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Creatividad | SINAPSIS">
+<meta property="og:description" content="Historias, dibujos, ideas, personajes y desafíos para imaginar y crear.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/ejercicios.css">
+<style>
+  .cv-edad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+  .cv-edad-btn { border: 2px solid var(--teal-pale); background: var(--bg); border-radius: 14px; padding: 10px 4px; text-align: center; font-weight: 700; font-size: 0.72rem; color: var(--text-mid); cursor: pointer; }
+  .cv-edad-btn.activo { background: var(--teal-pale); border-color: var(--teal-mid); color: var(--teal-deep); }
+  .cv-galeria-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media(min-width:600px) { .cv-galeria-grid { grid-template-columns: repeat(3, 1fr); } }
+  .cv-galeria-card { background: white; border-radius: var(--r); padding: 12px; box-shadow: 0 2px 10px rgba(8,32,46,0.05); border: 1px solid rgba(42,174,194,0.06); cursor: pointer; position: relative; }
+  .cv-galeria-card img { width: 100%; height: 90px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; background: var(--bg); }
+  .cv-galeria-card .cv-g-snippet { font-size: 0.78rem; color: var(--text-mid); height: 90px; overflow: hidden; margin-bottom: 8px; line-height: 1.4; background: var(--bg); border-radius: 8px; padding: 8px; }
+  .cv-galeria-card .cv-g-titulo { font-weight: 700; font-size: 0.82rem; margin-bottom: 2px; }
+  .cv-galeria-card .cv-g-meta { font-size: 0.68rem; color: var(--text-soft); }
+  .cv-galeria-fav { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.85); border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 0.9rem; cursor: pointer; }
+  .cv-modal-overlay { position: fixed; inset: 0; background: rgba(8,32,46,0.6); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; z-index: 950; padding: 16px; }
+  .cv-modal-overlay[hidden] { display: none; }
+  .cv-modal { background: white; border-radius: var(--r-lg); padding: 24px 20px; width: 100%; max-width: 480px; max-height: 88vh; overflow-y: auto; }
+  .cv-modal img { width: 100%; border-radius: var(--r); margin-bottom: 12px; }
+  .cv-modal textarea { width: 100%; min-height: 160px; border: 2px solid var(--teal-pale); border-radius: var(--r); padding: 12px; font-family: inherit; font-size: 0.95rem; margin-bottom: 12px; }
+  .cv-modal-botones { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cv-tipo-chip { display: inline-block; background: var(--teal-pale); color: var(--teal-deep); font-size: 0.7rem; font-weight: 800; padding: 3px 10px; border-radius: 50px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<header class="eh-header">
+  <div class="eh-topbar">
+    <a href="index.html" class="eh-brand"><span>🧠</span> Sinapsis</a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Juegos">🎮</a>
+      <a href="ejercicios.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Ejercicios">🧠</a>
+      <a href="mindfulness.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Mindfulness">🧘</a>
+      <a href="sonidos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Biblioteca Sonora">🎧</a>
+      <button class="eh-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
+    </div>
+  </div>
+  <div class="eh-intro">
+    <h1>🎨 Creatividad</h1>
+    <p>No hay una única manera de crear. Un espacio para imaginar, escribir, dibujar, combinar ideas y descubrir nuevas formas de mirar.</p>
+  </div>
+</header>
+
+<section class="eh-selector">
+  <div class="eh-selector-card">
+    <h2>🎈 ¿Para quién es esto?</h2>
+    <div class="cv-edad-grid" id="edadGrid"></div>
+    <h2>⏱ ¿Cuánto tiempo tenés?</h2>
+    <div class="eh-tiempo-grid" id="tiempoGrid"></div>
+  </div>
+</section>
+
+<div class="eh-sorprendeme">
+  <button class="eh-sorprendeme-btn" id="btnSorprendeme">🎲 Sorprendeme</button>
+</div>
+
+<div class="eh-buscador">
+  <input type="text" id="inputBuscar" placeholder="¿Qué estás buscando?">
+</div>
+<div class="eh-filtros" id="filtrosFila"></div>
+
+<div id="vistaExploracion">
+  <section class="eh-seccion" id="seccionDelDia">
+    <h2>🌱 Actividad del día</h2>
+    <div class="eh-lista" id="delDiaLista"></div>
+  </section>
+
+  <section class="eh-seccion" id="seccionFavoritos" hidden>
+    <h2>⭐ Tus favoritos</h2>
+    <div class="eh-lista" id="favoritosLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>Secciones</h2>
+    <div class="eh-categorias-grid" id="categoriasGrid"></div>
+  </section>
+
+  <section class="eh-seccion" id="seccionCategoriaDetalle" hidden>
+    <h2><span id="catDetalleIcono"></span> <span id="catDetalleNombre"></span></h2>
+    <div class="eh-lista" id="catDetalleLista"></div>
+  </section>
+
+  <section class="eh-seccion">
+    <h2>Mi espacio</h2>
+    <div class="eh-stats-grid" id="statsGrid"></div>
+  </section>
+
+  <section class="eh-seccion" id="galeria">
+    <h2>🖼️ Mi galería</h2>
+    <p class="eh-seccion-sub">Todo lo que guardaste. Privado — sólo vos lo ves.</p>
+    <div class="cv-galeria-grid" id="galeriaGrid"></div>
+  </section>
+</div>
+
+<div id="vistaResultados" hidden>
+  <section class="eh-seccion">
+    <h2 id="resultadosTitulo">Resultados</h2>
+    <div class="eh-lista" id="resultadosLista"></div>
+  </section>
+</div>
+
+<p style="text-align:center; font-size:0.7rem; color:var(--text-soft); max-width:420px; margin:36px auto 0; padding:0 20px; line-height:1.6;">
+  Creatividad es un espacio para crear, sin más. Tus creaciones son privadas y no se usan para ningún diagnóstico.
+</p>
+
+<!-- MODAL VER/EDITAR CREACIÓN -->
+<div class="cv-modal-overlay" id="modalCreacion" hidden>
+  <div class="cv-modal" id="modalCreacionContenido"></div>
+</div>
+
+<!-- MODAL PERFIL -->
+<div class="jp-modal-overlay" id="modalPerfil" hidden>
+  <div class="jp-modal">
+    <h2>Mi perfil</h2>
+    <div id="modalCuentaGoogle" style="margin-bottom:18px;"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Elegí tu avatar</label>
+    <div class="jp-avatares" id="avataresLista"></div>
+    <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Tu nombre</label>
+    <input type="text" id="inputNombre" placeholder="¿Cómo te llamamos?" maxlength="24">
+    <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-soft); font-weight:700;">
+      <span>Nivel <span id="modalNivel">1</span></span>
+      <span id="modalXpTexto">0 / 50 XP</span>
+    </div>
+    <div class="jp-nivel-barra"><div class="jp-nivel-barra-fill" id="modalNivelFill"></div></div>
+    <button class="jp-modal-cerrar" id="btnGuardarPerfil">Guardar</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+<script src="data/creatividad-elementos.js"></script>
+<script src="js/creatividad-motor.js"></script>
+<script src="data/creatividad-actividades.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/perfil.js"></script>
+<script src="js/logros.js"></script>
+<script src="js/perfil-modal.js"></script>
+<script src="js/exportar.js"></script>
+<script type="module">
+const EDADES = [
+  { edad: 4, texto: "3-5 años" }, { edad: 7, texto: "6-8 años" }, { edad: 10, texto: "9-12 años" },
+  { edad: 15, texto: "Adolescentes" }, { edad: 30, texto: "Adultos" }, { edad: null, texto: "Todo" },
+];
+const TIEMPOS = [
+  { min: 3, texto: "3 min" }, { min: 5, texto: "5 min" }, { min: 8, texto: "8 min" },
+  { min: 10, texto: "10 min" }, { min: 99, texto: "15+ min" },
+];
+let edadElegida = Storage.getEdadCreatividad();
+let tiempoElegido = null;
+let filtroTexto = "", filtroDuracion = null, filtroDificultad = null, filtroEstado = null;
+
+function irAActividad(id) { window.location.href = `creatividad-item.html?id=${id}`; }
+
+function filaActividad(a) {
+  const cat = CatalogoCreatividad.seccionPorId(a.seccion);
+  const fav = Storage.esFavoritoEjercicio(a.id);
+  return `<div class="eh-fila" data-a="${a.id}">
+    <div class="icono">${cat ? cat.icono : "🎨"}</div>
+    <div class="info">
+      <div class="titulo">${a.titulo}</div>
+      <div class="desc">${a.descripcion}</div>
+    </div>
+    <div class="meta">${a.duracion} min</div>
+    <button class="fav-btn" data-fav="${a.id}" aria-label="Favorito" aria-pressed="${fav}">${fav ? "❤️" : "🤍"}</button>
+  </div>`;
+}
+
+function pintarLista(contenedorId, actividades, vacioTexto) {
+  const el = document.getElementById(contenedorId);
+  if (!actividades.length) { el.innerHTML = `<p class="eh-vacio">${vacioTexto}</p>`; return; }
+  el.innerHTML = actividades.map(filaActividad).join("");
+  el.querySelectorAll("[data-a]").forEach(fila => {
+    fila.addEventListener("click", (e) => { if (!e.target.closest("[data-fav]")) irAActividad(fila.dataset.a); });
+  });
+  el.querySelectorAll("[data-fav]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const ahora = Storage.toggleFavoritoEjercicio(btn.dataset.fav);
+      btn.textContent = ahora ? "❤️" : "🤍";
+      btn.setAttribute("aria-pressed", ahora);
+      renderMiEspacio();
+    });
+  });
+}
+
+function render() {
+  document.getElementById("edadGrid").innerHTML = EDADES.map(e =>
+    `<button class="cv-edad-btn ${edadElegida === e.edad ? "activo" : ""}" data-edad="${e.edad}">${e.texto}</button>`).join("");
+  document.getElementById("edadGrid").querySelectorAll("[data-edad]").forEach(btn =>
+    btn.addEventListener("click", () => {
+      edadElegida = btn.dataset.edad === "null" ? null : Number(btn.dataset.edad);
+      Storage.setEdadCreatividad(edadElegida);
+      render();
+    }));
+
+  document.getElementById("tiempoGrid").innerHTML = TIEMPOS.map(t =>
+    `<button class="eh-tiempo-btn ${tiempoElegido === t.min ? "activo" : ""}" data-min="${t.min}">${t.texto}</button>`).join("");
+  document.getElementById("tiempoGrid").querySelectorAll("[data-min]").forEach(btn =>
+    btn.addEventListener("click", () => { tiempoElegido = tiempoElegido === Number(btn.dataset.min) ? null : Number(btn.dataset.min); render(); }));
+
+  renderMiEspacio();
+  renderExploracion();
+}
+
+function renderMiEspacio() {
+  const favoritos = Storage.getFavoritosEjercicios().map(id => CatalogoCreatividad.porId(id)).filter(Boolean);
+  document.getElementById("seccionFavoritos").hidden = favoritos.length === 0;
+  if (favoritos.length) pintarLista("favoritosLista", favoritos, "");
+
+  const creaciones = Storage.getCreaciones();
+  const tipos = new Set(creaciones.map(c => c.tipo));
+  document.getElementById("statsGrid").innerHTML = `
+    <div class="eh-stat-card"><div class="valor">${creaciones.length}</div><div class="etiqueta">creaciones guardadas</div></div>
+    <div class="eh-stat-card"><div class="valor">${tipos.size}</div><div class="etiqueta">tipos distintos</div></div>
+    <div class="eh-stat-card"><div class="valor">${CatalogoCreatividad.todos().length}</div><div class="etiqueta">actividades disponibles</div></div>`;
+
+  renderGaleria();
+}
+
+const ICONO_TIPO = { historia: "📖", poema: "📝", dibujo: "🎨", personaje: "🎭", mundo: "🌎", idea: "💭" };
+
+function tarjetaGaleria(c) {
+  const fecha = new Date(c.creadoEl).toLocaleDateString("es-AR", { day: "numeric", month: "short" });
+  const previa = c.tipo === "dibujo"
+    ? `<img src="${c.contenido}" alt="">`
+    : `<div class="cv-g-snippet">${escapeHtml((c.contenido || "").slice(0, 140))}</div>`;
+  return `<div class="cv-galeria-card" data-c="${c.id}">
+    <button class="cv-galeria-fav" data-favc="${c.id}">${c.favorito ? "❤️" : "🤍"}</button>
+    ${previa}
+    <div class="cv-g-titulo">${ICONO_TIPO[c.tipo] || "💭"} ${escapeHtml(c.titulo || "Sin título")}</div>
+    <div class="cv-g-meta">${fecha}</div>
+  </div>`;
+}
+
+function renderGaleria() {
+  const creaciones = Storage.getCreaciones();
+  const grid = document.getElementById("galeriaGrid");
+  if (!creaciones.length) { grid.innerHTML = `<p class="eh-vacio">Todavía no guardaste ninguna creación. ¡Probá una actividad!</p>`; return; }
+  grid.innerHTML = creaciones.map(tarjetaGaleria).join("");
+  grid.querySelectorAll("[data-c]").forEach(card => card.addEventListener("click", (e) => {
+    if (e.target.closest("[data-favc]")) return;
+    abrirCreacion(card.dataset.c);
+  }));
+  grid.querySelectorAll("[data-favc]").forEach(btn => btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const ahora = Storage.toggleFavoritoCreacion(btn.dataset.favc);
+    btn.textContent = ahora ? "❤️" : "🤍";
+  }));
+}
+
+function abrirCreacion(id) {
+  const c = Storage.getCreacion(id);
+  if (!c) return;
+  const overlay = document.getElementById("modalCreacion");
+  const cont = document.getElementById("modalCreacionContenido");
+  const esDibujo = c.tipo === "dibujo";
+  cont.innerHTML = `
+    <span class="cv-tipo-chip">${ICONO_TIPO[c.tipo] || "💭"} ${c.tipo}</span>
+    <h2>${escapeHtml(c.titulo || "Sin título")}</h2>
+    ${esDibujo ? `<img src="${c.contenido}" alt="">` : `<textarea id="modalTextoCreacion">${escapeHtml(c.contenido || "")}</textarea>`}
+    <div class="cv-modal-botones">
+      ${!esDibujo ? `<button class="ee-btn ee-btn-principal" id="btnGuardarEdicion">💾 Guardar cambios</button>` : ""}
+      ${esDibujo
+        ? `<button class="ee-btn ee-btn-secundario" id="btnDescargar">🖼️ Descargar imagen</button>`
+        : `<button class="ee-btn ee-btn-secundario" id="btnDescargar">📄 Descargar TXT</button>
+           <button class="ee-btn ee-btn-secundario" id="btnImprimir">🖨️ Imprimir / PDF</button>`}
+      <button class="ee-btn ee-btn-secundario" id="btnDuplicar">📋 Duplicar</button>
+      <button class="ee-btn ee-btn-texto" id="btnEliminar">🗑️ Eliminar</button>
+      <button class="ee-btn ee-btn-texto" id="btnCerrarModal">Cerrar</button>
+    </div>`;
+  overlay.hidden = false;
+
+  const btnGuardarEdicion = document.getElementById("btnGuardarEdicion");
+  if (btnGuardarEdicion) btnGuardarEdicion.addEventListener("click", () => {
+    const nuevo = document.getElementById("modalTextoCreacion").value;
+    Storage.actualizarCreacion(id, { contenido: nuevo });
+    overlay.hidden = true;
+    renderGaleria();
+  });
+  document.getElementById("btnDescargar").addEventListener("click", () => {
+    if (esDibujo) {
+      Exportar.descargarImagen({ dataUrl: c.contenido, nombreArchivo: Exportar.nombreArchivo({ tipo: c.tipo, titulo: c.titulo, extension: "png" }) });
+    } else {
+      Exportar.descargarTxt({ contenido: `${c.titulo}\n\n${c.contenido}`, nombreArchivo: Exportar.nombreArchivo({ tipo: c.tipo, titulo: c.titulo, extension: "txt" }) });
+    }
+  });
+  const btnImprimir = document.getElementById("btnImprimir");
+  if (btnImprimir) btnImprimir.addEventListener("click", () => {
+    Exportar.imprimir({ tituloPagina: c.titulo, bloques: [{ titulo: c.titulo, texto: c.contenido }] });
+  });
+  document.getElementById("btnDuplicar").addEventListener("click", () => {
+    Storage.duplicarCreacion(id);
+    overlay.hidden = true;
+    renderGaleria();
+  });
+  document.getElementById("btnEliminar").addEventListener("click", () => {
+    if (confirm("¿Eliminar esta creación? No se puede deshacer.")) {
+      Storage.eliminarCreacion(id);
+      overlay.hidden = true;
+      renderGaleria();
+    }
+  });
+  document.getElementById("btnCerrarModal").addEventListener("click", () => { overlay.hidden = true; });
+}
+
+function renderExploracion() {
+  pintarLista("delDiaLista", [CatalogoCreatividad.delDia(edadElegida)], "");
+
+  document.getElementById("categoriasGrid").innerHTML = CatalogoCreatividad.secciones().map(cat => {
+    return `<button class="eh-cat-card" data-cat="${cat.id}">
+      <span class="emoji">${cat.icono}</span>
+      <span class="nombre">${cat.nombre}</span>
+    </button>`;
+  }).join("");
+  document.getElementById("categoriasGrid").querySelectorAll("[data-cat]").forEach(el =>
+    el.addEventListener("click", () => mostrarCategoria(el.dataset.cat)));
+}
+
+function mostrarCategoria(catId) {
+  const cat = CatalogoCreatividad.seccionPorId(catId);
+  document.getElementById("seccionCategoriaDetalle").hidden = false;
+  document.getElementById("catDetalleIcono").textContent = cat.icono;
+  document.getElementById("catDetalleNombre").textContent = cat.nombre;
+  pintarLista("catDetalleLista", CatalogoCreatividad.filtrar({ edad: edadElegida, seccion: catId }), "Todavía no hay actividades acá para esta edad.");
+  document.getElementById("seccionCategoriaDetalle").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function renderFiltros() {
+  const chips = [
+    { id: "dur-3", label: "≤3 min", activo: filtroDuracion === 3, accion: () => filtroDuracion = filtroDuracion === 3 ? null : 3 },
+    { id: "dur-8", label: "≤8 min", activo: filtroDuracion === 8, accion: () => filtroDuracion = filtroDuracion === 8 ? null : 8 },
+    { id: "dif-1", label: "Fácil", activo: filtroDificultad === 1, accion: () => filtroDificultad = filtroDificultad === 1 ? null : 1 },
+    { id: "dif-3", label: "Intermedio", activo: filtroDificultad === 3, accion: () => filtroDificultad = filtroDificultad === 3 ? null : 3 },
+    { id: "est-favoritos", label: "Favoritos", activo: filtroEstado === "favoritos", accion: () => filtroEstado = filtroEstado === "favoritos" ? null : "favoritos" },
+  ];
+  document.getElementById("filtrosFila").innerHTML = chips.map(c => `<button class="eh-filtro-chip ${c.activo ? "activo" : ""}" data-id="${c.id}">${c.label}</button>`).join("");
+  chips.forEach(c => document.querySelector(`[data-id="${c.id}"]`).addEventListener("click", () => { c.accion(); actualizarVista(); renderFiltros(); }));
+}
+
+function hayFiltrosActivos() {
+  return filtroTexto.trim().length > 0 || filtroDuracion || filtroDificultad || filtroEstado;
+}
+
+function actualizarVista() {
+  const activo = hayFiltrosActivos();
+  document.getElementById("vistaExploracion").hidden = activo;
+  document.getElementById("vistaResultados").hidden = !activo;
+  if (!activo) return;
+
+  let lista = filtroTexto.trim() ? CatalogoCreatividad.buscar(filtroTexto, edadElegida) : CatalogoCreatividad.porEdad(edadElegida);
+  if (filtroDuracion) lista = lista.filter(a => a.duracion <= filtroDuracion);
+  if (filtroDificultad) lista = lista.filter(a => a.dificultad === filtroDificultad);
+  if (filtroEstado === "favoritos") lista = lista.filter(a => Storage.esFavoritoEjercicio(a.id));
+
+  document.getElementById("resultadosTitulo").textContent = `${lista.length} resultado${lista.length === 1 ? "" : "s"}`;
+  pintarLista("resultadosLista", lista, "No encontramos actividades con esos filtros.");
+}
+
+document.getElementById("inputBuscar").addEventListener("input", (e) => { filtroTexto = e.target.value; actualizarVista(); });
+
+document.getElementById("btnSorprendeme").addEventListener("click", () => {
+  const a = CatalogoCreatividad.aleatorio({ edad: edadElegida, duracionMax: tiempoElegido || undefined });
+  irAActividad(a.id);
+});
+
+if (window.location.hash === "#galeria") {
+  setTimeout(() => document.getElementById("galeria").scrollIntoView({ behavior: "smooth" }), 300);
+}
+
+// ── Modal perfil (lógica compartida con el resto del sitio) ──
+PerfilModal.iniciar(render);
+
+renderFiltros();
+render();
+</script>
+</body>
+</html>

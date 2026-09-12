@@ -74,6 +74,8 @@ function _snapshotLocal() {
     reflexiones: leer("reflexiones", []),
     mezclasSonido: leer("mezclasSonido", []),
     progresoSonido: leer("progresoSonido", { minutosTotales: 0, sesiones: 0 }),
+    creaciones: leer("creaciones", []),
+    progresoCreatividad: leer("progresoCreatividad", { total: 0, porTipo: {} }),
     actualizadoEl: new Date().toISOString(),
   };
 }
@@ -138,12 +140,17 @@ const Storage = {
     const jugadas = new Set();
     Object.keys(progreso).forEach(juegoId => {
       if (progreso[juegoId].partidas <= 0) return;
-      // Los juegos de Mindfulness (ex-categoría "calma") se movieron de
-      // JUEGOS a MINDFULNESS, pero el progreso ya guardado sigue viviendo
-      // acá — probamos ambos catálogos para no perder esa información.
-      const juego = (typeof CatalogoJuegos !== "undefined" && CatalogoJuegos.porId(juegoId))
-        || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(juegoId));
-      if (juego) jugadas.add(juego.categoria);
+      // Los juegos de Mindfulness (ex-categoría "calma") y de Creatividad
+      // (ex-categoría "creatividad") se movieron de JUEGOS a sus propias
+      // secciones, pero el progreso ya guardado sigue viviendo acá — probamos
+      // los tres catálogos para no perder esa información. CatalogoCreatividad
+      // usa `seccion` en vez de `categoria`, por eso el fallback distinto.
+      const juegoJuegos = typeof CatalogoJuegos !== "undefined" && CatalogoJuegos.porId(juegoId);
+      const juegoMindfulness = typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(juegoId);
+      const juegoCreatividad = typeof CatalogoCreatividad !== "undefined" && CatalogoCreatividad.porId(juegoId);
+      if (juegoJuegos) jugadas.add(juegoJuegos.categoria);
+      else if (juegoMindfulness) jugadas.add(juegoMindfulness.categoria);
+      else if (juegoCreatividad) jugadas.add(juegoCreatividad.seccion);
     });
     return jugadas;
   },
@@ -305,6 +312,95 @@ const Storage = {
     _programarSincronizacion();
   },
 
+  // Modo de edad de Creatividad: sólo filtra qué actividades se
+  // muestran en el portal (ver arquitectura de Creatividad, punto 1:
+  // no hay ningún concepto de "edad" en el resto del sitio, así que
+  // esto es una preferencia de este dispositivo, no de la cuenta —
+  // por eso no se sincroniza a la nube ni pasa por _snapshotLocal.
+  getEdadCreatividad() {
+    return leer("edadCreatividad", null);
+  },
+  setEdadCreatividad(edad) {
+    escribir("edadCreatividad", edad);
+  },
+
+  // ── CREATIVIDAD: galería de creaciones guardadas ──
+  // Cada creación es privada por defecto (regla 8 del diseño de
+  // Creatividad): nunca se manda a analytics ni se usa para comparar
+  // usuarios entre sí. `contenido` es texto para historias/poemas/
+  // personajes/mundos, o un dataURL de imagen para dibujos.
+  getCreaciones(tipo) {
+    const todas = leer("creaciones", []);
+    return tipo ? todas.filter(c => c.tipo === tipo) : todas;
+  },
+  getCreacion(id) {
+    return leer("creaciones", []).find(c => c.id === id) || null;
+  },
+  guardarCreacion({ tipo, titulo, contenido, meta = {} }) {
+    const creaciones = leer("creaciones", []);
+    const nueva = {
+      id: "c" + Date.now(), tipo, titulo: (titulo || "").trim().slice(0, 80),
+      contenido, meta, favorito: false, creadoEl: new Date().toISOString(),
+    };
+    creaciones.unshift(nueva);
+    escribir("creaciones", creaciones.slice(0, 300));
+    Storage.registrarActividadHoy();
+    const progreso = leer("progresoCreatividad", { total: 0, porTipo: {} });
+    progreso.total += 1;
+    progreso.porTipo[tipo] = (progreso.porTipo[tipo] || 0) + 1;
+    escribir("progresoCreatividad", progreso);
+    _programarSincronizacion();
+    return nueva;
+  },
+  actualizarCreacion(id, cambios) {
+    const creaciones = leer("creaciones", []);
+    const idx = creaciones.findIndex(c => c.id === id);
+    if (idx < 0) return null;
+    creaciones[idx] = { ...creaciones[idx], ...cambios };
+    escribir("creaciones", creaciones);
+    _programarSincronizacion();
+    return creaciones[idx];
+  },
+  duplicarCreacion(id) {
+    const original = Storage.getCreacion(id);
+    if (!original) return null;
+    return Storage.guardarCreacion({
+      tipo: original.tipo, titulo: `${original.titulo} (copia)`,
+      contenido: original.contenido, meta: original.meta,
+    });
+  },
+  eliminarCreacion(id) {
+    const creaciones = leer("creaciones", []).filter(c => c.id !== id);
+    escribir("creaciones", creaciones);
+    _programarSincronizacion();
+  },
+  toggleFavoritoCreacion(id) {
+    const creaciones = leer("creaciones", []);
+    const c = creaciones.find(x => x.id === id);
+    if (!c) return false;
+    c.favorito = !c.favorito;
+    escribir("creaciones", creaciones);
+    _programarSincronizacion();
+    return c.favorito;
+  },
+  getProgresoCreatividad() {
+    return leer("progresoCreatividad", { total: 0, porTipo: {} });
+  },
+
+  // Anti-repetición del motor generativo de Creatividad: recuerda las
+  // últimas claves generadas (actividad + combinación) para que
+  // "Sorprendeme" evite repetir lo que el usuario ya vio hace poco.
+  // Es un historial corto y descartable, no se sincroniza a la nube
+  // (no vale la pena: es sólo para no repetir en la sesión reciente).
+  getHistorialGeneraciones() {
+    return leer("historialGeneracionesCreatividad", []);
+  },
+  registrarGeneracion(clave) {
+    const historial = leer("historialGeneracionesCreatividad", []);
+    historial.unshift(clave);
+    escribir("historialGeneracionesCreatividad", historial.slice(0, 40));
+  },
+
   // ── BIBLIOTECA SONORA: mezclas guardadas ──
   // Una mezcla guarda sólo la configuración (qué pistas + qué volumen),
   // nunca audio — es un preset, no una grabación.
@@ -368,6 +464,8 @@ const Storage = {
         if (datos.reflexiones) escribir("reflexiones", datos.reflexiones);
         if (datos.mezclasSonido) escribir("mezclasSonido", datos.mezclasSonido);
         if (datos.progresoSonido) escribir("progresoSonido", datos.progresoSonido);
+        if (datos.creaciones) escribir("creaciones", datos.creaciones);
+        if (datos.progresoCreatividad) escribir("progresoCreatividad", datos.progresoCreatividad);
       } else {
         // Primera vez que esta cuenta de Google inicia sesión: el
         // progreso que ya tenía este dispositivo como invitado pasa

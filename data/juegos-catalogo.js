@@ -31,7 +31,6 @@ const CATEGORIAS = [
   { id: "reflejos",     nombre: "Reflejos",      icono: "⚡", color: "#c9a97e" },
   { id: "palabras",     nombre: "Palabras",      icono: "🔤", color: "#7ed6e4" },
   { id: "emociones",    nombre: "Emociones",     icono: "❤️", color: "#e08a8a" },
-  { id: "creatividad",  nombre: "Creatividad",   icono: "🎨", color: "#c98ac2" },
   { id: "logica",       nombre: "Lógica",        icono: "🧩", color: "#0e4d5c" },
   { id: "numeros",      nombre: "Números",       icono: "🔢", color: "#3a5a6a" },
   { id: "flexibilidad", nombre: "Flexibilidad",  icono: "🌀", color: "#2aaec2" },
@@ -109,18 +108,6 @@ const JUEGOS = [
   { id: "detective-pensamientos", nombre: "El detective de pensamientos", descripcion: "Identificá distorsiones cognitivas comunes.", categoria: "emociones", edadMin: 14, dificultad: "dificil", duracion: "5-8 min", tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true, archivo: "js/juegos/detective-pensamientos.js" },
   { id: "pensamiento-flexible", nombre: "Pensamiento flexible", descripcion: "Encontrá interpretaciones alternativas.", categoria: "emociones", edadMin: 12, dificultad: "media", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/pensamiento-flexible.js" },
   { id: "amigo-interior", nombre: "El amigo interior", descripcion: "Elegí respuestas autocompasivas ante un error.", categoria: "emociones", edadMin: 12, dificultad: "media", duracion: "3-5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/amigo-interior.js" },
-
-  // ───────── 🎨 CREATIVIDAD ─────────
-  { id: "tres-palabras", nombre: "Tres palabras", descripcion: "Creá algo (una frase, una idea) con tres palabras al azar.", categoria: "creatividad", edadMin: 8, dificultad: "facil", duracion: "3-5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/tres-palabras.js" },
-  { id: "dibujo-libre", nombre: "Dibujo libre", descripcion: "Pintá o dibujá libremente en la pantalla.", categoria: "creatividad", edadMin: 4, dificultad: "facil", duracion: "libre", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/dibujo-libre.js" },
-  { id: "dibuja-emocion", nombre: "Dibujá una emoción", descripcion: "Representá una emoción con formas y colores.", categoria: "creatividad", edadMin: 6, dificultad: "facil", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/dibuja-emocion.js" },
-  { id: "historia-infinita", nombre: "Historia infinita", descripcion: "Continuá una historia que nunca termina.", categoria: "creatividad", edadMin: 8, dificultad: "facil", duracion: "5-10 min", tipo: "social", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/historia-infinita.js" },
-  { id: "objeto-imposible", nombre: "Objeto imposible", descripcion: "Diseñá un objeto absurdo que no podría existir.", categoria: "creatividad", edadMin: 8, dificultad: "facil", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/objeto-imposible.js" },
-  { id: "collage-mental", nombre: "Collage mental", descripcion: "Combiná imágenes y conceptos sin relación aparente.", categoria: "creatividad", edadMin: 10, dificultad: "media", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/collage-mental.js" },
-  { id: "metafora", nombre: "Metáfora", descripcion: "Completá metáforas de forma original.", categoria: "creatividad", edadMin: 12, dificultad: "media", duracion: "3-5 min", tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true, archivo: "js/juegos/metafora.js" },
-  { id: "que-ves", nombre: "¿Qué ves?", descripcion: "Interpretá formas abstractas.", categoria: "creatividad", edadMin: 6, dificultad: "facil", duracion: "3 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/que-ves.js" },
-  { id: "garabato", nombre: "Garabato", descripcion: "Convertí un garabato al azar en algo reconocible.", categoria: "creatividad", edadMin: 6, dificultad: "facil", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/garabato.js" },
-  { id: "final-alternativo", nombre: "Final alternativo", descripcion: "Cambiá el final de una historia conocida.", categoria: "creatividad", edadMin: 10, dificultad: "facil", duracion: "5 min", tipo: "individual", movil: true, puntuable: false, logros: true, disponible: true, archivo: "js/juegos/final-alternativo.js" },
 
   // ───────── 🧩 LÓGICA ─────────
   { id: "secuencias", nombre: "Secuencias", descripcion: "Completá el patrón que sigue.", categoria: "logica", edadMin: 8, dificultad: "media", duracion: "3-5 min", tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true, archivo: "js/juegos/secuencias.js" },

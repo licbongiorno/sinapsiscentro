@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cargando… | SINAPSIS</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#08202e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/juego.css">
+<link rel="stylesheet" href="css/ejercicios.css">
+<style>
+  #cvContenedor { max-width: 520px; margin: 0 auto; padding: 76px 16px 60px; }
+  .cv-barra { position: fixed; top: 0; left: 0; right: 0; z-index: 500; height: 64px; padding: 0 16px;
+    display: flex; align-items: center; justify-content: space-between; background: rgba(247,242,235,0.92);
+    backdrop-filter: blur(14px); border-bottom: 1px solid rgba(8,32,46,0.06); }
+  .cv-titulo-cat { font-size: 0.78rem; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; text-align: center; }
+  .cv-titulo { font-size: 1.5rem; margin-bottom: 6px; text-align: center; }
+  .cv-desc { font-size: 0.9rem; color: var(--text-mid); text-align: center; margin-bottom: 18px; line-height: 1.6; }
+  .cv-ingredientes { background: white; border-radius: var(--r); padding: 16px 18px; box-shadow: 0 4px 14px rgba(8,32,46,0.06); margin-bottom: 14px; }
+  .cv-ingrediente { font-size: 0.92rem; color: var(--navy); margin-bottom: 8px; line-height: 1.5; }
+  .cv-ingrediente:last-child { margin-bottom: 0; }
+  .cv-ingrediente b { color: var(--teal-deep); }
+  .cv-inspiracion-chip { display: inline-block; background: var(--teal-pale); color: var(--teal-deep); font-weight: 700;
+    border-radius: 50px; padding: 5px 14px; margin: 3px 4px 3px 0; font-size: 0.85rem; }
+  .cv-sonido-fila { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 14px; }
+  .cv-toggle-fila { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
+  .cv-toggle-btn { border: 2px solid var(--teal-pale); background: white; border-radius: 50px; padding: 8px 18px; font-weight: 700; font-size: 0.85rem; cursor: pointer; color: var(--text-mid); }
+  .cv-toggle-btn.activo { background: var(--navy); border-color: var(--navy); color: white; }
+  .cv-lienzo-wrap { text-align: center; }
+  .cv-lienzo { background: white; border-radius: var(--r-lg); border: 2px solid var(--teal-pale); touch-action: none; max-width: 100%; width: 100%; height: 320px; display: block; margin: 0 auto 12px; }
+  .cv-lienzo-controles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 14px; }
+  .cv-color-btn { width: 28px; height: 28px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 1px var(--teal-pale); cursor: pointer; padding: 0; }
+  .cv-icon-btn { border: none; background: var(--teal-pale); color: var(--teal-deep); border-radius: 50px; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+  .cv-fila-botones { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+  .cv-fila-botones-h { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+  .cv-final { text-align: center; }
+  .cv-final-emoji { font-size: 2.2rem; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="cv-barra" id="cvBarra" style="display:none;">
+  <button class="ee-volver" id="cvVolver" aria-label="Volver a Creatividad">←</button>
+  <div style="font-weight:800;color:var(--navy);font-size:0.85rem;">🎨 Creatividad</div>
+  <div style="width:38px;"></div>
+</div>
+
+<div id="cvContenedor">
+  <p style="text-align:center;color:var(--text-soft);">Cargando…</p>
+</div>
+
+<main id="juego-area" hidden>
+  <h1 class="jg-titulo" id="jgTitulo">Cargando…</h1>
+  <p class="jg-instruccion" id="jgInstruccion"></p>
+  <div id="jgContenedor"></div>
+</main>
+
+<div id="cvError" hidden style="text-align:center; padding: 100px 20px;">
+  <p style="font-size:1.1rem; color:#3a5a6a; margin-bottom:20px;">No encontramos esa actividad 🎨</p>
+  <a href="creatividad.html" style="color:#1a7a8a; font-weight:700;">← Volver a Creatividad</a>
+</div>
+
+<!-- MODAL PERFIL (no se abre desde acá, pero storage/perfil lo necesitan cargado en algunas páginas — se omite intencionalmente: esta pantalla es de reproducción pura, el perfil se gestiona desde el portal) -->
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+<script src="data/creatividad-elementos.js"></script>
+<script src="js/creatividad-motor.js"></script>
+<script src="data/creatividad-actividades.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/perfil.js"></script>
+<script src="js/logros.js"></script>
+<script src="js/exportar.js"></script>
+<script src="js/beep.js"></script>
+<script src="js/lienzo.js"></script>
+<script src="js/audio-engine.js"></script>
+<script src="js/game-engine.js"></script>
+<script type="module">
+const params = new URLSearchParams(window.location.search);
+const actividadId = params.get("id");
+const actividad = actividadId ? CatalogoCreatividad.porId(actividadId) : null;
+
+if (!actividad || !actividad.activo) {
+  document.getElementById("cvContenedor").hidden = true;
+  document.getElementById("cvError").hidden = false;
+} else {
+  document.title = `${actividad.titulo} | SINAPSIS`;
+  document.getElementById("cvBarra").style.display = "flex";
+  document.getElementById("cvVolver").addEventListener("click", () => { window.location.href = "creatividad.html"; });
+
+  const edad = Storage.getEdadCreatividad() || 99;
+  const cat = CatalogoCreatividad.seccionPorId(actividad.seccion);
+  let resultado = null;       // ingredientes generados/inspiración actual
+  let salidaElegida = actividad.salida === "eleccion" ? "texto" : actividad.salida;
+  let sonidoSonando = false;
+  const SONIDO_ID = "cv-sonido";
+
+  const MOTORES = {
+    "animal-imposible": () => CreatividadMotor.generarAnimalImposible({ edad }),
+    "personaje": () => CreatividadMotor.generarPersonaje({ edad }),
+    "mundo": () => CreatividadMotor.generarMundo({ edad }),
+    "historia": () => CreatividadMotor.generarHistoria({ edad }),
+    "combinar": () => CreatividadMotor.combinar(actividad.bancos || []),
+  };
+
+  function resolverPrompt() {
+    const r = { consigna: actividad.consigna };
+    if (actividad.inspiracion) {
+      const { bancos, cantidad } = actividad.inspiracion;
+      if (bancos.length === 1) {
+        const elegidos = CreatividadMotor.elegir(CreatividadMotor.bancos[bancos[0]], cantidad);
+        r.inspiracion = Array.isArray(elegidos) ? elegidos : [elegidos];
+      } else {
+        r.inspiracion = bancos.map(nombre => CreatividadMotor.elegir(CreatividadMotor.bancos[nombre]));
+      }
+    }
+    if (actividad.restriccionAleatoria) {
+      r.restriccion = CreatividadMotor.elegir(RESTRICCIONES);
+    }
+    return r;
+  }
+
+  function generar() {
+    resultado = actividad.tipo === "generador" ? (MOTORES[actividad.motor] || (() => ({})))() : resolverPrompt();
+  }
+
+  const ETIQUETAS_INGREDIENTE = {
+    cabeza: "Cabeza de", cuerpo: "Cuerpo de", cola: "Cola de", color: "Color", textura: "Textura",
+    habilidad: "Habilidad especial", habitat: "Vive en",
+    semilla: "Personaje", objeto: "Lleva consigo", lugar: "Vive en / está en", deseo: "Desea",
+    problema: "Su problema", companero: "Compañero", secreto: "Secreto", limitacion: "Limitación",
+    ambiente: "Ambiente", habitante: "Habitante", recurso: "Recurso clave", regla: "Regla especial", conflicto: "Conflicto",
+    genero: "Género", protagonista: "Protagonista", aliado: "Aliado", obstaculo: "Obstáculo", giro: "Giro", restriccion: "Restricción",
+  };
+
+  function renderIngredientes(r) {
+    if (r.tipo === "combinacion") {
+      return r.elementos.map(e => `<div class="cv-ingrediente">${e.valor}</div>`).join("");
+    }
+    return Object.entries(r).filter(([k]) => k !== "tipo").map(([k, v]) =>
+      `<div class="cv-ingrediente"><b>${ETIQUETAS_INGREDIENTE[k] || k}:</b> ${v}</div>`).join("");
+  }
+
+  function generadorBonito() {
+    return {
+      "animal-imposible": "🐾 Tu animal imposible", "personaje": "🎭 Tu personaje", "mundo": "🌎 Tu mundo",
+      "historia": "📖 Los ingredientes de tu historia", "combinar": "🧩 Tu combinación",
+    }[actividad.motor] || "Tu resultado";
+  }
+
+  function renderIntro() {
+    const cont = document.getElementById("cvContenedor");
+    let html = `<p class="cv-titulo-cat">${cat ? cat.icono + " " + cat.nombre : ""}</p>
+      <h1 class="cv-titulo">${actividad.titulo}</h1>`;
+
+    if (actividad.tipo === "generador") {
+      html += `<div class="cv-ingredientes"><p style="font-weight:800;margin-bottom:8px;color:var(--navy);">${generadorBonito()}</p>${renderIngredientes(resultado)}</div>
+        <div class="cv-fila-botones-h"><button class="ee-btn ee-btn-secundario" id="cvRegenerar">🎲 Generar otra combinación</button></div>`;
+    } else {
+      html += `<p class="cv-desc">${resultado.consigna}</p>`;
+      if (resultado.inspiracion) {
+        html += `<div style="text-align:center;margin-bottom:14px;">${resultado.inspiracion.map(i => `<span class="cv-inspiracion-chip">${i}</span>`).join("")}</div>
+          <div class="cv-fila-botones-h"><button class="ee-btn ee-btn-secundario" id="cvRegenerar">🎲 Otras palabras</button></div>`;
+      }
+      if (resultado.restriccion) {
+        html += `<div class="cv-ingredientes"><b>Restricción:</b> ${resultado.restriccion}</div>`;
+      }
+    }
+
+    if (actividad.sonido) {
+      html += `<div class="cv-sonido-fila">
+        <button class="ee-btn ee-btn-secundario" id="cvSonido">▶️ Reproducir sonido</button>
+      </div>`;
+    }
+
+    if (actividad.salida === "eleccion") {
+      html += `<div class="cv-toggle-fila">
+        <button class="cv-toggle-btn activo" data-modo="texto">✍️ Escribir</button>
+        <button class="cv-toggle-btn" data-modo="dibujo">🎨 Dibujar</button>
+      </div>`;
+    }
+
+    html += `<div id="cvEntrada"></div>
+      <div class="cv-fila-botones" id="cvAcciones"></div>`;
+
+    cont.innerHTML = html;
+
+    const btnRegenerar = document.getElementById("cvRegenerar");
+    if (btnRegenerar) btnRegenerar.addEventListener("click", () => { generar(); renderIntro(); });
+
+    const btnSonido = document.getElementById("cvSonido");
+    if (btnSonido) btnSonido.addEventListener("click", () => {
+      if (!AudioEngine.disponible()) { alert("Tu navegador no soporta reproducir sonido acá."); return; }
+      if (sonidoSonando) {
+        AudioEngine.detenerPista(SONIDO_ID);
+        sonidoSonando = false;
+        btnSonido.textContent = "▶️ Reproducir sonido";
+      } else {
+        if (actividad.sonido === "campana") AudioEngine.tocarCampana("campana");
+        else if (actividad.sonido === "gong") AudioEngine.tocarCampana("gong");
+        else AudioEngine.iniciarPistaProcedural(SONIDO_ID, actividad.sonido);
+        if (actividad.sonido !== "campana" && actividad.sonido !== "gong") {
+          AudioEngine.setVolumen(SONIDO_ID, 0.5);
+          sonidoSonando = true;
+          btnSonido.textContent = "⏸️ Detener sonido";
+        }
+      }
+    });
+
+    document.querySelectorAll(".cv-toggle-btn").forEach(btn => btn.addEventListener("click", () => {
+      document.querySelectorAll(".cv-toggle-btn").forEach(b => b.classList.remove("activo"));
+      btn.classList.add("activo");
+      salidaElegida = btn.dataset.modo;
+      renderEntrada();
+    }));
+
+    renderEntrada();
+  }
+
+  let lienzo = null;
+
+  function renderEntrada() {
+    const entrada = document.getElementById("cvEntrada");
+    if (salidaElegida === "dibujo") {
+      entrada.innerHTML = `<div class="cv-lienzo-wrap">
+        <canvas id="cvLienzo" class="cv-lienzo" width="600" height="500"></canvas>
+        <div class="cv-lienzo-controles">
+          ${["#0d2535","#2aaec2","#e08a8a","#8ac9a9","#c9a97e","#a98ac9"].map(c => `<button class="cv-color-btn" data-c="${c}" style="background:${c}"></button>`).join("")}
+          <button class="cv-icon-btn" data-borrar="1">🧽 Goma</button>
+          <button class="cv-icon-btn" data-deshacer="1">↩️ Deshacer</button>
+          <button class="cv-icon-btn" data-limpiar="1">🗑️ Limpiar</button>
+        </div>
+      </div>`;
+      const canvas = document.getElementById("cvLienzo");
+      lienzo = crearLienzoDibujable(canvas, { colorInicial: "#0d2535", grosor: 5 });
+      entrada.querySelectorAll("[data-c]").forEach(b => b.addEventListener("click", () => lienzo.setColor(b.dataset.c)));
+      entrada.querySelector("[data-borrar]").addEventListener("click", () => lienzo.setModo("borrar"));
+      entrada.querySelector("[data-deshacer]").addEventListener("click", () => lienzo.deshacer());
+      entrada.querySelector("[data-limpiar]").addEventListener("click", () => lienzo.limpiar());
+    } else {
+      entrada.innerHTML = `<textarea class="ee-textarea" id="cvTextarea" placeholder="Escribí acá…" style="min-height:180px;"></textarea>`;
+    }
+    renderAcciones();
+  }
+
+  function tipoDeCreacion() {
+    if (salidaElegida === "dibujo") return "dibujo";
+    if (actividad.motor === "personaje") return "personaje";
+    if (actividad.motor === "mundo") return "mundo";
+    if (actividad.seccion === "escribir") {
+      return /poema|haiku|verso/i.test(actividad.titulo) ? "poema" : "historia";
+    }
+    return "idea";
+  }
+
+  function contenidoParaGuardar() {
+    if (salidaElegida === "dibujo") return lienzo ? lienzo.dataUrl() : null;
+    const ta = document.getElementById("cvTextarea");
+    return ta ? ta.value.trim() : null;
+  }
+
+  function renderAcciones() {
+    const acciones = document.getElementById("cvAcciones");
+    acciones.innerHTML = `
+      <button class="ee-btn ee-btn-principal" id="cvGuardar">💾 Guardar en mi galería</button>
+      <button class="ee-btn ee-btn-texto" id="cvSinGuardar">Continuar sin guardar</button>`;
+    document.getElementById("cvGuardar").addEventListener("click", guardarCreacion);
+    document.getElementById("cvSinGuardar").addEventListener("click", () => { window.location.href = "creatividad.html"; });
+  }
+
+  function guardarCreacion() {
+    const contenido = contenidoParaGuardar();
+    if (!contenido || (typeof contenido === "string" && salidaElegida !== "dibujo" && !contenido.trim())) {
+      alert("Todavía no creaste nada para guardar.");
+      return;
+    }
+    const tipo = tipoDeCreacion();
+    const creacion = Storage.guardarCreacion({
+      tipo, titulo: actividad.titulo, contenido,
+      meta: { actividadId: actividad.id, resultado },
+    });
+    // Reutiliza el mismo store de progreso que Ejercicios/Mindfulness
+    // (keyeado por id, no por catálogo) para que "Realizados" y los
+    // minutos totales funcionen igual acá que en el resto del sitio.
+    Storage.registrarEjercicioCompletado(actividad.id, { minutos: actividad.duracion });
+    const nuevos = Logros.evaluarTrasCreacion();
+    mostrarFinal(creacion, tipo, nuevos);
+  }
+
+  function mostrarFinal(creacion, tipo, nuevos) {
+    const cont = document.getElementById("cvContenedor");
+    cont.innerHTML = `
+      <div class="cv-final">
+        <p class="cv-final-emoji">🎉</p>
+        <h1 class="cv-titulo">¡Guardado!</h1>
+        <p class="cv-desc">Tu creación ya está en Mi galería.</p>
+        <div class="cv-fila-botones-h" id="cvExportar"></div>
+        <div class="cv-fila-botones" style="margin-top:18px;">
+          <button class="ee-btn ee-btn-secundario" id="cvOtraVez">🔁 Crear otra vez</button>
+          <button class="ee-btn ee-btn-secundario" id="cvVerGaleria">🖼️ Ver mi galería</button>
+          <button class="ee-btn ee-btn-texto" id="cvVolverFinal">← Volver a Creatividad</button>
+        </div>
+        ${nuevos.length ? `<div class="ee-logros-nuevos">${nuevos.map(l => `<div class="ee-logro-chip">${l.icono} ${l.nombre}</div>`).join("")}</div>` : ""}
+      </div>`;
+
+    const exportar = document.getElementById("cvExportar");
+    if (tipo === "dibujo") {
+      exportar.innerHTML = `<button class="ee-btn ee-btn-secundario" id="cvDescargarImg">🖼️ Descargar imagen</button>`;
+      document.getElementById("cvDescargarImg").addEventListener("click", () => {
+        Exportar.descargarImagen({ dataUrl: creacion.contenido, nombreArchivo: Exportar.nombreArchivo({ tipo: "Dibujo", titulo: actividad.titulo, extension: "png" }) });
+      });
+    } else {
+      exportar.innerHTML = `
+        <button class="ee-btn ee-btn-secundario" id="cvDescargarTxt">📄 Descargar TXT</button>
+        <button class="ee-btn ee-btn-secundario" id="cvImprimir">🖨️ Imprimir / PDF</button>`;
+      document.getElementById("cvDescargarTxt").addEventListener("click", () => {
+        Exportar.descargarTxt({
+          contenido: `${creacion.titulo}\n\n${creacion.contenido}`,
+          nombreArchivo: Exportar.nombreArchivo({ tipo, titulo: actividad.titulo, extension: "txt" }),
+        });
+      });
+      document.getElementById("cvImprimir").addEventListener("click", () => {
+        Exportar.imprimir({ tituloPagina: creacion.titulo, bloques: [{ titulo: creacion.titulo, texto: creacion.contenido }] });
+      });
+    }
+    document.getElementById("cvOtraVez").addEventListener("click", () => window.location.reload());
+    document.getElementById("cvVerGaleria").addEventListener("click", () => { window.location.href = "creatividad.html#galeria"; });
+    document.getElementById("cvVolverFinal").addEventListener("click", () => { window.location.href = "creatividad.html"; });
+  }
+
+  /**
+   * Las actividades "motor: juego" son las migradas de Juegos (misma
+   * categoría "creatividad" de antes): usan GameEngine directamente,
+   * igual que mindfulness-item.html hace con sus prácticas migradas
+   * de motor "juego". window.__geVolverA hace que los botones de
+   * volver/pausa/otro juego del HUD vuelvan a Creatividad en vez de
+   * a Juegos (ver comentario en js/game-engine.js).
+   */
+  function iniciarJuego() {
+    document.getElementById("cvBarra").style.display = "none";
+    document.getElementById("cvContenedor").hidden = true;
+    document.getElementById("juego-area").hidden = false;
+    document.getElementById("jgTitulo").textContent = actividad.titulo;
+    document.getElementById("jgInstruccion").textContent = actividad.descripcion;
+    window.__geVolverA = "creatividad.html";
+    const script = document.createElement("script");
+    script.src = actividad.archivo;
+    document.body.appendChild(script);
+  }
+
+  let arrancado = false;
+  Auth.onCambio((user) => {
+    if (arrancado) return;
+    arrancado = true;
+    const listo = actividad.motor === "juego" ? iniciarJuego : () => { generar(); renderIntro(); };
+    if (user) Storage.vincularUsuario(user).then(listo);
+    else listo();
+  });
+}
+</script>
+</body>
+</html>

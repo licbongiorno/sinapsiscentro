@@ -174,12 +174,14 @@ const GameEngine = (() => {
       if (alFinalizarCallback) alFinalizarCallback();
 
       // Igual que en logros.js/storage.js: algunos de estos juegos ahora
-      // también se reproducen desde Mindfulness (mindfulness-item.html),
-      // que no carga data/juegos-catalogo.js — sin esta guarda,
-      // CatalogoJuegos quedaría indefinido ahí y esto cortaría en seco
-      // antes de llegar a mostrar la pantalla final.
+      // también se reproducen desde Mindfulness o Creatividad
+      // (mindfulness-item.html/creatividad-item.html), que no cargan
+      // data/juegos-catalogo.js — sin esta guarda, CatalogoJuegos
+      // quedaría indefinido ahí y esto cortaría en seco antes de
+      // llegar a mostrar la pantalla final.
       const juego = (typeof CatalogoJuegos !== "undefined" && CatalogoJuegos.porId(estado.juegoId))
         || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(estado.juegoId))
+        || (typeof CatalogoCreatividad !== "undefined" && CatalogoCreatividad.porId(estado.juegoId))
         || null;
       const progresoAnterior = Storage.getProgreso(estado.juegoId);
       const mejoroRecord = puntaje > (progresoAnterior.mejorPuntaje || 0) && puntaje > 0;
