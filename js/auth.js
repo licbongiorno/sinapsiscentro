@@ -33,13 +33,24 @@ const Auth = (() => {
     listeners.forEach((fn) => fn(usuarioActual));
   });
 
+  // Si volvemos de un signInWithRedirect, esto atrapa errores que de
+  // otra forma quedarían silenciosos (dominio no autorizado, etc.) —
+  // el usuario logueado en sí ya se refleja solo vía onAuthStateChanged.
+  firebase.auth().getRedirectResult().catch((err) => {
+    console.error("Auth: error al volver del login con Google", err);
+    alert("No se pudo iniciar sesión con Google. Probá de nuevo.");
+  });
+
   return {
     iniciarSesion() {
-      return firebase.auth().signInWithPopup(provider).catch((err) => {
-        console.error("Auth: error al iniciar sesión", err);
-        alert("No se pudo iniciar sesión con Google. Probá de nuevo.");
-        throw err;
-      });
+      // signInWithRedirect en vez de signInWithPopup: la ventana
+      // emergente de Google queda a merced de bloqueadores de
+      // pop-ups del navegador o extensiones (Brave Shields y
+      // similares), que la pueden bloquear en silencio sin que
+      // Firebase llegue a enterarse — el click no hacía nada visible.
+      // El redirect navega la página entera, así que no depende de
+      // que se permitan pop-ups.
+      return firebase.auth().signInWithRedirect(provider);
     },
     cerrarSesion() {
       return firebase.auth().signOut();
