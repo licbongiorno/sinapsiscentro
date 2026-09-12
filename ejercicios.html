@@ -109,6 +109,16 @@
     <h2>Mi espacio</h2>
     <div class="eh-stats-grid" id="statsGrid"></div>
   </section>
+
+  <section class="eh-seccion" id="seccionReflexiones" hidden>
+    <h2>✍️ Mis reflexiones</h2>
+    <p class="eh-seccion-sub" id="reflexionesNota">Lo que escribiste en los ejercicios de escritura. Solo vos podés verlo.</p>
+    <div class="eh-reflexiones-acciones">
+      <button class="ee-btn ee-btn-secundario" id="btnDescargarReflexionesTxt">⬇️ Descargar (.txt)</button>
+      <button class="ee-btn ee-btn-secundario" id="btnImprimirReflexiones">🖨️ Imprimir / PDF</button>
+    </div>
+    <div class="eh-lista" id="reflexionesLista"></div>
+  </section>
 </div>
 
 <div id="vistaResultados" hidden>
@@ -234,6 +244,87 @@ function renderMiEspacio() {
     <div class="eh-stat-card"><div class="valor">${totalCompletados}</div><div class="etiqueta">ejercicios hechos</div></div>
     <div class="eh-stat-card"><div class="valor">${minutos}</div><div class="etiqueta">minutos totales</div></div>
     <div class="eh-stat-card"><div class="valor">${categorias}</div><div class="etiqueta">categorías exploradas</div></div>`;
+
+  renderReflexiones();
+}
+
+function filaReflexion(r) {
+  const ej = CatalogoEjercicios.porId(r.ejercicioId);
+  const fecha = new Date(r.creadoEl).toLocaleDateString("es-AR", { day: "numeric", month: "short", year: "numeric" });
+  return `<div class="eh-reflexion-card">
+    <button class="eh-reflexion-borrar" data-r="${r.id}" aria-label="Borrar reflexión">🗑</button>
+    <div class="eh-reflexion-header">
+      <span class="eh-reflexion-titulo">${escapeHtml(ej ? ej.titulo : "Ejercicio")}</span>
+      <span class="eh-reflexion-fecha">${fecha}</span>
+    </div>
+    <p class="eh-reflexion-texto">${escapeHtml(r.texto)}</p>
+  </div>`;
+}
+
+function renderReflexiones() {
+  const reflexiones = Storage.getReflexiones();
+  document.getElementById("seccionReflexiones").hidden = reflexiones.length === 0;
+  document.getElementById("reflexionesLista").innerHTML = reflexiones.map(filaReflexion).join("");
+  document.getElementById("reflexionesLista").querySelectorAll("[data-r]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (confirm("¿Borrar esta reflexión? No se puede deshacer.")) {
+        Storage.eliminarReflexion(btn.dataset.r);
+        renderReflexiones();
+      }
+    });
+  });
+
+  const user = typeof Auth !== "undefined" ? Auth.usuarioActual() : null;
+  document.getElementById("reflexionesNota").textContent = user
+    ? "Lo que escribiste en los ejercicios de escritura. Como iniciaste sesión, ya se respalda automáticamente en tu cuenta."
+    : "Lo que escribiste en los ejercicios de escritura, guardado en este dispositivo. Iniciá sesión con Google para respaldarlo también en tu cuenta.";
+}
+
+function textoReflexionesParaExportar() {
+  const reflexiones = Storage.getReflexiones();
+  if (!reflexiones.length) return null;
+  return reflexiones.map(r => {
+    const ej = CatalogoEjercicios.porId(r.ejercicioId);
+    const fecha = new Date(r.creadoEl).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" });
+    return `${ej ? ej.titulo : "Ejercicio"} — ${fecha}\n${r.texto}`;
+  }).join("\n\n──────────\n\n");
+}
+
+function descargarReflexionesTxt() {
+  const texto = textoReflexionesParaExportar();
+  if (!texto) { alert("Todavía no guardaste ninguna reflexión."); return; }
+  const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "mis-reflexiones-sinapsis.txt";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function imprimirReflexiones() {
+  const reflexiones = Storage.getReflexiones();
+  if (!reflexiones.length) { alert("Todavía no guardaste ninguna reflexión."); return; }
+  const filas = reflexiones.map(r => {
+    const ej = CatalogoEjercicios.porId(r.ejercicioId);
+    const fecha = new Date(r.creadoEl).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" });
+    return `<div style="margin-bottom:26px;">
+      <p style="font-weight:700;margin-bottom:6px;">${escapeHtml(ej ? ej.titulo : "Ejercicio")} — ${escapeHtml(fecha)}</p>
+      <p style="white-space:pre-wrap;line-height:1.6;">${escapeHtml(r.texto)}</p>
+    </div>`;
+  }).join("");
+  const ventana = window.open("", "_blank");
+  if (!ventana) { alert("Tu navegador bloqueó la ventana de impresión. Permití los pop-ups para esta página e intentá de nuevo."); return; }
+  ventana.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+    <title>Mis reflexiones — SINAPSIS</title>
+    <style>body{font-family:Georgia,serif;max-width:640px;margin:40px auto;padding:0 20px;color:#0d2535;}
+    h1{margin-bottom:24px;}</style></head>
+    <body><h1>Mis reflexiones</h1>${filas}</body></html>`);
+  ventana.document.close();
+  ventana.focus();
+  ventana.print();
 }
 
 function renderExploracion() {
@@ -306,6 +397,9 @@ document.getElementById("btnSorprendeme").addEventListener("click", () => {
   const ej = CatalogoEjercicios.aleatorio({ duracionMax: tiempoElegido || undefined });
   irAEjercicio(ej.id);
 });
+
+document.getElementById("btnDescargarReflexionesTxt").addEventListener("click", descargarReflexionesTxt);
+document.getElementById("btnImprimirReflexiones").addEventListener("click", imprimirReflexiones);
 
 // ── Modal perfil (lógica compartida con juegos.html) ──
 PerfilModal.iniciar(render);

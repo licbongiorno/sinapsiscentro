@@ -219,10 +219,14 @@ const ExerciseEngine = (() => {
         </div>
       </div>`;
     document.getElementById("eeContinuarSinGuardar").addEventListener("click", avanzar);
-    document.getElementById("eeGuardarReflexion").addEventListener("click", () => {
+    document.getElementById("eeGuardarReflexion").addEventListener("click", (e) => {
       const texto = document.getElementById("eeTextarea").value.trim();
-      if (texto) Storage.guardarReflexion(ejercicio.id, texto);
-      avanzar();
+      if (!texto) { avanzar(); return; }
+      Storage.guardarReflexion(ejercicio.id, texto);
+      e.target.textContent = "Guardado ✓";
+      e.target.disabled = true;
+      document.getElementById("eeContinuarSinGuardar").disabled = true;
+      timers.push(setTimeout(avanzar, 500));
     });
   }
 

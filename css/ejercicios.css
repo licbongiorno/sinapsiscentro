@@ -88,6 +88,16 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 .eh-stat-card .valor { font-size: 1.3rem; font-weight: 800; color: var(--teal-deep); font-family: 'Playfair Display', serif; }
 .eh-stat-card .etiqueta { font-size: 0.68rem; color: var(--text-soft); margin-top: 2px; }
 
+/* ── REFLEXIONES ── */
+.eh-reflexiones-acciones { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.eh-reflexion-card { background: white; border-radius: var(--r); padding: 16px; box-shadow: 0 2px 10px rgba(8,32,46,0.05); border: 1px solid rgba(42,174,194,0.06); position: relative; }
+.eh-reflexion-header { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; padding-right: 26px; }
+.eh-reflexion-titulo { font-weight: 700; font-size: 0.85rem; color: var(--teal-deep); }
+.eh-reflexion-fecha { font-size: 0.72rem; color: var(--text-soft); white-space: nowrap; }
+.eh-reflexion-texto { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; white-space: pre-wrap; }
+.eh-reflexion-borrar { position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 0.95rem; cursor: pointer; opacity: 0.5; }
+.eh-reflexion-borrar:hover { opacity: 1; }
+
 /* Modal de perfil: ver css/perfil-modal.css (compartido con juegos.css) */
 
 @media(min-width: 700px) {
