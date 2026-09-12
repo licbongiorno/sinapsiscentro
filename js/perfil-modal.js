@@ -53,6 +53,15 @@ const PerfilModal = (() => {
         Auth.iniciarSesion().then(() => {
           const u = Auth.usuarioActual();
           if (u) Storage.vincularUsuario(u).then(() => { onCambioCallback(); abrir(); });
+        }).catch((err) => {
+          // Auth.iniciarSesion() ya se encarga de avisar con un alert cuando
+          // Firebase sí está inicializado pero el login falla (ver auth.js).
+          // Acá cubrimos el otro caso: Firebase nunca llegó a inicializarse
+          // (bloqueado por el navegador, sin conexión, etc.) — sin este
+          // catch, el click no hacía absolutamente nada visible.
+          if (err && err.message === "Firebase no configurado") {
+            alert("No se pudo conectar con Google en este momento (puede ser un bloqueador de scripts o un problema de conexión). Podés seguir usando la app sin iniciar sesión: tu progreso se sigue guardando en este dispositivo.");
+          }
         });
       });
     }
