@@ -65,8 +65,6 @@ header.jp-header::before {
   background: radial-gradient(ellipse 70% 50% at 80% 0%, rgba(126,214,228,0.25), transparent 60%);
 }
 .jp-topbar { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
-.jp-brand { display: flex; align-items: center; gap: 10px; color: white; font-weight: 800; font-size: 1.1rem; }
-.jp-brand span.mark { font-size: 1.4rem; }
 .jp-perfil-btn {
   width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);
   background: rgba(255,255,255,0.1); color: white; font-size: 1.3rem; cursor: pointer;

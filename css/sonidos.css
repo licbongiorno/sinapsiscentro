@@ -15,7 +15,6 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; color: va
 header.sh-header { background: linear-gradient(160deg, var(--navy), var(--teal-deep)); padding: 20px 20px 40px; border-radius: 0 0 32px 32px; position: relative; overflow: hidden; }
 header.sh-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 80% 0%, rgba(126,214,228,0.2), transparent 60%); }
 .sh-topbar { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
-.sh-brand { display: flex; align-items: center; gap: 10px; color: white; font-weight: 800; font-size: 1.05rem; }
 .sh-intro { position: relative; z-index: 1; margin-top: 18px; color: white; max-width: 480px; }
 .sh-intro h1 { color: white; font-size: 1.5rem; margin-bottom: 6px; }
 .sh-intro p { color: rgba(255,255,255,0.72); font-size: 0.9rem; line-height: 1.5; }

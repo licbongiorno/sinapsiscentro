@@ -50,7 +50,7 @@ const NECESIDADES = [
 
 const EJERCICIOS = [
   // ═══════ ❤️ EMOCIONES ═══════
-  { id: "termometro-emocional", titulo: "Termómetro emocional", descripcion: "Registrá qué tan intensa es una emoción que estás sintiendo ahora.",
+  { id: "medir-la-intensidad-emocional", titulo: "Termómetro emocional", descripcion: "Registrá qué tan intensa es una emoción que estás sintiendo ahora.",
     objetivo: "Puede ayudarte a tomar distancia de la intensidad de lo que sentís.", categoria: "emociones", etiquetas: ["emociones", "escala"],
     duracion: 3, dificultad: "facil", tipo: "escala",
     mensajeInicial: "Pensá en algo que estés sintiendo ahora mismo.",
@@ -89,7 +89,7 @@ const EJERCICIOS = [
       { tipo: "mensaje", texto: "Identificar la necesidad es el primer paso para poder pedirla o buscarla." },
     ], activo: true, version: 1 },
 
-  { id: "semaforo-emocional", titulo: "Semáforo emocional", descripcion: "Clasificá la intensidad de lo que sentís como si fuera un semáforo.",
+  { id: "clasificar-la-emocion-con-colores", titulo: "Semáforo emocional", descripcion: "Clasificá la intensidad de lo que sentís como si fuera un semáforo.",
     objetivo: "Puede ayudarte a decidir qué tipo de respuesta necesita el momento.", categoria: "emociones", etiquetas: ["emociones", "regulación"],
     duracion: 3, dificultad: "facil", tipo: "seleccion",
     mensajeInicial: "Verde: manejable. Amarillo: atención. Rojo: necesita una pausa.",
