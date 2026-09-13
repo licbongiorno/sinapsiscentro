@@ -14,7 +14,28 @@
  *   PerfilModal.iniciar(render); // render = la función que refresca esa página
  */
 const PerfilModal = (() => {
-  let modalPerfil, onCambioCallback;
+  let modalPerfil, onCambioCallback, disparador;
+
+  function elementosFocables() {
+    return [...modalPerfil.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+      .filter(el => !el.disabled && el.offsetParent !== null);
+  }
+
+  function atraparFoco(e) {
+    if (e.key === "Escape") { e.preventDefault(); cerrar(); return; }
+    if (e.key !== "Tab") return;
+    const focables = elementosFocables();
+    if (!focables.length) return;
+    const primero = focables[0], ultimo = focables[focables.length - 1];
+    if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+    else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+  }
+
+  function cerrar() {
+    modalPerfil.hidden = true;
+    modalPerfil.removeEventListener("keydown", atraparFoco);
+    if (disparador) disparador.focus();
+  }
 
   function actualizarBotonPerfil(user) {
     const btn = document.getElementById("btnPerfil");
@@ -40,7 +61,7 @@ const PerfilModal = (() => {
           <button id="btnCerrarSesion" style="border:none;background:none;color:var(--teal);font-weight:700;font-size:0.78rem;cursor:pointer;">Salir</button>
         </div>`;
       document.getElementById("btnCerrarSesion").addEventListener("click", () => {
-        Auth.cerrarSesion().then(() => { Storage.desvincularUsuario(); modalPerfil.hidden = true; onCambioCallback(); });
+        Auth.cerrarSesion().then(() => { Storage.desvincularUsuario(); cerrar(); onCambioCallback(); });
       });
     } else {
       cuentaDiv.innerHTML = `
@@ -81,6 +102,9 @@ const PerfilModal = (() => {
     document.getElementById("modalXpTexto").textContent = `${info.xpEnNivel} / ${info.xpParaSiguiente} XP`;
     document.getElementById("modalNivelFill").style.width = `${Math.min(100, (info.xpEnNivel / info.xpParaSiguiente) * 100)}%`;
     modalPerfil.hidden = false;
+    modalPerfil.addEventListener("keydown", atraparFoco);
+    const focables = elementosFocables();
+    if (focables.length) focables[0].focus();
   }
 
   return {
@@ -88,11 +112,11 @@ const PerfilModal = (() => {
     iniciar(onCambio) {
       onCambioCallback = onCambio || (() => {});
       modalPerfil = document.getElementById("modalPerfil");
-      document.getElementById("btnPerfil").addEventListener("click", abrir);
-      modalPerfil.addEventListener("click", (e) => { if (e.target === modalPerfil) modalPerfil.hidden = true; });
+      document.getElementById("btnPerfil").addEventListener("click", (e) => { disparador = e.currentTarget; abrir(); });
+      modalPerfil.addEventListener("click", (e) => { if (e.target === modalPerfil) cerrar(); });
       document.getElementById("btnGuardarPerfil").addEventListener("click", () => {
         Perfil.actualizarNombre(document.getElementById("inputNombre").value);
-        modalPerfil.hidden = true;
+        cerrar();
         onCambioCallback();
       });
       Auth.onCambio((user) => {

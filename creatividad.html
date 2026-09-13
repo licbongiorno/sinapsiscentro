@@ -124,13 +124,13 @@
 
 <!-- MODAL VER/EDITAR CREACIÓN -->
 <div class="cv-modal-overlay" id="modalCreacion" hidden>
-  <div class="cv-modal" id="modalCreacionContenido"></div>
+  <div class="cv-modal" id="modalCreacionContenido" role="dialog" aria-modal="true"></div>
 </div>
 
 <!-- MODAL PERFIL -->
 <div class="jp-modal-overlay" id="modalPerfil" hidden>
-  <div class="jp-modal">
-    <h2>Mi perfil</h2>
+  <div class="jp-modal" role="dialog" aria-modal="true" aria-labelledby="modalPerfilTitulo">
+    <h2 id="modalPerfilTitulo">Mi perfil</h2>
     <div id="modalCuentaGoogle" style="margin-bottom:18px;"></div>
     <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Elegí tu avatar</label>
     <div class="jp-avatares" id="avataresLista"></div>
@@ -177,7 +177,7 @@ function irAActividad(id) { window.location.href = `creatividad-item.html?id=${i
 function filaActividad(a) {
   const cat = CatalogoCreatividad.seccionPorId(a.seccion);
   const fav = Storage.esFavoritoEjercicio(a.id);
-  return `<div class="eh-fila" data-a="${a.id}">
+  return `<div class="eh-fila" data-a="${a.id}" tabindex="0" role="group" aria-label="${a.titulo}">
     <div class="icono">${cat ? cat.icono : "🎨"}</div>
     <div class="info">
       <div class="titulo">${a.titulo}</div>
@@ -194,6 +194,9 @@ function pintarLista(contenedorId, actividades, vacioTexto) {
   el.innerHTML = actividades.map(filaActividad).join("");
   el.querySelectorAll("[data-a]").forEach(fila => {
     fila.addEventListener("click", (e) => { if (!e.target.closest("[data-fav]")) irAActividad(fila.dataset.a); });
+    fila.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === " ") && !e.target.closest("[data-fav]")) { e.preventDefault(); irAActividad(fila.dataset.a); }
+    });
   });
   el.querySelectorAll("[data-fav]").forEach(btn => {
     btn.addEventListener("click", (e) => {
@@ -247,7 +250,7 @@ function tarjetaGaleria(c) {
   const previa = c.tipo === "dibujo"
     ? `<img src="${c.contenido}" alt="">`
     : `<div class="cv-g-snippet">${escapeHtml((c.contenido || "").slice(0, 140))}</div>`;
-  return `<div class="cv-galeria-card" data-c="${c.id}">
+  return `<div class="cv-galeria-card" data-c="${c.id}" tabindex="0" role="group" aria-label="${escapeHtml(c.titulo || "Sin título")}">
     <button class="cv-galeria-fav" data-favc="${c.id}" aria-label="Favorito" aria-pressed="${c.favorito}">${c.favorito ? "❤️" : "🤍"}</button>
     ${previa}
     <div class="cv-g-titulo">${ICONO_TIPO[c.tipo] || "💭"} ${escapeHtml(c.titulo || "Sin título")}</div>
@@ -260,10 +263,15 @@ function renderGaleria() {
   const grid = document.getElementById("galeriaGrid");
   if (!creaciones.length) { grid.innerHTML = `<p class="eh-vacio">Todavía no guardaste ninguna creación. ¡Probá una actividad!</p>`; return; }
   grid.innerHTML = creaciones.map(tarjetaGaleria).join("");
-  grid.querySelectorAll("[data-c]").forEach(card => card.addEventListener("click", (e) => {
-    if (e.target.closest("[data-favc]")) return;
-    abrirCreacion(card.dataset.c);
-  }));
+  grid.querySelectorAll("[data-c]").forEach(card => {
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("[data-favc]")) return;
+      abrirCreacion(card.dataset.c);
+    });
+    card.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === " ") && !e.target.closest("[data-favc]")) { e.preventDefault(); abrirCreacion(card.dataset.c); }
+    });
+  });
   grid.querySelectorAll("[data-favc]").forEach(btn => btn.addEventListener("click", (e) => {
     e.stopPropagation();
     const ahora = Storage.toggleFavoritoCreacion(btn.dataset.favc);
@@ -272,9 +280,31 @@ function renderGaleria() {
   }));
 }
 
+let disparadorCreacion = null;
+
+function cerrarModalCreacion() {
+  const overlay = document.getElementById("modalCreacion");
+  overlay.hidden = true;
+  overlay.removeEventListener("keydown", atraparFocoCreacion);
+  if (disparadorCreacion) disparadorCreacion.focus();
+}
+
+function atraparFocoCreacion(e) {
+  const overlay = document.getElementById("modalCreacion");
+  if (e.key === "Escape") { e.preventDefault(); cerrarModalCreacion(); return; }
+  if (e.key !== "Tab") return;
+  const focables = [...overlay.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+    .filter(el => !el.disabled && el.offsetParent !== null);
+  if (!focables.length) return;
+  const primero = focables[0], ultimo = focables[focables.length - 1];
+  if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+  else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+}
+
 function abrirCreacion(id) {
   const c = Storage.getCreacion(id);
   if (!c) return;
+  disparadorCreacion = document.activeElement;
   const overlay = document.getElementById("modalCreacion");
   const cont = document.getElementById("modalCreacionContenido");
   const esDibujo = c.tipo === "dibujo";
@@ -293,13 +323,16 @@ function abrirCreacion(id) {
       <button class="ee-btn ee-btn-texto" id="btnCerrarModal">Cerrar</button>
     </div>`;
   overlay.hidden = false;
+  overlay.addEventListener("keydown", atraparFocoCreacion);
+  const primerFocable = overlay.querySelector('button, a[href], input, select, textarea');
+  if (primerFocable) primerFocable.focus();
 
   const btnGuardarEdicion = document.getElementById("btnGuardarEdicion");
   if (btnGuardarEdicion) btnGuardarEdicion.addEventListener("click", () => {
     const nuevo = document.getElementById("modalTextoCreacion").value;
     const actualizada = Storage.actualizarCreacion(id, { contenido: nuevo });
     if (!actualizada) { alert("No se pudo guardar el cambio: el almacenamiento de este dispositivo está lleno."); return; }
-    overlay.hidden = true;
+    cerrarModalCreacion();
     renderGaleria();
   });
   document.getElementById("btnDescargar").addEventListener("click", () => {
@@ -316,17 +349,17 @@ function abrirCreacion(id) {
   document.getElementById("btnDuplicar").addEventListener("click", () => {
     const duplicada = Storage.duplicarCreacion(id);
     if (!duplicada) { alert("No se pudo duplicar: el almacenamiento de este dispositivo está lleno."); return; }
-    overlay.hidden = true;
+    cerrarModalCreacion();
     renderGaleria();
   });
   document.getElementById("btnEliminar").addEventListener("click", () => {
     if (confirm("¿Eliminar esta creación? No se puede deshacer.")) {
       Storage.eliminarCreacion(id);
-      overlay.hidden = true;
+      cerrarModalCreacion();
       renderGaleria();
     }
   });
-  document.getElementById("btnCerrarModal").addEventListener("click", () => { overlay.hidden = true; });
+  document.getElementById("btnCerrarModal").addEventListener("click", cerrarModalCreacion);
 }
 
 function renderExploracion() {

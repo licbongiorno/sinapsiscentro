@@ -114,8 +114,8 @@
 
 <!-- MODAL PERFIL -->
 <div class="jp-modal-overlay" id="modalPerfil" hidden>
-  <div class="jp-modal">
-    <h2>Mi perfil</h2>
+  <div class="jp-modal" role="dialog" aria-modal="true" aria-labelledby="modalPerfilTitulo">
+    <h2 id="modalPerfilTitulo">Mi perfil</h2>
     <div id="modalCuentaGoogle" style="margin-bottom:18px;"></div>
     <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Elegí tu avatar</label>
     <div class="jp-avatares" id="avataresLista"></div>
@@ -156,7 +156,7 @@ function irAPractica(id) { window.location.href = `mindfulness-item.html?id=${id
 function filaPractica(m) {
   const cat = CatalogoMindfulness.categoriaPorId(m.categoria);
   const fav = Storage.esFavoritoEjercicio(m.id);
-  return `<div class="eh-fila" data-m="${m.id}">
+  return `<div class="eh-fila" data-m="${m.id}" tabindex="0" role="group" aria-label="${m.titulo}">
     <div class="icono">${cat ? cat.icono : "🧘"}</div>
     <div class="info">
       <div class="titulo">${m.titulo}</div>
@@ -173,6 +173,9 @@ function pintarLista(contenedorId, practicas, vacioTexto) {
   el.innerHTML = practicas.map(filaPractica).join("");
   el.querySelectorAll("[data-m]").forEach(fila => {
     fila.addEventListener("click", (e) => { if (!e.target.closest("[data-fav]")) irAPractica(fila.dataset.m); });
+    fila.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === " ") && !e.target.closest("[data-fav]")) { e.preventDefault(); irAPractica(fila.dataset.m); }
+    });
   });
   el.querySelectorAll("[data-fav]").forEach(btn => {
     btn.addEventListener("click", (e) => {

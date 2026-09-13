@@ -104,8 +104,8 @@
 
 <!-- MODAL PERFIL -->
 <div class="jp-modal-overlay" id="modalPerfil" hidden>
-  <div class="jp-modal">
-    <h2>Mi perfil</h2>
+  <div class="jp-modal" role="dialog" aria-modal="true" aria-labelledby="modalPerfilTitulo">
+    <h2 id="modalPerfilTitulo">Mi perfil</h2>
     <div id="modalCuentaGoogle" style="margin-bottom:18px;"></div>
     <label style="font-size:0.8rem;color:var(--text-soft);font-weight:700;">Elegí tu avatar</label>
     <div class="jp-avatares" id="avataresLista"></div>
@@ -217,7 +217,7 @@ function render() {
 function tarjetaJuego(juego) {
   const cat = CatalogoJuegos.categoriaPorId(juego.categoria);
   const fav = juego.disponible && Storage.esFavoritoJuego(juego.id);
-  return `<div class="jp-juego-card ${juego.disponible ? "" : "proximamente"}" ${juego.disponible ? `data-juego="${juego.id}"` : ""} style="${juego.disponible ? "cursor:pointer" : ""}">
+  return `<div class="jp-juego-card ${juego.disponible ? "" : "proximamente"}" ${juego.disponible ? `data-juego="${juego.id}" tabindex="0" role="group" aria-label="${juego.nombre}"` : ""} style="${juego.disponible ? "cursor:pointer" : ""}">
     <div class="icono">${cat.icono}</div>
     <div class="info">
       <div class="nombre">${juego.nombre}</div>
@@ -235,6 +235,9 @@ function pintarListaJuegos(contenedorId, juegos, vacioTexto) {
   el.innerHTML = juegos.map(tarjetaJuego).join("");
   el.querySelectorAll("[data-juego]").forEach(card => {
     card.addEventListener("click", (e) => { if (!e.target.closest("[data-fav]")) irAJuego(card.dataset.juego); });
+    card.addEventListener("keydown", (e) => {
+      if ((e.key === "Enter" || e.key === " ") && !e.target.closest("[data-fav]")) { e.preventDefault(); irAJuego(card.dataset.juego); }
+    });
   });
   el.querySelectorAll("[data-fav]").forEach(btn => {
     btn.addEventListener("click", (e) => {
