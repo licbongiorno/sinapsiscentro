@@ -241,10 +241,11 @@ function renderPistas() {
     const disponible = p.tipo === "procedural" || !!p.audioUrl;
     const activa = pistasEnMezcla[p.id] !== undefined;
     const esAproximacion = p.tipo === "procedural" && ["lluvia", "viento", "tormenta", "olas", "arroyo", "fuego"].includes(p.generador);
+    const esGenerativa = p.tipo === "procedural" && !!p.generador && p.generador.startsWith("pad-");
     return `<button class="sh-pista-card ${activa ? "activa" : ""} ${disponible ? "" : "no-disponible"}" data-pista="${p.id}" ${disponible ? "" : "disabled"} ${p.descripcion ? `title="${p.descripcion}"` : ""}>
       <span class="emoji">${p.icono}</span>
       <span class="titulo">${p.titulo}</span>
-      <span class="estado">${disponible ? (activa ? "Sonando" : "Tocar") : "Próximamente"}${esAproximacion ? " · síntesis aprox." : ""}</span>
+      <span class="estado">${disponible ? (activa ? "Sonando" : "Tocar") : "Próximamente"}${esAproximacion ? " · síntesis aprox." : ""}${esGenerativa ? " · generativa" : ""}</span>
     </button>`;
   }).join("");
   document.querySelectorAll("#pistasGrid [data-pista]:not([disabled])").forEach(btn =>

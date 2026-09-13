@@ -63,21 +63,27 @@ const PISTAS = [
   { id: "son-agua", titulo: "Agua", categoria: "sonidos", icono: "💧", tipo: "procedural", generador: "arroyo",
     descripcion: "Aproximación sintetizada de agua en movimiento — no es una grabación real." },
 
-  // ── 🎵 MÚSICA (necesitan archivo real) ──
-  { id: "mus-relajante", titulo: "Relajante", categoria: "musica", icono: "🎵", tipo: "archivo", audioUrl: null },
-  { id: "mus-meditacion", titulo: "Meditación", categoria: "musica", icono: "🧘", tipo: "archivo", audioUrl: null },
-  { id: "mus-concentracion", titulo: "Concentración", categoria: "musica", icono: "🎯", tipo: "archivo", audioUrl: null },
-  { id: "mus-sueno", titulo: "Sueño", categoria: "musica", icono: "🌙", tipo: "archivo", audioUrl: null },
-  { id: "mus-piano", titulo: "Piano", categoria: "musica", icono: "🎹", tipo: "archivo", audioUrl: null },
-  { id: "mus-ambient", titulo: "Ambient", categoria: "musica", icono: "✨", tipo: "archivo", audioUrl: null },
+  // ── 🎵 MÚSICA (generativa: notas sintetizadas en una escala, nunca suena igual dos veces) ──
+  { id: "mus-relajante", titulo: "Relajante", categoria: "musica", icono: "🎵", tipo: "procedural", generador: "pad-relajante",
+    descripcion: "Notas sueltas en escala pentatónica mayor, con espacio entre ellas. Música generativa, no una grabación fija." },
+  { id: "mus-meditacion", titulo: "Meditación", categoria: "musica", icono: "🧘", tipo: "procedural", generador: "pad-meditacion",
+    descripcion: "Registro grave, notas espaciadas y un tono cálido. Música generativa, no una grabación fija." },
+  { id: "mus-concentracion", titulo: "Concentración", categoria: "musica", icono: "🎯", tipo: "procedural", generador: "pad-concentracion",
+    descripcion: "Un fondo simple y discreto, pensado para no distraer. Música generativa, no una grabación fija." },
+  { id: "mus-sueno", titulo: "Sueño", categoria: "musica", icono: "🌙", tipo: "procedural", generador: "pad-sueno",
+    descripcion: "Registro muy grave y notas lentas y espaciadas. Música generativa, no una grabación fija." },
+  { id: "mus-piano", titulo: "Piano", categoria: "musica", icono: "🎹", tipo: "procedural", generador: "pad-piano",
+    descripcion: "Notas breves, como pequeños toques de piano, en escala mayor. Música generativa, no una grabación fija." },
+  { id: "mus-ambient", titulo: "Ambient", categoria: "musica", icono: "✨", tipo: "procedural", generador: "pad-ambient",
+    descripcion: "Una textura más amplia y brillante, con varias voces superpuestas. Música generativa, no una grabación fija." },
 ];
 
 // ── "¿Qué necesitás?" — combinan pistas que YA funcionan (procedurales) ──
 const NECESIDADES_SONIDOS = [
-  { id: "relajarme", emoji: "😌", texto: "Relajarme", mezcla: [{ pista: "ruido-rosa", volumen: 0.4 }] },
-  { id: "meditar", emoji: "🧘", texto: "Meditar", mezcla: [{ pista: "ruido-rosa", volumen: 0.2 }], campanaInicial: "cuenco" },
-  { id: "dormir", emoji: "🌙", texto: "Prepararme para dormir", mezcla: [{ pista: "ruido-marron", volumen: 0.5 }] },
-  { id: "concentrarme", emoji: "🎯", texto: "Concentrarme", mezcla: [{ pista: "ruido-blanco", volumen: 0.3 }] },
+  { id: "relajarme", emoji: "😌", texto: "Relajarme", mezcla: [{ pista: "ruido-rosa", volumen: 0.3 }, { pista: "mus-relajante", volumen: 0.2 }] },
+  { id: "meditar", emoji: "🧘", texto: "Meditar", mezcla: [{ pista: "ruido-rosa", volumen: 0.15 }, { pista: "mus-meditacion", volumen: 0.2 }], campanaInicial: "cuenco" },
+  { id: "dormir", emoji: "🌙", texto: "Prepararme para dormir", mezcla: [{ pista: "ruido-marron", volumen: 0.4 }, { pista: "mus-sueno", volumen: 0.2 }] },
+  { id: "concentrarme", emoji: "🎯", texto: "Concentrarme", mezcla: [{ pista: "ruido-blanco", volumen: 0.25 }, { pista: "mus-concentracion", volumen: 0.15 }] },
   { id: "estudiar", emoji: "📖", texto: "Estudiar", mezcla: [{ pista: "ruido-rosa", volumen: 0.25 }] },
   { id: "ambiente", emoji: "🌿", texto: "Crear un ambiente", mezcla: [{ pista: "ruido-marron", volumen: 0.3 }, { pista: "ruido-rosa", volumen: 0.2 }] },
   { id: "naturaleza", emoji: "🏞️", texto: "Conectar con la naturaleza", mezcla: [{ pista: "amb-rio", volumen: 0.4 }, { pista: "amb-viento", volumen: 0.15 }] },

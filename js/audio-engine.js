@@ -3,12 +3,14 @@
  * =====================================================
  * TODO lo que produce acá es generado en tiempo real con Web Audio
  * API — ningún archivo de audio. Esto es deliberado y es lo que
- * permite que "ruido", "campanas" y "binaurales" funcionen de
- * verdad, sin necesitar mp3.
+ * permite que "ruido", "campanas", "binaurales", los ambientes
+ * sintetizados (lluvia, viento, olas, arroyo, fuego, tormenta) y la
+ * música generativa (pads de notas en escala, ver PRESETS_PAD)
+ * funcionen de verdad, sin necesitar mp3.
  *
- * Lo que este motor NO PUEDE hacer: sintetizar sonidos ambientales
- * realistas (lluvia, bosque, mar) ni música — eso necesita archivos
- * de audio reales. Las pistas de tipo "archivo" (ver
+ * Lo que este motor NO PUEDE hacer: reproducir grabaciones reales
+ * (un bosque grabado, una canción de piano real) — eso necesita
+ * archivos de audio reales. Las pistas de tipo "archivo" (ver
  * data/sonidos-datos.js) están preparadas para recibir una URL de
  * audio real el día que existan; hasta entonces, el motor las
  * reconoce pero avisa que no están disponibles todavía (ver
@@ -20,6 +22,28 @@ const AudioEngine = (() => {
   let masterGain = null;
   const pistasActivas = {}; // id -> { gain, source?, osciladores?, tipo }
   let timerFadeId = null, timerStopId = null;
+
+  // ── Escalas y presets para la música generativa (pads) ──
+  const ESCALAS = {
+    pentaMayor: [0, 2, 4, 7, 9],
+    pentaMenor: [0, 3, 5, 7, 10],
+    mayor: [0, 2, 4, 5, 7, 9, 11],
+    lidio: [0, 2, 4, 6, 7, 9, 11],
+  };
+
+  function notaAFrecuencia(semitono, octava) {
+    const midi = (octava + 1) * 12 + semitono; // C0 = MIDI 12
+    return 440 * Math.pow(2, (midi - 69) / 12);
+  }
+
+  const PRESETS_PAD = {
+    relajante: { escala: "pentaMayor", octavaBase: 4, voces: 2, onda: "sine", notaMin: 3, notaMax: 6, gapMin: 1, gapMax: 3, ataque: 1.5, nivel: 0.15, filtro: 3000 },
+    meditacion: { escala: "pentaMenor", octavaBase: 3, voces: 3, onda: "sine", notaMin: 5, notaMax: 9, gapMin: 3, gapMax: 6, ataque: 2.5, nivel: 0.12, filtro: 1500 },
+    concentracion: { escala: "pentaMayor", octavaBase: 4, voces: 1, onda: "sine", notaMin: 4, notaMax: 7, gapMin: 0.5, gapMax: 1.5, ataque: 1, nivel: 0.08, filtro: 1200 },
+    sueno: { escala: "pentaMenor", octavaBase: 2, voces: 2, onda: "sine", notaMin: 6, notaMax: 10, gapMin: 4, gapMax: 8, ataque: 3, nivel: 0.12, filtro: 900 },
+    piano: { escala: "mayor", octavaBase: 4, voces: 1, onda: "triangle", notaMin: 1.5, notaMax: 3, gapMin: 1, gapMax: 2.5, ataque: 0.02, nivel: 0.18, filtro: 4000 },
+    ambient: { escala: "lidio", octavaBase: 4, voces: 3, onda: "sine", notaMin: 4, notaMax: 8, gapMin: 2, gapMax: 4, ataque: 2, nivel: 0.1, filtro: 2500 },
+  };
 
   function disponible() {
     return !!(window.AudioContext || window.webkitAudioContext);
@@ -363,7 +387,57 @@ const AudioEngine = (() => {
     return true;
   }
 
-  /** Punto de entrada único para pistas proceduales en loop (ruido y ambientes sintetizados). */
+  // ── Música generativa: notas sueltas en una escala, superpuestas como un pad.
+  // No es una grabación ni una canción fija: cada vez que suena, la secuencia
+  // de notas es distinta (aleatoria dentro de la escala y el registro del preset). ──
+  function iniciarPad(id, preset) {
+    const c = getCtx();
+    if (!c || !preset) return false;
+    detenerPista(id, true);
+    const gainMaestro = c.createGain(); gainMaestro.gain.value = 0;
+    const filtro = c.createBiquadFilter(); filtro.type = "lowpass"; filtro.frequency.value = preset.filtro;
+    filtro.connect(gainMaestro).connect(masterGain);
+
+    let activo = true;
+    const timeouts = [];
+    const escala = ESCALAS[preset.escala] || ESCALAS.pentaMayor;
+
+    function tocarNota() {
+      if (!activo) return;
+      const grado = escala[Math.floor(Math.random() * escala.length)];
+      const desvioOctava = Math.random() < 0.6 ? 0 : (Math.random() < 0.5 ? -1 : 1);
+      const freq = notaAFrecuencia(grado, preset.octavaBase + desvioOctava);
+      const dur = preset.notaMin + Math.random() * (preset.notaMax - preset.notaMin);
+
+      const gainNota = c.createGain(); gainNota.gain.value = 0.0001;
+      const osciladoresNota = [];
+      for (let i = 0; i < preset.voces; i++) {
+        const o = c.createOscillator();
+        o.type = preset.onda;
+        o.frequency.value = freq * (1 + (i - (preset.voces - 1) / 2) * 0.004); // leve detune, calidez
+        o.connect(gainNota);
+        o.start();
+        osciladoresNota.push(o);
+      }
+      gainNota.connect(filtro);
+      const nivel = preset.nivel * (0.7 + Math.random() * 0.3);
+      gainNota.gain.exponentialRampToValueAtTime(nivel, c.currentTime + preset.ataque);
+      gainNota.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + dur);
+      osciladoresNota.forEach(o => o.stop(c.currentTime + dur + 0.2));
+
+      const espera = (preset.gapMin + Math.random() * (preset.gapMax - preset.gapMin)) * 1000;
+      timeouts.push(setTimeout(tocarNota, espera));
+    }
+    tocarNota();
+
+    pistasActivas[id] = {
+      gain: gainMaestro, tipo: "pad",
+      detener: () => { activo = false; timeouts.forEach(t => clearTimeout(t)); },
+    };
+    return true;
+  }
+
+  /** Punto de entrada único para pistas proceduales en loop (ruido, ambientes y música generativa). */
   function iniciarPistaProcedural(id, generador) {
     if (generador === "lluvia") return iniciarLluvia(id);
     if (generador === "viento") return iniciarViento(id);
@@ -371,6 +445,7 @@ const AudioEngine = (() => {
     if (generador === "arroyo") return iniciarArroyo(id);
     if (generador === "fuego") return iniciarFuego(id);
     if (generador === "tormenta") return iniciarTormenta(id);
+    if (generador && generador.startsWith("pad-")) return iniciarPad(id, PRESETS_PAD[generador.slice(4)]);
     return iniciarRuido(id, generador); // blanco | rosa | marron | gris | verde
   }
 
