@@ -38,6 +38,7 @@
   .cv-modal-botones { display: flex; flex-wrap: wrap; gap: 8px; }
   .cv-tipo-chip { display: inline-block; background: var(--teal-pale); color: var(--teal-deep); font-size: 0.7rem; font-weight: 800; padding: 3px 10px; border-radius: 50px; margin-bottom: 8px; }
 </style>
+  <link rel="stylesheet" href="css/resource-nav.css">
   <link rel="stylesheet" href="css/accesibilidad.css">
 </head>
 <body>
@@ -46,10 +47,9 @@
   <div class="eh-topbar">
     <a href="index.html" class="eh-brand"><span>🧠</span> Sinapsis</a>
     <div style="display:flex;align-items:center;gap:10px;">
-      <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Juegos">🎮</a>
-      <a href="ejercicios.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Ejercicios">🧠</a>
-      <a href="mindfulness.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Mindfulness">🧘</a>
-      <a href="sonidos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Biblioteca Sonora">🎧</a>
+      <button class="rn-trigger" id="rnTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="rnPanel" aria-label="Ir a...">
+        <span></span><span></span><span></span>
+      </button>
       <button class="eh-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
     </div>
   </div>
@@ -58,6 +58,14 @@
     <p>No hay una única manera de crear. Un espacio para imaginar, escribir, dibujar, combinar ideas y descubrir nuevas formas de mirar.</p>
   </div>
 </header>
+<div class="rn-overlay" id="rnOverlay"></div>
+<nav class="rn-panel" id="rnPanel" aria-label="Secciones del sitio">
+  <div class="rn-panel-header">
+    <h2>Ir a...</h2>
+    <button class="rn-cerrar" id="rnCerrar" aria-label="Cerrar menú">✕</button>
+  </div>
+  <div class="rn-lista" id="rnLista"></div>
+</nav>
 <main>
 
 <section class="eh-selector">
@@ -151,6 +159,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 <script src="js/firebase-config.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/resource-nav.js"></script>
 <script src="data/creatividad-elementos.js"></script>
 <script src="js/creatividad-motor.js"></script>
 <script src="data/creatividad-actividades.js"></script>

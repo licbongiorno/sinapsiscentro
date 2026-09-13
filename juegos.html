@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/juegos.css">
+  <link rel="stylesheet" href="css/resource-nav.css">
   <link rel="stylesheet" href="css/accesibilidad.css">
 </head>
 <body>
@@ -26,11 +27,9 @@
   <div class="jp-topbar">
     <a href="index.html" class="jp-brand"><span class="mark">🧠</span> Sinapsis</a>
     <div style="display:flex;align-items:center;gap:10px;">
-      <a href="ejercicios.html" style="color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:700;">🧠 Ejercicios</a>
-      <a href="mindfulness.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Mindfulness">🧘</a>
-      <a href="creatividad.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Creatividad">🎨</a>
-      <a href="sonidos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Biblioteca Sonora">🎧</a>
-      <a href="infantil.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Zona Infantil">🧸</a>
+      <button class="rn-trigger" id="rnTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="rnPanel" aria-label="Ir a...">
+        <span></span><span></span><span></span>
+      </button>
       <button class="jp-perfil-btn" id="btnPerfil" aria-label="Mi perfil">👤</button>
     </div>
   </div>
@@ -44,6 +43,14 @@
     <div class="jp-stat-chip">🏆 <span id="statLogros">0</span>/<span id="statLogrosTotal">0</span></div>
   </div>
 </header>
+<div class="rn-overlay" id="rnOverlay"></div>
+<nav class="rn-panel" id="rnPanel" aria-label="Secciones del sitio">
+  <div class="rn-panel-header">
+    <h2>Ir a...</h2>
+    <button class="rn-cerrar" id="rnCerrar" aria-label="Cerrar menú">✕</button>
+  </div>
+  <div class="rn-lista" id="rnLista"></div>
+</nav>
 <main>
 
 <div class="jp-buscador">
@@ -126,6 +133,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 <script src="js/firebase-config.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/resource-nav.js"></script>
 <script src="data/juegos-catalogo.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/perfil.js"></script>

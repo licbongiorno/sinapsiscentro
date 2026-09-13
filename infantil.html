@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/infantil.css">
+  <link rel="stylesheet" href="css/resource-nav.css">
   <link rel="stylesheet" href="css/accesibilidad.css">
 </head>
 <body>
@@ -26,11 +27,9 @@
   <div class="ih-topbar">
     <a href="index.html" class="ih-brand"><span>🧸</span> Sinapsis</a>
     <div style="display:flex;align-items:center;gap:12px;">
-      <a href="juegos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Juegos">🎮</a>
-      <a href="ejercicios.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Ejercicios">🧠</a>
-      <a href="mindfulness.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Mindfulness">🧘</a>
-      <a href="creatividad.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Creatividad">🎨</a>
-      <a href="sonidos.html" style="color:rgba(255,255,255,0.8);font-size:1.1rem;" aria-label="Biblioteca Sonora">🎧</a>
+      <button class="rn-trigger" id="rnTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="rnPanel" aria-label="Ir a...">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
   <div class="ih-intro">
@@ -38,6 +37,14 @@
     <p>Un lugar para jugar, descubrir y aprender sobre vos.</p>
   </div>
 </header>
+<div class="rn-overlay" id="rnOverlay"></div>
+<nav class="rn-panel" id="rnPanel" aria-label="Secciones del sitio">
+  <div class="rn-panel-header">
+    <h2>Ir a...</h2>
+    <button class="rn-cerrar" id="rnCerrar" aria-label="Cerrar menú">✕</button>
+  </div>
+  <div class="rn-lista" id="rnLista"></div>
+</nav>
 <main>
 
 <!-- VISTA: PUERTAS (inicio) -->
@@ -95,6 +102,7 @@
 </div>
 
 </main>
+<script src="js/resource-nav.js"></script>
 <script src="data/infantil-datos.js"></script>
 <script src="js/infantil-storage.js"></script>
 <script>

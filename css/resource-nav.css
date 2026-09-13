@@ -1,0 +1,63 @@
+/**
+ * RESOURCE-NAV.CSS — Menú "Ir a..." compartido por las páginas de recursos
+ * ==========================================================================
+ * Antes cada header tenía una fila de íconos sueltos (sin texto) hacia
+ * las demás secciones: apretada en mobile y poco clara para quien no
+ * adivina qué significa cada emoji. Ahora un solo botón abre un panel
+ * tipo acordeón, con Inicio primero y el resto de los recursos por
+ * nombre, para que la persona usuaria pueda ir a cualquier sección sin
+ * tener que descifrar íconos.
+ */
+@import url("variables.css");
+
+.rn-trigger {
+  width: 42px; height: 42px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1); cursor: pointer; padding: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+}
+.rn-trigger span { display: block; width: 17px; height: 2px; background: white; border-radius: 2px; transition: transform 0.2s var(--easing), opacity 0.15s; }
+.rn-trigger[aria-expanded="true"] span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.rn-trigger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.rn-trigger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+.rn-overlay {
+  position: fixed; inset: 0; background: rgba(8,32,46,0.45);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s var(--easing); z-index: 300;
+}
+.rn-overlay.open { opacity: 1; pointer-events: auto; }
+
+.rn-panel {
+  position: fixed; top: 0; left: 0; right: 0; margin: 0 auto;
+  max-width: 480px; max-height: 82vh; overflow-y: auto;
+  background: white; border-radius: 0 0 var(--r-lg) var(--r-lg);
+  box-shadow: 0 24px 60px rgba(8,32,46,0.28);
+  z-index: 301; padding: 18px 16px 20px;
+  transform: translateY(-100%); transition: transform 0.32s var(--easing);
+}
+.rn-panel.open { transform: translateY(0); }
+
+.rn-panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; padding: 0 4px; }
+.rn-panel-header h2 { font-size: 0.95rem; font-weight: 800; color: var(--text); margin: 0; }
+.rn-cerrar {
+  width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--bg);
+  color: var(--text-soft); font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.rn-cerrar:hover, .rn-cerrar:focus-visible { background: var(--teal-pale); color: var(--teal-deep); }
+
+.rn-lista { display: flex; flex-direction: column; gap: 4px; }
+.rn-item {
+  display: flex; align-items: center; gap: 14px; padding: 13px 12px; border-radius: var(--r);
+  text-decoration: none; color: var(--text); font-weight: 700; font-size: 0.92rem;
+  transition: background 0.15s;
+}
+.rn-item:hover, .rn-item:focus-visible { background: var(--bg); outline: 2px solid var(--teal-mid); outline-offset: -2px; }
+.rn-item .rn-icono { font-size: 1.35rem; width: 30px; text-align: center; flex-shrink: 0; }
+.rn-item.rn-inicio { border-bottom: 1px solid rgba(8,32,46,0.08); margin-bottom: 6px; padding-bottom: 15px; }
+
+@media (min-width: 700px) {
+  .rn-panel { left: auto; right: 24px; top: 18px; margin: 0; border-radius: var(--r-lg); width: 340px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rn-panel, .rn-overlay, .rn-trigger span { transition-duration: 0.001ms !important; }
+}
