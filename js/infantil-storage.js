@@ -32,11 +32,28 @@ const LOGROS_INFANTIL = [
   { id: "primer-paso", nombre: "Primer paso", icono: "🌟", cumple: (ctx) => ctx.totalActividades >= 1 },
   { id: "explorador", nombre: "Explorador", icono: "🧭", cumple: (ctx) => ctx.totalActividades >= 10 },
   { id: "aventurero", nombre: "Aventurero", icono: "🏅", cumple: (ctx) => ctx.totalActividades >= 25 },
+  { id: "campeon", nombre: "Campeón", icono: "👑", cumple: (ctx) => ctx.totalActividades >= 50 },
+  { id: "leyenda", nombre: "Leyenda de la Zona Infantil", icono: "🏆", cumple: (ctx) => ctx.totalActividades >= 100 },
   { id: "curioso", nombre: "Curioso de todo", icono: "🪄", cumple: (ctx) => ctx.categoriasExploradas >= 4 },
+  { id: "curioso-total", nombre: "Probé de todo", icono: "🗺️",
+    cumple: (ctx) => typeof CatalogoInfantil !== "undefined" && ctx.categoriasExploradas >= CatalogoInfantil.categorias().length },
   { id: "racha-3", nombre: "3 días jugando", icono: "🔥", cumple: (ctx) => ctx.racha.dias >= 3 },
   { id: "racha-7", nombre: "Una semana entera", icono: "🔥", cumple: (ctx) => ctx.racha.dias >= 7 },
+  { id: "racha-30", nombre: "Un mes entero", icono: "🔥", cumple: (ctx) => ctx.racha.dias >= 30 },
+  { id: "estrellas-50", nombre: "Coleccionista de estrellas", icono: "⭐", cumple: (ctx) => ctx.estrellas >= 50 },
   { id: "emociones-5", nombre: "Explorador de emociones", icono: "❤️", cumple: (ctx) => (ctx.porCategoria.emociones || 0) >= 5 },
   { id: "calma-1", nombre: "Encontré mi calma", icono: "🧘", cumple: (ctx) => (ctx.porCategoria.calma || 0) >= 1 },
+  { id: "memoria-5", nombre: "Memoria de elefante", icono: "🧠", cumple: (ctx) => (ctx.porCategoria.memoria || 0) >= 5 },
+  { id: "atencion-5", nombre: "Ojo atento", icono: "🔎", cumple: (ctx) => (ctx.porCategoria.atencion || 0) >= 5 },
+  { id: "logica-5", nombre: "Pensador lógico", icono: "🧩", cumple: (ctx) => (ctx.porCategoria.logica || 0) >= 5 },
+  { id: "creatividad-3", nombre: "Artista", icono: "🎨", cumple: (ctx) => (ctx.porCategoria.creatividad || 0) >= 3 },
+  { id: "historias-3", nombre: "Cuentacuentos", icono: "📖", cumple: (ctx) => (ctx.porCategoria.historias || 0) >= 3 },
+  { id: "social-3", nombre: "Buen compañero", icono: "🤝", cumple: (ctx) => (ctx.porCategoria.social || 0) >= 3 },
+  { id: "clasificacion-3", nombre: "Organizador", icono: "🗂️", cumple: (ctx) => (ctx.porCategoria.clasificacion || 0) >= 3 },
+  { id: "secuencias-3", nombre: "Sigue la pista", icono: "🔗", cumple: (ctx) => (ctx.porCategoria.secuencias || 0) >= 3 },
+  { id: "sonidos-3", nombre: "Buen oído", icono: "🎵", cumple: (ctx) => (ctx.porCategoria.sonidos || 0) >= 3 },
+  { id: "formas-colores-3", nombre: "Ojo de artista", icono: "🌈", cumple: (ctx) => (ctx.porCategoria["formas-colores"] || 0) >= 3 },
+  { id: "animales-3", nombre: "Amigo de los animales", icono: "🐾", cumple: (ctx) => (ctx.porCategoria.animales || 0) >= 3 },
 ];
 
 const InfantilStorage = {
@@ -100,6 +117,7 @@ const InfantilStorage = {
       categoriasExploradas: InfantilStorage.getCategoriasExploradas().size,
       racha: InfantilStorage.getRacha(),
       porCategoria: InfantilStorage.getConteoPorCategoria(),
+      estrellas: InfantilStorage.getPerfil().estrellas || 0,
     };
     const yaTenia = new Set(InfantilStorage.getLogros());
     const nuevos = [];
