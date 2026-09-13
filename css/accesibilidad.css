@@ -1,0 +1,90 @@
+/**
+ * ACCESIBILIDAD.CSS — Modo accesible opcional
+ * ================================================
+ * Todo acá vive bajo la clase .modo-accesible en <html>, así que el
+ * diseño de siempre no cambia para nadie que no lo active. El botón
+ * ♿ (ver js/accesibilidad.js) agrega o quita esa clase y la recuerda
+ * entre visitas — cualquiera puede volver al diseño de siempre
+ * apretando el mismo botón.
+ *
+ * Alcance deliberadamente acotado a lo que es seguro de aplicar en
+ * TODAS las páginas sin romper diseños puntuales (juegos con
+ * elementos circulares chicos, tableros, etc.): tamaño de texto,
+ * contraste, movimiento y foco visible. No se agranda a la fuerza
+ * cualquier botón del sitio, porque en varios juegos eso rompería el
+ * tablero (ver comentario en js/accesibilidad.js).
+ */
+
+.modo-accesible {
+  --text: #000000;
+  --text-mid: #10202a;
+  --text-soft: #28363f;
+  font-size: 118%;
+}
+
+.modo-accesible body,
+.modo-accesible p,
+.modo-accesible li {
+  line-height: 1.75;
+}
+
+.modo-accesible a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.modo-accesible *:focus-visible {
+  outline: 3px solid #000 !important;
+  outline-offset: 3px !important;
+}
+
+/* Reduce el movimiento: las revelaciones al scrollear y demás
+   transiciones decorativas pasan a aparecer directas, sin animar. */
+.modo-accesible *,
+.modo-accesible *::before,
+.modo-accesible *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* El botón de accesibilidad en sí (inyectado por js/accesibilidad.js) */
+#btnAccesibilidad {
+  position: fixed;
+  bottom: 80px;
+  left: 16px;
+  z-index: 99999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: #0e4d5c;
+  color: #ffffff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(8, 32, 46, 0.35);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+#btnAccesibilidad:hover { transform: scale(1.06); }
+#btnAccesibilidad[aria-pressed="true"] {
+  background: #2aaec2;
+  box-shadow: 0 6px 20px rgba(42, 174, 194, 0.5);
+}
+#btnAccesibilidad:focus-visible {
+  outline: 3px solid #0e4d5c;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  #btnAccesibilidad { width: 46px; height: 46px; font-size: 1.3rem; bottom: 72px; left: 12px; }
+}
+
+/* La Biblioteca Sonora tiene un cajón que sube desde abajo (mezclador
+   abierto) y puede tapar el botón — lo subimos mientras esté abierto. */
+body:has(.sh-mezclador.abierto) #btnAccesibilidad {
+  bottom: calc(60vh + 12px);
+}

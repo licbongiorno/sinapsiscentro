@@ -4,6 +4,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SINAPSIS – Centro de Salud Integral | Berazategui</title>
 
@@ -1008,6 +1009,7 @@ footer a:hover { color: white; }
   .hero-title { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
 }
 </style>
+  <link rel="stylesheet" href="css/accesibilidad.css">
 </head>
 <body>
 
@@ -1807,5 +1809,6 @@ document.querySelectorAll('.btn-google').forEach((a) => {
   a.addEventListener('click', () => { if (window.gtag) gtag('event', 'click_resenas_google'); });
 });
 </script>
+  <script src="js/accesibilidad.js"></script>
 </body>
 </html>

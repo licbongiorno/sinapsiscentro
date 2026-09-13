@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+  <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Creatividad | SINAPSIS — Centro de Salud Integral</title>
 <meta name="description" content="Historias, dibujos, ideas, personajes y desafíos para imaginar y crear. Un espacio de Sinapsis sin una única manera de crear.">
@@ -37,6 +38,7 @@
   .cv-modal-botones { display: flex; flex-wrap: wrap; gap: 8px; }
   .cv-tipo-chip { display: inline-block; background: var(--teal-pale); color: var(--teal-deep); font-size: 0.7rem; font-weight: 800; padding: 3px 10px; border-radius: 50px; margin-bottom: 8px; }
 </style>
+  <link rel="stylesheet" href="css/accesibilidad.css">
 </head>
 <body>
 
@@ -395,5 +397,6 @@ PerfilModal.iniciar(render);
 renderFiltros();
 render();
 </script>
+  <script src="js/accesibilidad.js"></script>
 </body>
 </html>

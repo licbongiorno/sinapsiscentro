@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+  <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cargando… | SINAPSIS</title>
 <meta name="robots" content="noindex">
@@ -42,6 +43,7 @@
   .cv-final { text-align: center; }
   .cv-final-emoji { font-size: 2.2rem; margin-bottom: 6px; }
 </style>
+  <link rel="stylesheet" href="css/accesibilidad.css">
 </head>
 <body>
 
@@ -371,5 +373,6 @@ if (!actividad || !actividad.activo) {
   });
 }
 </script>
+  <script src="js/accesibilidad.js"></script>
 </body>
 </html>
