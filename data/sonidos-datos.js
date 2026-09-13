@@ -93,15 +93,15 @@ const NECESIDADES_SONIDOS = [
 
 // ── Ondas cerebrales — encuadre educativo, sin afirmaciones categóricas ──
 const BANDAS_CEREBRALES = [
-  { id: "delta", nombre: "Delta", rango: "≈ 0,5–4 Hz", color: "#2aaec2", beatSugerido: 2,
+  { id: "delta", nombre: "Delta", rango: "≈ 0,5–4 Hz", color: "#0c5c6c", beatSugerido: 2,
     descripcion: "Relacionadas principalmente con el sueño profundo y procesos de recuperación durante el sueño." },
-  { id: "theta", nombre: "Theta", rango: "≈ 4–8 Hz", color: "#a98ac9", beatSugerido: 6,
+  { id: "theta", nombre: "Theta", rango: "≈ 4–8 Hz", color: "#6b4090", beatSugerido: 6,
     descripcion: "Aparecen especialmente durante determinadas fases del sueño y también pueden observarse durante relajación profunda y estados de somnolencia." },
-  { id: "alpha", nombre: "Alpha", rango: "≈ 8–12 Hz", color: "#7ec98a", beatSugerido: 10,
+  { id: "alpha", nombre: "Alpha", rango: "≈ 8–12 Hz", color: "#267339", beatSugerido: 10,
     descripcion: "Se asocian frecuentemente con vigilia relajada, especialmente cuando una persona está tranquila y con los ojos cerrados." },
-  { id: "beta", nombre: "Beta", rango: "≈ 13–30 Hz", color: "#f0c14b", beatSugerido: 20,
+  { id: "beta", nombre: "Beta", rango: "≈ 13–30 Hz", color: "#7a5c0d", beatSugerido: 20,
     descripcion: "Predominan en muchas situaciones de vigilia y actividad mental." },
-  { id: "gamma", nombre: "Gamma", rango: "≈ 30 Hz en adelante", color: "#e08ab0", beatSugerido: 40,
+  { id: "gamma", nombre: "Gamma", rango: "≈ 30 Hz en adelante", color: "#91315a", beatSugerido: 40,
     descripcion: "Se relacionan con distintos procesos de integración y procesamiento cognitivo, aunque su interpretación es mucho más compleja que decir simplemente \"gamma = concentración\"." },
 ];
 

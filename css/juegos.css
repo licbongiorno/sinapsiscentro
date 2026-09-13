@@ -161,7 +161,9 @@ header.jp-header::before {
   flex: 0 0 auto; width: 110px; background: white; border-radius: var(--r); padding: 14px 10px;
   text-align: center; box-shadow: 0 4px 14px rgba(8,32,46,0.06); border: 1px solid rgba(42,174,194,0.08);
 }
-.jp-logro-card.bloqueado { opacity: 0.35; filter: grayscale(1); }
+.jp-logro-card.bloqueado { filter: grayscale(1); }
+.jp-logro-card.bloqueado .emoji { opacity: 0.35; }
+.jp-logro-card.bloqueado .nombre { color: #5a6570; }
 .jp-logro-card .emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
 .jp-logro-card .nombre { font-size: 0.72rem; font-weight: 700; }
 

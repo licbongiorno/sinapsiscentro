@@ -39,6 +39,7 @@
     <p>Ruido, campanas y tonos generados en vivo. Armá tu propio ambiente y guardalo para volver a usarlo.</p>
   </div>
 </header>
+<main>
 
 <section class="sh-necesidades">
   <div class="sh-necesidades-card">
@@ -69,12 +70,12 @@
     <div class="sh-banda-desc" id="bandaDescripcion"></div>
     <div class="sh-binaural-controles">
       <div class="sh-binaural-fila">
-        <label>Frecuencia base</label>
+        <label for="binauralBase">Frecuencia base</label>
         <input type="range" id="binauralBase" min="100" max="500" value="200" step="5">
         <span class="valor" id="binauralBaseValor">200 Hz</span>
       </div>
       <div class="sh-binaural-fila">
-        <label>Diferencia (beat)</label>
+        <label for="binauralBeat">Diferencia (beat)</label>
         <input type="range" id="binauralBeat" min="1" max="40" value="10" step="1">
         <span class="valor" id="binauralBeatValor">10 Hz</span>
       </div>
@@ -108,7 +109,7 @@
   <div class="sh-mezclador-contenido">
     <div id="pistasEnMezclaLista"></div>
     <div class="sh-mezclador-controles">
-      <select class="sh-temporizador-select" id="temporizadorSelect">
+      <select class="sh-temporizador-select" id="temporizadorSelect" aria-label="Temporizador">
         <option value="">Sin temporizador</option>
         <option value="5">5 min</option>
         <option value="15">15 min</option>
@@ -148,6 +149,7 @@
   </div>
 </div>
 
+</main>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>

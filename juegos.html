@@ -44,6 +44,7 @@
     <div class="jp-stat-chip">🏆 <span id="statLogros">0</span>/<span id="statLogrosTotal">0</span></div>
   </div>
 </header>
+<main>
 
 <div class="jp-buscador">
   <input type="text" id="inputBuscarJuego" placeholder="¿Qué juego estás buscando?">
@@ -90,7 +91,7 @@
 
   <section class="jp-seccion">
     <h2>🏆 Logros <span class="ver-todo" id="verTodosLogros">ver todos</span></h2>
-    <div class="jp-logros-scroll" id="logrosScroll"></div>
+    <div class="jp-logros-scroll" id="logrosScroll" tabindex="0" role="region" aria-label="Logros"></div>
   </section>
 </div>
 
@@ -119,6 +120,7 @@
   </div>
 </div>
 
+</main>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
