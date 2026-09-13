@@ -56,7 +56,7 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => ctx.mindfulnessCompletados >= 10 },
   { id: "mindfulness-cincuenta", nombre: "Práctica sostenida", descripcion: "Completaste 50 prácticas de Mindfulness.", icono: "🌸",
     cumple: (ctx) => ctx.mindfulnessCompletados >= 50 },
-  { id: "mindfulness-todas-categorias", nombre: "Camino completo", descripcion: "Probaste las 7 categorías de Mindfulness.", icono: "🗺️",
+  { id: "mindfulness-todas-categorias", nombre: "Camino completo", descripcion: "Probaste todas las categorías de Mindfulness.", icono: "🗺️",
     cumple: (ctx) => typeof CatalogoMindfulness !== "undefined" && ctx.mindfulnessCategoriasExploradas >= CatalogoMindfulness.categorias().length },
   // ── Biblioteca Sonora ──
   { id: "sonido-primera-mezcla", nombre: "Primera mezcla", descripcion: "Guardaste tu primera mezcla de sonidos.", icono: "🎚️",

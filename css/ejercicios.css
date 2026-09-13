@@ -104,6 +104,7 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 .eh-cat-card:hover { transform: translateY(-3px); }
 .eh-cat-card .emoji { font-size: 1.5rem; display: block; margin-bottom: 6px; }
 .eh-cat-card .nombre { font-size: 0.74rem; font-weight: 700; color: var(--text); }
+.eh-cat-card .cantidad { font-size: 0.62rem; color: var(--text-soft); display: block; margin-top: 3px; }
 
 /* ── LISTA DE EJERCICIOS (filas, no tarjetas grandes) ── */
 .eh-lista { display: flex; flex-direction: column; gap: 8px; }

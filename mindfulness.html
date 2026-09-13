@@ -5,7 +5,7 @@
   <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mindfulness | SINAPSIS — Centro de Salud Integral</title>
-<meta name="description" content="Más de 150 prácticas breves de respiración, atención plena y autocompasión. Un espacio de Sinapsis para detenerte unos minutos.">
+<meta name="description" content="Más de 365 prácticas breves de respiración, atención plena y autocompasión. Un espacio de Sinapsis para detenerte unos minutos.">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="manifest" href="manifest.json">
@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#08202e">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mindfulness | SINAPSIS">
-<meta property="og:description" content="Más de 150 prácticas breves de respiración, atención plena y autocompasión.">
+<meta property="og:description" content="Más de 365 prácticas breves de respiración, atención plena y autocompasión.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
   </div>
   <div class="eh-intro">
     <h1>Mindfulness</h1>
-    <p>Más de 150 prácticas breves de respiración, atención plena y autocompasión, para volver al presente cuando lo necesites.</p>
+    <p>Más de 365 prácticas breves de respiración, atención plena y autocompasión, para volver al presente cuando lo necesites.</p>
   </div>
 </header>
 <main>
@@ -92,6 +92,7 @@
 
   <section class="eh-seccion" id="seccionCategoriaDetalle" hidden>
     <h2><span id="catDetalleIcono"></span> <span id="catDetalleNombre"></span></h2>
+    <p class="eh-seccion-sub" id="catDetalleCantidad"></p>
     <div class="eh-lista" id="catDetalleLista"></div>
   </section>
 
@@ -241,9 +242,11 @@ function renderExploracion() {
   pintarLista("brevesLista", CatalogoMindfulness.filtrar({ duracionMax: 2 }).slice(0, 5), "");
 
   document.getElementById("categoriasGrid").innerHTML = CatalogoMindfulness.categorias().map(cat => {
+    const cantidad = CatalogoMindfulness.porCategoria(cat.id).length;
     return `<button class="eh-cat-card" data-cat="${cat.id}">
       <span class="emoji">${cat.icono}</span>
       <span class="nombre">${cat.nombre}</span>
+      <span class="cantidad">${cantidad} práctica${cantidad === 1 ? "" : "s"}</span>
     </button>`;
   }).join("");
   document.getElementById("categoriasGrid").querySelectorAll("[data-cat]").forEach(el =>
@@ -252,10 +255,12 @@ function renderExploracion() {
 
 function mostrarCategoria(catId) {
   const cat = CatalogoMindfulness.categoriaPorId(catId);
+  const practicas = CatalogoMindfulness.porCategoria(catId);
   document.getElementById("seccionCategoriaDetalle").hidden = false;
   document.getElementById("catDetalleIcono").textContent = cat.icono;
   document.getElementById("catDetalleNombre").textContent = cat.nombre;
-  pintarLista("catDetalleLista", CatalogoMindfulness.porCategoria(catId), "Todavía no hay prácticas acá.");
+  document.getElementById("catDetalleCantidad").textContent = `${practicas.length} práctica${practicas.length === 1 ? "" : "s"}`;
+  pintarLista("catDetalleLista", practicas, "Todavía no hay prácticas acá.");
   document.getElementById("seccionCategoriaDetalle").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
