@@ -52,8 +52,12 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => ctx.categoriasEjerciciosExploradas.size >= 5 },
   { id: "ejercicio-tiempo-para-vos", nombre: "Tiempo para vos", descripcion: "Acumulaste 60 minutos de práctica.", icono: "🌿",
     cumple: (ctx) => ctx.minutosEjercicios >= 60 },
-  { id: "ejercicio-pausa", nombre: "Pausa", descripcion: "Completaste 10 ejercicios de la categoría Calma.", icono: "🧘",
-    cumple: (ctx) => ctx.ejerciciosPorCategoria.calma >= 10 },
+  { id: "ejercicio-pausa", nombre: "Pausa", descripcion: "Completaste 10 prácticas de Mindfulness.", icono: "🧘",
+    cumple: (ctx) => ctx.mindfulnessCompletados >= 10 },
+  { id: "mindfulness-cincuenta", nombre: "Práctica sostenida", descripcion: "Completaste 50 prácticas de Mindfulness.", icono: "🌸",
+    cumple: (ctx) => ctx.mindfulnessCompletados >= 50 },
+  { id: "mindfulness-todas-categorias", nombre: "Camino completo", descripcion: "Probaste las 7 categorías de Mindfulness.", icono: "🗺️",
+    cumple: (ctx) => typeof CatalogoMindfulness !== "undefined" && ctx.mindfulnessCategoriasExploradas >= CatalogoMindfulness.categorias().length },
   // ── Biblioteca Sonora ──
   { id: "sonido-primera-mezcla", nombre: "Primera mezcla", descripcion: "Guardaste tu primera mezcla de sonidos.", icono: "🎚️",
     cumple: (ctx) => ctx.mezclasGuardadas >= 1 },
@@ -86,20 +90,28 @@ const LOGROS_CATALOGO = [
 function _contextoEjercicios() {
   const historial = Storage.getHistorialEjercicios();
   const porCategoria = {};
+  let mindfulnessCompletados = 0;
+  const mindfulnessCategorias = new Set();
   historial.forEach(h => {
     // Los ejercicios de Mindfulness (ex-categoría "calma") se movieron de
     // EJERCICIOS a MINDFULNESS, pero el historial ya guardado sigue
     // viviendo acá — probamos ambos catálogos para no perder esa info.
-    const ej = (typeof CatalogoEjercicios !== "undefined" && CatalogoEjercicios.porId(h.id))
-      || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(h.id));
+    const enMindfulness = typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(h.id);
+    const ej = (typeof CatalogoEjercicios !== "undefined" && CatalogoEjercicios.porId(h.id)) || enMindfulness;
     if (!ej) return;
     porCategoria[ej.categoria] = (porCategoria[ej.categoria] || 0) + (h.vecesCompletado || 0);
+    if (enMindfulness) {
+      mindfulnessCompletados += (h.vecesCompletado || 0);
+      mindfulnessCategorias.add(enMindfulness.categoria);
+    }
   });
   return {
     totalEjercicios: historial.reduce((acc, h) => acc + (h.vecesCompletado || 0), 0),
     ejerciciosPorCategoria: porCategoria,
     categoriasEjerciciosExploradas: Storage.getCategoriasEjerciciosExploradas(),
     minutosEjercicios: Storage.getTotalMinutosEjercicios(),
+    mindfulnessCompletados,
+    mindfulnessCategoriasExploradas: mindfulnessCategorias.size,
   };
 }
 
