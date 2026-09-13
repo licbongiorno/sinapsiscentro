@@ -77,13 +77,31 @@ const AudioEngine = (() => {
     const c = getCtx();
     if (!c) return false;
     detenerPista(id, true);
-    const buffer = crearBufferRuido(tipo);
+    // "gris" y "verde" parten de ruido blanco y le dan forma con filtros,
+    // en vez de generarse con su propio algoritmo de buffer.
+    const bufferTipo = (tipo === "gris" || tipo === "verde") ? "blanco" : tipo;
+    const buffer = crearBufferRuido(bufferTipo);
     const source = c.createBufferSource();
     source.buffer = buffer;
     source.loop = true;
     const gain = c.createGain();
     gain.gain.value = 0;
-    source.connect(gain).connect(masterGain);
+
+    if (tipo === "gris") {
+      // Aproximación de ruido gris: realza graves y agudos, atenúa medios (curva en V).
+      const bajos = c.createBiquadFilter(); bajos.type = "lowshelf"; bajos.frequency.value = 200; bajos.gain.value = 8;
+      const medios = c.createBiquadFilter(); medios.type = "peaking"; medios.frequency.value = 1500; medios.Q.value = 0.7; medios.gain.value = -10;
+      const agudos = c.createBiquadFilter(); agudos.type = "highshelf"; agudos.frequency.value = 6000; agudos.gain.value = 6;
+      source.connect(bajos).connect(medios).connect(agudos).connect(gain).connect(masterGain);
+    } else if (tipo === "verde") {
+      // Aproximación de ruido verde: realza el rango medio, alrededor de 500 Hz.
+      const medio = c.createBiquadFilter(); medio.type = "peaking"; medio.frequency.value = 500; medio.Q.value = 0.6; medio.gain.value = 12;
+      const corteAgudos = c.createBiquadFilter(); corteAgudos.type = "lowpass"; corteAgudos.frequency.value = 4000;
+      source.connect(medio).connect(corteAgudos).connect(gain).connect(masterGain);
+    } else {
+      source.connect(gain).connect(masterGain);
+    }
+
     source.start();
     pistasActivas[id] = { source, gain, tipo: "ruido" };
     return true;
@@ -121,8 +139,23 @@ const AudioEngine = (() => {
   function tocarCampana(tipoSonido = "campana") {
     const c = getCtx();
     if (!c) return false;
-    const FREqS = { campana: 880, gong: 196, cuenco: 330 };
-    const DURACIONES = { campana: 2.5, gong: 4.5, cuenco: 3.5 };
+    if (tipoSonido === "platillos") {
+      // Tingsha / platillos: dos tonos agudos y muy cercanos, para que se
+      // note un ligero "batido" entre ambos, como el brillo real del metal.
+      [1800, 1830].forEach(freq => {
+        const o = c.createOscillator(); const g = c.createGain();
+        o.type = "sine"; o.frequency.value = freq;
+        g.gain.value = 0.0001;
+        o.connect(g).connect(masterGain);
+        o.start();
+        g.gain.exponentialRampToValueAtTime(0.18, c.currentTime + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + 1.8);
+        o.stop(c.currentTime + 1.9);
+      });
+      return true;
+    }
+    const FREqS = { campana: 880, gong: 196, cuenco: 330, tibetano: 250 };
+    const DURACIONES = { campana: 2.5, gong: 4.5, cuenco: 3.5, tibetano: 5 };
     const o = c.createOscillator();
     const g = c.createGain();
     o.type = "sine";
@@ -188,11 +221,157 @@ const AudioEngine = (() => {
     return true;
   }
 
+  function iniciarOlas(id) {
+    const c = getCtx();
+    if (!c) return false;
+    detenerPista(id, true);
+    const fuente = c.createBufferSource();
+    fuente.buffer = crearBufferRuido("blanco", 4); fuente.loop = true;
+    const filtro = c.createBiquadFilter(); filtro.type = "lowpass"; filtro.frequency.value = 700; filtro.Q.value = 0.8;
+    const gainOla = c.createGain(); gainOla.gain.value = 0.5;
+    const lfo = c.createOscillator(); lfo.type = "sine"; lfo.frequency.value = 0.09; // vaivén lento, tipo oleaje
+    const lfoEscala = c.createGain(); lfoEscala.gain.value = 0.35;
+    lfo.connect(lfoEscala).connect(gainOla.gain);
+    const gainMaestro = c.createGain(); gainMaestro.gain.value = 0;
+    fuente.connect(filtro).connect(gainOla).connect(gainMaestro).connect(masterGain);
+    fuente.start(); lfo.start();
+    pistasActivas[id] = { source: fuente, osciladores: [lfo], gain: gainMaestro, tipo: "olas" };
+    return true;
+  }
+
+  function iniciarArroyo(id) {
+    const c = getCtx();
+    if (!c) return false;
+    detenerPista(id, true);
+    const fuente = c.createBufferSource();
+    fuente.buffer = crearBufferRuido("blanco", 4); fuente.loop = true;
+    const filtro = c.createBiquadFilter(); filtro.type = "bandpass"; filtro.frequency.value = 1800; filtro.Q.value = 1.3;
+    const gainBurbujas = c.createGain(); gainBurbujas.gain.value = 0.5;
+    const lfo = c.createOscillator(); lfo.type = "sine"; lfo.frequency.value = 4.5; // burbujeo rápido
+    const lfo2 = c.createOscillator(); lfo2.type = "sine"; lfo2.frequency.value = 1.7; // segunda capa, para irregularidad
+    const lfoEscala = c.createGain(); lfoEscala.gain.value = 0.2;
+    const lfo2Escala = c.createGain(); lfo2Escala.gain.value = 0.15;
+    lfo.connect(lfoEscala).connect(gainBurbujas.gain);
+    lfo2.connect(lfo2Escala).connect(gainBurbujas.gain);
+    const gainMaestro = c.createGain(); gainMaestro.gain.value = 0;
+    fuente.connect(filtro).connect(gainBurbujas).connect(gainMaestro).connect(masterGain);
+    fuente.start(); lfo.start(); lfo2.start();
+    pistasActivas[id] = { source: fuente, osciladores: [lfo, lfo2], gain: gainMaestro, tipo: "arroyo" };
+    return true;
+  }
+
+  function iniciarFuego(id) {
+    const c = getCtx();
+    if (!c) return false;
+    detenerPista(id, true);
+    // Cama base: un crepitar grave y constante.
+    const base = c.createBufferSource();
+    base.buffer = crearBufferRuido("marron", 4); base.loop = true;
+    const filtroBase = c.createBiquadFilter(); filtroBase.type = "lowpass"; filtroBase.frequency.value = 800;
+    const gainBase = c.createGain(); gainBase.gain.value = 0.5;
+    base.connect(filtroBase).connect(gainBase);
+
+    const gainMaestro = c.createGain(); gainMaestro.gain.value = 0;
+    gainBase.connect(gainMaestro);
+    gainMaestro.connect(masterGain);
+    base.start();
+
+    // "Chispas": estallidos agudos y breves, a intervalos aleatorios.
+    let activo = true;
+    const timeouts = [];
+    function programarChispa() {
+      if (!activo) return;
+      const espera = 80 + Math.random() * 260;
+      const t = setTimeout(() => {
+        if (!activo) return;
+        const chispa = c.createBufferSource();
+        chispa.buffer = crearBufferRuido("blanco", 0.15);
+        const filtroChispa = c.createBiquadFilter(); filtroChispa.type = "highpass"; filtroChispa.frequency.value = 2500 + Math.random() * 2000;
+        const gainChispa = c.createGain(); gainChispa.gain.value = 0.0001;
+        chispa.connect(filtroChispa).connect(gainChispa).connect(gainMaestro);
+        chispa.start();
+        const nivel = 0.15 + Math.random() * 0.3;
+        gainChispa.gain.exponentialRampToValueAtTime(nivel, c.currentTime + 0.005);
+        gainChispa.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + 0.09);
+        chispa.stop(c.currentTime + 0.12);
+        programarChispa();
+      }, espera);
+      timeouts.push(t);
+    }
+    programarChispa();
+
+    pistasActivas[id] = {
+      source: base, gain: gainMaestro, tipo: "fuego",
+      detener: () => { activo = false; timeouts.forEach(t => clearTimeout(t)); },
+    };
+    return true;
+  }
+
+  function iniciarTormenta(id) {
+    const c = getCtx();
+    if (!c) return false;
+    detenerPista(id, true);
+    // Capa de lluvia de base (siseo + goteo), igual que iniciarLluvia.
+    const fuenteBase = c.createBufferSource();
+    fuenteBase.buffer = crearBufferRuido("blanco", 4); fuenteBase.loop = true;
+    const filtroBase = c.createBiquadFilter(); filtroBase.type = "highpass"; filtroBase.frequency.value = 1200;
+    const gainBase = c.createGain(); gainBase.gain.value = 0.5;
+    fuenteBase.connect(filtroBase).connect(gainBase);
+
+    const fuenteGotas = c.createBufferSource();
+    fuenteGotas.buffer = crearBufferRuido("blanco", 4); fuenteGotas.loop = true;
+    const filtroGotas = c.createBiquadFilter(); filtroGotas.type = "bandpass"; filtroGotas.frequency.value = 3500; filtroGotas.Q.value = 0.7;
+    const gainGotas = c.createGain(); gainGotas.gain.value = 0.35;
+    const lfoGotas = c.createOscillator(); lfoGotas.type = "sine"; lfoGotas.frequency.value = 3.6;
+    const lfoGotasEscala = c.createGain(); lfoGotasEscala.gain.value = 0.2;
+    lfoGotas.connect(lfoGotasEscala).connect(gainGotas.gain);
+    fuenteGotas.connect(filtroGotas).connect(gainGotas);
+
+    const gainMaestro = c.createGain(); gainMaestro.gain.value = 0;
+    gainBase.connect(gainMaestro); gainGotas.connect(gainMaestro);
+    gainMaestro.connect(masterGain);
+    fuenteBase.start(); fuenteGotas.start(); lfoGotas.start();
+
+    // Truenos: estallidos graves y prolongados, a intervalos largos y aleatorios.
+    let activo = true;
+    const timeouts = [];
+    function programarTrueno() {
+      if (!activo) return;
+      const espera = 9000 + Math.random() * 18000;
+      const t = setTimeout(() => {
+        if (!activo) return;
+        const trueno = c.createBufferSource();
+        trueno.buffer = crearBufferRuido("marron", 2.5);
+        const filtroTrueno = c.createBiquadFilter(); filtroTrueno.type = "lowpass"; filtroTrueno.frequency.value = 180;
+        const gainTrueno = c.createGain(); gainTrueno.gain.value = 0.0001;
+        trueno.connect(filtroTrueno).connect(gainTrueno).connect(gainMaestro);
+        trueno.start();
+        const nivel = 0.5 + Math.random() * 0.4;
+        gainTrueno.gain.exponentialRampToValueAtTime(nivel, c.currentTime + 0.3);
+        gainTrueno.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + 2.3);
+        trueno.stop(c.currentTime + 2.5);
+        programarTrueno();
+      }, espera);
+      timeouts.push(t);
+    }
+    programarTrueno();
+
+    pistasActivas[id] = {
+      source: fuenteBase, extraSources: [fuenteGotas], osciladores: [lfoGotas], gain: gainMaestro, tipo: "tormenta",
+      detener: () => { activo = false; timeouts.forEach(t => clearTimeout(t)); },
+    };
+    return true;
+  }
+
   /** Punto de entrada único para pistas proceduales en loop (ruido y ambientes sintetizados). */
   function iniciarPistaProcedural(id, generador) {
     if (generador === "lluvia") return iniciarLluvia(id);
     if (generador === "viento") return iniciarViento(id);
-    return iniciarRuido(id, generador); // blanco | rosa | marron
+    if (generador === "olas") return iniciarOlas(id);
+    if (generador === "arroyo") return iniciarArroyo(id);
+    if (generador === "fuego") return iniciarFuego(id);
+    if (generador === "tormenta") return iniciarTormenta(id);
+    return iniciarRuido(id, generador); // blanco | rosa | marron | gris | verde
   }
 
   function setVolumen(id, valor01) {
@@ -211,6 +390,7 @@ const AudioEngine = (() => {
     const c = getCtx();
     const parar = () => {
       try {
+        if (p.detener) p.detener(); // limpieza de scheduling propio (chispas, truenos, etc.)
         if (p.source) p.source.stop();
         if (p.extraSources) p.extraSources.forEach(s => s.stop());
         if (p.osciladores) p.osciladores.forEach(o => o.stop());
