@@ -74,6 +74,10 @@ const LOGROS_CATALOGO = [
     cumple: (ctx) => ctx.totalCreaciones >= 10 },
   { id: "creatividad-variada", nombre: "Todoterreno creativo", descripcion: "Guardaste creaciones de al menos 4 tipos distintos (historia, dibujo, personaje, etc.).", icono: "🌈",
     cumple: (ctx) => ctx.tiposCreacionDistintos >= 4 },
+  { id: "creatividad-veinticinco", nombre: "Manantial creativo", descripcion: "Guardaste 25 creaciones.", icono: "🏆",
+    cumple: (ctx) => ctx.totalCreaciones >= 25 },
+  { id: "creatividad-todos-los-tipos", nombre: "Todo tipo de creación", descripcion: "Guardaste al menos una creación de cada tipo (historia, poema, dibujo, personaje, mundo e idea).", icono: "🎭",
+    cumple: (ctx) => ctx.tiposCreacionDistintos >= 6 },
 ];
 
 /**
