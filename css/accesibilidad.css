@@ -22,6 +22,23 @@
   font-size: 118%;
 }
 
+/* El texto más grande puede hacer que tarjetas dentro de grids de 2-3
+   columnas (ver .pain-cards, .eh-categorias-grid, etc.) no entren en
+   su ancho asignado — por defecto, un ítem de grid no se achica por
+   debajo de su contenido mínimo, y eso empuja el ancho total de la
+   página. Esto lo permite en todo el sitio, sin tener que buscar
+   grid por grid. */
+.modo-accesible * {
+  min-width: 0;
+}
+
+/* Red de seguridad: aunque algún elemento puntual se pase por unos
+   pocos píxeles, que no aparezca scroll horizontal en toda la página. */
+html.modo-accesible,
+.modo-accesible body {
+  overflow-x: hidden;
+}
+
 .modo-accesible body,
 .modo-accesible p,
 .modo-accesible li {
