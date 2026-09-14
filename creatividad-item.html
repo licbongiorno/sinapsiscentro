@@ -174,7 +174,10 @@ if (!actividad || !actividad.activo) {
       html += `<div class="cv-ingredientes"><p style="font-weight:800;margin-bottom:8px;color:var(--navy);">${generadorBonito()}</p>${renderIngredientes(resultado)}</div>
         <div class="cv-fila-botones-h"><button class="ee-btn ee-btn-secundario" id="cvRegenerar">🎲 Generar otra combinación</button></div>`;
     } else {
-      html += `<p class="cv-desc">${resultado.consigna}</p>`;
+      const consignaFinal = resultado.inspiracion && resultado.inspiracion.length === 1
+        ? resultado.consigna.replace("{elemento}", resultado.inspiracion[0])
+        : resultado.consigna;
+      html += `<p class="cv-desc">${consignaFinal}</p>`;
       if (resultado.inspiracion) {
         html += `<div style="text-align:center;margin-bottom:14px;">${resultado.inspiracion.map(i => `<span class="cv-inspiracion-chip">${i}</span>`).join("")}</div>
           <div class="cv-fila-botones-h"><button class="ee-btn ee-btn-secundario" id="cvRegenerar">🎲 Otras palabras</button></div>`;
