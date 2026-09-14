@@ -33,6 +33,7 @@ const CATEGORIAS_CREATIVIDAD = [
   { id: "mundos", nombre: "Mundos", icono: "🌎", color: "#2aaec2" },
   { id: "sonidos", nombre: "Crear con sonidos", icono: "🎧", color: "#c98ac2" },
   { id: "cuerpo", nombre: "Cuerpo y actuación", icono: "🤸", color: "#e0954a" },
+  { id: "danza", nombre: "Danza y movimiento libre", icono: "💃", color: "#a94a8a" },
 ];
 
 const CREATIVIDAD_ACTIVIDADES = [
@@ -892,6 +893,146 @@ const CREATIVIDAD_ACTIVIDADES = [
     consigna: "Imaginá que te acabás de enterar que ganaste algo enorme e inesperado. Dejá que la alegría explote en el cuerpo entero: saltos, gritos silenciosos, correr sin dirección. No la mimas de a poco — dejá que sea inmediata y completa.",
     objetivo: "Representar físicamente una idea —no sólo describirla— obliga a tomar decisiones concretas (¿cómo se mueve?, ¿qué gesto hace?) que el pensamiento abstracto puede evitar, y esa concreción es en sí misma un entrenamiento de creatividad.",
     edadMin: 4, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+
+  // ═══════ 💃 DANZA Y MOVIMIENTO LIBRE ═══════
+  { id: "movimiento-con-los-ojos-cerrados", titulo: "Movimiento con los ojos cerrados", descripcion: "Cerrá los ojos y dejá que el cuerpo se mueva solo, sin decidir la forma de antemano.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Si te sentís seguro/a para hacerlo, cerrá los ojos. En vez de decidir qué movimiento hacer, esperá a que aparezca un impulso —una ganas de estirar un brazo, de balancearte— y seguilo sin corregirlo. No hay una forma correcta: la idea es notar qué se mueve antes de que la cabeza lo planee.",
+    objetivo: "El coreógrafo Rudolf Laban describió el movimiento humano según cualidades como el peso, el tiempo, el espacio y la fluidez; explorar cada una por separado, sin ninguna historia que representar, amplía el vocabulario expresivo disponible.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "las-cinco-calidades-de-movimiento", titulo: "Las cinco calidades de movimiento", descripcion: "Recorré cinco formas de moverte muy distintas entre sí, una después de la otra.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Probá, en orden, cinco calidades de movimiento bien diferenciadas: primero fluido y continuo, después entrecortado y con pausas bruscas, después caótico y sin control aparente, después suave y ondulado como si contaras una historia sin palabras, y por último quedate completamente quieto. Notá cuál te resultó más natural y cuál más incómoda.",
+    objetivo: "La terapeuta Gabrielle Roth desarrolló las 5Rhythms, una práctica que describe todo movimiento posible dentro de cinco calidades básicas —fluido, staccato, caos, lírico y quietud— como forma de acceder a estados internos sin pasar por la palabra.",
+    edadMin: 8, edadMax: 99, dificultad: 3, duracion: 8, activo: true, version: 1 },
+
+  { id: "mover-solo-una-mano", titulo: "Mover solo una mano", descripcion: "Explorá todo lo que una sola mano puede hacer, antes de sumar el resto del cuerpo.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Quedate quieto y movés sólo una mano: todas las formas posibles, rápido, lento, en círculos, temblando, estirándose. Cuando sientas que la exploraste bastante, dejá que esa mano 'invite' al brazo a moverse también, después al hombro, hasta que el movimiento se extienda de a poco a todo el cuerpo.",
+    objetivo: "El Movimiento Auténtico (Authentic Movement), desarrollado por Mary Starks Whitehouse, propone moverse desde un impulso interno en vez de una forma decidida de antemano —a menudo con los ojos cerrados— como forma de explorar lo que el cuerpo 'sabe' antes de que la mente lo nombre.",
+    edadMin: 5, edadMax: 99, dificultad: 1, duracion: 5, activo: true, version: 1 },
+
+  { id: "el-ritmo-de-tu-respiracion", titulo: "El ritmo de tu respiración", descripcion: "Dejá que la respiración, no la música, sea quien marque el movimiento.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Respirá con atención unos segundos. En cada inhalación, dejá que el cuerpo se expanda —los brazos se abren, el pecho crece—; en cada exhalación, dejá que se contraiga o se doble hacia adentro. Sin apurar la respiración: el movimiento sigue el ritmo que ya tenías, no al revés.",
+    objetivo: "La danzaterapia (dance/movement therapy) parte de la idea de que el cuerpo en movimiento es una vía de procesamiento emocional distinta —y a veces más directa— que la palabra, especialmente para estados difíciles de nombrar.",
+    edadMin: 5, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "moverse-en-los-tres-niveles", titulo: "Moverse en los tres niveles", descripcion: "Explorá el espacio alto, medio y bajo con el cuerpo entero.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Movete primero lo más arriba posible: en puntas de pie, brazos estirados. Después bajá al nivel medio, la altura habitual del cuerpo. Por último, explorá el nivel bajo: agachado, o incluso en el piso si podés. Pasá de un nivel a otro varias veces, notando qué tan distinto se siente ocupar cada altura.",
+    objetivo: "La investigación sobre 'entrainment' (sincronización rítmica) muestra que el cerebro tiende a sincronizar el movimiento con un ritmo externo casi automáticamente — por eso mismo, moverse sin ningún ritmo externo es un desafío distinto: obliga a encontrar un pulso propio.",
+    edadMin: 5, edadMax: 99, dificultad: 1, duracion: 5, activo: true, version: 1 },
+
+  { id: "caminos-en-el-espacio", titulo: "Caminos en el espacio", descripcion: "Recorré el lugar donde estás con tres tipos de trayectoria bien distintos.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Movete por el espacio siguiendo una línea recta, de un punto a otro, varias veces. Después probá moverte sólo en curvas, sin ninguna línea recta. Por último, probá un camino en zigzag, cambiando de dirección todo el tiempo. Notá cuál de los tres caminos te resultó más cómodo para el cuerpo.",
+    objetivo: "El bailarín Steve Paxton, creador de la improvisación de contacto, propuso prestar atención al peso real del cuerpo y a cómo se transfiere entre distintas partes al moverse, en vez de imponerle una forma prevista.",
+    edadMin: 5, edadMax: 99, dificultad: 1, duracion: 5, activo: true, version: 1 },
+
+  { id: "el-color-en-movimiento", titulo: "El color en movimiento", descripcion: "Traducí un color a una calidad de movimiento, sin representar nada concreto.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Elegí un color. Sin pensar en ningún objeto de ese color, preguntate: si ese color fuera una forma de moverse, ¿sería rápida o lenta?, ¿suave o brusca?, ¿ocuparía mucho espacio o poco? Movete durante un rato dejando que esas respuestas guíen el cuerpo. Cuando termines, escribí qué color elegiste y cómo se movía.",
+    objetivo: "La creatividad no es un talento aislado: la investigación la describe cada vez más como una meta-habilidad que combina flexibilidad cognitiva, tolerancia a la ambigüedad y disposición a arriesgarse a equivocarse — las mismas capacidades que después se usan para resolver problemas en cualquier área.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "bailar-una-palabra", titulo: "Bailar una palabra", descripcion: "Elegí una palabra abstracta y dejá que el cuerpo la interprete, sin contar una historia.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Elegí una palabra abstracta: liviandad, tensión, expansión, quietud. No pienses en una escena ni en un personaje — dejá que la palabra se traduzca directamente en calidad de movimiento: ¿es un movimiento que crece o que se achica?, ¿que se abre o que se cierra? Cuando termines, escribí qué palabra elegiste.",
+    objetivo: "A diferencia de actuar un personaje, el movimiento abstracto (moverse 'como' una cualidad y no 'como' alguien) entrena una forma distinta de creatividad: traducir algo intangible —un color, una palabra, un estado de ánimo— directamente al cuerpo, sin el paso intermedio de una historia.",
+    edadMin: 7, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "movimiento-pesado-y-liviano", titulo: "Movimiento pesado y liviano", descripcion: "Contrastá el peso máximo y el peso mínimo que puede tener un mismo movimiento.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Elegí un gesto simple, como levantar un brazo. Hacelo primero con todo el peso posible, como si costara un esfuerzo enorme. Después, el mismo gesto exacto pero lo más liviano posible, casi sin peso. Alterná entre los dos extremos varias veces.",
+    objetivo: "El coreógrafo Rudolf Laban describió el movimiento humano según cualidades como el peso, el tiempo, el espacio y la fluidez; explorar cada una por separado, sin ninguna historia que representar, amplía el vocabulario expresivo disponible.",
+    edadMin: 5, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "movimiento-rapido-y-lento", titulo: "Movimiento rápido y lento", descripcion: "El mismo recorrido por el espacio, a dos velocidades extremas.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Cruzá el espacio de un lado al otro lo más rápido que puedas, con control. Volvé al punto de partida y hacé el mismo cruce lo más lento posible, casi congelado. Notá qué cambia en la respiración y en la atención entre una velocidad y la otra.",
+    objetivo: "La terapeuta Gabrielle Roth desarrolló las 5Rhythms, una práctica que describe todo movimiento posible dentro de cinco calidades básicas —fluido, staccato, caos, lírico y quietud— como forma de acceder a estados internos sin pasar por la palabra.",
+    edadMin: 5, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "movimiento-directo-e-indirecto", titulo: "Movimiento directo e indirecto", descripcion: "Un mismo destino, alcanzado por el camino más corto y por el camino más largo.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Elegí un punto del espacio y llegá hasta ahí por el camino más directo posible, en línea recta. Volvé al inicio y llegá al mismo punto por el camino más indirecto que se te ocurra, dando vueltas, explorando. Notá cuál de los dos caminos disfrutaste más.",
+    objetivo: "El Movimiento Auténtico (Authentic Movement), desarrollado por Mary Starks Whitehouse, propone moverse desde un impulso interno en vez de una forma decidida de antemano —a menudo con los ojos cerrados— como forma de explorar lo que el cuerpo 'sabe' antes de que la mente lo nombre.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "movimiento-libre-y-contenido", titulo: "Movimiento libre y contenido", descripcion: "Contrastá el movimiento más suelto posible con el más controlado posible.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Movete lo más libre y soltado que puedas, sin controlar la forma, dejando que el cuerpo haga lo que quiera. Después, el extremo opuesto: un movimiento muy contenido y controlado, cada gesto medido y preciso. Alterná entre los dos un par de veces.",
+    objetivo: "La danzaterapia (dance/movement therapy) parte de la idea de que el cuerpo en movimiento es una vía de procesamiento emocional distinta —y a veces más directa— que la palabra, especialmente para estados difíciles de nombrar.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "el-pulso-interno", titulo: "El pulso interno", descripcion: "Movete siguiendo tu propio ritmo interno, sin música ni referencia externa.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Sin poner ninguna música, quedate un momento quieto y notá si hay algún ritmo propio disponible —el pulso, la respiración, un impulso repetitivo—. Dejá que ese ritmo interno, y no uno externo, guíe un movimiento simple y repetido durante un rato.",
+    objetivo: "La investigación sobre 'entrainment' (sincronización rítmica) muestra que el cerebro tiende a sincronizar el movimiento con un ritmo externo casi automáticamente — por eso mismo, moverse sin ningún ritmo externo es un desafío distinto: obliga a encontrar un pulso propio.",
+    edadMin: 7, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "bailar-sin-musica", titulo: "Bailar sin música", descripcion: "Un baile completo armado enteramente desde el silencio, sin ninguna referencia externa.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Bailá durante un rato sin ninguna música de fondo, ni siquiera imaginada. Dejá que el movimiento invente su propio ritmo a medida que pasa, en vez de seguir uno que ya existe. Es más difícil de lo que parece — no hay nada externo a seguir.",
+    objetivo: "El bailarín Steve Paxton, creador de la improvisación de contacto, propuso prestar atención al peso real del cuerpo y a cómo se transfiere entre distintas partes al moverse, en vez de imponerle una forma prevista.",
+    edadMin: 7, edadMax: 99, dificultad: 3, duracion: 6, activo: true, version: 1 },
+
+  { id: "el-espejo-propio", titulo: "El espejo propio", descripcion: "Movete frente a un espejo imaginario, observando tu propio movimiento con curiosidad.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Imaginá un espejo grande frente a vos. Movete con atención, observando —con curiosidad, no con juicio— cómo se ve ese movimiento reflejado. Probá algunos gestos exagerados y otros muy sutiles, sólo para ver cómo cambian en el 'espejo'.",
+    objetivo: "La creatividad no es un talento aislado: la investigación la describe cada vez más como una meta-habilidad que combina flexibilidad cognitiva, tolerancia a la ambigüedad y disposición a arriesgarse a equivocarse — las mismas capacidades que después se usan para resolver problemas en cualquier área.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "movimiento-en-camara-lenta-extrema", titulo: "Movimiento en cámara lenta extrema", descripcion: "Un movimiento simple, estirado hasta el límite de la lentitud.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Elegí un movimiento simple, como levantar un brazo o girar la cabeza. Hacelo en la cámara lenta más extrema que puedas sostener, como si tardara un minuto entero. Notá cuántos micro-momentos hay dentro de un gesto que normalmente dura un segundo.",
+    objetivo: "A diferencia de actuar un personaje, el movimiento abstracto (moverse 'como' una cualidad y no 'como' alguien) entrena una forma distinta de creatividad: traducir algo intangible —un color, una palabra, un estado de ánimo— directamente al cuerpo, sin el paso intermedio de una historia.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "explosion-y-recogimiento", titulo: "Explosión y recogimiento", descripcion: "Alterná entre un movimiento que explota hacia afuera y uno que se recoge hacia adentro.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Empezá con el cuerpo bien recogido, chico, cerrado. De golpe, 'explotá' hacia afuera: brazos y piernas se abren de una vez, ocupando todo el espacio posible. Volvé a recogerte despacio, y repetí el contraste unas cuantas veces, jugando con la velocidad de cada extremo.",
+    objetivo: "El coreógrafo Rudolf Laban describió el movimiento humano según cualidades como el peso, el tiempo, el espacio y la fluidez; explorar cada una por separado, sin ninguna historia que representar, amplía el vocabulario expresivo disponible.",
+    edadMin: 5, edadMax: 99, dificultad: 1, duracion: 5, activo: true, version: 1 },
+
+  { id: "seguir-una-parte-del-cuerpo", titulo: "Seguir una parte del cuerpo", descripcion: "Dejá que una sola parte del cuerpo lidere todo el movimiento.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Elegí una parte del cuerpo poco habitual para liderar un movimiento: el codo, la cadera, una oreja. Dejá que esa parte 'vaya primero' y el resto del cuerpo la siga, como si tirara de todo lo demás. Probá con dos o tres partes distintas y notá cómo cambia el movimiento entero según cuál lidera.",
+    objetivo: "La terapeuta Gabrielle Roth desarrolló las 5Rhythms, una práctica que describe todo movimiento posible dentro de cinco calidades básicas —fluido, staccato, caos, lírico y quietud— como forma de acceder a estados internos sin pasar por la palabra.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "el-silencio-en-movimiento", titulo: "El silencio en movimiento", descripcion: "Quedate casi completamente quieto, con un solo movimiento mínimo y continuo.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Quedate lo más quieto posible, pero elegí un solo movimiento diminuto que no se detenga nunca: un dedo que tiembla apenas, la respiración visible en el pecho. Sostené esa quietud casi total durante un rato, prestando atención a lo poco que hace falta para que algo siga 'vivo'.",
+    objetivo: "El Movimiento Auténtico (Authentic Movement), desarrollado por Mary Starks Whitehouse, propone moverse desde un impulso interno en vez de una forma decidida de antemano —a menudo con los ojos cerrados— como forma de explorar lo que el cuerpo 'sabe' antes de que la mente lo nombre.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "tres-tiempos-de-baile", titulo: "Tres tiempos de baile", descripcion: "Una mini-coreografía improvisada con un inicio, un desarrollo y un cierre quieto.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Armá un baile improvisado de tres partes: empezá completamente quieto, dejá que aparezca un movimiento y crezca hasta su punto más intenso, y por último volvé despacio a la quietud. No hace falta planearlo antes — dejá que cada parte lleve naturalmente a la siguiente.",
+    objetivo: "La danzaterapia (dance/movement therapy) parte de la idea de que el cuerpo en movimiento es una vía de procesamiento emocional distinta —y a veces más directa— que la palabra, especialmente para estados difíciles de nombrar.",
+    edadMin: 7, edadMax: 99, dificultad: 2, duracion: 6, activo: true, version: 1 },
+
+  { id: "movimiento-y-gravedad", titulo: "Movimiento y gravedad", descripcion: "Explorá el punto justo entre dejarte caer y sostenerte, sin llegar a caer del todo.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "De pie y con cuidado, dejá que el peso del cuerpo se incline hacia un lado, como si fueras a caer, y en el último momento recuperá el equilibrio. Repetilo hacia distintas direcciones, buscando el punto exacto entre soltar el control y recuperarlo. Hacelo despacio y con cuidado, sin forzar el equilibrio.",
+    objetivo: "La investigación sobre 'entrainment' (sincronización rítmica) muestra que el cerebro tiende a sincronizar el movimiento con un ritmo externo casi automáticamente — por eso mismo, moverse sin ningún ritmo externo es un desafío distinto: obliga a encontrar un pulso propio.",
+    edadMin: 8, edadMax: 99, dificultad: 3, duracion: 6, activo: true, version: 1 },
+
+  { id: "el-mapa-de-tension", titulo: "El mapa de tensión", descripcion: "Encontrá dónde vive la tensión en el cuerpo y dejá que el movimiento la vaya soltando.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Recorré mentalmente el cuerpo buscando la zona con más tensión ahora mismo. Empezá a moverla despacio —rotarla, sacudirla suavemente, estirarla— y dejá que ese movimiento se expanda de a poco a zonas cercanas, como si la tensión se fuera disolviendo hacia afuera.",
+    objetivo: "El bailarín Steve Paxton, creador de la improvisación de contacto, propuso prestar atención al peso real del cuerpo y a cómo se transfiere entre distintas partes al moverse, en vez de imponerle una forma prevista.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "bailar-tu-estado-de-animo", titulo: "Bailar tu estado de ánimo", descripcion: "Traducí cómo te sentís ahora directamente en movimiento, sin ponerlo en palabras primero.",
+    seccion: "danza", tipo: "prompt", salida: "texto",
+    consigna: "Sin pensar en qué palabra usarías para describir cómo te sentís ahora, dejá que el cuerpo lo traduzca directamente en movimiento: la velocidad, el peso, el tamaño de los gestos. Cuando termines, recién ahí escribí en una palabra cómo te sentías — y notá si coincide con lo que bailaste.",
+    objetivo: "La creatividad no es un talento aislado: la investigación la describe cada vez más como una meta-habilidad que combina flexibilidad cognitiva, tolerancia a la ambigüedad y disposición a arriesgarse a equivocarse — las mismas capacidades que después se usan para resolver problemas en cualquier área.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
 ];
 
 const CatalogoCreatividad = {
