@@ -15,6 +15,11 @@ const InfantilEngine = (() => {
 
   function limpiarTimers() { timers.forEach(clearTimeout); timers = []; }
 
+  // beep() vive en js/beep.js (compartido con exercise-engine.js/game-engine.js).
+  function vibrar(patron = 20) {
+    if (navigator.vibrate) navigator.vibrate(patron);
+  }
+
   function crearBarra() {
     let barra = document.getElementById("ieBarra");
     if (barra) return barra;
@@ -30,7 +35,12 @@ const InfantilEngine = (() => {
     const el = document.getElementById("ieEstrellas");
     if (el) el.textContent = `⭐ ${estrellasGanadas}`;
   }
-  function sumarEstrella(n = 1) { estrellasGanadas += n; actualizarEstrellas(); }
+  function sumarEstrella(n = 1) {
+    estrellasGanadas += n;
+    actualizarEstrellas();
+    beep(880, 90, "triangle", 0.05);
+    vibrar(15);
+  }
 
   function iniciar(datosActividad) {
     actividad = datosActividad;
@@ -79,6 +89,9 @@ const InfantilEngine = (() => {
 
   function pantallaFinal(mensaje) {
     limpiarTimers();
+    beep(660, 110, "triangle", 0.05);
+    timers.push(setTimeout(() => beep(880, 180, "triangle", 0.06), 130));
+    vibrar([30, 40, 30]);
     InfantilStorage.registrarActividadCompletada(actividad.id);
     InfantilStorage.sumarEstrellas(estrellasGanadas || 1);
     const nuevosLogros = InfantilStorage.evaluarLogros();
@@ -123,6 +136,7 @@ const InfantilEngine = (() => {
         if (aciertos === pares.length) timers.push(setTimeout(() => pantallaFinal("¡Encontraste todos los pares!"), 500));
       } else {
         bloqueado = true;
+        beep(300, 90, "sine", 0.03);
         timers.push(setTimeout(() => { primera.volteada = false; c.volteada = false; primera = null; bloqueado = false; render(); }, 900));
       }
     }
@@ -147,6 +161,7 @@ const InfantilEngine = (() => {
         const acierto = Number(btn.dataset.i) === r.correctaIdx;
         if (acierto) { btn.classList.add("ie-correcta"); sumarEstrella(); timers.push(setTimeout(() => { i += 1; render(); }, 600)); }
         else {
+          beep(300, 90, "sine", 0.03);
           btn.classList.add("ie-intenta-de-nuevo");
           btn.disabled = true;
           timers.push(setTimeout(() => { btn.classList.remove("ie-intenta-de-nuevo"); }, 700));
@@ -176,7 +191,7 @@ const InfantilEngine = (() => {
         </div>`;
       contenedor.querySelectorAll(".ie-grupo-btn").forEach(btn => btn.addEventListener("click", () => {
         if (btn.dataset.g === item.grupo) { sumarEstrella(); aciertos += 1; restantes.shift(); render(); }
-        else { btn.classList.add("ie-intenta-de-nuevo"); timers.push(setTimeout(() => btn.classList.remove("ie-intenta-de-nuevo"), 500)); }
+        else { beep(300, 90, "sine", 0.03); btn.classList.add("ie-intenta-de-nuevo"); timers.push(setTimeout(() => btn.classList.remove("ie-intenta-de-nuevo"), 500)); }
       }));
     }
     render();
@@ -204,6 +219,7 @@ const InfantilEngine = (() => {
           if (elegidos.length === items.length) timers.push(setTimeout(() => pantallaFinal("¡Ordenaste todo!"), 500));
           else render();
         } else {
+          beep(300, 90, "sine", 0.03);
           btn.classList.add("ie-intenta-de-nuevo");
           btn.disabled = true;
           timers.push(setTimeout(() => { btn.classList.remove("ie-intenta-de-nuevo"); btn.disabled = false; }, 650));
