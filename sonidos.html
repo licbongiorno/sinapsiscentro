@@ -87,6 +87,30 @@
   </div>
 </section>
 
+<section class="sh-seccion">
+  <h2>🧠 ¿Por qué el sonido ayuda?</h2>
+  <p class="sub">Cuatro formas distintas en que el sonido influye en cómo te sentís, cada una con un uso distinto.</p>
+  <div class="sh-porque-grid">
+    <div class="sh-porque-card">
+      <p class="sh-porque-titulo">🔊 Ruido (blanco, rosa, marrón)</p>
+      <p>Funciona como una "cortina" constante que tapa sonidos interrumpidos del entorno — un plato que se cae, una conversación lejana — más fáciles de ignorar cuando son parejos que cuando aparecen de golpe. El ruido rosa en particular se estudió asociado a una mejora en la calidad del sueño profundo en adultos mayores (Papalambros y colegas, 2017).</p>
+    </div>
+    <div class="sh-porque-card">
+      <p class="sh-porque-titulo">🌧️ Ambientes de naturaleza</p>
+      <p>Investigación en psicología ambiental (Alvarsson, Wiens y Nilsson, 2010) encontró que el cuerpo se recupera más rápido de una situación de estrés escuchando sonidos de naturaleza que escuchando sonidos urbanos equivalentes en volumen. La Teoría de Restauración de la Atención de los Kaplan explica esto por el tipo de atención "suave" que piden estos sonidos, sin exigir esfuerzo.</p>
+    </div>
+    <div class="sh-porque-card">
+      <p class="sh-porque-titulo">🔔 Campanas y cuencos</p>
+      <p>En prácticas de mindfulness (como el programa MBSR de Jon Kabat-Zinn) una campana suele marcar el inicio y el final de una práctica: un sonido con un decaimiento largo le da a la atención un punto fijo simple donde volver cada vez que se dispersa.</p>
+    </div>
+    <div class="sh-porque-card">
+      <p class="sh-porque-titulo">🎵 Música generativa</p>
+      <p>La música instrumental de tempo lento, sin letra ni estructura repetitiva marcada, tiende a asociarse con menor activación fisiológica de estrés que la música con letra o ritmo rápido — por eso se usa como música de fondo para concentrarse o para bajar revoluciones, no para "entretener" activamente.</p>
+    </div>
+  </div>
+  <p class="sh-aviso" style="margin-top:14px;">Nada de esto reemplaza un tratamiento cuando hace falta uno — son herramientas de bienestar cotidiano, no una intervención clínica.</p>
+</section>
+
 <div id="sinAudioAviso" hidden class="sh-seccion">
   <div class="sh-audio-no-disponible">
     <p>Tu navegador no permite reproducir audio interactivo acá. Probá con un navegador más reciente (Chrome, Safari o Firefox actualizados).</p>
@@ -96,7 +120,7 @@
 <div id="contenidoPrincipal">
   <section class="sh-seccion">
     <h2>Explorar por categoría</h2>
-    <p class="sub">🔊 Ruido y 🔔 Campanas funcionan ya mismo. 🌧️ Ambientes y 🎵 Música todavía están en camino.</p>
+    <p class="sub">🔊 Ruido, 🔔 Campanas, 🌧️ Ambientes y 🎵 Música ya funcionan. Un puñado de ambientes grabados (☕ cafetería) todavía están en camino.</p>
     <div class="sh-categorias-tabs" id="categoriasTabs"></div>
     <div class="sh-pistas-grid" id="pistasGrid"></div>
   </section>
@@ -310,8 +334,14 @@ function manejarClickPista(pistaId) {
 
 function activarPista(pistaId, volumen) {
   const p = CatalogoSonidos.pistaPorId(pistaId);
-  if (!p || p.tipo !== "procedural" || p.campana) return;
-  AudioEngine.iniciarPistaProcedural(pistaId, p.generador);
+  if (!p || p.campana) return;
+  if (p.tipo === "procedural") {
+    AudioEngine.iniciarPistaProcedural(pistaId, p.generador);
+  } else if (p.tipo === "archivo" && p.audioUrl) {
+    AudioEngine.iniciarArchivo(pistaId, p.audioUrl);
+  } else {
+    return;
+  }
   AudioEngine.setVolumen(pistaId, volumen);
   pistasEnMezcla[pistaId] = volumen;
   marcarInicioSesionSiHaceFalta();
@@ -334,16 +364,16 @@ function renderMezclador() {
     return `<div class="sh-pista-slider" data-slider="${id}">
       <span class="emoji">${p.icono}</span>
       <span class="nombre">${p.titulo}</span>
-      <input type="range" min="0" max="100" value="${Math.round(pistasEnMezcla[id] * 100)}" data-vol="${id}">
-      <button class="quitar" data-quitar="${id}" aria-label="Quitar">✕</button>
+      <input type="range" min="0" max="100" value="${Math.round(pistasEnMezcla[id] * 100)}" data-vol="${id}" aria-label="Volumen de ${p.titulo}">
+      <button class="quitar" data-quitar="${id}" aria-label="Quitar ${p.titulo}">✕</button>
     </div>`;
   }).join("");
   if (binauralActivo) {
     html += `<div class="sh-pista-slider" data-slider="binaural">
       <span class="emoji">🧠</span>
       <span class="nombre">Binaural</span>
-      <input type="range" min="0" max="100" value="40" data-vol="binaural">
-      <button class="quitar" data-quitar="binaural" aria-label="Quitar">✕</button>
+      <input type="range" min="0" max="100" value="40" data-vol="binaural" aria-label="Volumen de Binaural">
+      <button class="quitar" data-quitar="binaural" aria-label="Quitar Binaural">✕</button>
     </div>`;
   }
   cont.innerHTML = html;

@@ -1,20 +1,21 @@
 /**
  * AUDIO-ENGINE.JS — Motor de la Biblioteca Sonora
  * =====================================================
- * TODO lo que produce acá es generado en tiempo real con Web Audio
- * API — ningún archivo de audio. Esto es deliberado y es lo que
- * permite que "ruido", "campanas", "binaurales", los ambientes
- * sintetizados (lluvia, viento, olas, arroyo, fuego, tormenta) y la
- * música generativa (pads de notas en escala, ver PRESETS_PAD)
- * funcionen de verdad, sin necesitar mp3.
+ * La mayor parte de lo que produce acá se genera en tiempo real con
+ * Web Audio API — ningún archivo de audio. Esto es lo que permite que
+ * "ruido", "campanas", "binaurales", los ambientes sintetizados
+ * (lluvia, viento, olas, arroyo, fuego, tormenta) y la música
+ * generativa (pads de notas en escala, ver PRESETS_PAD) funcionen de
+ * verdad, sin necesitar mp3.
  *
- * Lo que este motor NO PUEDE hacer: reproducir grabaciones reales
- * (un bosque grabado, una canción de piano real) — eso necesita
- * archivos de audio reales. Las pistas de tipo "archivo" (ver
- * data/sonidos-datos.js) están preparadas para recibir una URL de
- * audio real el día que existan; hasta entonces, el motor las
- * reconoce pero avisa que no están disponibles todavía (ver
- * `disponible()`).
+ * Las pistas de tipo "archivo" (ver data/sonidos-datos.js) SÍ son
+ * grabaciones reales con licencia libre (Pixabay Content License,
+ * ver audio/README.md), reproducidas en loop con `iniciarArchivo()`
+ * — un <audio> real enrutado al mismo masterGain que las pistas
+ * sintetizadas, para que el mezclador, el fade y el temporizador les
+ * funcionen igual. Una pista con `audioUrl: null` todavía no tiene
+ * archivo conseguido; `disponible()` en sonidos.html la muestra como
+ * "Próximamente" hasta que lo tenga.
  */
 
 const AudioEngine = (() => {
@@ -437,6 +438,28 @@ const AudioEngine = (() => {
     return true;
   }
 
+  // ── Pistas de archivo real (grabaciones), reproducidas con <audio> en loop
+  // y enrutadas al mismo masterGain que las pistas sintetizadas, para que
+  // el mezclador, el fade y el temporizador les funcionen igual. ──
+  function iniciarArchivo(id, audioUrl) {
+    const c = getCtx();
+    if (!c || !audioUrl) return false;
+    detenerPista(id, true);
+    const el = new Audio(audioUrl);
+    el.loop = true;
+    el.crossOrigin = "anonymous";
+    const source = c.createMediaElementSource(el);
+    const gain = c.createGain();
+    gain.gain.value = 0;
+    source.connect(gain).connect(masterGain);
+    el.play().catch(() => {});
+    pistasActivas[id] = {
+      gain, tipo: "archivo",
+      detener: () => { try { el.pause(); el.src = ""; } catch (e) {} },
+    };
+    return true;
+  }
+
   /** Punto de entrada único para pistas proceduales en loop (ruido, ambientes y música generativa). */
   function iniciarPistaProcedural(id, generador) {
     if (generador === "lluvia") return iniciarLluvia(id);
@@ -499,7 +522,7 @@ const AudioEngine = (() => {
 
   return {
     disponible, iniciarRuido, iniciarBinaural, tocarCampana, setVolumen,
-    iniciarPistaProcedural,
+    iniciarPistaProcedural, iniciarArchivo,
     estaActiva, pistasEnReproduccion, detenerPista, detenerTodo,
     iniciarTemporizador, cancelarTemporizador,
   };

@@ -23,7 +23,7 @@ const PISTAS = [
     descripcion: "Aproximación sintetizada con ruido filtrado — no es una grabación real de lluvia, pero puede servir como fondo." },
   { id: "amb-tormenta", titulo: "Tormenta suave", categoria: "ambientes", icono: "⛈️", tipo: "procedural", generador: "tormenta",
     descripcion: "Aproximación sintetizada: la misma lluvia, con algún trueno grave y espaciado — no es una grabación real." },
-  { id: "amb-bosque", titulo: "Bosque", categoria: "ambientes", icono: "🌲", tipo: "archivo", audioUrl: null },
+  { id: "amb-bosque", titulo: "Bosque", categoria: "ambientes", icono: "🌲", tipo: "archivo", audioUrl: "audio/ambiente-bosque.mp3" },
   { id: "amb-rio", titulo: "Río", categoria: "ambientes", icono: "🏞️", tipo: "procedural", generador: "arroyo",
     descripcion: "Aproximación sintetizada de agua en movimiento y burbujeo — no es una grabación real." },
   { id: "amb-mar", titulo: "Mar", categoria: "ambientes", icono: "🌊", tipo: "procedural", generador: "olas",
@@ -32,8 +32,8 @@ const PISTAS = [
     descripcion: "Aproximación sintetizada con ruido grave modulado en ráfagas lentas — no es una grabación real." },
   { id: "amb-fuego", titulo: "Fuego", categoria: "ambientes", icono: "🔥", tipo: "procedural", generador: "fuego",
     descripcion: "Aproximación sintetizada: una cama grave constante con chispazos agudos al azar — no es una grabación real." },
-  { id: "amb-noche", titulo: "Noche", categoria: "ambientes", icono: "🌙", tipo: "archivo", audioUrl: null },
-  { id: "amb-pajaros", titulo: "Pájaros", categoria: "ambientes", icono: "🐦", tipo: "archivo", audioUrl: null },
+  { id: "amb-noche", titulo: "Noche", categoria: "ambientes", icono: "🌙", tipo: "archivo", audioUrl: "audio/ambiente-noche.mp3" },
+  { id: "amb-pajaros", titulo: "Pájaros", categoria: "ambientes", icono: "🐦", tipo: "archivo", audioUrl: "audio/ambiente-pajaros.mp3" },
   { id: "amb-cafeteria", titulo: "Cafetería", categoria: "ambientes", icono: "☕", tipo: "archivo", audioUrl: null },
 
   // ── 🔊 RUIDO (procedural — funciona hoy) ──
@@ -59,7 +59,7 @@ const PISTAS = [
     descripcion: "Más grave y prolongado que el cuenco, con una resonancia más profunda." },
   { id: "son-platillos", titulo: "Platillos", categoria: "sonidos", icono: "✨", tipo: "procedural", generador: "campana", campana: "platillos",
     descripcion: "Un brillo agudo y breve, como el de un tingsha — útil para marcar transiciones cortas." },
-  { id: "son-naturaleza", titulo: "Naturaleza", categoria: "sonidos", icono: "🌿", tipo: "archivo", audioUrl: null },
+  { id: "son-naturaleza", titulo: "Naturaleza", categoria: "sonidos", icono: "🌿", tipo: "archivo", audioUrl: "audio/ambiente-naturaleza.mp3" },
   { id: "son-agua", titulo: "Agua", categoria: "sonidos", icono: "💧", tipo: "procedural", generador: "arroyo",
     descripcion: "Aproximación sintetizada de agua en movimiento — no es una grabación real." },
 
