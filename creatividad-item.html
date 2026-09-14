@@ -228,10 +228,11 @@ if (!actividad || !actividad.activo) {
         sonidoSonando = false;
         btnSonido.textContent = "▶️ Reproducir sonido";
       } else {
-        if (actividad.sonido === "campana") AudioEngine.tocarCampana("campana");
-        else if (actividad.sonido === "gong") AudioEngine.tocarCampana("gong");
-        else AudioEngine.iniciarPistaProcedural(SONIDO_ID, actividad.sonido);
-        if (actividad.sonido !== "campana" && actividad.sonido !== "gong") {
+        const ES_CAMPANA = ["campana", "gong", "cuenco", "tibetano", "platillos"].includes(actividad.sonido);
+        if (ES_CAMPANA) {
+          AudioEngine.tocarCampana(actividad.sonido);
+        } else {
+          AudioEngine.iniciarPistaProcedural(SONIDO_ID, actividad.sonido);
           AudioEngine.setVolumen(SONIDO_ID, 0.5);
           sonidoSonando = true;
           btnSonido.textContent = "⏸️ Detener sonido";
