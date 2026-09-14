@@ -3190,6 +3190,56 @@ const MINDFULNESS = [
     motor: "ejercicio", tipo: "escritura",
     pasos: [{"tipo": "escritura", "pregunta": "Pensá en un árbol que veas seguido. ¿Cómo se ve ahora, y cómo se veía (o se verá) en otra estación del año?", "placeholder": "En esta época se ve… y en otra estación…"}],
     activo: true, version: 1 },
+
+  // ═══════ 🚶 MOVIMIENTO CONSCIENTE (parte 2) ═══════
+  { id: "movimiento-caminar-en-el-lugar", titulo: "Caminar en el lugar", descripcion: "Sin moverte del sitio, marchá suavemente levantando las rodillas, con atención al ritmo.",
+    objetivo: "Alternar movimientos familiares con otros poco habituales, como cambiar el patrón de caminata, activa circuitos motores distintos y mantiene la atención en el cuerpo en vez de dejar que el movimiento se vuelva completamente automático.",
+    categoria: "movimiento-consciente", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Sin moverte del lugar, marchá suavemente levantando apenas las rodillas, a tu propio ritmo. Notá el peso pasando de un pie al otro.", "duracionSeg": 30}],
+    activo: true, version: 1 },
+
+  { id: "movimiento-estirar-la-mandibula", titulo: "Estirar la mandíbula y la cara", descripcion: "Abrí y cerrá la boca despacio, y mové la mandíbula de un lado a otro con suavidad.",
+    objetivo: "Los ejercicios oculares simples —mover los ojos con atención, hacer pausas de enfoque— son recomendados en medicina ocupacional para aliviar la fatiga visual acumulada frente a pantallas.",
+    categoria: "movimiento-consciente", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Abrí la boca despacio, todo lo que puedas sin forzar, y volvé a cerrarla.", "duracionSeg": 8}, {"tipo": "mensaje", "texto": "Mové la mandíbula suavemente de un lado a otro, como masticando despacio en el aire.", "duracionSeg": 12}],
+    activo: true, version: 1 },
+
+  { id: "movimiento-rotar-munecas-y-tobillos", titulo: "Rotar muñecas y tobillos", descripcion: "Movilizá las articulaciones más chicas del cuerpo: muñecas y tobillos, en círculos suaves.",
+    objetivo: "La movilidad articular activa (rotar muñecas, tobillos, cuello) es una práctica recomendada en fisioterapia preventiva para mantener el rango de movimiento de las articulaciones, más allá de estirar solo los músculos grandes.",
+    categoria: "movimiento-consciente", duracion: 2, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Rotá las muñecas en círculos suaves, primero hacia un lado, después hacia el otro.", "duracionSeg": 12}, {"tipo": "mensaje", "texto": "Si podés, hacé lo mismo con los tobillos, sentado o parado.", "duracionSeg": 12}],
+    activo: true, version: 1 },
+
+  { id: "movimiento-caminar-en-silencio-total", titulo: "Caminar en silencio total", descripcion: "Caminá unos pasos sin música, sin hablar, sin celular: solo el movimiento y el entorno.",
+    objetivo: "Estirarse instintivamente al despertar, como hacen casi todos los mamíferos, se llama 'pandiculación': una respuesta natural del sistema nervioso que ayuda a resetear el tono muscular después del descanso.",
+    categoria: "movimiento-consciente", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Caminá unos pasos sin música, sin hablar, sin mirar el celular. Solo el movimiento de tu cuerpo y lo que te rodea.", "duracionSeg": 30}],
+    activo: true, version: 1 },
+
+  { id: "movimiento-estirar-como-al-despertar", titulo: "Estirarte como recién despierto/a", descripcion: "Un estiramiento instintivo de todo el cuerpo, como el que hacés (o harías) apenas te despertás.",
+    objetivo: "Estirarte instintivamente al despertar, como hacen casi todos los mamíferos, se llama 'pandiculación': una respuesta natural del sistema nervioso que ayuda a resetear el tono muscular después del descanso.",
+    categoria: "movimiento-consciente", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Estirate como si te acabaras de despertar: brazos hacia arriba, todo el cuerpo alargándose, incluso un bostezo si viene solo.", "duracionSeg": 15}],
+    activo: true, version: 1 },
+
+  { id: "movimiento-caminar-diferente-a-lo-habitual", titulo: "Caminar distinto a lo habitual", descripcion: "Cambiá deliberadamente tu forma de caminar: más lento, con otro largo de paso, distinto apoyo del pie.",
+    objetivo: "Alternar movimientos familiares con otros poco habituales, como cambiar el patrón de caminata, activa circuitos motores distintos y mantiene la atención en el cuerpo en vez de dejar que el movimiento se vuelva completamente automático.",
+    categoria: "movimiento-consciente", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Caminá cambiando algo de tu forma habitual: pasos más largos o más cortos, apoyando distinto el pie, más lento de lo normal. Notá cómo se siente lo distinto.", "duracionSeg": 30}],
+    activo: true, version: 1 },
+
+  { id: "movimiento-mover-los-ojos-conscientemente", titulo: "Mover los ojos con atención", descripcion: "Movés los ojos despacio en distintas direcciones, sin mover la cabeza, para aliviar la vista cansada.",
+    objetivo: "Los ejercicios oculares simples —mover los ojos con atención, hacer pausas de enfoque— son recomendados en medicina ocupacional para aliviar la fatiga visual acumulada frente a pantallas.",
+    categoria: "movimiento-consciente", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Sin mover la cabeza, mirá despacio hacia arriba, después hacia abajo.", "duracionSeg": 8}, {"tipo": "mensaje", "texto": "Ahora mirá despacio hacia un costado, y después hacia el otro. Por último, en círculos suaves.", "duracionSeg": 12}],
+    activo: true, version: 1 },
 ];
 
 const CatalogoMindfulness = {
