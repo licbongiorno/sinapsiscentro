@@ -284,11 +284,12 @@ function renderMiEspacio() {
   renderGaleria();
 }
 
-const ICONO_TIPO = { historia: "📖", poema: "📝", dibujo: "🎨", personaje: "🎭", mundo: "🌎", idea: "💭" };
+const ICONO_TIPO = { historia: "📖", poema: "📝", dibujo: "🎨", personaje: "🎭", mundo: "🌎", idea: "💭", foto: "📷" };
+const TIPOS_IMAGEN = ["dibujo", "foto"];
 
 function tarjetaGaleria(c) {
   const fecha = new Date(c.creadoEl).toLocaleDateString("es-AR", { day: "numeric", month: "short" });
-  const previa = c.tipo === "dibujo"
+  const previa = TIPOS_IMAGEN.includes(c.tipo)
     ? `<img src="${c.contenido}" alt="">`
     : `<div class="cv-g-snippet">${escapeHtml((c.contenido || "").slice(0, 140))}</div>`;
   return `<div class="cv-galeria-card" data-c="${c.id}" tabindex="0" role="group" aria-label="${escapeHtml(c.titulo || "Sin título")}">
@@ -348,14 +349,14 @@ function abrirCreacion(id) {
   disparadorCreacion = document.activeElement;
   const overlay = document.getElementById("modalCreacion");
   const cont = document.getElementById("modalCreacionContenido");
-  const esDibujo = c.tipo === "dibujo";
+  const esImagen = TIPOS_IMAGEN.includes(c.tipo);
   cont.innerHTML = `
     <span class="cv-tipo-chip">${ICONO_TIPO[c.tipo] || "💭"} ${c.tipo}</span>
     <h2>${escapeHtml(c.titulo || "Sin título")}</h2>
-    ${esDibujo ? `<img src="${c.contenido}" alt="">` : `<textarea id="modalTextoCreacion">${escapeHtml(c.contenido || "")}</textarea>`}
+    ${esImagen ? `<img src="${c.contenido}" alt="">` : `<textarea id="modalTextoCreacion">${escapeHtml(c.contenido || "")}</textarea>`}
     <div class="cv-modal-botones">
-      ${!esDibujo ? `<button class="ee-btn ee-btn-principal" id="btnGuardarEdicion">💾 Guardar cambios</button>` : ""}
-      ${esDibujo
+      ${!esImagen ? `<button class="ee-btn ee-btn-principal" id="btnGuardarEdicion">💾 Guardar cambios</button>` : ""}
+      ${esImagen
         ? `<button class="ee-btn ee-btn-secundario" id="btnDescargar">🖼️ Descargar imagen</button>`
         : `<button class="ee-btn ee-btn-secundario" id="btnDescargar">📄 Descargar TXT</button>
            <button class="ee-btn ee-btn-secundario" id="btnImprimir">🖨️ Imprimir / PDF</button>`}
@@ -377,8 +378,9 @@ function abrirCreacion(id) {
     renderGaleria();
   });
   document.getElementById("btnDescargar").addEventListener("click", () => {
-    if (esDibujo) {
-      Exportar.descargarImagen({ dataUrl: c.contenido, nombreArchivo: Exportar.nombreArchivo({ tipo: c.tipo, titulo: c.titulo, extension: "png" }) });
+    if (esImagen) {
+      const extension = c.tipo === "foto" ? "jpg" : "png";
+      Exportar.descargarImagen({ dataUrl: c.contenido, nombreArchivo: Exportar.nombreArchivo({ tipo: c.tipo, titulo: c.titulo, extension }) });
     } else {
       Exportar.descargarTxt({ contenido: `${c.titulo}\n\n${c.contenido}`, nombreArchivo: Exportar.nombreArchivo({ tipo: c.tipo, titulo: c.titulo, extension: "txt" }) });
     }

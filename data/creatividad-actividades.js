@@ -34,6 +34,7 @@ const CATEGORIAS_CREATIVIDAD = [
   { id: "sonidos", nombre: "Crear con sonidos", icono: "🎧", color: "#c98ac2" },
   { id: "cuerpo", nombre: "Cuerpo y actuación", icono: "🤸", color: "#e0954a" },
   { id: "danza", nombre: "Danza y movimiento libre", icono: "💃", color: "#a94a8a" },
+  { id: "fotografia", nombre: "Fotografía creativa", icono: "📷", color: "#4a7c9e" },
 ];
 
 const CREATIVIDAD_ACTIVIDADES = [
@@ -1033,6 +1034,97 @@ const CREATIVIDAD_ACTIVIDADES = [
     consigna: "Sin pensar en qué palabra usarías para describir cómo te sentís ahora, dejá que el cuerpo lo traduzca directamente en movimiento: la velocidad, el peso, el tamaño de los gestos. Cuando termines, recién ahí escribí en una palabra cómo te sentías — y notá si coincide con lo que bailaste.",
     objetivo: "La creatividad no es un talento aislado: la investigación la describe cada vez más como una meta-habilidad que combina flexibilidad cognitiva, tolerancia a la ambigüedad y disposición a arriesgarse a equivocarse — las mismas capacidades que después se usan para resolver problemas en cualquier área.",
     edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  // ═══════ 📷 FOTOGRAFÍA CREATIVA ═══════
+  { id: "buscar-una-espiral", titulo: "Encontrá una espiral", descripcion: "Buscá algo con forma de espiral en el lugar donde estás.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Recorré con la vista el lugar donde estás buscando algo con forma de espiral: un cable enroscado, una escalera, una cáscara, el dibujo de una planta. Sacale una foto de cerca, mostrando bien la espiral.",
+    objetivo: "La búsqueda de formas geométricas en objetos cotidianos (pareidolia estructural) entrena la atención a los detalles visuales que normalmente se filtran por completo — el cerebro ignora la mayoría de lo que ve para no saturarse, y este tipo de ejercicio reactiva esa atención.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-simetria", titulo: "Encontrá algo simétrico", descripcion: "Buscá algo perfectamente simétrico y fotografialo bien centrado.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá algo que sea simétrico: una hoja, un mueble, la sombra de algo. Fotografialo bien centrado, de manera que la simetría se note con claridad en la imagen.",
+    objetivo: "Encuadrar deliberadamente —decidir qué entra y qué queda afuera de la foto— es en sí mismo un acto creativo de selección, distinto a simplemente mirar: obliga a tomar una decisión consciente sobre qué mostrar.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-textura-rugosa", titulo: "Fotografiá una textura", descripcion: "Encontrá una textura interesante y fotografiala bien de cerca.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá una superficie con una textura interesante: una pared descascarada, una tela, corteza de árbol, la piel de una fruta. Acercate lo más que puedas y sacá la foto, de manera que la textura sea protagonista.",
+    objetivo: "Representar algo intangible —una sensación táctil— a través de una imagen visual entrena la traducción entre sentidos, una de las bases de la creatividad: encontrar equivalencias entre lenguajes distintos.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-un-rojo", titulo: "Encontrá el rojo más intenso", descripcion: "Buscá el objeto más rojo que puedas encontrar cerca tuyo.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Recorré el lugar donde estás buscando el objeto más rojo que puedas encontrar, por más chico que sea. Fotografialo de manera que el color sea lo primero que se note.",
+    objetivo: "Buscar un solo color de forma deliberada activa lo que la psicología perceptiva llama 'ceguera por falta de atención' al revés: de repente empezás a notar ese color en todos lados, un efecto real y fácil de comprobar en el momento.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-una-sombra-interesante", titulo: "Fotografiá una sombra", descripcion: "Encontrá una sombra con una forma que valga la pena fotografiar.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá una sombra —de un objeto, una planta, una persona— que tenga una forma interesante o inesperada. Fotografiala de manera que la sombra sea la protagonista, más que el objeto que la proyecta.",
+    objetivo: "Fotografiar la sombra en vez del objeto es un ejercicio clásico de 'mirar diferente': la misma escena, vista desde un ángulo que normalmente se ignora, revela algo que el ojo pasa por alto en el uso cotidiano de la atención.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-reflejo", titulo: "Encontrá un reflejo", descripcion: "Buscá algo reflejado en un espejo, un vidrio, el agua o una superficie metálica.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá una superficie que refleje algo: un espejo, una ventana, el agua, una pantalla apagada, una cuchara. Fotografiá el reflejo, jugando con lo que se ve distorsionado o distinto de como es en realidad.",
+    objetivo: "El reflejo agrega una capa de interpretación entre lo real y la imagen —algo se transforma en el camino— que es, en esencia, lo mismo que hace cualquier proceso creativo con la realidad que toma como punto de partida.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-patron-repetido", titulo: "Encontrá un patrón que se repite", descripcion: "Buscá algo que se repita varias veces formando un patrón.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá algo que se repita: baldosas, ladrillos, hojas en fila, objetos iguales agrupados. Fotografiá el patrón completo, de manera que se note la repetición.",
+    objetivo: "Detectar patrones es una de las funciones cognitivas más básicas y más entrenables: buscarlos activamente, en vez de esperar a notarlos por accidente, mejora la velocidad con la que el cerebro los reconoce en otros contextos.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-algo-diminuto", titulo: "Fotografiá algo diminuto", descripcion: "Acercate mucho a algo pequeño y fotografialo como si fuera enorme.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Elegí algo pequeño —una hormiga, un botón, una gota de agua, el borde de una hoja— y acercate lo más que puedas con la cámara, hasta que ese detalle diminuto ocupe toda la foto, como si fuera gigante.",
+    objetivo: "Cambiar deliberadamente de escala —mirar de cerca lo que normalmente se ve de lejos— es una de las formas más simples y efectivas de generar una perspectiva nueva sobre algo completamente familiar.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-una-cara-oculta", titulo: "Encontrá una cara escondida", descripcion: "Buscá algo cotidiano que, mirado bien, parezca tener una cara.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá un objeto, una pared, un enchufe, un auto — algo que, mirado con atención, parezca tener ojos y boca, como una cara escondida. Fotografialo mostrando esa 'cara' con claridad.",
+    objetivo: "La tendencia a ver caras en objetos (pareidolia facial) es tan fuerte que el cerebro la activa incluso cuando sabe que es falsa; usarla a propósito, en vez de solo notarla por accidente, es una forma simple de practicar ver lo inusual en lo común.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-el-desorden-bonito", titulo: "Fotografiá un desorden que en realidad es lindo", descripcion: "Encontrá un desorden cotidiano y fotografialo como si fuera arte.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá algo desordenado que normalmente no mirarías dos veces: una pila de ropa, cables enredados, platos en la pileta. Fotografialo con atención a la composición —el encuadre, la luz— como si fuera una obra, no un desorden para ordenar.",
+    objetivo: "Encontrar valor estético en lo que normalmente se descarta como 'desorden' es un ejercicio directo de reencuadre (reframing): la misma escena cambia de sentido según qué lente mental se le aplique, sin que el objeto en sí cambie.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-dos-colores-que-combinan", titulo: "Encontrá dos colores que combinen", descripcion: "Buscá dos cosas de colores distintos que, juntas, se vean bien.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Recorré el lugar donde estás buscando dos objetos de colores distintos que, puestos uno junto al otro (o fotografiados en el mismo cuadro), formen una combinación que te guste. Fotografialos juntos.",
+    objetivo: "Elegir combinaciones de color es una decisión estética concreta, no abstracta: entrena el mismo tipo de juicio creativo que después se usa para elegir qué ponerse, cómo decorar un espacio, o cómo diseñar cualquier cosa.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-una-linea-curva", titulo: "Encontrá la curva más elegante", descripcion: "Buscá la línea curva que más te guste del lugar donde estás.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Recorré el lugar donde estás buscando la línea curva más elegante que encuentres: el borde de un mueble, una rama, el asa de algo. Fotografiala de manera que la curva se destaque con claridad.",
+    objetivo: "Prestarle atención a la forma pura de las cosas —sin importar para qué sirven— es un tipo de mirada distinta a la funcional que usamos casi todo el tiempo, y es la base de cómo trabajan quienes diseñan objetos.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-luz-y-sombra", titulo: "Fotografiá el contraste de luz", descripcion: "Buscá un lugar donde convivan una zona muy iluminada y una muy oscura.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá un rincón donde haya un contraste fuerte entre luz y sombra: un rayo de sol entrando por una ventana, la sombra debajo de un mueble. Fotografiá ese contraste, dejando que ambas zonas se noten en la misma imagen.",
+    objetivo: "El contraste es uno de los recursos más básicos y más usados en cualquier disciplina visual: aprender a notarlo en la vida cotidiana, no solo en una foto ya hecha por otro, entrena a verlo activamente.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "buscar-algo-que-cambio", titulo: "Fotografiá algo que cambió", descripcion: "Buscá algo que se transformó con el tiempo y fotografialo.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Buscá algo que haya cambiado con el tiempo: una planta que creció, un objeto gastado por el uso, algo roto y reparado. Fotografialo pensando en la historia que ese cambio cuenta, aunque no se vea en la imagen.",
+    objetivo: "Fotografiar el resultado de un proceso, no solo un objeto estático, conecta la imagen con el tiempo — un recurso narrativo que convierte una foto simple en algo con un poco de historia detrás.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "autorretrato-sin-cara", titulo: "Un autorretrato sin mostrar la cara", descripcion: "Fotografiate a vos mismo de una forma creativa, sin que se vea tu cara.",
+    seccion: "fotografia", tipo: "prompt", salida: "foto",
+    consigna: "Sacate una foto que sea, de alguna forma, un autorretrato — tu sombra, tu mano, un reflejo parcial, tus pies — pero sin que se vea tu cara directamente. Pensá qué parte de vos elegís mostrar y por qué.",
+    objetivo: "Representarse a uno mismo sin recurrir al recurso más directo (la cara) obliga a buscar una forma indirecta y más personal de decir 'esto soy yo', un ejercicio de autorreflexión tan válido como escribir sobre uno mismo.",
+    edadMin: 8, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
 ];
 
 const CatalogoCreatividad = {
