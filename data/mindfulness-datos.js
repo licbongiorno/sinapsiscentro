@@ -3119,6 +3119,77 @@ const MINDFULNESS = [
     motor: "ejercicio", tipo: "mensaje",
     pasos: [{"tipo": "mensaje", "texto": "Extendé tu círculo de buenos deseos más allá de las personas: hacia el aire, el agua y la tierra que todos compartimos. Un gesto de cuidado más amplio.", "duracionSeg": 20}],
     activo: true, version: 1 },
+
+  // ═══════ 🌳 CONEXIÓN CON LA NATURALEZA (parte 2) ═══════
+  { id: "naturaleza-caminar-sin-destino", titulo: "Caminar sin destino", descripcion: "Salí a caminar sin un lugar fijo a dónde llegar, solo para estar afuera.",
+    objetivo: "El 'baño de bosque' (shinrin-yoku), estudiado en Japón por el investigador Qing Li, muestra reducciones medibles de cortisol y mejoras en marcadores del sistema inmune después de pasar tiempo consciente en la naturaleza.",
+    categoria: "naturaleza", duracion: 3, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Si podés, salí a caminar sin un destino fijo. No se trata de llegar a ningún lado, solo de estar afuera, moviéndote.", "duracionSeg": 25}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-encontrar-un-patron", titulo: "Encontrar un patrón repetido", descripcion: "Buscá un patrón que se repita en la naturaleza: las venas de una hoja, las ramas de un árbol.",
+    objetivo: "La investigación de Richard Taylor sobre 'fluidez fractal' encontró que los patrones que se repiten a distintas escalas —como en las hojas o las ramas— son particularmente fáciles de procesar para el cerebro humano, y eso reduce el estrés al mirarlos.",
+    categoria: "naturaleza", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Buscá un patrón que se repita en algo natural: las venas de una hoja, las ramas de un árbol, las nervaduras de una piedra. Miralo de cerca.", "duracionSeg": 25}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-hormigas-trabajando", titulo: "Observar hormigas trabajando", descripcion: "Si encontrás un grupo de hormigas, observá un momento cómo se organizan sin que nadie las dirija.",
+    objetivo: "El biólogo E.O. Wilson propuso la hipótesis de la biofilia: la idea de que los humanos tenemos una afinidad innata hacia la naturaleza y los sistemas vivos, heredada de nuestra historia evolutiva.",
+    categoria: "naturaleza", duracion: 2, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Si encontrás hormigas u otro grupo de insectos trabajando, observalos un momento. Nadie las dirige, y aun así se organizan.", "duracionSeg": 25}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-textura-de-la-corteza", titulo: "La textura de la corteza de un árbol", descripcion: "Tocá la corteza de un árbol y notá su textura exacta: rugosa, lisa, agrietada.",
+    objetivo: "La investigación de Richard Taylor sobre 'fluidez fractal' encontró que los patrones que se repiten a distintas escalas —como en las hojas o las ramas— son particularmente fáciles de procesar para el cerebro humano, y eso reduce el estrés al mirarlos.",
+    categoria: "naturaleza", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Si tenés un árbol cerca, tocá su corteza. Notá si es rugosa, lisa, agrietada, fría o tibia al tacto.", "duracionSeg": 20}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-un-elemento-que-no-controlas", titulo: "Algo que no podés controlar", descripcion: "Pensá en un elemento de la naturaleza —el clima, las mareas— que sigue su curso sin que nada dependa de vos.",
+    objetivo: "Recoger basura durante una caminata (a veces llamado 'plogging') combina el ejercicio con un acto de cuidado hacia el entorno; la investigación sobre comportamiento prosocial muestra que los actos de cuidado, aunque sean pequeños, aumentan el bienestar de quien los hace.",
+    categoria: "naturaleza", duracion: 2, dificultad: "profundo",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Pensá en algo de la naturaleza —el clima, las mareas, las estaciones— que sigue su propio curso sin que nada dependa de vos. Hay algo tranquilizador en eso.", "duracionSeg": 25}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-respirar-al-ritmo-del-viento", titulo: "Respirar al ritmo del viento", descripcion: "Si hay viento, tratá de acompañar tu respiración a sus ráfagas: inhalando cuando sopla, exhalando cuando calma.",
+    objetivo: "El 'baño de bosque' (shinrin-yoku), estudiado en Japón por el investigador Qing Li, muestra reducciones medibles de cortisol y mejoras en marcadores del sistema inmune después de pasar tiempo consciente en la naturaleza.",
+    categoria: "naturaleza", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Si hay viento, prestale atención a sus ráfagas. Probá acompañar tu respiración a su ritmo: inhalando cuando sopla más, exhalando cuando se calma.", "duracionSeg": 25}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-recoger-basura-en-un-paseo", titulo: "Recoger algo de basura en un paseo", descripcion: "La próxima vez que camines afuera, levantá al menos un residuo que encuentres en el camino.",
+    objetivo: "Recoger basura durante una caminata (a veces llamado 'plogging') combina el ejercicio con un acto de cuidado hacia el entorno; la investigación sobre comportamiento prosocial muestra que los actos de cuidado, aunque sean pequeños, aumentan el bienestar de quien los hace.",
+    categoria: "naturaleza", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "La próxima vez que camines al aire libre, levantá al menos un residuo que encuentres en el camino y tiralo donde corresponde. Un gesto chico de cuidado hacia el lugar.", "duracionSeg": 20}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-el-silencio-del-bosque", titulo: "El silencio de un lugar natural", descripcion: "Notá cómo el silencio en la naturaleza es distinto al silencio urbano: nunca está completamente vacío.",
+    objetivo: "El 'baño de bosque' (shinrin-yoku), estudiado en Japón por el investigador Qing Li, muestra reducciones medibles de cortisol y mejoras en marcadores del sistema inmune después de pasar tiempo consciente en la naturaleza.",
+    categoria: "naturaleza", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "temporizador",
+    pasos: [{"tipo": "temporizador", "duracionSeg": 50, "texto": "Si estás en un lugar con algo de naturaleza, quedate en silencio y notá que nunca está del todo vacío: hay sonidos pequeños, constantes, distintos al ruido urbano."}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-una-hoja-distinta-a-todas", titulo: "Una hoja distinta a todas las demás", descripcion: "Encontrá una hoja y notá los detalles que la hacen única, distinta a cualquier otra.",
+    objetivo: "El biólogo E.O. Wilson propuso la hipótesis de la biofilia: la idea de que los humanos tenemos una afinidad innata hacia la naturaleza y los sistemas vivos, heredada de nuestra historia evolutiva.",
+    categoria: "naturaleza", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Encontrá una hoja y miraia de cerca. Notá los detalles que la hacen distinta a cualquier otra: una mancha, un borde roto, una forma particular.", "duracionSeg": 20}],
+    activo: true, version: 1 },
+
+  { id: "naturaleza-el-mismo-arbol-en-otra-estacion", titulo: "El mismo árbol, en otra estación", descripcion: "Elegí un árbol que veas seguido, e imaginá cómo se ve en otra época del año.",
+    objetivo: "Recoger basura durante una caminata (a veces llamado 'plogging') combina el ejercicio con un acto de cuidado hacia el entorno; la investigación sobre comportamiento prosocial muestra que los actos de cuidado, aunque sean pequeños, aumentan el bienestar de quien los hace.",
+    categoria: "naturaleza", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "escritura",
+    pasos: [{"tipo": "escritura", "pregunta": "Pensá en un árbol que veas seguido. ¿Cómo se ve ahora, y cómo se veía (o se verá) en otra estación del año?", "placeholder": "En esta época se ve… y en otra estación…"}],
+    activo: true, version: 1 },
 ];
 
 const CatalogoMindfulness = {
