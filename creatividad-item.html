@@ -181,6 +181,13 @@ if (!actividad || !actividad.activo) {
       }
     }
 
+    if (actividad.objetivo) {
+      html += `<details class="ee-porque">
+        <summary>🔬 ¿Para qué sirve?</summary>
+        <p>${actividad.objetivo}</p>
+      </details>`;
+    }
+
     if (actividad.sonido) {
       html += `<div class="cv-sonido-fila">
         <button class="ee-btn ee-btn-secundario" id="cvSonido">▶️ Reproducir sonido</button>

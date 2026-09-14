@@ -32,6 +32,7 @@ const CATEGORIAS_CREATIVIDAD = [
   { id: "personajes", nombre: "Personajes", icono: "🎭", color: "#e08a8a" },
   { id: "mundos", nombre: "Mundos", icono: "🌎", color: "#2aaec2" },
   { id: "sonidos", nombre: "Crear con sonidos", icono: "🎧", color: "#c98ac2" },
+  { id: "cuerpo", nombre: "Cuerpo y actuación", icono: "🤸", color: "#e0954a" },
 ];
 
 const CREATIVIDAD_ACTIVIDADES = [
@@ -381,6 +382,72 @@ const CREATIVIDAD_ACTIVIDADES = [
   { id: "final-alternativo", titulo: "Final alternativo", descripcion: "Cambiá el final de una historia conocida.",
     seccion: "escribir", motor: "juego", archivo: "js/juegos/final-alternativo.js", puntuable: false,
     edadMin: 10, edadMax: 99, dificultad: 1, duracion: 5, activo: true, version: 1 },
+
+  // ═══════ 🤸 CUERPO Y ACTUACIÓN ═══════
+  // Creatividad expresada con el cuerpo, no sólo en el papel: mímica,
+  // juego simbólico y técnicas básicas de improvisación teatral. La
+  // reflexión final (salida "texto") no reemplaza la actividad física
+  // en sí —eso pasa fuera de la pantalla— sino que invita a poner en
+  // palabras lo que se notó al hacerla.
+  { id: "objeto-imaginario", titulo: "El objeto imaginario", descripcion: "Sostené, usá y transformá un objeto que no existe, sólo con el cuerpo.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Elegí un objeto imaginario: una pelota, una taza caliente, una cuerda pesada. Primero sostenelo con las manos, prestando atención a su peso, su tamaño y su textura — ¿es liviano o pesado? ¿frío o caliente? ¿liso o áspero? Usalo como se usaría de verdad: tomá un sorbo de la taza, tirá la pelota, tensá la cuerda. Después transformalo en otra cosa distinta sin avisar: que la pelota se vuelva un huevo a punto de romperse, que la taza se vuelva una lupa. Dejá que el cuerpo reaccione a cada cambio antes de pensarlo. Cuando termines, escribí qué objeto elegiste y en qué se transformó.",
+    objetivo: "La cognición corporeizada (embodied cognition) sostiene que el pensamiento no ocurre sólo en la cabeza: mover el cuerpo de una manera específica activa circuitos motores que refuerzan la imaginación de una forma que sólo pensarlo no logra.",
+    edadMin: 3, edadMax: 99, dificultad: 1, duracion: 5, activo: true, version: 1 },
+
+  { id: "hacer-de-animal", titulo: "Convertite en un animal", descripcion: "Elegí un animal y probá moverte, mirar y reaccionar como él, no sólo imitar su sonido.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Elegí un animal — un león, un pájaro, una tortuga, lo que se te ocurra. Antes de moverte, pensá: ¿cómo pesa su cuerpo? ¿camina en cuatro patas, vuela, repta? Probá su forma de moverse por el espacio, despacio al principio. Después sumá cómo mira: ¿mira de a poco y con calma, o gira la cabeza rápido y alerta? Por último, imaginá que aparece algo que lo sorprende —un ruido, otro animal— y dejá que tu animal reaccione a su manera, no a la tuya. Cuando termines, escribí qué animal elegiste y qué fue lo más difícil de encontrarle el movimiento.",
+    objetivo: "El psicólogo Lev Vygotsky señaló que el juego simbólico y el 'como si' —hacer de cuenta que algo es otra cosa— es uno de los motores principales del desarrollo cognitivo en la infancia, y sigue ejercitando la misma capacidad de abstracción en la adultez.",
+    edadMin: 3, edadMax: 99, dificultad: 1, duracion: 6, activo: true, version: 1 },
+
+  { id: "caminar-como-si", titulo: "Caminar como si...", descripcion: "El mismo paseo por la habitación, pero con una condición imaginaria distinta cada vez.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Caminá por el lugar donde estás como si el piso fuera de otra cosa: hielo resbaladizo, arena caliente, un pantano que te agarra los pies. Notá qué cambia en tu cuerpo — el largo del paso, dónde ponés el peso, la velocidad. Cuando te salga natural, cambiá la condición: ahora caminás como si tuvieras mucho apuro y no pudieras correr, o como si algo invisible te empujara desde atrás. Cuando termines, escribí cuál de las formas de caminar te resultó más fácil de sentir en el cuerpo.",
+    objetivo: "Representar físicamente una idea —no sólo describirla— obliga a tomar decisiones concretas (¿cómo se mueve?, ¿qué gesto hace?) que el pensamiento abstracto puede evitar, y esa concreción es en sí misma un entrenamiento de creatividad.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "estatua-viviente", titulo: "Estatua viviente", descripcion: "Congelá el cuerpo en una pose que represente una emoción o una idea, sin usar la cara.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Elegí una palabra: orgullo, cansancio, sorpresa, calma. Armá con todo el cuerpo —no sólo la cara— una estatua que la represente: la postura, la altura de los brazos, dónde está el peso. Sostenela unos segundos como si fuera de verdad una escultura. Después probá una segunda estatua con la palabra opuesta, y notá qué tuviste que cambiar para pasar de una a otra. Cuando termines, escribí las dos palabras que elegiste y qué fue lo que más cambió entre una estatua y la otra.",
+    objetivo: "La creatividad no es un talento aislado: la investigación la describe cada vez más como una meta-habilidad que combina flexibilidad cognitiva, tolerancia a la ambigüedad y disposición a arriesgarse a equivocarse — las mismas capacidades que después se usan para resolver problemas en cualquier área.",
+    edadMin: 4, edadMax: 99, dificultad: 1, duracion: 4, activo: true, version: 1 },
+
+  { id: "transformarse-en-objeto", titulo: "Transformate en un objeto", descripcion: "Tu cuerpo se convierte en un objeto que no se mueve solo, como un reloj o una fuente.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Elegí un objeto que tenga algún tipo de movimiento propio: un reloj, una fuente de agua, una puerta que se abre y cierra con el viento. Con el cuerpo entero, encontrá el movimiento característico de ese objeto — su ritmo, si es repetitivo o único, rápido o lento. No hace falta parecerse literalmente: alcanza con encontrar la lógica del movimiento y repetirla un rato. Cuando termines, escribí qué objeto elegiste y cómo describirías su ritmo en una palabra.",
+    objetivo: "La cognición corporeizada (embodied cognition) sostiene que el pensamiento no ocurre sólo en la cabeza: mover el cuerpo de una manera específica activa circuitos motores que refuerzan la imaginación de una forma que sólo pensarlo no logra.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "el-gesto-sin-palabras", titulo: "El gesto sin palabras", descripcion: "Contá algo que te pasó hoy usando sólo el cuerpo y la cara, sin decir una sola palabra.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Pensá en algo breve que te haya pasado hoy: te sorprendió algo, te costó levantarte, te gustó algo que comiste. Ahora contalo entero sin usar palabras — sólo gestos, cara y movimiento. Exagerá un poco más de lo que harías normalmente: el cuerpo tiene que hacer el trabajo que suele hacer la voz. Cuando termines, escribí qué fue lo que contaste y si te costó no usar palabras.",
+    objetivo: "Estudios sobre entrenamiento improvisacional (Felsman y colegas, entre otros) encontraron que practicar la improvisación teatral se asocia con menor incomodidad frente a la incertidumbre y mayor tolerancia a equivocarse en público.",
+    edadMin: 5, edadMax: 99, dificultad: 2, duracion: 5, activo: true, version: 1 },
+
+  { id: "historia-sin-palabras", titulo: "Contá una historia sin palabras", descripcion: "Un inicio, un problema y un final, actuados con el cuerpo, sin decir nada.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Inventá una historia muy breve con tres partes: algo empieza bien, aparece un problema, se resuelve de alguna forma. Actuala entera con el cuerpo, sin palabras: puede ser buscar algo que se perdió, cruzar un lugar peligroso, o cualquier otra cosa que se te ocurra. Marcá bien el cambio entre las tres partes con la postura y el ritmo del movimiento. Cuando termines, escribí en una frase la historia que actuaste.",
+    objetivo: "Representar físicamente una idea —no sólo describirla— obliga a tomar decisiones concretas (¿cómo se mueve?, ¿qué gesto hace?) que el pensamiento abstracto puede evitar, y esa concreción es en sí misma un entrenamiento de creatividad.",
+    edadMin: 6, edadMax: 99, dificultad: 3, duracion: 8, activo: true, version: 1 },
+
+  { id: "el-clima-en-el-cuerpo", titulo: "El clima en el cuerpo", descripcion: "Convertite en el clima: viento, lluvia, tormenta, y notá cómo cambia el movimiento.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Elegí un tipo de clima. Empezá siendo el viento suave: movimientos largos y livianos. Cuando quieras, subí la intensidad — el viento se vuelve tormenta, tu cuerpo se mueve más brusco y más rápido. Después bajá de nuevo, despacio, hasta quedar completamente quieto, como el silencio después de que pasó la tormenta. Cuando termines, escribí en qué momento —suave o tormenta— te resultó más fácil moverte.",
+    objetivo: "El psicólogo Lev Vygotsky señaló que el juego simbólico y el 'como si' —hacer de cuenta que algo es otra cosa— es uno de los motores principales del desarrollo cognitivo en la infancia, y sigue ejercitando la misma capacidad de abstracción en la adultez.",
+    edadMin: 4, edadMax: 99, dificultad: 1, duracion: 5, activo: true, version: 1 },
+
+  { id: "inventar-una-voz", titulo: "Inventá una voz y un modo de hablar", descripcion: "Un personaje inventado tiene su propia forma de moverse y de hablar: probala en voz alta.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Inventá un personaje breve: puede ser alguien muy tímido, alguien que siempre tiene apuro, un robot, un rey. Antes de decir palabras, encontrá primero cómo se mueve ese personaje — rápido o lento, con pasos grandes o chicos. Recién después agregale una forma de hablar: el tono, la velocidad, si hace pausas. Decí en voz alta alguna frase simple ('hola, ¿cómo estás?') con esa voz y ese cuerpo. Cuando termines, escribí qué personaje inventaste.",
+    objetivo: "Estudios sobre entrenamiento improvisacional (Felsman y colegas, entre otros) encontraron que practicar la improvisación teatral se asocia con menor incomodidad frente a la incertidumbre y mayor tolerancia a equivocarse en público.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 6, activo: true, version: 1 },
+
+  { id: "cambiar-de-edad", titulo: "Caminar con otra edad", descripcion: "El mismo cuerpo, pero moviéndose como si tuviera 5 años o 90.",
+    seccion: "cuerpo", tipo: "prompt", salida: "texto",
+    consigna: "Caminá por el espacio con tu edad normal un momento, notando cómo caminás habitualmente. Después probá caminar como si tuvieras 5 años: la curiosidad, la energía, las ganas de tocar todo. Cuando quieras, cambiá al otro extremo: caminá como si tuvieras 90 años, con el cuidado y el ritmo que eso pide. Notá qué tan distinto se siente ocupar el mismo espacio con otra edad en el cuerpo. Cuando termines, escribí cuál de las dos edades te resultó más fácil de encontrar.",
+    objetivo: "La creatividad no es un talento aislado: la investigación la describe cada vez más como una meta-habilidad que combina flexibilidad cognitiva, tolerancia a la ambigüedad y disposición a arriesgarse a equivocarse — las mismas capacidades que después se usan para resolver problemas en cualquier área.",
+    edadMin: 6, edadMax: 99, dificultad: 2, duracion: 6, activo: true, version: 1 },
 ];
 
 const CatalogoCreatividad = {
