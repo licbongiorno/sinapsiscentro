@@ -21,6 +21,10 @@
 <main id="juego-area">
   <h1 class="jg-titulo" id="jgTitulo">Cargando…</h1>
   <p class="jg-instruccion" id="jgInstruccion"></p>
+  <details class="jg-porque" id="jgPorque" hidden>
+    <summary>🧠 ¿Qué entrena?</summary>
+    <p id="jgBeneficio"></p>
+  </details>
   <div id="jgContenedor"></div>
 </main>
 
@@ -53,6 +57,10 @@
     document.title = `${juego.nombre} | SINAPSIS`;
     document.getElementById("jgTitulo").textContent = juego.nombre;
     document.getElementById("jgInstruccion").textContent = juego.descripcion;
+    if (juego.beneficio) {
+      document.getElementById("jgBeneficio").textContent = juego.beneficio;
+      document.getElementById("jgPorque").hidden = false;
+    }
 
     // Esperamos a saber si hay sesión de Google antes de arrancar el
     // juego, para que los puntos y el progreso se guarden ya mismo
