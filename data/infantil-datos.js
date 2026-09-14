@@ -30,11 +30,11 @@ const CATEGORIAS_INFANTIL = [
 
 const ACTIVIDADES = [
   // ═══════ 🐣 3–5 AÑOS ═══════
-  { id: "memoria-animales-chicos", titulo: "Memoria de animales", descripcion: "Encontrá las parejas de animalitos.",
+  { id: "memoria-animales-chicos", titulo: "Memoria de animales", descripcion: "Encontrá las parejas de animalitos.", beneficio: "Los juegos de memoria en la primera infancia entrenan la memoria de trabajo de una forma simple y visual, adaptada a cómo piensan los chicos a esta edad.",
     edadMin: 3, edadMax: 5, categoria: "memoria", tipo: "memoria", duracion: 4,
     contenido: { pares: ["🐶", "🐱", "🐰", "🦁", "🐸", "🐼"] }, activo: true, version: 3 },
 
-  { id: "que-animal-es", titulo: "¿Qué animal es?", descripcion: "Adiviná el animal por sus características.",
+  { id: "que-animal-es", titulo: "¿Qué animal es?", descripcion: "Adiviná el animal por sus características.", beneficio: "Reconocer y nombrar animales ayuda a ampliar el vocabulario y a practicar la categorización, una de las primeras formas de pensamiento lógico que desarrollan los chicos.",
     edadMin: 3, edadMax: 5, categoria: "animales", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "Tiene el cuello muy largo y come hojas de los árboles altos.", opciones: ["🦒 Jirafa", "🐘 Elefante", "🐸 Rana"], correctaIdx: 0 },
@@ -47,7 +47,7 @@ const ACTIVIDADES = [
       { pregunta: "Vuela de flor en flor y hace miel.", opciones: ["🐝 Abeja", "🐛 Oruga", "🐌 Caracol"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "donde-vive", titulo: "¿Dónde vive?", descripcion: "Cada animal tiene su hogar.",
+  { id: "donde-vive", titulo: "¿Dónde vive?", descripcion: "Cada animal tiene su hogar.", beneficio: "Asociar sonidos, imágenes y nombres de animales entrena la memoria y el lenguaje al mismo tiempo, dos áreas que en la primera infancia se desarrollan muy conectadas entre sí.",
     edadMin: 3, edadMax: 5, categoria: "animales", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "¿Dónde vive el pez? 🐟", opciones: ["En el agua", "En un árbol", "Bajo tierra"], correctaIdx: 0 },
@@ -59,7 +59,7 @@ const ACTIVIDADES = [
       { pregunta: "¿Dónde vive la araña? 🕷️", opciones: ["En una telaraña", "Bajo el agua", "En el cielo"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "quien-hace-este-sonido", titulo: "¿Quién dice eso?", descripcion: "Adiviná qué animal hace cada sonido.",
+  { id: "quien-hace-este-sonido", titulo: "¿Quién dice eso?", descripcion: "Adiviná qué animal hace cada sonido.", beneficio: "Distinguir sonidos entrena la discriminación auditiva, una habilidad de base para el desarrollo del lenguaje y, más adelante, para el aprendizaje de la lectura.",
     edadMin: 3, edadMax: 5, categoria: "sonidos", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "\"¡Muuu!\" ¿Quién lo dice?", opciones: ["🐮 Vaca", "🐱 Gato", "🐍 Serpiente"], correctaIdx: 0 },
@@ -71,17 +71,17 @@ const ACTIVIDADES = [
       { pregunta: "\"¡Iii-oo!\" ¿Quién lo dice?", opciones: ["🫏 Burro", "🐦 Pájaro", "🐍 Serpiente"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "dibuja-como-te-sientes", titulo: "Dibujá cómo te sentís", descripcion: "Usá colores y formas para mostrar tu emoción de hoy.",
+  { id: "dibuja-como-te-sientes", titulo: "Dibujá cómo te sentís", descripcion: "Usá colores y formas para mostrar tu emoción de hoy.", beneficio: "Ponerle nombre a las emociones desde chicos —lo que en desarrollo infantil se llama 'alfabetización emocional'— está asociado con mejor regulación emocional más adelante en la vida.",
     edadMin: 3, edadMax: 5, categoria: "emociones", tipo: "dibujo", duracion: 4,
     contenido: { texto: "Dibujá cómo te sentís hoy, como vos quieras." }, activo: true, version: 1 },
 
-  { id: "grande-pequeno", titulo: "Grande o pequeño", descripcion: "Clasificá cada cosa según su tamaño.",
+  { id: "grande-pequeno", titulo: "Grande o pequeño", descripcion: "Clasificá cada cosa según su tamaño.", beneficio: "Reconocer formas y colores es una de las bases del pensamiento matemático temprano: antes de contar, los chicos aprenden a clasificar y comparar.",
     edadMin: 3, edadMax: 5, categoria: "formas-colores", tipo: "clasificar", duracion: 4,
     contenido: { instruccion: "¿Es grande o pequeño?", grupoA: { nombre: "Grande", emoji: "🐘" }, grupoB: { nombre: "Pequeño", emoji: "🐜" },
       items: [{ emoji: "🐘", grupo: "A" }, { emoji: "🐜", grupo: "B" }, { emoji: "🐋", grupo: "A" }, { emoji: "🐭", grupo: "B" }, { emoji: "🏠", grupo: "A" }, { emoji: "🔘", grupo: "B" }, { emoji: "🦕", grupo: "A" }, { emoji: "🐞", grupo: "B" }, { emoji: "🚛", grupo: "A" }, { emoji: "🍬", grupo: "B" }] },
     activo: true, version: 2 },
 
-  { id: "igual-o-diferente", titulo: "Igual o diferente", descripcion: "Encontrá el que no es igual a los demás.",
+  { id: "igual-o-diferente", titulo: "Igual o diferente", descripcion: "Encontrá el que no es igual a los demás.", beneficio: "La capacidad de sostener la atención en una tarea se desarrolla gradualmente durante la infancia; actividades breves y con un final claro son una forma efectiva de ejercitarla sin generar frustración.",
     edadMin: 3, edadMax: 5, categoria: "atencion", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "¿Cuál es diferente?", opciones: ["🔵", "🔵", "🔴"], correctaIdx: 2 },
@@ -93,7 +93,7 @@ const ACTIVIDADES = [
       { pregunta: "¿Cuál es diferente?", opciones: ["🔺", "🔺", "🔻"], correctaIdx: 2 },
     ] }, activo: true, version: 2 },
 
-  { id: "como-se-siente", titulo: "¿Cómo se siente?", descripcion: "Mirá la situación y elegí la emoción.",
+  { id: "como-se-siente", titulo: "¿Cómo se siente?", descripcion: "Mirá la situación y elegí la emoción.", beneficio: "Reconocer emociones en otros es una habilidad social temprana que sienta las bases de la empatía.",
     edadMin: 3, edadMax: 5, categoria: "emociones", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "A Sofi se le cayó el helado al piso.", emoji: "🍦", opciones: ["😢 Triste", "😄 Feliz", "😴 Cansada"], correctaIdx: 0 },
@@ -105,34 +105,34 @@ const ACTIVIDADES = [
       { pregunta: "Después de correr mucho en el parque.", emoji: "🏃", opciones: ["😴 Cansado", "😡 Enojado", "😨 Asustado"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "clasificar-animales", titulo: "Tierra, agua o aire", descripcion: "¿Dónde se mueve cada animal?",
+  { id: "clasificar-animales", titulo: "Tierra, agua o aire", descripcion: "¿Dónde se mueve cada animal?", beneficio: "Reconocer y nombrar animales ayuda a ampliar el vocabulario y a practicar la categorización, una de las primeras formas de pensamiento lógico que desarrollan los chicos.",
     edadMin: 3, edadMax: 5, categoria: "animales", tipo: "clasificar", duracion: 4,
     contenido: { instruccion: "¿Nada en el agua o camina en la tierra?", grupoA: { nombre: "Agua", emoji: "🌊" }, grupoB: { nombre: "Tierra", emoji: "🌳" },
       items: [{ emoji: "🐟", grupo: "A" }, { emoji: "🐘", grupo: "B" }, { emoji: "🐬", grupo: "A" }, { emoji: "🐻", grupo: "B" }, { emoji: "🐳", grupo: "A" }, { emoji: "🦁", grupo: "B" }, { emoji: "🐙", grupo: "A" }, { emoji: "🐴", grupo: "B" }] },
     activo: true, version: 2 },
 
-  { id: "respiracion-burbuja", titulo: "La respiración de la burbuja", descripcion: "Infla una burbuja imaginaria con tu respiración.",
+  { id: "respiracion-burbuja", titulo: "La respiración de la burbuja", descripcion: "Infla una burbuja imaginaria con tu respiración.", beneficio: "Las prácticas breves de respiración y calma, adaptadas a la infancia, ayudan a que los chicos empiecen a reconocer señales de su propio cuerpo desde chicos: una base para la autorregulación futura.",
     edadMin: 3, edadMax: 5, categoria: "calma", tipo: "respiracion", duracion: 2,
     contenido: { texto: "Imaginá que soplás una burbuja gigante 🫧", ciclos: 3, fases: [{ nombre: "Inflá la burbuja", segundos: 4 }, { nombre: "Soltala suavecito", segundos: 4 }] },
     activo: true, version: 1 },
 
-  { id: "clasificar-comida-juguetes", titulo: "Comida o juguete", descripcion: "¿Se come o se juega con eso?",
+  { id: "clasificar-comida-juguetes", titulo: "Comida o juguete", descripcion: "¿Se come o se juega con eso?", beneficio: "Agrupar objetos según una característica común es una de las primeras formas de razonamiento lógico, y una base importante para el pensamiento matemático posterior.",
     edadMin: 3, edadMax: 5, categoria: "clasificacion", tipo: "clasificar", duracion: 4,
     contenido: { instruccion: "¿Es comida o es un juguete?", grupoA: { nombre: "Comida", emoji: "🍎" }, grupoB: { nombre: "Juguete", emoji: "🧸" },
       items: [{ emoji: "🍎", grupo: "A" }, { emoji: "🧸", grupo: "B" }, { emoji: "🍌", grupo: "A" }, { emoji: "⚽", grupo: "B" }, { emoji: "🥕", grupo: "A" }, { emoji: "🪀", grupo: "B" }, { emoji: "🍕", grupo: "A" }, { emoji: "🪁", grupo: "B" }] },
     activo: true, version: 2 },
 
-  { id: "dia-o-noche", titulo: "Día o noche", descripcion: "¿Cuándo pasa esto?",
+  { id: "dia-o-noche", titulo: "Día o noche", descripcion: "¿Cuándo pasa esto?", beneficio: "Clasificar exige sostener una regla en la mente mientras se decide dónde va cada cosa: un pequeño ejercicio temprano de función ejecutiva.",
     edadMin: 3, edadMax: 5, categoria: "clasificacion", tipo: "clasificar", duracion: 4,
     contenido: { instruccion: "¿Es algo de día o de noche?", grupoA: { nombre: "Día", emoji: "☀️" }, grupoB: { nombre: "Noche", emoji: "🌙" },
       items: [{ emoji: "☀️", grupo: "A" }, { emoji: "🌙", grupo: "B" }, { emoji: "🏫", grupo: "A" }, { emoji: "🛏️", grupo: "B" }, { emoji: "🌈", grupo: "A" }, { emoji: "⭐", grupo: "B" }, { emoji: "🥞", grupo: "A" }, { emoji: "🦉", grupo: "B" }] },
     activo: true, version: 2 },
 
-  { id: "memoria-sonidos-chicos", titulo: "Memoria de sonidos", descripcion: "Encontrá las parejas de sonidos iguales.",
+  { id: "memoria-sonidos-chicos", titulo: "Memoria de sonidos", descripcion: "Encontrá las parejas de sonidos iguales.", beneficio: "Reconocer sonidos del entorno ayuda a los chicos a conectar su mundo sensorial con palabras, un paso importante en el desarrollo del lenguaje.",
     edadMin: 3, edadMax: 5, categoria: "sonidos", tipo: "memoria", duracion: 4,
     contenido: { pares: ["🔔", "📯", "🥁", "🎵", "🎶"] }, activo: true, version: 3 },
 
-  { id: "que-sigue-patron-simple", titulo: "¿Qué sigue?", descripcion: "Un patrón fácil de colores.",
+  { id: "que-sigue-patron-simple", titulo: "¿Qué sigue?", descripcion: "Un patrón fácil de colores.", beneficio: "La discriminación visual —diferenciar formas y colores parecidos— es una habilidad perceptiva que se sigue desarrollando durante toda la primera infancia.",
     edadMin: 3, edadMax: 5, categoria: "formas-colores", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "🔴 🔵 🔴 🔵 ¿Qué sigue?", opciones: ["🔴", "🟢", "🟡"], correctaIdx: 0 },
@@ -144,7 +144,7 @@ const ACTIVIDADES = [
       { pregunta: "🔺 🔵 🔺 🔵 ¿Qué sigue?", opciones: ["🔺", "🔻", "🟡"], correctaIdx: 0 },
     ] }, activo: true, version: 3 },
 
-  { id: "encontra-la-forma", titulo: "Encontrá la forma", descripcion: "Buscá la forma que se pide entre varias parecidas.",
+  { id: "encontra-la-forma", titulo: "Encontrá la forma", descripcion: "Buscá la forma que se pide entre varias parecidas.", beneficio: "Reconocer formas y colores es una de las bases del pensamiento matemático temprano: antes de contar, los chicos aprenden a clasificar y comparar.",
     edadMin: 3, edadMax: 5, categoria: "formas-colores", tipo: "seleccion", duracion: 3,
     contenido: { rondas: [
       { pregunta: "¿Cuál es el círculo?", opciones: ["🔵", "🔺", "🟦"], correctaIdx: 0 },
@@ -155,7 +155,7 @@ const ACTIVIDADES = [
       { pregunta: "¿Cuál es de color amarillo?", opciones: ["🟡", "🟣", "🔵"], correctaIdx: 0 },
     ] }, activo: true, version: 1 },
 
-  { id: "cuantos-hay", titulo: "¿Cuántos hay?", descripcion: "Contá los elementos y elegí el número.",
+  { id: "cuantos-hay", titulo: "¿Cuántos hay?", descripcion: "Contá los elementos y elegí el número.", beneficio: "La discriminación visual —diferenciar formas y colores parecidos— es una habilidad perceptiva que se sigue desarrollando durante toda la primera infancia.",
     edadMin: 3, edadMax: 5, categoria: "formas-colores", tipo: "seleccion", duracion: 3,
     contenido: { rondas: [
       { pregunta: "🍎 🍎 ¿Cuántas manzanas hay?", opciones: ["2", "3", "1"], correctaIdx: 0 },
@@ -165,7 +165,7 @@ const ACTIVIDADES = [
       { pregunta: "🌸 🌸 🌸 🌸 🌸 ¿Cuántas flores hay?", opciones: ["5", "4", "6"], correctaIdx: 0 },
     ] }, activo: true, version: 1 },
 
-  { id: "que-hacemos-cuando", titulo: "¿Qué hacemos cuando...?", descripcion: "Pequeñas situaciones de todos los días.",
+  { id: "que-hacemos-cuando", titulo: "¿Qué hacemos cuando...?", descripcion: "Pequeñas situaciones de todos los días.", beneficio: "Los juegos que involucran turnos, reglas simples o pensar en otro personaje entrenan habilidades sociales tempranas, como esperar el turno o considerar una perspectiva distinta a la propia.",
     edadMin: 3, edadMax: 5, categoria: "social", tipo: "seleccion", duracion: 3,
     contenido: { rondas: [
       { pregunta: "¿Qué hacemos antes de comer?", opciones: ["Lavarnos las manos", "Saltar", "Dormir"], correctaIdx: 0 },
@@ -175,13 +175,13 @@ const ACTIVIDADES = [
       { pregunta: "¿Qué hacemos antes de dormir?", opciones: ["Lavarnos los dientes", "Correr", "Comer"], correctaIdx: 0 },
     ] }, activo: true, version: 1 },
 
-  { id: "respiracion-estrella", titulo: "Respiración de la estrella", descripcion: "Dibujá una estrella en el aire mientras respirás.",
+  { id: "respiracion-estrella", titulo: "Respiración de la estrella", descripcion: "Dibujá una estrella en el aire mientras respirás.", beneficio: "Aprender a calmarse con una técnica simple, repetida varias veces, suele ser más efectivo en la infancia que las explicaciones abstractas sobre las emociones.",
     edadMin: 3, edadMax: 5, categoria: "calma", tipo: "respiracion", duracion: 2,
     contenido: { texto: "Imaginá una estrella brillante ⭐ que se prende y se apaga con tu respiración.", ciclos: 4, fases: [{ nombre: "Se prende (inhalá)", segundos: 3 }, { nombre: "Se apaga (exhalá)", segundos: 4 }] },
     activo: true, version: 1 },
 
   // ═══════ 🦊 6–8 AÑOS ═══════
-  { id: "encontra-el-objeto", titulo: "Encontrá el objeto", descripcion: "Prestá atención y encontrá lo que se pide.",
+  { id: "encontra-el-objeto", titulo: "Encontrá el objeto", descripcion: "Prestá atención y encontrá lo que se pide.", beneficio: "Buscar y encontrar algo específico entrena la atención selectiva, una habilidad que después es clave para el aprendizaje escolar.",
     edadMin: 6, edadMax: 8, categoria: "atencion", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "¿Cuál de estos se usa para escribir?", opciones: ["✏️ Lápiz", "🍎 Manzana", "⚽ Pelota", "🧦 Media"], correctaIdx: 0 },
@@ -193,7 +193,7 @@ const ACTIVIDADES = [
       { pregunta: "¿Cuál de estos se usa en invierno?", opciones: ["🧣 Bufanda", "🩳 Short", "🩴 Ojota", "🕶️ Anteojos de sol"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "que-cambio", titulo: "¿Qué cambió?", descripcion: "Mirá bien y notá la diferencia.",
+  { id: "que-cambio", titulo: "¿Qué cambió?", descripcion: "Mirá bien y notá la diferencia.", beneficio: "La capacidad de sostener la atención en una tarea se desarrolla gradualmente durante la infancia; actividades breves y con un final claro son una forma efectiva de ejercitarla sin generar frustración.",
     edadMin: 6, edadMax: 8, categoria: "atencion", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "Antes había 🔵🔵🔵. Ahora hay 🔵🔴🔵. ¿Qué cambió?", opciones: ["Un color", "La cantidad", "Nada", "El orden"], correctaIdx: 0 },
@@ -204,11 +204,11 @@ const ACTIVIDADES = [
       { pregunta: "Antes había 🟥🟥🟥🟥. Ahora hay 🟥🟥. ¿Qué cambió?", opciones: ["Faltan dos", "Sobran dos", "Nada", "Cambió el color"], correctaIdx: 0 },
     ] }, activo: true, version: 3 },
 
-  { id: "memoria-parejas-personajes", titulo: "Memoria de personajes", descripcion: "Encontrá las parejas.",
+  { id: "memoria-parejas-personajes", titulo: "Memoria de personajes", descripcion: "Encontrá las parejas.", beneficio: "Recordar dónde está algo, aunque sea en un juego simple, es un ejercicio real de memoria visoespacial.",
     edadMin: 6, edadMax: 8, categoria: "memoria", tipo: "memoria", duracion: 5,
     contenido: { pares: ["🦸", "🧙", "🧜", "🦹", "🕵️", "🧑‍🚀", "🧛", "🥷"] }, activo: true, version: 3 },
 
-  { id: "que-sigue-secuencia", titulo: "¿Qué sigue?", descripcion: "Descubrí el patrón y elegí lo que sigue.",
+  { id: "que-sigue-secuencia", titulo: "¿Qué sigue?", descripcion: "Descubrí el patrón y elegí lo que sigue.", beneficio: "Entender y repetir una secuencia —qué va primero, qué va después— es una habilidad de razonamiento lógico que también ayuda a entender rutinas y consignas de varios pasos.",
     edadMin: 6, edadMax: 8, categoria: "secuencias", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "🔴 🔵 🔴 🔵 🔴 ¿Qué sigue?", opciones: ["🔵", "🔴", "🟢", "🟡"], correctaIdx: 0 },
@@ -219,12 +219,12 @@ const ACTIVIDADES = [
       { pregunta: "5 10 15 20 ¿Qué sigue?", opciones: ["25", "22", "30", "21"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "ordena-la-historia", titulo: "Ordená la historia", descripcion: "Poné estas partes en el orden correcto.",
+  { id: "ordena-la-historia", titulo: "Ordená la historia", descripcion: "Poné estas partes en el orden correcto.", beneficio: "Escuchar y recordar partes de una historia entrena la comprensión narrativa, una habilidad directamente relacionada con la comprensión lectora futura.",
     edadMin: 6, edadMax: 8, categoria: "historias", tipo: "secuencia", duracion: 4,
     contenido: { instruccion: "Ordená lo que pasó primero, después y al final.", items: ["Sofía se despertó", "Desayunó con su familia", "Se lavó los dientes", "Se fue a la escuela", "Volvió a casa a la tarde"] },
     activo: true, version: 3 },
 
-  { id: "que-paso-que-siento", titulo: "¿Qué pasó? ¿Qué siento?", descripcion: "Pensá cómo se siente cada personaje.",
+  { id: "que-paso-que-siento", titulo: "¿Qué pasó? ¿Qué siento?", descripcion: "Pensá cómo se siente cada personaje.", beneficio: "Ponerle nombre a las emociones desde chicos —lo que en desarrollo infantil se llama 'alfabetización emocional'— está asociado con mejor regulación emocional más adelante en la vida.",
     edadMin: 6, edadMax: 8, categoria: "emociones", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "Martina estaba jugando y otro nene le quitó el juguete. ¿Qué podría sentir?", opciones: ["😡 Enojo", "😄 Alegría", "😴 Sueño", "😌 Calma"], correctaIdx: 0 },
@@ -235,7 +235,7 @@ const ACTIVIDADES = [
       { pregunta: "Iñaki finalmente aprendió a andar en bici sin rueditas. ¿Qué podría sentir?", opciones: ["🤩 Orgullo", "😢 Tristeza", "😨 Miedo", "😡 Enojo"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "elegi-que-pasa", titulo: "Elegí qué pasa", descripcion: "Una historia donde vos decidís.",
+  { id: "elegi-que-pasa", titulo: "Elegí qué pasa", descripcion: "Una historia donde vos decidís.", beneficio: "Ponerse en el lugar de un personaje es una forma simple de empezar a desarrollar la empatía.",
     edadMin: 6, edadMax: 8, categoria: "social", tipo: "historia", duracion: 4,
     contenido: { inicio: "inicio", nodos: {
       inicio: { texto: "Tomás llega a la escuela y ve que sus amigos están jugando a la pelota. Él quiere acercarse. ¿Qué puede hacer?", opciones: [
@@ -247,7 +247,7 @@ const ACTIVIDADES = [
       enojo: { texto: "Tomás se enoja y se va solo. Más tarde, un amigo lo busca y le pregunta qué pasó — a veces, contar cómo nos sentimos ayuda a que los demás entiendan.", opciones: [] },
     } }, activo: true, version: 1 },
 
-  { id: "cual-es-el-par", titulo: "¿Cuál va con cuál?", descripcion: "Relacioná cada cosa con su pareja lógica.",
+  { id: "cual-es-el-par", titulo: "¿Cuál va con cuál?", descripcion: "Relacioná cada cosa con su pareja lógica.", beneficio: "El pensamiento lógico en la primera infancia se construye con actividades concretas —ordenar, comparar, encontrar reglas— mucho antes de poder razonar de forma abstracta.",
     edadMin: 6, edadMax: 8, categoria: "logica", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "🧦 va con…", opciones: ["👟 Zapato", "🍕 Pizza", "📚 Libro", "🚗 Auto"], correctaIdx: 0 },
@@ -260,21 +260,21 @@ const ACTIVIDADES = [
       { pregunta: "🪮 va con…", opciones: ["💇 Pelo", "🦷 Dientes", "👀 Ojos", "👃 Nariz"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "secuencia-de-colores", titulo: "Secuencia de colores", descripcion: "Ordená los colores como se muestran.",
+  { id: "secuencia-de-colores", titulo: "Secuencia de colores", descripcion: "Ordená los colores como se muestran.", beneficio: "Entender y repetir una secuencia —qué va primero, qué va después— es una habilidad de razonamiento lógico que también ayuda a entender rutinas y consignas de varios pasos.",
     edadMin: 6, edadMax: 8, categoria: "secuencias", tipo: "secuencia", duracion: 4,
     contenido: { instruccion: "Tocá en este orden: rojo, amarillo, azul, verde, violeta.", items: ["🔴 Rojo", "🟡 Amarillo", "🔵 Azul", "🟢 Verde", "🟣 Violeta"] },
     activo: true, version: 2 },
 
-  { id: "modo-tortuga", titulo: "Modo tortuga", descripcion: "Cuando algo nos enoja, podemos meternos en el caparazón un momento.",
+  { id: "modo-tortuga", titulo: "Modo tortuga", descripcion: "Cuando algo nos enoja, podemos meternos en el caparazón un momento.", beneficio: "Las prácticas breves de respiración y calma, adaptadas a la infancia, ayudan a que los chicos empiecen a reconocer señales de su propio cuerpo desde chicos: una base para la autorregulación futura.",
     edadMin: 6, edadMax: 8, categoria: "calma", tipo: "respiracion", duracion: 2,
     contenido: { texto: "Como una tortuga 🐢: metete en tu caparazón un momento.", ciclos: 4, fases: [{ nombre: "Escondete (inhalá)", segundos: 4 }, { nombre: "Asomate (exhalá)", segundos: 4 }] },
     activo: true, version: 2 },
 
-  { id: "memoria-de-sonidos", titulo: "Memoria de sonidos", descripcion: "Encontrá las parejas de instrumentos.",
+  { id: "memoria-de-sonidos", titulo: "Memoria de sonidos", descripcion: "Encontrá las parejas de instrumentos.", beneficio: "Distinguir sonidos entrena la discriminación auditiva, una habilidad de base para el desarrollo del lenguaje y, más adelante, para el aprendizaje de la lectura.",
     edadMin: 6, edadMax: 8, categoria: "sonidos", tipo: "memoria", duracion: 5,
     contenido: { pares: ["🥁", "🎺", "🎸", "🎹", "🎻", "🪕"] }, activo: true, version: 2 },
 
-  { id: "atencion-sostenida", titulo: "Atención sostenida", descripcion: "Encontrá el símbolo que se repite en cada ronda.",
+  { id: "atencion-sostenida", titulo: "Atención sostenida", descripcion: "Encontrá el símbolo que se repite en cada ronda.", beneficio: "Buscar y encontrar algo específico entrena la atención selectiva, una habilidad que después es clave para el aprendizaje escolar.",
     edadMin: 6, edadMax: 8, categoria: "atencion", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "¿Cuál de estos NO es una fruta?", opciones: ["🍎 Manzana", "🍇 Uva", "🚲 Bici", "🍌 Banana"], correctaIdx: 2 },
@@ -285,7 +285,7 @@ const ACTIVIDADES = [
       { pregunta: "¿Cuál de estos NO se usa para bañarse?", opciones: ["🧼 Jabón", "🧴 Champú", "🖊️ Lapicera", "🧽 Esponja"], correctaIdx: 2 },
     ] }, activo: true, version: 2 },
 
-  { id: "que-podria-decir", titulo: "¿Qué podrías decir?", descripcion: "Situaciones donde elegís cómo responder.",
+  { id: "que-podria-decir", titulo: "¿Qué podrías decir?", descripcion: "Situaciones donde elegís cómo responder.", beneficio: "Los juegos que involucran turnos, reglas simples o pensar en otro personaje entrenan habilidades sociales tempranas, como esperar el turno o considerar una perspectiva distinta a la propia.",
     edadMin: 6, edadMax: 8, categoria: "social", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "Un amigo está triste porque perdió su juguete favorito. ¿Qué podrías decirle?", opciones: ["\"¿Querés que lo busquemos juntos?\"", "\"No es para tanto\"", "No decirle nada", "Reírme"], correctaIdx: 0 },
@@ -296,7 +296,7 @@ const ACTIVIDADES = [
       { pregunta: "Ganaste un juego y tu amigo perdió. ¿Qué podrías decirle?", opciones: ["\"Jugaste muy bien, revancha?\"", "\"Te gané fácil\"", "Nada, sólo festejar", "Burlarme un poco"], correctaIdx: 0 },
     ] }, activo: true, version: 3 },
 
-  { id: "el-libro-perdido", titulo: "El libro perdido", descripcion: "Una pequeña historia donde vos decidís qué pasa.",
+  { id: "el-libro-perdido", titulo: "El libro perdido", descripcion: "Una pequeña historia donde vos decidís qué pasa.", beneficio: "Las historias ayudan a los chicos a practicar la secuencia temporal —qué pasó primero, qué después— y a ampliar el vocabulario.",
     edadMin: 6, edadMax: 8, categoria: "historias", tipo: "historia", duracion: 4,
     contenido: { inicio: "inicio", nodos: {
       inicio: { texto: "Valentina no encuentra su libro favorito. Lo tenía ayer en la mochila. ¿Qué hace primero?", opciones: [
@@ -306,13 +306,13 @@ const ACTIVIDADES = [
       hermano: { texto: "Su hermano dice que lo vio en la mesa del living. Valentina va corriendo y ahí estaba. Problema resuelto.", opciones: [] },
     } }, activo: true, version: 1 },
 
-  { id: "vivo-o-no-vivo", titulo: "Vivo o no vivo", descripcion: "Clasificá según si es un ser vivo o no.",
+  { id: "vivo-o-no-vivo", titulo: "Vivo o no vivo", descripcion: "Clasificá según si es un ser vivo o no.", beneficio: "Agrupar objetos según una característica común es una de las primeras formas de razonamiento lógico, y una base importante para el pensamiento matemático posterior.",
     edadMin: 6, edadMax: 8, categoria: "clasificacion", tipo: "clasificar", duracion: 4,
     contenido: { instruccion: "¿Es un ser vivo o no?", grupoA: { nombre: "Ser vivo", emoji: "🌱" }, grupoB: { nombre: "No es ser vivo", emoji: "🪨" },
       items: [{ emoji: "🐶", grupo: "A" }, { emoji: "🪑", grupo: "B" }, { emoji: "🌳", grupo: "A" }, { emoji: "🚗", grupo: "B" }, { emoji: "🦋", grupo: "A" }, { emoji: "📱", grupo: "B" }, { emoji: "🐟", grupo: "A" }, { emoji: "🪨", grupo: "B" }] },
     activo: true, version: 1 },
 
-  { id: "el-perro-perdido", titulo: "El perro perdido", descripcion: "Una historia donde vos decidís cómo ayudar.",
+  { id: "el-perro-perdido", titulo: "El perro perdido", descripcion: "Una historia donde vos decidís cómo ayudar.", beneficio: "Escuchar y recordar partes de una historia entrena la comprensión narrativa, una habilidad directamente relacionada con la comprensión lectora futura.",
     edadMin: 6, edadMax: 8, categoria: "historias", tipo: "historia", duracion: 5,
     contenido: { inicio: "inicio", nodos: {
       inicio: { texto: "Camino a la escuela, Bruno ve un perrito solo, sin dueño a la vista. Parece perdido. ¿Qué hace?", opciones: [
@@ -322,7 +322,7 @@ const ACTIVIDADES = [
       upa: { texto: "El perrito se pone nervioso y no quiere que lo carguen. Bruno entiende que mejor es pedir ayuda a un adulto, y juntos encuentran a los dueños.", opciones: [] },
     } }, activo: true, version: 1 },
 
-  { id: "cuenta-los-lados", titulo: "Contá los lados", descripcion: "¿Cuántos lados tiene cada figura?",
+  { id: "cuenta-los-lados", titulo: "Contá los lados", descripcion: "¿Cuántos lados tiene cada figura?", beneficio: "Encontrar un patrón o completar una secuencia es una forma temprana de razonamiento que más adelante se usa en matemática.",
     edadMin: 6, edadMax: 8, categoria: "logica", tipo: "seleccion", duracion: 4,
     contenido: { rondas: [
       { pregunta: "¿Cuántos lados tiene un triángulo? 🔺", opciones: ["3", "4", "5", "6"], correctaIdx: 0 },
@@ -333,7 +333,7 @@ const ACTIVIDADES = [
     ] }, activo: true, version: 1 },
 
   // ═══════ 🚀 9–12 AÑOS ═══════
-  { id: "secuencias-dificiles", titulo: "Secuencias numéricas", descripcion: "Descubrí el patrón matemático.",
+  { id: "secuencias-dificiles", titulo: "Secuencias numéricas", descripcion: "Descubrí el patrón matemático.", beneficio: "Resolver un problema simple paso a paso ejercita la planificación, otra de las funciones ejecutivas que se desarrollan durante la infancia.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "3, 6, 9, 12, ¿qué sigue?", opciones: ["15", "13", "18", "14"], correctaIdx: 0 },
@@ -345,7 +345,7 @@ const ACTIVIDADES = [
       { pregunta: "1, 3, 6, 10, ¿qué sigue? (pista: se suma uno más cada vez)", opciones: ["15", "13", "14", "12"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "caso-sinapsis-la-nota", titulo: "Caso Sinapsis: la nota", descripcion: "Alguien dejó una nota misteriosa en el aula. Investigá.",
+  { id: "caso-sinapsis-la-nota", titulo: "Caso Sinapsis: la nota", descripcion: "Alguien dejó una nota misteriosa en el aula. Investigá.", beneficio: "El pensamiento lógico en la primera infancia se construye con actividades concretas —ordenar, comparar, encontrar reglas— mucho antes de poder razonar de forma abstracta.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "historia", duracion: 5,
     contenido: { inicio: "inicio", nodos: {
       inicio: { texto: "Alguien dejó una nota doblada en el aula que dice: \"Nos vemos donde empieza todo\". ¿Por dónde empezás a investigar?", opciones: [
@@ -358,7 +358,7 @@ const ACTIVIDADES = [
       biblioteca: { texto: "En la biblioteca encontrás otra nota: \"¡Bien hecho, detective! Esto era sólo un juego para pensar como investigador\". Caso resuelto.", opciones: [] },
     } }, activo: true, version: 1 },
 
-  { id: "que-harias-situaciones", titulo: "¿Qué harías?", descripcion: "Situaciones de todos los días para pensar juntos.",
+  { id: "que-harias-situaciones", titulo: "¿Qué harías?", descripcion: "Situaciones de todos los días para pensar juntos.", beneficio: "Ponerse en el lugar de un personaje es una forma simple de empezar a desarrollar la empatía.",
     edadMin: 9, edadMax: 12, categoria: "social", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "Un compañero no te quiere prestar algo que necesitás. ¿Qué podrías hacer?", opciones: ["Preguntarle con calma si me lo presta más tarde", "Sacárselo igual", "Enojarme y no hablarle más", "Contárselo a todos"], correctaIdx: 0 },
@@ -369,19 +369,19 @@ const ACTIVIDADES = [
       { pregunta: "Prometiste algo y te das cuenta que no vas a poder cumplirlo. ¿Qué podrías hacer?", opciones: ["Avisar antes de tiempo y explicar por qué", "No decir nada y desaparecer", "Inventar una excusa distinta", "Esperar a que se olviden"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "inventa-la-historia", titulo: "Inventá la historia", descripcion: "Un pulpo abre una biblioteca en Marte. ¿Qué pasa después?",
+  { id: "inventa-la-historia", titulo: "Inventá la historia", descripcion: "Un pulpo abre una biblioteca en Marte. ¿Qué pasa después?", beneficio: "El juego creativo sin una única respuesta correcta le da a los chicos espacio para experimentar sin miedo a equivocarse, algo valioso para el desarrollo cognitivo y emocional.",
     edadMin: 9, edadMax: 12, categoria: "creatividad", tipo: "escritura", duracion: 5,
     contenido: { pregunta: "🐙 Un pulpo abre una biblioteca en Marte. Inventá la historia.", placeholder: "Había una vez…" }, activo: true, version: 1 },
 
-  { id: "que-pasaria-si", titulo: "¿Qué pasaría si...?", descripcion: "Una pregunta imposible para imaginar sin límites.",
+  { id: "que-pasaria-si", titulo: "¿Qué pasaría si...?", descripcion: "Una pregunta imposible para imaginar sin límites.", beneficio: "Dibujar e imaginar libremente entrena la creatividad, pero también la motricidad fina y la capacidad de planificar una idea antes de ejecutarla.",
     edadMin: 9, edadMax: 12, categoria: "creatividad", tipo: "escritura", duracion: 4,
     contenido: { pregunta: "¿Qué pasaría si los animales pudieran hablar por un día?", placeholder: "Escribí tu idea…" }, activo: true, version: 1 },
 
-  { id: "metafora-emocional", titulo: "Si mi emoción fuera un clima", descripcion: "Describí cómo te sentís usando el clima como metáfora.",
+  { id: "metafora-emocional", titulo: "Si mi emoción fuera un clima", descripcion: "Describí cómo te sentís usando el clima como metáfora.", beneficio: "Reconocer emociones en otros es una habilidad social temprana que sienta las bases de la empatía.",
     edadMin: 9, edadMax: 12, categoria: "emociones", tipo: "escritura", duracion: 3,
     contenido: { pregunta: "Si tu estado de ánimo de hoy fuera un clima, ¿cuál sería y por qué?", placeholder: "Hoy soy como un día…" }, activo: true, version: 1 },
 
-  { id: "cual-no-pertenece", titulo: "¿Cuál no pertenece?", descripcion: "Encontrá el elemento que no va con el grupo.",
+  { id: "cual-no-pertenece", titulo: "¿Cuál no pertenece?", descripcion: "Encontrá el elemento que no va con el grupo.", beneficio: "Encontrar un patrón o completar una secuencia es una forma temprana de razonamiento que más adelante se usa en matemática.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "¿Cuál de estas palabras no pertenece al grupo?", opciones: ["Manzana", "Banana", "Pera", "Silla"], correctaIdx: 3 },
@@ -393,7 +393,7 @@ const ACTIVIDADES = [
       { pregunta: "¿Cuál de estas palabras no pertenece al grupo?", opciones: ["Fútbol", "Básquet", "Tenis", "Guitarra"], correctaIdx: 3 },
     ] }, activo: true, version: 2 },
 
-  { id: "pistas-del-detective", titulo: "Pistas del detective", descripcion: "Usá las pistas para descubrir quién fue.",
+  { id: "pistas-del-detective", titulo: "Pistas del detective", descripcion: "Usá las pistas para descubrir quién fue.", beneficio: "Resolver un problema simple paso a paso ejercita la planificación, otra de las funciones ejecutivas que se desarrollan durante la infancia.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "historia", duracion: 4,
     contenido: { inicio: "inicio", nodos: {
       inicio: { texto: "Alguien comió la última porción de torta sin avisar. Hay tres sospechosos: Fede, que estaba en su cuarto; Cata, que estaba en la cocina; y Bruno, que llegó recién. ¿A quién investigás primero?", opciones: [
@@ -404,16 +404,16 @@ const ACTIVIDADES = [
         { texto: "Ir a la cocina", siguiente: "cata" } ] },
     } }, activo: true, version: 1 },
 
-  { id: "pausa-antes-de-responder", titulo: "Pausa antes de responder", descripcion: "Un momento para respirar antes de reaccionar.",
+  { id: "pausa-antes-de-responder", titulo: "Pausa antes de responder", descripcion: "Un momento para respirar antes de reaccionar.", beneficio: "Aprender a calmarse con una técnica simple, repetida varias veces, suele ser más efectivo en la infancia que las explicaciones abstractas sobre las emociones.",
     edadMin: 9, edadMax: 12, categoria: "calma", tipo: "respiracion", duracion: 2,
     contenido: { texto: "Antes de responder algo que te molestó, probemos esto.", ciclos: 4, fases: [{ nombre: "Inhalá contando hasta 4", segundos: 4 }, { nombre: "Soltá contando hasta 4", segundos: 4 }] },
     activo: true, version: 1 },
 
-  { id: "dibuja-tu-mundo", titulo: "Dibujá tu mundo ideal", descripcion: "¿Cómo sería un lugar inventado por vos?",
+  { id: "dibuja-tu-mundo", titulo: "Dibujá tu mundo ideal", descripcion: "¿Cómo sería un lugar inventado por vos?", beneficio: "El juego creativo sin una única respuesta correcta le da a los chicos espacio para experimentar sin miedo a equivocarse, algo valioso para el desarrollo cognitivo y emocional.",
     edadMin: 9, edadMax: 12, categoria: "creatividad", tipo: "dibujo", duracion: 5,
     contenido: { texto: "Dibujá un lugar inventado por vos: ¿cómo es, quién vive ahí?" }, activo: true, version: 1 },
 
-  { id: "secuencias-de-letras", titulo: "Secuencias de letras", descripcion: "Descubrí el patrón entre las letras.",
+  { id: "secuencias-de-letras", titulo: "Secuencias de letras", descripcion: "Descubrí el patrón entre las letras.", beneficio: "El pensamiento lógico en la primera infancia se construye con actividades concretas —ordenar, comparar, encontrar reglas— mucho antes de poder razonar de forma abstracta.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "A, C, E, G, ¿qué sigue? (se saltea una letra)", opciones: ["I", "H", "F", "J"], correctaIdx: 0 },
@@ -425,7 +425,7 @@ const ACTIVIDADES = [
       { pregunta: "A, B, D, G, ¿qué sigue? (el salto crece de a uno)", opciones: ["K", "J", "H", "L"], correctaIdx: 0 },
     ] }, activo: true, version: 3 },
 
-  { id: "mas-pistas-el-cuaderno", titulo: "El cuaderno desaparecido", descripcion: "Otro caso para resolver con pistas.",
+  { id: "mas-pistas-el-cuaderno", titulo: "El cuaderno desaparecido", descripcion: "Otro caso para resolver con pistas.", beneficio: "Encontrar un patrón o completar una secuencia es una forma temprana de razonamiento que más adelante se usa en matemática.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "historia", duracion: 4,
     contenido: { inicio: "inicio", nodos: {
       inicio: { texto: "El cuaderno de la maestra desapareció del escritorio durante el recreo. Tres compañeros se quedaron adentro: Juli, que dice que estaba dibujando; Mateo, que dice que estaba leyendo; y Ana, que dice que fue al baño. ¿A quién investigás primero?", opciones: [
@@ -436,7 +436,7 @@ const ACTIVIDADES = [
       ana: { texto: "Ana tardó bastante en volver del baño... y el cuaderno aparece en su mochila, se lo había llevado sin querer pensando que era el de ella. ¡Caso resuelto!", opciones: [] },
     } }, activo: true, version: 1 },
 
-  { id: "relaciones-logicas", titulo: "¿Cuál va con cuál?", descripcion: "Encontrá la relación entre las palabras.",
+  { id: "relaciones-logicas", titulo: "¿Cuál va con cuál?", descripcion: "Encontrá la relación entre las palabras.", beneficio: "Resolver un problema simple paso a paso ejercita la planificación, otra de las funciones ejecutivas que se desarrollan durante la infancia.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "Pájaro es a nido, como abeja es a…", opciones: ["Colmena", "Auto", "Silla", "Cueva"], correctaIdx: 0 },
@@ -448,16 +448,16 @@ const ACTIVIDADES = [
       { pregunta: "Río es a agua, como desierto es a…", opciones: ["Arena", "Nieve", "Hielo", "Pasto"], correctaIdx: 0 },
     ] }, activo: true, version: 2 },
 
-  { id: "inventa-un-personaje", titulo: "Inventá un personaje", descripcion: "Creá a alguien completamente nuevo.",
+  { id: "inventa-un-personaje", titulo: "Inventá un personaje", descripcion: "Creá a alguien completamente nuevo.", beneficio: "Dibujar e imaginar libremente entrena la creatividad, pero también la motricidad fina y la capacidad de planificar una idea antes de ejecutarla.",
     edadMin: 9, edadMax: 12, categoria: "creatividad", tipo: "escritura", duracion: 5,
     contenido: { pregunta: "Inventá un personaje: ¿cómo se llama, qué poder o habilidad especial tiene, qué le gusta hacer?", placeholder: "Se llama…" },
     activo: true, version: 1 },
 
-  { id: "memoria-simbolos-antiguos", titulo: "Memoria de símbolos", descripcion: "Encontrá las parejas de símbolos misteriosos.",
+  { id: "memoria-simbolos-antiguos", titulo: "Memoria de símbolos", descripcion: "Encontrá las parejas de símbolos misteriosos.", beneficio: "Los juegos de memoria en la primera infancia entrenan la memoria de trabajo de una forma simple y visual, adaptada a cómo piensan los chicos a esta edad.",
     edadMin: 9, edadMax: 12, categoria: "memoria", tipo: "memoria", duracion: 5,
     contenido: { pares: ["🔮", "🗝️", "📜", "🕰️", "🧭", "💎", "🪬", "🏺"] }, activo: true, version: 1 },
 
-  { id: "detective-de-detalles", titulo: "Detective de detalles", descripcion: "Encontrá qué detalle no encaja en cada situación.",
+  { id: "detective-de-detalles", titulo: "Detective de detalles", descripcion: "Encontrá qué detalle no encaja en cada situación.", beneficio: "La capacidad de sostener la atención en una tarea se desarrolla gradualmente durante la infancia; actividades breves y con un final claro son una forma efectiva de ejercitarla sin generar frustración.",
     edadMin: 9, edadMax: 12, categoria: "atencion", tipo: "seleccion", duracion: 5,
     contenido: { rondas: [
       { pregunta: "En una lista de útiles escolares aparece: lápiz, goma, regla, banana. ¿Qué no encaja?", opciones: ["Banana", "Lápiz", "Goma", "Regla"], correctaIdx: 0 },
@@ -467,13 +467,13 @@ const ACTIVIDADES = [
       { pregunta: "En una lista de útiles de invierno aparece: campera, guantes, bufanda, ojotas. ¿Qué no encaja?", opciones: ["Ojotas", "Campera", "Guantes", "Bufanda"], correctaIdx: 0 },
     ] }, activo: true, version: 1 },
 
-  { id: "clasificar-solido-liquido-gas", titulo: "Sólido, líquido o vapor", descripcion: "Clasificá según el estado en que se encuentra.",
+  { id: "clasificar-solido-liquido-gas", titulo: "Sólido, líquido o vapor", descripcion: "Clasificá según el estado en que se encuentra.", beneficio: "El pensamiento lógico en la primera infancia se construye con actividades concretas —ordenar, comparar, encontrar reglas— mucho antes de poder razonar de forma abstracta.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "clasificar", duracion: 4,
     contenido: { instruccion: "¿Es algo sólido o se puede tomar como líquido?", grupoA: { nombre: "Sólido", emoji: "🧊" }, grupoB: { nombre: "Líquido", emoji: "💧" },
       items: [{ emoji: "🪨", grupo: "A" }, { emoji: "🥛", grupo: "B" }, { emoji: "🧱", grupo: "A" }, { emoji: "🧃", grupo: "B" }, { emoji: "🌳", grupo: "A" }, { emoji: "☕", grupo: "B" }, { emoji: "📚", grupo: "A" }, { emoji: "🥤", grupo: "B" }] },
     activo: true, version: 1 },
 
-  { id: "el-experimento-que-fallo", titulo: "El experimento que falló", descripcion: "Una historia de ciencia donde vos decidís cómo seguir investigando.",
+  { id: "el-experimento-que-fallo", titulo: "El experimento que falló", descripcion: "Una historia de ciencia donde vos decidís cómo seguir investigando.", beneficio: "Encontrar un patrón o completar una secuencia es una forma temprana de razonamiento que más adelante se usa en matemática.",
     edadMin: 9, edadMax: 12, categoria: "logica", tipo: "historia", duracion: 5,
     contenido: { inicio: "inicio", nodos: {
       inicio: { texto: "Para la feria de ciencias, tu plantita no creció como esperabas. Tenías dos macetas iguales, pero una las regaste con agua y otra con agua con sal, para comparar. ¿Qué hacés primero para entender qué pasó?", opciones: [
@@ -486,7 +486,7 @@ const ACTIVIDADES = [
       final: { texto: "Repetís el experimento controlando mejor las variables. Esta vez, los resultados son mucho más claros. Así funciona la ciencia: probar, revisar, y volver a probar.", opciones: [] },
     } }, activo: true, version: 1 },
 
-  { id: "escribi-el-final", titulo: "Escribí el final", descripcion: "Una historia a medio terminar, esperando tu final.",
+  { id: "escribi-el-final", titulo: "Escribí el final", descripcion: "Una historia a medio terminar, esperando tu final.", beneficio: "El juego creativo sin una única respuesta correcta le da a los chicos espacio para experimentar sin miedo a equivocarse, algo valioso para el desarrollo cognitivo y emocional.",
     edadMin: 9, edadMax: 12, categoria: "creatividad", tipo: "escritura", duracion: 5,
     contenido: { pregunta: "La última persona del planeta encontró una carta escrita hace cien años que decía: \"Si estás leyendo esto, todavía hay esperanza\". Escribí cómo sigue la historia.", placeholder: "La carta seguía diciendo…" },
     activo: true, version: 1 },

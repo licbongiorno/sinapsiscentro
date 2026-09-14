@@ -280,12 +280,13 @@ const ExerciseEngine = (() => {
 
   function renderDibujo(paso) {
     const COLORES = ["#0d2535", "#2aaec2", "#e08a8a", "#8ac9a9", "#c9a97e"];
+    const NOMBRE_COLOR = { "#0d2535": "Azul oscuro", "#2aaec2": "Celeste", "#e08a8a": "Rosa", "#8ac9a9": "Verde agua", "#c9a97e": "Marrón claro" };
     contenedor.innerHTML = `
       <div class="ee-paso" style="text-align:center;">
         <p class="ee-texto-grande">${paso.texto}</p>
         <canvas id="eeLienzo" width="300" height="280" class="ee-lienzo"></canvas>
         <div class="ee-lienzo-colores">
-          ${COLORES.map(c => `<button data-c="${c}" style="background:${c}"></button>`).join("")}
+          ${COLORES.map(c => `<button data-c="${c}" style="background:${c}" aria-label="${NOMBRE_COLOR[c] || "Color"}"></button>`).join("")}
           <button data-limpiar="1" class="ee-lienzo-limpiar">Limpiar</button>
         </div>
         <button class="ee-btn ee-btn-principal" id="eeSiguiente" style="margin-top:18px;">Continuar</button>

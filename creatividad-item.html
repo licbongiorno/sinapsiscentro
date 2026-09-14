@@ -236,7 +236,8 @@ if (!actividad || !actividad.activo) {
       entrada.innerHTML = `<div class="cv-lienzo-wrap">
         <canvas id="cvLienzo" class="cv-lienzo" width="600" height="500"></canvas>
         <div class="cv-lienzo-controles">
-          ${["#0d2535","#2aaec2","#e08a8a","#8ac9a9","#c9a97e","#a98ac9"].map(c => `<button class="cv-color-btn" data-c="${c}" style="background:${c}"></button>`).join("")}
+          ${(() => { const nombres = { "#0d2535": "Azul oscuro", "#2aaec2": "Celeste", "#e08a8a": "Rosa", "#8ac9a9": "Verde agua", "#c9a97e": "Marrón claro", "#a98ac9": "Violeta" };
+            return Object.keys(nombres).map(c => `<button class="cv-color-btn" data-c="${c}" style="background:${c}" aria-label="${nombres[c]}"></button>`).join(""); })()}
           <button class="cv-icon-btn" data-borrar="1">🧽 Goma</button>
           <button class="cv-icon-btn" data-deshacer="1">↩️ Deshacer</button>
           <button class="cv-icon-btn" data-limpiar="1">🗑️ Limpiar</button>

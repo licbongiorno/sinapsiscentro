@@ -46,6 +46,11 @@ const InfantilEngine = (() => {
         <div class="ie-intro-emoji">${(CatalogoInfantil.categoriaPorId(actividad.categoria) || {}).icono || "🧸"}</div>
         <h1 class="ie-intro-titulo">${actividad.titulo}</h1>
         <p class="ie-intro-desc">${actividad.descripcion}</p>
+        ${actividad.beneficio ? `
+        <details class="ie-porque">
+          <summary>🌱 ¿Qué desarrolla?</summary>
+          <p>${actividad.beneficio}</p>
+        </details>` : ""}
         <button class="ie-btn ie-btn-principal" id="ieComenzar">¡Jugar!</button>
       </div>`;
     document.getElementById("ieBarra").style.display = "none";
@@ -178,7 +183,7 @@ const InfantilEngine = (() => {
       contenedor.innerHTML = `
         <div class="ie-paso">
           <p class="ie-pregunta">${instruccion}</p>
-          <div class="ie-secuencia-elegidos">${elegidos.map((t, i) => `<div class="ie-secuencia-item">${i + 1}. ${t}</div>`).join("") || "<span style='opacity:.4'>Tocá en orden…</span>"}</div>
+          <div class="ie-secuencia-elegidos">${elegidos.map((t, i) => `<div class="ie-secuencia-item">${i + 1}. ${t}</div>`).join("") || "<span style='color:var(--text-soft)'>Tocá en orden…</span>"}</div>
           <div class="ie-secuencia-disponibles">${mezclado.map((t, idx) => elegidos.includes(t) ? "" : `<button class="ie-secuencia-btn" data-idx="${idx}">${t}</button>`).join("")}</div>
           <p class="ie-progreso">${elegidos.length} / ${items.length}</p>
         </div>`;
@@ -227,11 +232,12 @@ const InfantilEngine = (() => {
   // ── DIBUJO ──
   function iniciarDibujo() {
     const COLORES = ["#0d2535", "#e08a8a", "#2aaec2", "#f0c14b", "#8ac9a9", "#c98ac2"];
+    const NOMBRE_COLOR = { "#0d2535": "Azul oscuro", "#e08a8a": "Rosa", "#2aaec2": "Celeste", "#f0c14b": "Amarillo", "#8ac9a9": "Verde agua", "#c98ac2": "Violeta" };
     contenedor.innerHTML = `
       <div class="ie-paso" style="text-align:center;">
         <p class="ie-pregunta">${actividad.contenido.texto}</p>
         <canvas id="ieLienzo" width="290" height="270" class="ie-lienzo"></canvas>
-        <div class="ie-lienzo-colores">${COLORES.map(c => `<button data-c="${c}" style="background:${c}"></button>`).join("")}<button data-limpiar="1" class="ie-lienzo-limpiar">Borrar</button></div>
+        <div class="ie-lienzo-colores">${COLORES.map(c => `<button data-c="${c}" style="background:${c}" aria-label="${NOMBRE_COLOR[c] || "Color"}"></button>`).join("")}<button data-limpiar="1" class="ie-lienzo-limpiar">Borrar</button></div>
         <button class="ie-btn ie-btn-principal" id="ieListoDibujo" style="margin-top:16px;">¡Listo!</button>
       </div>`;
     const canvas = document.getElementById("ieLienzo");
