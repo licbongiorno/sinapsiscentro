@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página no encontrada | SINAPSIS</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #08202e;
+    --teal: #1a7a8a;
+    --teal-mid: #2aaec2;
+    --cream: #f7f2eb;
+    --bg: #f5fafc;
+    --text: #0d2535;
+    --text-soft: #5a7583;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Nunito", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+  .wrap { max-width: 440px; }
+  .simbolo { font-size: 2.4rem; color: var(--teal-mid); margin-bottom: 12px; }
+  h1 { font-family: "Playfair Display", serif; font-size: 1.7rem; color: var(--navy); margin-bottom: 10px; }
+  p { color: var(--text-soft); font-size: 0.98rem; line-height: 1.5; margin-bottom: 28px; }
+  .botones { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  a.btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .btn-principal { background: var(--teal); color: #fff; }
+  .btn-secundario { background: var(--cream); color: var(--navy); border: 1px solid rgba(8,32,46,0.1); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="simbolo" aria-hidden="true">✦</div>
+    <h1>Esta página no existe</h1>
+    <p>El enlace puede estar roto o la página se movió. Volvé al inicio o mirá los recursos gratuitos.</p>
+    <div class="botones">
+      <a href="/" class="btn btn-principal">Ir al inicio</a>
+      <a href="/#recursos" class="btn btn-secundario">Ver recursos</a>
+    </div>
+  </div>
+</body>
+</html>

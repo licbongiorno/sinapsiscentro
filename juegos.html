@@ -26,6 +26,25 @@
 <meta name="twitter:title" content="Juegos | SINAPSIS">
 <meta name="twitter:description" content="Juegos breves para entrenar memoria, atención, emociones y más. Una plataforma de Sinapsis, Centro de Salud Integral en Berazategui.">
 <meta name="twitter:image" content="https://www.sinapsiscentro.com.ar/og-image.jpg">
+<!-- Google Analytics 4 -->
+<!-- Para activarlo: reemplazá "G-XXXXXXXXXX" por tu Measurement ID real
+     (Google Analytics → Administrar → Flujos de datos → tu flujo web).
+     Mientras tenga este valor de ejemplo, no se envía ningún dato a
+     ningún lado — igual que js/firebase-config.js con sus credenciales. -->
+<script>
+(function () {
+  var GA_ID = "G-XXXXXXXXXX";
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  if (GA_ID === "G-XXXXXXXXXX") return;
+  gtag("js", new Date());
+  gtag("config", GA_ID);
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+  document.head.appendChild(s);
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
