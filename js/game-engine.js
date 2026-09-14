@@ -244,8 +244,17 @@ const GameEngine = (() => {
           <button class="ge-btn ge-btn-principal" id="geJugarDeNuevo">Jugar de nuevo</button>
           <button class="ge-btn ge-btn-secundario" id="geOtroJuego">Otro juego</button>
         </div>
+        <button class="compartir-btn" id="geCompartir">🔗 Compartir este juego</button>
       </div>`;
     document.getElementById("geJugarDeNuevo").addEventListener("click", () => window.location.reload());
     document.getElementById("geOtroJuego").addEventListener("click", () => window.location.href = window.__geVolverA || "juegos.html");
+    document.getElementById("geCompartir").addEventListener("click", () => {
+      const nombreJuego = (juego && (juego.titulo || juego.nombre)) || "Este juego";
+      Compartir.compartir({
+        titulo: nombreJuego,
+        texto: `${nombreJuego} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        url: window.location.href,
+      });
+    });
   }
 })();

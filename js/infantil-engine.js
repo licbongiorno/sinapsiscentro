@@ -52,11 +52,19 @@ const InfantilEngine = (() => {
           <p>${actividad.beneficio}</p>
         </details>` : ""}
         <button class="ie-btn ie-btn-principal" id="ieComenzar">¡Jugar!</button>
+        <button class="compartir-btn" id="ieCompartir">🔗 Compartir</button>
       </div>`;
     document.getElementById("ieBarra").style.display = "none";
     document.getElementById("ieComenzar").addEventListener("click", () => {
       document.getElementById("ieBarra").style.display = "flex";
       arrancarTipo();
+    });
+    document.getElementById("ieCompartir").addEventListener("click", () => {
+      Compartir.compartir({
+        titulo: actividad.titulo,
+        texto: `${actividad.titulo} — una actividad gratuita de Sinapsis, Centro de Salud Integral.`,
+        url: window.location.href,
+      });
     });
   }
 

@@ -88,12 +88,20 @@ const ExerciseEngine = (() => {
         </details>` : ""}
         ${ejercicio.advertencia ? `<p class="ee-aviso">${ejercicio.advertencia}</p>` : ""}
         <button class="ee-btn ee-btn-principal" id="eeComenzar">Comenzar</button>
+        <button class="compartir-btn" id="eeCompartir">🔗 Compartir</button>
       </div>`;
     document.getElementById("eeBarra").style.display = "none";
     document.getElementById("eeComenzar").addEventListener("click", () => {
       document.getElementById("eeBarra").style.display = "flex";
       inicioMs = Date.now();
       renderPaso();
+    });
+    document.getElementById("eeCompartir").addEventListener("click", () => {
+      Compartir.compartir({
+        titulo: ejercicio.titulo,
+        texto: `${ejercicio.titulo} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        url: window.location.href,
+      });
     });
   }
 
@@ -323,6 +331,7 @@ const ExerciseEngine = (() => {
           <button class="ee-btn ee-btn-texto" id="eeVolverLista">← Volver</button>
           <button class="ee-btn ee-btn-texto" id="eeOtro">Otro ejercicio 🎲</button>
         </div>
+        <button class="compartir-btn" id="eeCompartirFinal">🔗 Compartir esta práctica</button>
       </div>`;
 
     const resultado = Storage.registrarEjercicioCompletado(ejercicio.id, { minutos });
@@ -347,6 +356,13 @@ const ExerciseEngine = (() => {
       const destino = _destino();
       const otro = destino.catalogo.aleatorio();
       window.location.href = `${destino.item}?id=${otro.id}`;
+    });
+    document.getElementById("eeCompartirFinal").addEventListener("click", () => {
+      Compartir.compartir({
+        titulo: ejercicio.titulo,
+        texto: `${ejercicio.titulo} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        url: window.location.href,
+      });
     });
 
     if (nuevos.length) {

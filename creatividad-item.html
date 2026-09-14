@@ -44,6 +44,7 @@
   .cv-final-emoji { font-size: 2.2rem; margin-bottom: 6px; }
 </style>
   <link rel="stylesheet" href="css/accesibilidad.css">
+  <link rel="stylesheet" href="css/compartir.css">
 </head>
 <body>
 
@@ -85,6 +86,7 @@
 <script src="js/beep.js" defer></script>
 <script src="js/lienzo.js" defer></script>
 <script src="js/audio-engine.js" defer></script>
+<script src="js/compartir.js" defer></script>
 <script src="js/game-engine.js" defer></script>
 <script type="module">
 const params = new URLSearchParams(window.location.search);
@@ -162,7 +164,8 @@ if (!actividad || !actividad.activo) {
   function renderIntro() {
     const cont = document.getElementById("cvContenedor");
     let html = `<p class="cv-titulo-cat">${cat ? cat.icono + " " + cat.nombre : ""}</p>
-      <h1 class="cv-titulo">${actividad.titulo}</h1>`;
+      <h1 class="cv-titulo">${actividad.titulo}</h1>
+      <button class="compartir-btn" id="cvCompartir">🔗 Compartir</button>`;
 
     if (actividad.tipo === "generador") {
       html += `<div class="cv-ingredientes"><p style="font-weight:800;margin-bottom:8px;color:var(--navy);">${generadorBonito()}</p>${renderIngredientes(resultado)}</div>
@@ -198,6 +201,14 @@ if (!actividad || !actividad.activo) {
 
     const btnRegenerar = document.getElementById("cvRegenerar");
     if (btnRegenerar) btnRegenerar.addEventListener("click", () => { generar(); renderIntro(); });
+
+    document.getElementById("cvCompartir").addEventListener("click", () => {
+      Compartir.compartir({
+        titulo: actividad.titulo,
+        texto: `${actividad.titulo} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        url: window.location.href,
+      });
+    });
 
     const btnSonido = document.getElementById("cvSonido");
     if (btnSonido) btnSonido.addEventListener("click", () => {
