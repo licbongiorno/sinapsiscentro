@@ -2956,6 +2956,70 @@ const MINDFULNESS = [
     motor: "ejercicio", tipo: "escritura",
     pasos: [{"tipo": "escritura", "pregunta": "Pensá en esta emoción: ¿cómo te avisa tu cuerpo cuando recién está empezando, antes de llegar a su punto más fuerte? Reconocer esa señal temprana la próxima vez puede ayudarte a manejarla a tiempo.", "placeholder": "Mi cuerpo me avisa con…"}],
     activo: true, version: 1 },
+
+  // ═══════ 🙏 GRATITUD (parte 2) ═══════
+  { id: "gratitud-por-un-desconocido-del-pasado", titulo: "Alguien que ayudó sin que lo supieras", descripcion: "Pensá en alguien, tal vez desconocido, que hizo algo que te benefició sin que se dieran cuenta.",
+    objetivo: "Fred Bryant y Joseph Veroff, investigadores del 'savoring' (saborear), muestran que anticipar algo bueno con atención genera bienestar de forma parecida a recordarlo después: la gratitud también funciona hacia adelante.",
+    categoria: "gratitud", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "escritura",
+    pasos: [{"tipo": "escritura", "pregunta": "Pensá en alguien —quizás alguien que nunca conociste, como quien construyó algo que usás— que hizo algo que te benefició. Escribí quién podría ser.", "placeholder": "Podría agradecerle a…"}],
+    activo: true, version: 1 },
+
+  { id: "gratitud-anticipada", titulo: "Gratitud por algo que se viene", descripcion: "En vez de mirar atrás, pensá en algo bueno que se viene y agradecelo de antemano.",
+    objetivo: "Fred Bryant y Joseph Veroff, investigadores del 'savoring' (saborear), muestran que anticipar algo bueno con atención genera bienestar de forma parecida a recordarlo después: la gratitud también funciona hacia adelante.",
+    categoria: "gratitud", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Pensá en algo bueno que se viene, aunque sea chico. Agradecelo de antemano, como si ya estuviera pasando.", "duracionSeg": 20}],
+    activo: true, version: 1 },
+
+  { id: "gratitud-por-un-plan-que-fallo", titulo: "Un plan que falló y te salvó de algo peor", descripcion: "A veces algo que no salió como esperabas terminó protegiéndote de algo peor.",
+    objetivo: "Un estudio de Minkyung Koo y colegas mostró que imaginar cómo sería la vida si un evento positivo no hubiera pasado ('resta mental') aumenta la gratitud más que simplemente pensar en lo bueno que fue.",
+    categoria: "gratitud", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "escritura",
+    pasos: [{"tipo": "escritura", "pregunta": "Pensá en un plan que falló o algo que no salió como esperabas. Mirando hacia atrás, ¿te terminó protegiendo de algo peor?", "placeholder": "Ese plan que falló en realidad…"}],
+    activo: true, version: 1 },
+
+  { id: "gratitud-hacia-tu-yo-pasado", titulo: "Gracias a tu yo de antes", descripcion: "Pensá en una decisión de tu yo del pasado que te está ayudando hoy.",
+    objetivo: "Practicar gratitud de forma compartida —decírsela directamente a otra persona, no solo pensarla— tiene un efecto medible más fuerte que la gratitud que se queda solo en la propia cabeza, según investigación sobre gratitud relacional.",
+    categoria: "gratitud", duracion: 2, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "escritura",
+    pasos: [{"tipo": "escritura", "pregunta": "Pensá en una decisión que tomaste en el pasado —chica o grande— que te está ayudando hoy. Agradecele a tu yo de ese momento.", "placeholder": "Le agradezco a mi yo del pasado por…"}],
+    activo: true, version: 1 },
+
+  { id: "gratitud-por-la-rutina", titulo: "Gracias a lo aburrido que sostiene todo", descripcion: "Las rutinas más aburridas suelen ser las que más sostienen tu día a día, sin que las notes.",
+    objetivo: "Fred Bryant y Joseph Veroff, investigadores del 'savoring' (saborear), muestran que anticipar algo bueno con atención genera bienestar de forma parecida a recordarlo después: la gratitud también funciona hacia adelante.",
+    categoria: "gratitud", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Pensá en una rutina aburrida —lavarte los dientes, el mismo camino de siempre— que en realidad sostiene tu día a día sin que la notes.", "duracionSeg": 20}],
+    activo: true, version: 1 },
+
+  { id: "gratitud-compartida", titulo: "Decirle gracias a alguien, en voz alta", descripcion: "Elegí a alguien cercano y decile en voz alta, hoy, algo que agradecés de él o ella.",
+    objetivo: "Practicar gratitud de forma compartida —decírsela directamente a otra persona, no solo pensarla— tiene un efecto medible más fuerte que la gratitud que se queda solo en la propia cabeza, según investigación sobre gratitud relacional.",
+    categoria: "gratitud", duracion: 1, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Elegí a alguien cercano. Hoy, decile en voz alta o por mensaje algo puntual que agradecés de esa persona. No hace falta que sea grande.", "duracionSeg": 20}],
+    activo: true, version: 1 },
+
+  { id: "gratitud-por-un-maestro", titulo: "Alguien que te enseñó algo importante", descripcion: "Pensá en alguien que te enseñó algo que todavía usás hoy.",
+    objetivo: "La psicóloga Sara Algoe describe la gratitud como una emoción que 'encuentra, recuerda y une' (find-remind-bind): fortalece los vínculos al notar y reconocer lo que alguien hizo por nosotros.",
+    categoria: "gratitud", duracion: 2, dificultad: "facil",
+    motor: "ejercicio", tipo: "escritura",
+    pasos: [{"tipo": "escritura", "pregunta": "Pensá en alguien que te enseñó algo —un maestro, un familiar, un amigo— que todavía usás hoy, de alguna forma. Escribí qué fue.", "placeholder": "Me enseñó…"}],
+    activo: true, version: 1 },
+
+  { id: "gratitud-fisica-del-dia", titulo: "Algo que tu cuerpo hizo bien hoy", descripcion: "Elegí una función específica de tu cuerpo que funcionó hoy sin que la notaras.",
+    objetivo: "Practicar gratitud de forma compartida —decírsela directamente a otra persona, no solo pensarla— tiene un efecto medible más fuerte que la gratitud que se queda solo en la propia cabeza, según investigación sobre gratitud relacional.",
+    categoria: "gratitud", duracion: 1, dificultad: "facil",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Elegí algo específico que tu cuerpo hizo hoy sin que lo notaras: digerir, sanar una herida chica, mantener el equilibrio. Agradecelo.", "duracionSeg": 20}],
+    activo: true, version: 1 },
+
+  { id: "gratitud-por-lo-que-no-paso", titulo: "Algo malo que no pasó", descripcion: "Pensá en algo malo que podría haber pasado hoy, pero no pasó.",
+    objetivo: "Un estudio de Minkyung Koo y colegas mostró que imaginar cómo sería la vida si un evento positivo no hubiera pasado ('resta mental') aumenta la gratitud más que simplemente pensar en lo bueno que fue.",
+    categoria: "gratitud", duracion: 1, dificultad: "intermedio",
+    motor: "ejercicio", tipo: "mensaje",
+    pasos: [{"tipo": "mensaje", "texto": "Pensá en algo malo que podría haber pasado hoy —un accidente, una pelea, un error grande— pero que no pasó. A veces lo que no pasa también merece gratitud.", "duracionSeg": 20}],
+    activo: true, version: 1 },
 ];
 
 const CatalogoMindfulness = {
