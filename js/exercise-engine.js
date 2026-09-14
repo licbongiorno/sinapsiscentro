@@ -81,6 +81,11 @@ const ExerciseEngine = (() => {
         <h1 class="ee-intro-titulo">${ejercicio.titulo}</h1>
         <p class="ee-intro-duracion">${ejercicio.duracion} min · ${etiquetaDificultad(ejercicio.dificultad)}</p>
         <p class="ee-intro-desc">${ejercicio.mensajeInicial || ejercicio.descripcion}</p>
+        ${ejercicio.objetivo ? `
+        <details class="ee-porque">
+          <summary>🔬 ¿Por qué funciona?</summary>
+          <p>${ejercicio.objetivo}</p>
+        </details>` : ""}
         ${ejercicio.advertencia ? `<p class="ee-aviso">${ejercicio.advertencia}</p>` : ""}
         <button class="ee-btn ee-btn-principal" id="eeComenzar">Comenzar</button>
       </div>`;
