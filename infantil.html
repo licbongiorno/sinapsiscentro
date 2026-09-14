@@ -103,10 +103,10 @@
 </div>
 
 </main>
-<script src="js/resource-nav.js"></script>
-<script src="data/infantil-datos.js"></script>
-<script src="js/infantil-storage.js"></script>
-<script>
+<script src="js/resource-nav.js" defer></script>
+<script src="data/infantil-datos.js" defer></script>
+<script src="js/infantil-storage.js" defer></script>
+<script type="module">
 const AVATARES_INFANTIL = ["🦊", "🐰", "🐼", "🦁", "🐧", "🦉", "🐢", "🐬", "🦋", "🐙"];
 let vistaActual = "puertas";
 let bandaActual = null;
@@ -228,6 +228,6 @@ document.getElementById("btnVolverFamilias").addEventListener("click", () => { r
 
 renderPuertas();
 </script>
-  <script src="js/accesibilidad.js"></script>
+  <script src="js/accesibilidad.js" defer></script>
 </body>
 </html>

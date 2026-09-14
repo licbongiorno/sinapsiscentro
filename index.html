@@ -24,14 +24,14 @@
   <meta property="og:description" content="Psicología, psicopedagogía, fonoaudiología y terapia ocupacional en Berazategui. Primera entrevista en menos de 48 horas, sin derivación previa.">
   <meta property="og:locale" content="es_AR">
   <meta property="og:url" content="https://www.sinapsiscentro.com.ar/">
-  <meta property="og:image" content="https://www.sinapsiscentro.com.ar/og-image.png">
+  <meta property="og:image" content="https://www.sinapsiscentro.com.ar/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="SINAPSIS – Centro de Salud Integral. Psicología, Psicopedagogía, Fonoaudiología, Terapia Ocupacional. Berazategui, Buenos Aires.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SINAPSIS – Centro de Salud Integral | Berazategui">
   <meta name="twitter:description" content="Psicología, psicopedagogía, fonoaudiología y terapia ocupacional en Berazategui. Primera entrevista en menos de 48 horas.">
-  <meta name="twitter:image" content="https://www.sinapsiscentro.com.ar/og-image.png">
+  <meta name="twitter:image" content="https://www.sinapsiscentro.com.ar/og-image.jpg">
 
   <meta name="theme-color" content="#08202e">
 
@@ -70,7 +70,7 @@
     "@type": "MedicalBusiness",
     "name": "Sinapsis – Centro de Salud Integral",
     "url": "https://www.sinapsiscentro.com.ar/",
-    "image": "https://www.sinapsiscentro.com.ar/og-image.png",
+    "image": "https://www.sinapsiscentro.com.ar/og-image.jpg",
     "telephone": "+5491168567160",
     "email": "sinapsiscentro@gmail.com",
     "address": {
@@ -153,6 +153,10 @@
   --teal-deep:  #0e4d5c;
   --teal:       #1a7a8a;
   --teal-mid:   #2aaec2;
+  /* Para texto chico sobre fondos claros (--bg/--cream/blanco): --teal
+     ronda justo el mínimo de 4.5:1 en --cream, así que para textos que
+     aparecen sobre --cream se usa esta variante, un poco más oscura. */
+  --teal-texto: #166875;
   --teal-soft:  #7ed6e4;
   --teal-pale:  #d4f2f7;
   --cream:      #f7f2eb;
@@ -457,7 +461,7 @@ nav.solid {
 .section-tag {
   display: inline-flex; align-items: center; gap: 10px;
   font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--teal-mid); font-weight: 700; margin-bottom: 14px;
+  color: var(--teal-texto); font-weight: 700; margin-bottom: 14px;
 }
 .section-tag::before { content:''; width:24px; height:2px; background:var(--teal-mid); border-radius:2px; }
 .section-title {
@@ -660,7 +664,7 @@ body.menu-open { overflow: hidden; }
   border: 1.5px solid rgba(42,174,194,0.15);
 }
 .tab-btn.active {
-  background: var(--teal-mid); color: white; border-color: var(--teal-mid);
+  background: var(--teal); color: white; border-color: var(--teal);
   box-shadow: 0 4px 16px rgba(42,174,194,0.35);
 }
 .tab-btn:hover:not(.active) { border-color: var(--teal-mid); color: var(--teal); }
@@ -821,7 +825,7 @@ body.menu-open { overflow: hidden; }
   width: 38px; height: 38px; border-radius: 10px; background: var(--teal-pale);
   display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0;
 }
-.c-pill .cl { font-size: 0.68rem; text-transform:uppercase; letter-spacing:0.12em; color: var(--teal-mid); font-weight:700; margin-bottom:2px; }
+.c-pill .cl { font-size: 0.68rem; text-transform:uppercase; letter-spacing:0.12em; color: var(--teal); font-weight:700; margin-bottom:2px; }
 .c-pill .cv { font-size: 0.93rem; font-weight: 600; color: var(--navy); }
 
 .map-container {
@@ -1031,7 +1035,7 @@ footer a:hover { color: white; }
 .tgc-texto h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 8px; }
 .tgc-texto p { font-size: 0.92rem; color: var(--text-mid); margin-bottom: 24px; line-height: 1.6; }
 .btn-google {
-  display: inline-flex; align-items: center; gap: 10px; background: #4285F4; color: white;
+  display: inline-flex; align-items: center; gap: 10px; background: #0e61ea; color: white;
   padding: 15px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
   box-shadow: 0 8px 24px rgba(66,133,244,0.35); transition: all 0.3s;
 }
@@ -1853,6 +1857,6 @@ document.querySelectorAll('.btn-google').forEach((a) => {
   a.addEventListener('click', () => { if (window.gtag) gtag('event', 'click_resenas_google'); });
 });
 </script>
-  <script src="js/accesibilidad.js"></script>
+  <script src="js/accesibilidad.js" defer></script>
 </body>
 </html>

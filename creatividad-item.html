@@ -70,22 +70,22 @@
 
 <!-- MODAL PERFIL (no se abre desde acá, pero storage/perfil lo necesitan cargado en algunas páginas — se omite intencionalmente: esta pantalla es de reproducción pura, el perfil se gestiona desde el portal) -->
 
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-<script src="js/firebase-config.js"></script>
-<script src="js/auth.js"></script>
-<script src="data/creatividad-elementos.js"></script>
-<script src="js/creatividad-motor.js"></script>
-<script src="data/creatividad-actividades.js"></script>
-<script src="js/storage.js"></script>
-<script src="js/perfil.js"></script>
-<script src="js/logros.js"></script>
-<script src="js/exportar.js"></script>
-<script src="js/beep.js"></script>
-<script src="js/lienzo.js"></script>
-<script src="js/audio-engine.js"></script>
-<script src="js/game-engine.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js" defer></script>
+<script src="js/firebase-config.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="data/creatividad-elementos.js" defer></script>
+<script src="js/creatividad-motor.js" defer></script>
+<script src="data/creatividad-actividades.js" defer></script>
+<script src="js/storage.js" defer></script>
+<script src="js/perfil.js" defer></script>
+<script src="js/logros.js" defer></script>
+<script src="js/exportar.js" defer></script>
+<script src="js/beep.js" defer></script>
+<script src="js/lienzo.js" defer></script>
+<script src="js/audio-engine.js" defer></script>
+<script src="js/game-engine.js" defer></script>
 <script type="module">
 const params = new URLSearchParams(window.location.search);
 const actividadId = params.get("id");
@@ -374,6 +374,6 @@ if (!actividad || !actividad.activo) {
   });
 }
 </script>
-  <script src="js/accesibilidad.js"></script>
+  <script src="js/accesibilidad.js" defer></script>
 </body>
 </html>

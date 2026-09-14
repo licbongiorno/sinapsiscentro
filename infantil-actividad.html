@@ -27,11 +27,11 @@
   <a href="infantil.html" style="color:#1a7a8a; font-weight:700;">← Volver a la Zona Infantil</a>
 </div>
 
-<script src="data/infantil-datos.js"></script>
-<script src="js/infantil-storage.js"></script>
-<script src="js/lienzo.js"></script>
-<script src="js/infantil-engine.js"></script>
-<script>
+<script src="data/infantil-datos.js" defer></script>
+<script src="js/infantil-storage.js" defer></script>
+<script src="js/lienzo.js" defer></script>
+<script src="js/infantil-engine.js" defer></script>
+<script type="module">
   const params = new URLSearchParams(window.location.search);
   const actividadId = params.get("id");
   const actividad = actividadId ? CatalogoInfantil.porId(actividadId) : null;
@@ -44,6 +44,6 @@
     InfantilEngine.iniciar(actividad);
   }
 </script>
-  <script src="js/accesibilidad.js"></script>
+  <script src="js/accesibilidad.js" defer></script>
 </body>
 </html>
