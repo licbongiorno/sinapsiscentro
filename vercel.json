@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/recursos", "destination": "/#recursos", "permanent": false }
+  ]
+}

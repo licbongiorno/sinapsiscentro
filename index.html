@@ -259,6 +259,12 @@ nav.solid {
 }
 .nav-links a:hover { color: white; }
 .nav-links a:hover::after { right:0; }
+.nav-link-recursos { display: flex; align-items: center; gap: 6px; }
+.nav-badge-gratis {
+  background: var(--teal-soft); color: var(--navy);
+  font-size: 0.62rem; font-weight: 800; letter-spacing: 0.02em;
+  padding: 2px 8px; border-radius: 50px; text-transform: uppercase;
+}
 .nav-cta {
   background: var(--teal) !important;
   color: white !important; padding: 10px 24px !important;
@@ -397,6 +403,14 @@ nav.solid {
   transition: all 0.3s; display: flex; align-items: center; gap: 10px;
 }
 .btn-hero-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: white; }
+
+.hero-recursos-link {
+  display: block; text-align: center; margin-top: 22px;
+  color: var(--teal-soft); text-decoration: none; font-size: 0.88rem; font-weight: 600;
+  letter-spacing: 0.02em; opacity: 0.85; transition: opacity 0.2s, color 0.2s;
+  animation: fadeUp 1s 0.5s var(--easing) both;
+}
+.hero-recursos-link:hover { opacity: 1; color: white; text-decoration: underline; }
 
 .hero-scroll-hint {
   position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
@@ -888,6 +902,25 @@ footer a:hover { color: white; }
 /* ═══════════════════════════════════
    FLOATING BTN
 ═══════════════════════════════════ */
+/* Apilado arriba del botón de accesibilidad (bottom:80px/left:16px,
+   52px), que se inyecta desde js/accesibilidad.js — por eso va del
+   lado izquierdo en vez de sumarse a la pila de WhatsApp/scroll-top
+   de la derecha. */
+.fab-recursos {
+  position: fixed; bottom: 148px; left: 16px; z-index: 9990;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--teal); color: white;
+  padding: 13px 22px; border-radius: 50px;
+  text-decoration: none; font-weight: 700; font-size: 0.88rem;
+  box-shadow: 0 8px 28px rgba(42,174,194,0.45);
+  transition: all 0.3s;
+}
+.fab-recursos:hover { background: var(--teal-mid); transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 40px rgba(42,174,194,0.55); }
+@media(max-width:520px){
+  .fab-recursos { bottom: 134px; left: 12px; padding: 15px; border-radius: 50%; }
+  .fab-recursos-txt { display:none; }
+}
+
 .fab {
   position: fixed; bottom: 28px; right: 28px; z-index: 9990;
   display: flex; align-items: center; gap: 12px;
@@ -1028,7 +1061,7 @@ footer a:hover { color: white; }
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#para-quien">Pacientes</a></li>
     <li><a href="#info">Ubicación</a></li>
-    <li><a href="#recursos">Recursos</a></li>
+    <li><a href="#recursos" class="nav-link-recursos">Recursos <span class="nav-badge-gratis">Gratis</span></a></li>
     <li><a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20una%20primera%20consulta." target="_blank" rel="noopener" class="nav-cta">Pedir consulta</a></li>
   </ul>
   <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
@@ -1064,6 +1097,7 @@ footer a:hover { color: white; }
         Ver servicios ↓
       </a>
     </div>
+    <a href="#recursos" class="hero-recursos-link">🎮 O explorá nuestros recursos gratuitos →</a>
   </div>
   <div class="hero-scroll-hint">
     <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
@@ -1105,6 +1139,47 @@ footer a:hover { color: white; }
         <p>Evaluaciones especializadas ADOS 2 y ADI-R con equipo capacitado.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ RECURSOS ═══ -->
+<section id="recursos">
+  <div style="max-width:1160px;margin:0 auto;text-align:center;">
+    <div class="section-tag rv from-bottom" style="justify-content:center;">Gratis, sin turno ni registro</div>
+    <h2 class="section-title rv from-bottom d1">Recursos para <em>practicar en casa</em></h2>
+    <p class="section-body rv from-bottom d2" style="margin:14px auto 32px;">Mientras decidís tu próximo paso, ya podés empezar: actividades breves, pensadas como un complemento lúdico y no como reemplazo de una consulta profesional.</p>
+  </div>
+  <div class="resources-grid">
+    <a class="resource-card rv from-bottom d1" href="juegos.html">
+      <span class="resource-icon" style="background:#e8f8fb;" aria-hidden="true">🎮</span>
+      <span class="resource-text"><span class="resource-title">Juegos</span><span class="resource-desc">Entrená memoria, atención y habilidades socioemocionales.</span></span>
+      <span class="resource-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="resource-card rv from-bottom d1" href="ejercicios.html">
+      <span class="resource-icon" style="background:#e8f4e8;" aria-hidden="true">🧠</span>
+      <span class="resource-text"><span class="resource-title">Ejercicios</span><span class="resource-desc">Propuestas cortas para pausar, reflexionar y practicar.</span></span>
+      <span class="resource-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="resource-card rv from-bottom d2" href="mindfulness.html">
+      <span class="resource-icon" style="background:#f0e8f8;" aria-hidden="true">🧘</span>
+      <span class="resource-text"><span class="resource-title">Mindfulness</span><span class="resource-desc">Más de 365 prácticas de respiración, atención plena y autocompasión.</span></span>
+      <span class="resource-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="resource-card rv from-bottom d2" href="creatividad.html">
+      <span class="resource-icon" style="background:#f8e8ee;" aria-hidden="true">🎨</span>
+      <span class="resource-text"><span class="resource-title">Creatividad</span><span class="resource-desc">Historias, dibujos, personajes y mundos para imaginar sin límites.</span></span>
+      <span class="resource-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="resource-card rv from-bottom d3" href="infantil.html">
+      <span class="resource-icon" style="background:#fff3e8;" aria-hidden="true">🧸</span>
+      <span class="resource-text"><span class="resource-title">Zona infantil</span><span class="resource-desc">Actividades simples para explorar y aprender jugando.</span></span>
+      <span class="resource-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="resource-card rv from-bottom d3" href="sonidos.html">
+      <span class="resource-icon" style="background:#e8faf0;" aria-hidden="true">🎧</span>
+      <span class="resource-text"><span class="resource-title">Biblioteca Sonora</span><span class="resource-desc">Ruido, campanas y tonos para armar tu propio ambiente.</span></span>
+      <span class="resource-arrow" aria-hidden="true">→</span>
+    </a>
   </div>
 </section>
 
@@ -1227,47 +1302,6 @@ footer a:hover { color: white; }
       <h3>Trabajamos con y sin CUD</h3>
       <p>Atendemos obras sociales, prepagas y pacientes particulares. Consulta por coberturas disponibles en tu caso.</p>
     </div>
-  </div>
-</section>
-
-<!-- ═══ RECURSOS ═══ -->
-<section id="recursos">
-  <div style="max-width:1160px;margin:0 auto;text-align:center;">
-    <div class="section-tag rv from-bottom" style="justify-content:center;">Para acompañar el proceso</div>
-    <h2 class="section-title rv from-bottom d1">Recursos para <em>practicar en casa</em></h2>
-    <p class="section-body rv from-bottom d2" style="margin:14px auto 32px;">Actividades breves, pensadas como un complemento lúdico y no como reemplazo de una consulta profesional.</p>
-  </div>
-  <div class="resources-grid">
-    <a class="resource-card rv from-bottom d1" href="juegos.html">
-      <span class="resource-icon" style="background:#e8f8fb;" aria-hidden="true">🎮</span>
-      <span class="resource-text"><span class="resource-title">Juegos</span><span class="resource-desc">Entrená memoria, atención y habilidades socioemocionales.</span></span>
-      <span class="resource-arrow" aria-hidden="true">→</span>
-    </a>
-    <a class="resource-card rv from-bottom d1" href="ejercicios.html">
-      <span class="resource-icon" style="background:#e8f4e8;" aria-hidden="true">🧠</span>
-      <span class="resource-text"><span class="resource-title">Ejercicios</span><span class="resource-desc">Propuestas cortas para pausar, reflexionar y practicar.</span></span>
-      <span class="resource-arrow" aria-hidden="true">→</span>
-    </a>
-    <a class="resource-card rv from-bottom d2" href="mindfulness.html">
-      <span class="resource-icon" style="background:#f0e8f8;" aria-hidden="true">🧘</span>
-      <span class="resource-text"><span class="resource-title">Mindfulness</span><span class="resource-desc">Más de 365 prácticas de respiración, atención plena y autocompasión.</span></span>
-      <span class="resource-arrow" aria-hidden="true">→</span>
-    </a>
-    <a class="resource-card rv from-bottom d2" href="creatividad.html">
-      <span class="resource-icon" style="background:#f8e8ee;" aria-hidden="true">🎨</span>
-      <span class="resource-text"><span class="resource-title">Creatividad</span><span class="resource-desc">Historias, dibujos, personajes y mundos para imaginar sin límites.</span></span>
-      <span class="resource-arrow" aria-hidden="true">→</span>
-    </a>
-    <a class="resource-card rv from-bottom d3" href="infantil.html">
-      <span class="resource-icon" style="background:#fff3e8;" aria-hidden="true">🧸</span>
-      <span class="resource-text"><span class="resource-title">Zona infantil</span><span class="resource-desc">Actividades simples para explorar y aprender jugando.</span></span>
-      <span class="resource-arrow" aria-hidden="true">→</span>
-    </a>
-    <a class="resource-card rv from-bottom d3" href="sonidos.html">
-      <span class="resource-icon" style="background:#e8faf0;" aria-hidden="true">🎧</span>
-      <span class="resource-text"><span class="resource-title">Biblioteca Sonora</span><span class="resource-desc">Ruido, campanas y tonos para armar tu propio ambiente.</span></span>
-      <span class="resource-arrow" aria-hidden="true">→</span>
-    </a>
   </div>
 </section>
 
@@ -1545,6 +1579,12 @@ footer a:hover { color: white; }
 </footer>
 
 <div role="region" aria-label="Accesos directos">
+  <!-- FLOATING RECURSOS -->
+  <a href="#recursos" class="fab-recursos" title="Ver recursos gratuitos">
+    <span aria-hidden="true">🎮</span>
+    <span class="fab-recursos-txt">Recursos gratis</span>
+  </a>
+
   <!-- FLOATING WA -->
   <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="fab" title="Pedir turno por WhatsApp">
     <svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
