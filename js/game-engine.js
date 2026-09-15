@@ -106,10 +106,23 @@ const GameEngine = (() => {
         <p>Tomate el tiempo que necesites.</p>
         <button class="ge-btn ge-btn-principal" id="geReanudar">Continuar</button>
         <button class="ge-btn ge-btn-secundario" id="geSalirPausa">Volver al portal</button>
+        <button class="compartir-btn" id="gePausaCompartir">🔗 Compartir este juego</button>
       </div>`;
     document.body.appendChild(overlay);
     document.getElementById("geReanudar").addEventListener("click", () => GameEngine.alternarPausa());
     document.getElementById("geSalirPausa").addEventListener("click", () => window.location.href = window.__geVolverA || "juegos.html");
+    document.getElementById("gePausaCompartir").addEventListener("click", () => {
+      const juego = (typeof CatalogoJuegos !== "undefined" && CatalogoJuegos.porId(estado.juegoId))
+        || (typeof CatalogoMindfulness !== "undefined" && CatalogoMindfulness.porId(estado.juegoId))
+        || (typeof CatalogoCreatividad !== "undefined" && CatalogoCreatividad.porId(estado.juegoId))
+        || null;
+      const nombreJuego = (juego && (juego.titulo || juego.nombre)) || "Este juego";
+      Compartir.compartir({
+        titulo: nombreJuego,
+        texto: `${nombreJuego} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        url: window.location.href,
+      });
+    });
     return overlay;
   }
 
