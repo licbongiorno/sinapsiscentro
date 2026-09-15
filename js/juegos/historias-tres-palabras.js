@@ -23,11 +23,16 @@
         <div style="display:flex;justify-content:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
           ${palabras.map(p => `<span style="background:var(--teal-pale);color:var(--teal-deep);padding:10px 18px;border-radius:50px;font-weight:800;">${p}</span>`).join("")}
         </div>
-        <p style="color:var(--text-mid);margin-bottom:10px;font-size:0.9rem;">Armá una mini historia (2 o 3 líneas) usando las tres palabras.</p>
-        <textarea class="jg-caja-texto" id="textoHistoria" placeholder="Había una vez…"></textarea>
+        <div class="lector-fila"><p style="color:var(--text-mid);font-size:0.9rem;">Armá una mini historia (2 o 3 líneas) usando las tres palabras.</p>${Lector.boton(`Armá una mini historia usando estas tres palabras: ${palabras.join(", ")}.`)}</div>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="textoHistoria" placeholder="Había una vez…"></textarea>
+          ${Dictado.boton("textoHistoria")}
+        </div>
         <button id="btnListoHistoria" class="ge-btn ge-btn-principal" style="width:100%;margin-top:14px;">Listo</button>
         <p style="margin-top:12px;font-size:0.78rem;color:var(--text-soft);">Historias: ${historias}</p>
       </div>`;
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnListoHistoria").addEventListener("click", () => {
       const texto = document.getElementById("textoHistoria").value.trim();
       if (texto.length > 5) { historias += 1; GameEngine.sumarPuntos(5); }

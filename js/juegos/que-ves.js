@@ -26,11 +26,16 @@
         <svg width="260" height="260" viewBox="0 0 260 260" style="margin:0 auto;display:block;">
           <polygon points="${formaAleatoria()}" fill="var(--teal-mid)" opacity="0.85"/>
         </svg>
-        <p style="color:var(--text-mid);margin:14px 0 10px;">¿Qué te parece que es esta forma?</p>
-        <textarea class="jg-caja-texto" id="textoVes" placeholder="Escribí lo primero que se te ocurra…" style="min-height:70px;"></textarea>
+        <div class="lector-fila" style="margin-top:14px;"><p style="color:var(--text-mid);">¿Qué te parece que es esta forma?</p>${Lector.boton("¿Qué te parece que es esta forma?")}</div>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="textoVes" placeholder="Escribí lo primero que se te ocurra…" style="min-height:70px;"></textarea>
+          ${Dictado.boton("textoVes")}
+        </div>
         <button id="btnListoVes" class="ge-btn ge-btn-principal" style="width:100%;margin-top:14px;">Siguiente</button>
         <p style="margin-top:12px;font-size:0.78rem;color:var(--text-soft);">${ronda} / ${TOTAL}</p>
       </div>`;
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnListoVes").addEventListener("click", () => {
       const texto = document.getElementById("textoVes").value.trim();
       if (texto.length > 2) GameEngine.sumarPuntos(5);

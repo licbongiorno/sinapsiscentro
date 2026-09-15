@@ -18,10 +18,15 @@
       <div style="width:min(94vw,440px);margin:0 auto;text-align:center;">
         <p style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin-bottom:6px;">${orden[i]}</p>
         <p style="color:var(--text-soft);font-size:0.8rem;margin-bottom:16px;">(palabra inventada)</p>
-        <p style="color:var(--text-mid);margin-bottom:10px;font-size:0.9rem;">Inventá una definición para esta palabra.</p>
-        <textarea class="jg-caja-texto" id="textoDicc" placeholder="Significa…"></textarea>
+        <div class="lector-fila"><p style="color:var(--text-mid);font-size:0.9rem;">Inventá una definición para esta palabra.</p>${Lector.boton(`${orden[i]}. Palabra inventada. Inventá una definición para esta palabra.`)}</div>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="textoDicc" placeholder="Significa…"></textarea>
+          ${Dictado.boton("textoDicc")}
+        </div>
         <button id="btnListoDicc" class="ge-btn ge-btn-principal" style="width:100%;margin-top:14px;">Siguiente</button>
       </div>`;
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnListoDicc").addEventListener("click", () => {
       const texto = document.getElementById("textoDicc").value.trim();
       if (texto.length > 3) GameEngine.sumarPuntos(5);

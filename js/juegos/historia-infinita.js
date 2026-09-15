@@ -22,13 +22,19 @@
         <div style="background:white;border:2px solid var(--teal-pale);border-radius:var(--r);padding:20px;min-height:140px;font-size:1rem;line-height:1.7;color:var(--text);">
           ${oraciones.join(" ")}<span style="opacity:0.3;">▌</span>
         </div>
-        <p style="text-align:center;font-size:0.78rem;color:var(--text-soft);margin:10px 0 16px;">${oraciones.length - 1} / ${LIMITE} aportes</p>
-        <textarea class="jg-caja-texto" id="inputHistoriaInf" placeholder="Continuá la historia…" style="min-height:70px;"></textarea>
+        <div class="lector-fila" style="justify-content:center;margin-top:8px;">${Lector.boton(oraciones.join(" "))}</div>
+        <p style="text-align:center;font-size:0.78rem;color:var(--text-soft);margin:2px 0 16px;">${oraciones.length - 1} / ${LIMITE} aportes</p>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="inputHistoriaInf" placeholder="Continuá la historia…" style="min-height:70px;"></textarea>
+          ${Dictado.boton("inputHistoriaInf")}
+        </div>
         <div style="display:flex;gap:10px;margin-top:12px;">
           <button id="btnAgregarHistInf" class="ge-btn ge-btn-principal" style="flex:1;">Agregar</button>
           <button id="btnTerminarHistInf" class="ge-btn ge-btn-secundario" style="flex:1;">Terminar acá</button>
         </div>
       </div>`;
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnAgregarHistInf").addEventListener("click", () => {
       const val = document.getElementById("inputHistoriaInf").value.trim();
       if (!val) return;

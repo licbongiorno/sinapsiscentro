@@ -26,11 +26,16 @@
           <div style="flex:1;background:white;border-radius:var(--r);padding:16px;box-shadow:0 6px 18px rgba(8,32,46,0.06);font-size:0.9rem;">${c.a}</div>
           <div style="flex:1;background:white;border-radius:var(--r);padding:16px;box-shadow:0 6px 18px rgba(8,32,46,0.06);font-size:0.9rem;">${c.b}</div>
         </div>
-        <p style="color:var(--text-mid);margin-bottom:10px;font-size:0.9rem;">¿Qué punto en común o acuerdo podría tender un puente entre las dos posturas?</p>
-        <textarea class="jg-caja-texto" id="textoPuente" placeholder="Por ejemplo, podrían…"></textarea>
+        <div class="lector-fila"><p style="color:var(--text-mid);font-size:0.9rem;">¿Qué punto en común o acuerdo podría tender un puente entre las dos posturas?</p>${Lector.boton(`Postura uno: ${c.a} Postura dos: ${c.b} ¿Qué punto en común o acuerdo podría tender un puente entre las dos posturas?`)}</div>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="textoPuente" placeholder="Por ejemplo, podrían…"></textarea>
+          ${Dictado.boton("textoPuente")}
+        </div>
         <button id="btnListoPuente" class="ge-btn ge-btn-principal" style="width:100%;margin-top:14px;">Siguiente</button>
         <p style="margin-top:12px;font-size:0.78rem;color:var(--text-soft);">${i + 1} / ${orden.length}</p>
       </div>`;
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnListoPuente").addEventListener("click", () => {
       const texto = document.getElementById("textoPuente").value.trim();
       if (texto.length > 5) GameEngine.sumarPuntos(8);

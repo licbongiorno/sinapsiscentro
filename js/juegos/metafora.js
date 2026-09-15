@@ -17,12 +17,17 @@
     const tema = orden[i];
     contenedor.innerHTML = `
       <div style="width:min(94vw,440px);margin:0 auto;text-align:center;">
-        <p style="color:var(--text-mid);margin-bottom:10px;font-size:0.9rem;">Completá la metáfora:</p>
+        <div class="lector-fila"><p style="color:var(--text-mid);font-size:0.9rem;">Completá la metáfora:</p>${Lector.boton(`Completá la metáfora: ${tema} es como, porque…`)}</div>
         <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:18px;">"${tema} es como ___ porque ___"</p>
-        <textarea class="jg-caja-texto" id="textoMetafora" placeholder="Escribí tu metáfora…"></textarea>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="textoMetafora" placeholder="Escribí tu metáfora…"></textarea>
+          ${Dictado.boton("textoMetafora")}
+        </div>
         <button id="btnListoMetafora" class="ge-btn ge-btn-principal" style="width:100%;margin-top:14px;">Siguiente</button>
         <p style="margin-top:12px;font-size:0.78rem;color:var(--text-soft);">${i + 1} / ${orden.length}</p>
       </div>`;
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnListoMetafora").addEventListener("click", () => {
       const texto = document.getElementById("textoMetafora").value.trim();
       if (texto.length > 5) GameEngine.sumarPuntos(10);

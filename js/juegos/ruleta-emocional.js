@@ -31,10 +31,16 @@
     contenedor.innerHTML = `
       <div style="width:min(94vw,440px);margin:0 auto;text-align:center;">
         <div style="background:white;border-radius:var(--r-lg);padding:26px 22px;box-shadow:0 10px 30px rgba(8,32,46,0.08);margin-bottom:18px;font-size:1.05rem;line-height:1.6;font-family:'Playfair Display',serif;">${pregunta}</div>
-        <textarea class="jg-caja-texto" id="textoRuleta" placeholder="Si querés, escribí tu respuesta…" style="min-height:70px;"></textarea>
+        <div class="lector-fila" style="justify-content:center;margin-bottom:8px;">${Lector.boton(pregunta)}</div>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="textoRuleta" placeholder="Si querés, escribí tu respuesta…" style="min-height:70px;"></textarea>
+          ${Dictado.boton("textoRuleta")}
+        </div>
         <button id="btnGirarRuleta" class="ge-btn ge-btn-principal" style="width:100%;margin-top:14px;">🎡 Girar de nuevo</button>
         <p style="margin-top:12px;font-size:0.78rem;color:var(--text-soft);">${vueltas + 1} / ${MAX}</p>
       </div>`;
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnGirarRuleta").addEventListener("click", () => {
       GameEngine.sumarPuntos(1);
       vueltas += 1;

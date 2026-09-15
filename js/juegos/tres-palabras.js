@@ -38,15 +38,19 @@
         <div style="display:flex;justify-content:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;">
           ${palabras.map(p => `<span style="background:var(--teal-pale);color:var(--teal-deep);padding:10px 18px;border-radius:50px;font-weight:800;">${p}</span>`).join("")}
         </div>
-        <p style="color:var(--text-mid);margin-bottom:12px;font-size:0.9rem;">Escribí una frase, una idea o una mini historia que use las tres palabras.</p>
-        <textarea class="jg-caja-texto" id="textoCreacion" placeholder="Empezá a escribir…"></textarea>
+        <div class="lector-fila"><p style="color:var(--text-mid);font-size:0.9rem;">Escribí una frase, una idea o una mini historia que use las tres palabras.</p>${Lector.boton(`Escribí una frase, una idea o una mini historia que use estas tres palabras: ${palabras.join(", ")}.`)}</div>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="textoCreacion" placeholder="Empezá a escribir…"></textarea>
+          ${Dictado.boton("textoCreacion")}
+        </div>
         <div style="display:flex;gap:10px;margin-top:14px;">
           <button id="btnOtras" class="ge-btn ge-btn-secundario" style="flex:1;">Otras palabras</button>
           <button id="btnListo" class="ge-btn ge-btn-principal" style="flex:1;">Listo</button>
         </div>
         <p style="margin-top:14px;font-size:0.78rem;color:var(--text-soft);">Creaciones esta partida: ${creaciones}</p>
       </div>`;
-
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnOtras").addEventListener("click", () => { palabras = tresAlAzar(); render(); });
     document.getElementById("btnListo").addEventListener("click", () => {
       const texto = document.getElementById("textoCreacion").value.trim();

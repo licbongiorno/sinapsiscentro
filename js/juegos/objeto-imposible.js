@@ -25,14 +25,19 @@
   function render() {
     contenedor.innerHTML = `
       <div style="width:min(94vw,460px);margin:0 auto;text-align:center;">
-        <p style="color:var(--text-mid);margin-bottom:14px;">Diseñá un objeto imposible hecho de <b style="color:var(--teal-deep);">${combo.material}</b> que sirva para <b style="color:var(--teal-deep);">${combo.funcion}</b>.</p>
-        <textarea class="jg-caja-texto" id="textoObjeto" placeholder="Describilo: ¿qué forma tiene? ¿cómo funciona?"></textarea>
+        <div class="lector-fila"><p style="color:var(--text-mid);">Diseñá un objeto imposible hecho de <b style="color:var(--teal-deep);">${combo.material}</b> que sirva para <b style="color:var(--teal-deep);">${combo.funcion}</b>.</p>${Lector.boton(`Diseñá un objeto imposible hecho de ${combo.material}, que sirva para ${combo.funcion}.`)}</div>
+        <div class="dictado-fila">
+          <textarea class="jg-caja-texto" id="textoObjeto" placeholder="Describilo: ¿qué forma tiene? ¿cómo funciona?"></textarea>
+          ${Dictado.boton("textoObjeto")}
+        </div>
         <div style="display:flex;gap:10px;margin-top:14px;">
           <button id="btnOtraCombo" class="ge-btn ge-btn-secundario" style="flex:1;">Otra combinación</button>
           <button id="btnListoObjeto" class="ge-btn ge-btn-principal" style="flex:1;">Listo</button>
         </div>
         <p style="margin-top:14px;font-size:0.78rem;color:var(--text-soft);">Objetos creados: ${creaciones}</p>
       </div>`;
+    Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("btnOtraCombo").addEventListener("click", () => { combo = combinacion(); render(); });
     document.getElementById("btnListoObjeto").addEventListener("click", () => {
       const texto = document.getElementById("textoObjeto").value.trim();
