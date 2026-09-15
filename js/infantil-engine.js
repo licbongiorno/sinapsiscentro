@@ -54,7 +54,10 @@ const InfantilEngine = (() => {
     contenedor.innerHTML = `
       <div class="ie-intro">
         <div class="ie-intro-emoji">${(CatalogoInfantil.categoriaPorId(actividad.categoria) || {}).icono || "🧸"}</div>
-        <h1 class="ie-intro-titulo">${actividad.titulo}</h1>
+        <div class="ie-titulo-fila">
+          <h1 class="ie-intro-titulo">${actividad.titulo}</h1>
+          ${Lector.boton(`${actividad.titulo}. ${actividad.descripcion}`)}
+        </div>
         <p class="ie-intro-desc">${actividad.descripcion}</p>
         ${actividad.beneficio ? `
         <details class="ie-porque">
@@ -64,6 +67,7 @@ const InfantilEngine = (() => {
         <button class="ie-btn ie-btn-principal" id="ieComenzar">¡Jugar!</button>
         <button class="compartir-btn" id="ieCompartir">🔗 Compartir</button>
       </div>`;
+    Lector.conectar(contenedor);
     document.getElementById("ieBarra").style.display = "none";
     document.getElementById("ieComenzar").addEventListener("click", () => {
       document.getElementById("ieBarra").style.display = "flex";
@@ -153,10 +157,11 @@ const InfantilEngine = (() => {
       contenedor.innerHTML = `
         <div class="ie-paso">
           ${r.emoji ? `<div class="ie-pregunta-emoji">${r.emoji}</div>` : ""}
-          <p class="ie-pregunta">${r.pregunta}</p>
+          <div class="ie-pregunta-fila"><p class="ie-pregunta">${r.pregunta}</p>${Lector.boton(r.pregunta)}</div>
           <div class="ie-opciones">${r.opciones.map((o, idx) => `<button class="ie-opcion" data-i="${idx}">${o}</button>`).join("")}</div>
           <p class="ie-progreso">${i + 1} / ${rondas.length}</p>
         </div>`;
+      Lector.conectar(contenedor);
       contenedor.querySelectorAll(".ie-opcion").forEach(btn => btn.addEventListener("click", () => {
         const acierto = Number(btn.dataset.i) === r.correctaIdx;
         if (acierto) { btn.classList.add("ie-correcta"); sumarEstrella(); timers.push(setTimeout(() => { i += 1; render(); }, 600)); }
@@ -181,7 +186,7 @@ const InfantilEngine = (() => {
       const item = restantes[0];
       contenedor.innerHTML = `
         <div class="ie-paso">
-          <p class="ie-pregunta">${instruccion}</p>
+          <div class="ie-pregunta-fila"><p class="ie-pregunta">${instruccion}</p>${Lector.boton(instruccion)}</div>
           <div class="ie-item-clasificar">${item.emoji || item.texto}</div>
           <div class="ie-grupos">
             <button class="ie-grupo-btn" data-g="A">${grupoA.emoji} ${grupoA.nombre}</button>
@@ -189,6 +194,7 @@ const InfantilEngine = (() => {
           </div>
           <p class="ie-progreso">${items.length - restantes.length + 1} / ${items.length}</p>
         </div>`;
+      Lector.conectar(contenedor);
       contenedor.querySelectorAll(".ie-grupo-btn").forEach(btn => btn.addEventListener("click", () => {
         if (btn.dataset.g === item.grupo) { sumarEstrella(); aciertos += 1; restantes.shift(); render(); }
         else { beep(300, 90, "sine", 0.03); btn.classList.add("ie-intenta-de-nuevo"); timers.push(setTimeout(() => btn.classList.remove("ie-intenta-de-nuevo"), 500)); }
@@ -205,11 +211,12 @@ const InfantilEngine = (() => {
     function render() {
       contenedor.innerHTML = `
         <div class="ie-paso">
-          <p class="ie-pregunta">${instruccion}</p>
+          <div class="ie-pregunta-fila"><p class="ie-pregunta">${instruccion}</p>${Lector.boton(instruccion)}</div>
           <div class="ie-secuencia-elegidos">${elegidos.map((t, i) => `<div class="ie-secuencia-item">${i + 1}. ${t}</div>`).join("") || "<span style='color:var(--text-soft)'>Tocá en orden…</span>"}</div>
           <div class="ie-secuencia-disponibles">${mezclado.map((t, idx) => elegidos.includes(t) ? "" : `<button class="ie-secuencia-btn" data-idx="${idx}">${t}</button>`).join("")}</div>
           <p class="ie-progreso">${elegidos.length} / ${items.length}</p>
         </div>`;
+      Lector.conectar(contenedor);
       contenedor.querySelectorAll(".ie-secuencia-btn").forEach(btn => btn.addEventListener("click", () => {
         const elegido = mezclado[Number(btn.dataset.idx)];
         const esElSiguiente = elegido === items[elegidos.length];
@@ -236,15 +243,17 @@ const InfantilEngine = (() => {
       const nodo = nodos[nodoId];
       if (!nodo.opciones || !nodo.opciones.length) {
         sumarEstrella(2);
-        contenedor.innerHTML = `<div class="ie-paso"><p class="ie-pregunta" style="font-family:'Playfair Display',serif;font-size:1.2rem;">${nodo.texto}</p></div>`;
+        contenedor.innerHTML = `<div class="ie-paso"><div class="ie-pregunta-fila"><p class="ie-pregunta" style="font-family:'Playfair Display',serif;font-size:1.2rem;">${nodo.texto}</p>${Lector.boton(nodo.texto)}</div></div>`;
+        Lector.conectar(contenedor);
         timers.push(setTimeout(() => pantallaFinal("¡Terminaste la historia!"), 1800));
         return;
       }
       contenedor.innerHTML = `
         <div class="ie-paso">
-          <p class="ie-pregunta" style="font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.6;">${nodo.texto}</p>
+          <div class="ie-pregunta-fila"><p class="ie-pregunta" style="font-family:'Playfair Display',serif;font-size:1.15rem;line-height:1.6;">${nodo.texto}</p>${Lector.boton(nodo.texto)}</div>
           <div class="ie-opciones">${nodo.opciones.map((o, idx) => `<button class="ie-opcion" data-idx="${idx}">${o.texto}</button>`).join("")}</div>
         </div>`;
+      Lector.conectar(contenedor);
       contenedor.querySelectorAll(".ie-opcion").forEach(btn => btn.addEventListener("click", () => {
         sumarEstrella();
         render(nodo.opciones[Number(btn.dataset.idx)].siguiente);
@@ -259,11 +268,12 @@ const InfantilEngine = (() => {
     const NOMBRE_COLOR = { "#0d2535": "Azul oscuro", "#e08a8a": "Rosa", "#2aaec2": "Celeste", "#f0c14b": "Amarillo", "#8ac9a9": "Verde agua", "#c98ac2": "Violeta" };
     contenedor.innerHTML = `
       <div class="ie-paso" style="text-align:center;">
-        <p class="ie-pregunta">${actividad.contenido.texto}</p>
+        <div class="ie-pregunta-fila"><p class="ie-pregunta">${actividad.contenido.texto}</p>${Lector.boton(actividad.contenido.texto)}</div>
         <canvas id="ieLienzo" width="290" height="270" class="ie-lienzo"></canvas>
         <div class="ie-lienzo-colores">${COLORES.map(c => `<button data-c="${c}" style="background:${c}" aria-label="${NOMBRE_COLOR[c] || "Color"}"></button>`).join("")}<button data-limpiar="1" class="ie-lienzo-limpiar">Borrar</button></div>
         <button class="ie-btn ie-btn-principal" id="ieListoDibujo" style="margin-top:16px;">¡Listo!</button>
       </div>`;
+    Lector.conectar(contenedor);
     const canvas = document.getElementById("ieLienzo");
     const lienzo = crearLienzoDibujable(canvas, { colorInicial: COLORES[0], grosor: 6 });
     contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => lienzo.setColor(btn.dataset.c)));
@@ -277,10 +287,11 @@ const InfantilEngine = (() => {
     let ciclo = 0, fase = 0;
     contenedor.innerHTML = `
       <div class="ie-paso" style="text-align:center;">
-        <p class="ie-pregunta">${texto}</p>
+        <div class="ie-pregunta-fila"><p class="ie-pregunta">${texto}</p>${Lector.boton(texto)}</div>
         <div class="ie-circulo"><span id="ieFaseTexto">…</span></div>
         <p class="ie-progreso" id="ieCicloTexto">1 / ${ciclos}</p>
       </div>`;
+    Lector.conectar(contenedor);
     function siguienteFase() {
       if (ciclo >= ciclos) { sumarEstrella(2); pantallaFinal("¡Qué bien respiraste!"); return; }
       const f = fases[fase];
@@ -303,10 +314,11 @@ const InfantilEngine = (() => {
   function iniciarEscritura() {
     contenedor.innerHTML = `
       <div class="ie-paso">
-        <p class="ie-pregunta">${actividad.contenido.pregunta}</p>
+        <div class="ie-pregunta-fila"><p class="ie-pregunta">${actividad.contenido.pregunta}</p>${Lector.boton(actividad.contenido.pregunta)}</div>
         <textarea class="ie-textarea" id="ieTextarea" placeholder="${actividad.contenido.placeholder || "Escribí lo que quieras…"}"></textarea>
         <button class="ie-btn ie-btn-principal" id="ieListoEscritura" style="margin-top:14px;">¡Listo!</button>
       </div>`;
+    Lector.conectar(contenedor);
     document.getElementById("ieListoEscritura").addEventListener("click", () => {
       const texto = document.getElementById("ieTextarea").value.trim();
       if (texto.length > 2) sumarEstrella(2);

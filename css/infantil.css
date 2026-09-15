@@ -115,6 +115,17 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ie-pregunta-emoji { font-size: 3rem; margin-bottom: 8px; }
 .ie-progreso { font-size: 0.8rem; color: var(--text-soft); margin-top: 14px; }
 
+.ie-titulo-fila, .ie-pregunta-fila { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.lector-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; flex-shrink: 0;
+  background: var(--teal-pale); color: var(--teal-deep);
+  border: none; border-radius: 50%; font-size: 1.15rem; cursor: pointer;
+  transition: transform 0.15s;
+}
+.lector-btn:hover { transform: scale(1.08); }
+.lector-btn:active { transform: scale(0.94); }
+
 .ie-opciones { display: flex; flex-direction: column; gap: 10px; }
 .ie-opcion { background: white; border: 3px solid var(--teal-pale); border-radius: var(--r); padding: 16px; font-size: 1rem; font-weight: 700; color: var(--text); cursor: pointer; transition: all 0.15s; }
 .ie-opcion:hover { border-color: var(--kid-orange); }
