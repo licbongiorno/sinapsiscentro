@@ -48,6 +48,7 @@
 </style>
   <link rel="stylesheet" href="css/accesibilidad.css">
   <link rel="stylesheet" href="css/compartir.css">
+  <link rel="stylesheet" href="css/lector.css">
 </head>
 <body>
 
@@ -90,6 +91,7 @@
 <script src="js/lienzo.js" defer></script>
 <script src="js/audio-engine.js" defer></script>
 <script src="js/compartir.js" defer></script>
+<script src="js/lector.js" defer></script>
 <script src="js/game-engine.js" defer></script>
 <script type="module">
 const params = new URLSearchParams(window.location.search);
@@ -157,6 +159,11 @@ if (!actividad || !actividad.activo) {
       `<div class="cv-ingrediente"><b>${ETIQUETAS_INGREDIENTE[k] || k}:</b> ${v}</div>`).join("");
   }
 
+  function textoIngredientes(r) {
+    if (r.tipo === "combinacion") return r.elementos.map(e => e.valor).join(". ");
+    return Object.entries(r).filter(([k]) => k !== "tipo").map(([k, v]) => `${ETIQUETAS_INGREDIENTE[k] || k}: ${v}`).join(". ");
+  }
+
   function generadorBonito() {
     return {
       "animal-imposible": "🐾 Tu animal imposible", "personaje": "🎭 Tu personaje", "mundo": "🌎 Tu mundo",
@@ -167,17 +174,17 @@ if (!actividad || !actividad.activo) {
   function renderIntro() {
     const cont = document.getElementById("cvContenedor");
     let html = `<p class="cv-titulo-cat">${cat ? cat.icono + " " + cat.nombre : ""}</p>
-      <h1 class="cv-titulo">${actividad.titulo}</h1>
+      <div class="lector-fila"><h1 class="cv-titulo">${actividad.titulo}</h1>${Lector.boton(actividad.titulo)}</div>
       <button class="compartir-btn" id="cvCompartir">🔗 Compartir</button>`;
 
     if (actividad.tipo === "generador") {
-      html += `<div class="cv-ingredientes"><p style="font-weight:800;margin-bottom:8px;color:var(--navy);">${generadorBonito()}</p>${renderIngredientes(resultado)}</div>
+      html += `<div class="cv-ingredientes"><div class="lector-fila" style="justify-content:flex-start;"><p style="font-weight:800;margin-bottom:8px;color:var(--navy);">${generadorBonito()}</p>${Lector.boton(`${generadorBonito()}. ${textoIngredientes(resultado)}`)}</div>${renderIngredientes(resultado)}</div>
         <div class="cv-fila-botones-h"><button class="ee-btn ee-btn-secundario" id="cvRegenerar">🎲 Generar otra combinación</button></div>`;
     } else {
       const consignaFinal = resultado.inspiracion && resultado.inspiracion.length === 1
         ? resultado.consigna.replace("{elemento}", resultado.inspiracion[0])
         : resultado.consigna;
-      html += `<p class="cv-desc">${consignaFinal}</p>`;
+      html += `<div class="lector-fila"><p class="cv-desc">${consignaFinal}</p>${Lector.boton(consignaFinal)}</div>`;
       if (resultado.inspiracion) {
         html += `<div style="text-align:center;margin-bottom:14px;">${resultado.inspiracion.map(i => `<span class="cv-inspiracion-chip">${i}</span>`).join("")}</div>
           <div class="cv-fila-botones-h"><button class="ee-btn ee-btn-secundario" id="cvRegenerar">🎲 Otras palabras</button></div>`;
@@ -211,6 +218,7 @@ if (!actividad || !actividad.activo) {
       <div class="cv-fila-botones" id="cvAcciones"></div>`;
 
     cont.innerHTML = html;
+    Lector.conectar(cont);
 
     const btnRegenerar = document.getElementById("cvRegenerar");
     if (btnRegenerar) btnRegenerar.addEventListener("click", () => { generar(); renderIntro(); });

@@ -78,7 +78,10 @@ const ExerciseEngine = (() => {
     contenedor.innerHTML = `
       <div class="ee-intro">
         <p class="ee-intro-cat">${catInfo.nombre || ""}</p>
-        <h1 class="ee-intro-titulo">${ejercicio.titulo}</h1>
+        <div class="lector-fila">
+          <h1 class="ee-intro-titulo">${ejercicio.titulo}</h1>
+          ${Lector.boton(`${ejercicio.titulo}. ${ejercicio.mensajeInicial || ejercicio.descripcion}`)}
+        </div>
         <p class="ee-intro-duracion">${ejercicio.duracion} min · ${etiquetaDificultad(ejercicio.dificultad)}</p>
         <p class="ee-intro-desc">${ejercicio.mensajeInicial || ejercicio.descripcion}</p>
         ${ejercicio.objetivo ? `
@@ -90,6 +93,7 @@ const ExerciseEngine = (() => {
         <button class="ee-btn ee-btn-principal" id="eeComenzar">Comenzar</button>
         <button class="compartir-btn" id="eeCompartir">🔗 Compartir</button>
       </div>`;
+    Lector.conectar(contenedor);
     document.getElementById("eeBarra").style.display = "none";
     document.getElementById("eeComenzar").addEventListener("click", () => {
       document.getElementById("eeBarra").style.display = "flex";
@@ -127,6 +131,7 @@ const ExerciseEngine = (() => {
         ${contenidoHtml}
         ${mostrarSiguiente ? `<button class="ee-btn ee-btn-principal" id="eeSiguiente" style="margin-top:24px;">${textoBoton}</button>` : ""}
       </div>`;
+    Lector.conectar(contenedor);
     const btn = document.getElementById("eeSiguiente");
     if (btn) btn.addEventListener("click", avanzar);
   }
@@ -141,7 +146,7 @@ const ExerciseEngine = (() => {
   // ── Tipos de paso ──
 
   function renderMensaje(paso) {
-    marcoPaso(`<p class="ee-texto-grande">${paso.texto}</p>`);
+    marcoPaso(`<div class="lector-fila"><p class="ee-texto-grande">${paso.texto}</p>${Lector.boton(paso.texto)}</div>`);
     if (paso.duracionSeg) {
       const btn = () => document.getElementById("eeSiguiente");
       if (btn()) btn().style.opacity = "0.4";
@@ -153,13 +158,14 @@ const ExerciseEngine = (() => {
     let restante = paso.duracionSeg;
     contenedor.innerHTML = `
       <div class="ee-paso" style="text-align:center;">
-        <p class="ee-texto-grande">${paso.texto || ""}</p>
+        <div class="lector-fila"><p class="ee-texto-grande">${paso.texto || ""}</p>${Lector.boton(paso.texto)}</div>
         <div class="ee-tiempo" id="eeTiempo">${formatoTiempo(restante)}</div>
         <div class="ee-controles-tiempo">
           <button class="ee-btn ee-btn-secundario" id="eePausarTiempo">Pausar</button>
           <button class="ee-btn ee-btn-principal" id="eeFinalizarTiempo">Finalizar</button>
         </div>
       </div>`;
+    Lector.conectar(contenedor);
     let corriendo = true;
     const intervalo = setInterval(() => {
       if (!corriendo) return;
@@ -187,11 +193,12 @@ const ExerciseEngine = (() => {
     let ciclo = 0, fase = 0, detenido = false;
     contenedor.innerHTML = `
       <div class="ee-paso" style="text-align:center;">
-        ${paso.texto ? `<p class="ee-texto-grande" style="margin-bottom:18px;">${paso.texto}</p>` : ""}
+        ${paso.texto ? `<div class="lector-fila" style="margin-bottom:18px;"><p class="ee-texto-grande">${paso.texto}</p>${Lector.boton(paso.texto)}</div>` : ""}
         <div class="ee-circulo" id="eeCirculo"><span id="eeFaseTexto">…</span></div>
         <p class="ee-ciclo-texto" id="eeCicloTexto">Ciclo 1 de ${ciclos}</p>
         <button class="ee-btn ee-btn-secundario" id="eeSaltarRespiracion" style="margin-top:18px;">Continuar</button>
       </div>`;
+    Lector.conectar(contenedor);
     document.getElementById("eeSaltarRespiracion").addEventListener("click", () => { detenido = true; avanzar(); });
 
     function siguienteFase() {
@@ -219,7 +226,7 @@ const ExerciseEngine = (() => {
 
   function renderEscala(paso) {
     marcoPaso(`
-      <p class="ee-texto-grande">${paso.pregunta}</p>
+      <div class="lector-fila"><p class="ee-texto-grande">${paso.pregunta}</p>${Lector.boton(paso.pregunta)}</div>
       <div class="ee-escala">
         <span class="ee-escala-extremo">${paso.etiquetaMin || "Nada"}</span>
         <input type="range" min="${paso.min ?? 0}" max="${paso.max ?? 10}" value="${Math.round(((paso.max ?? 10) - (paso.min ?? 0)) / 2)}" id="eeSlider">
@@ -234,24 +241,26 @@ const ExerciseEngine = (() => {
   function renderSeleccion(paso) {
     contenedor.innerHTML = `
       <div class="ee-paso">
-        <p class="ee-texto-grande">${paso.pregunta}</p>
+        <div class="lector-fila"><p class="ee-texto-grande">${paso.pregunta}</p>${Lector.boton(paso.pregunta)}</div>
         <div class="ee-opciones-seleccion">
           ${paso.opciones.map((o, i) => `<button class="ee-opcion-sel" data-i="${i}">${o.emoji ? `<span class="ee-opcion-emoji">${o.emoji}</span>` : ""}${o.texto}</button>`).join("")}
         </div>
       </div>`;
+    Lector.conectar(contenedor);
     contenedor.querySelectorAll(".ee-opcion-sel").forEach(btn => btn.addEventListener("click", () => avanzar()));
   }
 
   function renderEscritura(paso) {
     contenedor.innerHTML = `
       <div class="ee-paso">
-        <p class="ee-texto-grande">${paso.pregunta}</p>
+        <div class="lector-fila"><p class="ee-texto-grande">${paso.pregunta}</p>${Lector.boton(paso.pregunta)}</div>
         <textarea class="ee-textarea" id="eeTextarea" placeholder="${paso.placeholder || "Escribí lo que quieras…"}"></textarea>
         <div class="ee-fila-botones">
           <button class="ee-btn ee-btn-secundario" id="eeContinuarSinGuardar">Continuar sin guardar</button>
           <button class="ee-btn ee-btn-principal" id="eeGuardarReflexion">Guardar y continuar</button>
         </div>
       </div>`;
+    Lector.conectar(contenedor);
     document.getElementById("eeContinuarSinGuardar").addEventListener("click", avanzar);
     document.getElementById("eeGuardarReflexion").addEventListener("click", (e) => {
       const texto = document.getElementById("eeTextarea").value.trim();
@@ -271,12 +280,13 @@ const ExerciseEngine = (() => {
     function pintar() {
       contenedor.innerHTML = `
         <div class="ee-paso">
-          <p class="ee-texto-grande">${paso.instruccion}</p>
+          <div class="lector-fila"><p class="ee-texto-grande">${paso.instruccion}</p>${Lector.boton(paso.instruccion)}</div>
           <div class="ee-orden-elegidos">${elegidos.map((t, i) => `<div class="ee-orden-item hecho">${i + 1}. ${t}</div>`).join("")}</div>
           <div class="ee-orden-disponibles">
             ${mezclado.map((t, i) => elegidos.includes(t) ? "" : `<button class="ee-orden-btn" data-t="${i}">${t}</button>`).join("")}
           </div>
         </div>`;
+      Lector.conectar(contenedor);
       contenedor.querySelectorAll(".ee-orden-btn").forEach(btn => btn.addEventListener("click", () => {
         elegidos.push(mezclado[Number(btn.dataset.t)]);
         if (elegidos.length === correcto.length) { setTimeout(avanzar, 400); }
@@ -291,7 +301,7 @@ const ExerciseEngine = (() => {
     const NOMBRE_COLOR = { "#0d2535": "Azul oscuro", "#2aaec2": "Celeste", "#e08a8a": "Rosa", "#8ac9a9": "Verde agua", "#c9a97e": "Marrón claro" };
     contenedor.innerHTML = `
       <div class="ee-paso" style="text-align:center;">
-        <p class="ee-texto-grande">${paso.texto}</p>
+        <div class="lector-fila"><p class="ee-texto-grande">${paso.texto}</p>${Lector.boton(paso.texto)}</div>
         <canvas id="eeLienzo" width="300" height="280" class="ee-lienzo"></canvas>
         <div class="ee-lienzo-colores">
           ${COLORES.map(c => `<button data-c="${c}" style="background:${c}" aria-label="${NOMBRE_COLOR[c] || "Color"}"></button>`).join("")}
@@ -299,6 +309,7 @@ const ExerciseEngine = (() => {
         </div>
         <button class="ee-btn ee-btn-principal" id="eeSiguiente" style="margin-top:18px;">Continuar</button>
       </div>`;
+    Lector.conectar(contenedor);
     const canvas = document.getElementById("eeLienzo");
     const lienzo = crearLienzoDibujable(canvas, { colorInicial: COLORES[0] });
     contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => lienzo.setColor(btn.dataset.c)));
