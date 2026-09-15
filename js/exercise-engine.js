@@ -78,9 +78,10 @@ const ExerciseEngine = (() => {
     contenedor.innerHTML = `
       <div class="ee-intro">
         <p class="ee-intro-cat">${catInfo.nombre || ""}</p>
-        <div class="lector-fila">
-          <h1 class="ee-intro-titulo">${ejercicio.titulo}</h1>
+        <h1 class="ee-intro-titulo">${ejercicio.titulo}</h1>
+        <div class="rh-acciones">
           ${Lector.boton(`${ejercicio.titulo}. ${ejercicio.mensajeInicial || ejercicio.descripcion}`)}
+          <button class="compartir-btn compartir-icono" id="eeCompartir" aria-label="Compartir" title="Compartir">🔗</button>
         </div>
         <p class="ee-intro-duracion">${ejercicio.duracion} min · ${etiquetaDificultad(ejercicio.dificultad)}</p>
         <p class="ee-intro-desc">${ejercicio.mensajeInicial || ejercicio.descripcion}</p>
@@ -91,7 +92,6 @@ const ExerciseEngine = (() => {
         </details>` : ""}
         ${ejercicio.advertencia ? `<p class="ee-aviso">${ejercicio.advertencia}</p>` : ""}
         <button class="ee-btn ee-btn-principal" id="eeComenzar">Comenzar</button>
-        <button class="compartir-btn" id="eeCompartir">🔗 Compartir</button>
       </div>`;
     Lector.conectar(contenedor);
     document.getElementById("eeBarra").style.display = "none";

@@ -4,6 +4,13 @@
    cualquier set de botones existente (ee-/ge-/ie-/cv-), igual que
    compartir.css. */
 .lector-fila { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+/* Fila de acciones sobre un recurso (escuchar + compartir), pegada
+   debajo del título en las pantallas de inicio (Ejercicios,
+   Mindfulness, Creatividad, Zona Infantil) — reemplaza la vieja
+   costumbre de poner "Compartir" como link suelto al lado del botón
+   principal. Ver .compartir-icono en compartir.css. */
+.rh-acciones { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0 4px; }
 .lector-btn {
   display: inline-flex;
   align-items: center;

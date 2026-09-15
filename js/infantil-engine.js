@@ -54,9 +54,10 @@ const InfantilEngine = (() => {
     contenedor.innerHTML = `
       <div class="ie-intro">
         <div class="ie-intro-emoji">${(CatalogoInfantil.categoriaPorId(actividad.categoria) || {}).icono || "🧸"}</div>
-        <div class="ie-titulo-fila">
-          <h1 class="ie-intro-titulo">${actividad.titulo}</h1>
+        <h1 class="ie-intro-titulo">${actividad.titulo}</h1>
+        <div class="rh-acciones">
           ${Lector.boton(`${actividad.titulo}. ${actividad.descripcion}`)}
+          <button class="compartir-btn compartir-icono" id="ieCompartir" aria-label="Compartir" title="Compartir">🔗</button>
         </div>
         <p class="ie-intro-desc">${actividad.descripcion}</p>
         ${actividad.beneficio ? `
@@ -65,7 +66,6 @@ const InfantilEngine = (() => {
           <p>${actividad.beneficio}</p>
         </details>` : ""}
         <button class="ie-btn ie-btn-principal" id="ieComenzar">¡Jugar!</button>
-        <button class="compartir-btn" id="ieCompartir">🔗 Compartir</button>
       </div>`;
     Lector.conectar(contenedor);
     document.getElementById("ieBarra").style.display = "none";

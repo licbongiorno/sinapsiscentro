@@ -115,7 +115,7 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ie-pregunta-emoji { font-size: 3rem; margin-bottom: 8px; }
 .ie-progreso { font-size: 0.8rem; color: var(--text-soft); margin-top: 14px; }
 
-.ie-titulo-fila, .ie-pregunta-fila { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.ie-pregunta-fila { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
 /* .lector-btn vive en css/lector.css (compartido con Ejercicios/Mindfulness/Creatividad). */
 
 .ie-opciones { display: flex; flex-direction: column; gap: 10px; }

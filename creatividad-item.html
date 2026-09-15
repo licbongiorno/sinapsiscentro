@@ -177,17 +177,18 @@ if (!actividad || !actividad.activo) {
   function renderIntro() {
     const cont = document.getElementById("cvContenedor");
     let html = `<p class="cv-titulo-cat">${cat ? cat.icono + " " + cat.nombre : ""}</p>
-      <h1 class="cv-titulo">${actividad.titulo}</h1>
-      <button class="compartir-btn" id="cvCompartir">🔗 Compartir</button>`;
+      <h1 class="cv-titulo">${actividad.titulo}</h1>`;
 
     if (actividad.tipo === "generador") {
-      html += `<div class="cv-ingredientes"><div class="lector-fila" style="justify-content:flex-start;"><p style="font-weight:800;margin-bottom:8px;color:var(--navy);">${generadorBonito()}</p>${Lector.boton(`${actividad.titulo}. ${generadorBonito()}. ${textoIngredientes(resultado)}`)}</div>${renderIngredientes(resultado)}</div>
+      html += `<div class="rh-acciones">${Lector.boton(`${actividad.titulo}. ${generadorBonito()}. ${textoIngredientes(resultado)}`)}<button class="compartir-btn compartir-icono" id="cvCompartir" aria-label="Compartir" title="Compartir">🔗</button></div>
+        <div class="cv-ingredientes"><p style="font-weight:800;margin-bottom:8px;color:var(--navy);">${generadorBonito()}</p>${renderIngredientes(resultado)}</div>
         <div class="cv-fila-botones-h"><button class="ee-btn ee-btn-secundario" id="cvRegenerar">🎲 Generar otra combinación</button></div>`;
     } else {
       const consignaFinal = resultado.inspiracion && resultado.inspiracion.length === 1
         ? resultado.consigna.replace("{elemento}", resultado.inspiracion[0])
         : resultado.consigna;
-      html += `<div class="lector-fila"><p class="cv-desc">${consignaFinal}</p>${Lector.boton(`${actividad.titulo}. ${consignaFinal}`)}</div>`;
+      html += `<div class="rh-acciones">${Lector.boton(`${actividad.titulo}. ${consignaFinal}`)}<button class="compartir-btn compartir-icono" id="cvCompartir" aria-label="Compartir" title="Compartir">🔗</button></div>
+        <p class="cv-desc">${consignaFinal}</p>`;
       if (resultado.inspiracion) {
         html += `<div style="text-align:center;margin-bottom:14px;">${resultado.inspiracion.map(i => `<span class="cv-inspiracion-chip">${i}</span>`).join("")}</div>
           <div class="cv-fila-botones-h"><button class="ee-btn ee-btn-secundario" id="cvRegenerar">🎲 Otras palabras</button></div>`;

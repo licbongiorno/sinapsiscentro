@@ -17,6 +17,27 @@
 }
 .compartir-btn:hover { color: var(--teal-deep); }
 
+/* Variante circular compacta, del mismo tamaño que .lector-btn, para
+   cuando compartir va junto al botón de escuchar en .rh-acciones
+   (ver css/lector.css) en vez de como link de texto suelto. */
+.compartir-btn.compartir-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: var(--teal-pale);
+  color: var(--teal-deep);
+  border-radius: 50%;
+  font-size: 1.15rem;
+  padding: 0;
+  gap: 0;
+  transition: transform 0.15s;
+}
+.compartir-btn.compartir-icono:hover { color: var(--teal-deep); transform: scale(1.08); }
+.compartir-btn.compartir-icono:active { transform: scale(0.94); }
+
 .compartir-overlay {
   position: fixed;
   inset: 0;
