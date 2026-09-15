@@ -688,6 +688,121 @@ const JUEGOS = [
     categoria: "ninos", edadMin: 5, dificultad: "facil", duracion: "3-5 min",
     tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
     archivo: "js/juegos/trivia-tematica.js" },
+
+  // ═══════ Motor genérico: ordenar-tematica ═══════
+  { id: "logica-orden-de-tamano", nombre: "Orden de tamaño", descripcion: "Ordená los elementos de más chico a más grande.",
+    beneficio: "Ordenar elementos por tamaño relativo, sin medirlos, entrena la comparación y la estimación visual.",
+    categoria: "logica", edadMin: 9, dificultad: "media", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "logica-orden-cronologico-historia", nombre: "Orden cronológico", descripcion: "Ordená estos inventos según cuándo aparecieron.",
+    beneficio: "Ordenar hechos históricos entrena tanto el razonamiento secuencial como el conocimiento general sobre cómo cambió el mundo con el tiempo.",
+    categoria: "logica", edadMin: 11, dificultad: "media", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "logica-pasos-de-un-plan", nombre: "Los pasos de un plan", descripcion: "Ordená los pasos lógicos para lograr el objetivo.",
+    beneficio: "Ordenar pasos para lograr un objetivo entrena la planificación, una de las funciones ejecutivas centrales del pensamiento.",
+    categoria: "logica", edadMin: 10, dificultad: "media", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "logica-orden-de-magnitud", nombre: "Orden de magnitud", descripcion: "Ordená estos conceptos de menor a mayor escala.",
+    beneficio: "Ordenar conceptos por escala (de lo microscópico a lo cósmico) entrena una noción de magnitud poco intuitiva pero fundamental en ciencia.",
+    categoria: "logica", edadMin: 12, dificultad: "profundo", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "logica-causa-y-efecto", nombre: "Causa y efecto", descripcion: "Ordená la causa antes que su efecto.",
+    beneficio: "Distinguir causas de efectos, y ordenarlos correctamente, es la base del razonamiento causal usado en ciencia y en la vida diaria.",
+    categoria: "logica", edadMin: 9, dificultad: "media", duracion: "3-5 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "logica-jerarquia-biologica", nombre: "Jerarquía biológica", descripcion: "Ordená estos niveles de organización de lo más simple a lo más complejo.",
+    beneficio: "Los seres vivos se organizan en niveles jerárquicos, de la célula al organismo completo; ordenar esos niveles entrena el pensamiento sistémico.",
+    categoria: "logica", edadMin: 13, dificultad: "profundo", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "logica-orden-de-prioridad", nombre: "Orden de prioridad", descripcion: "Ordená estas tareas según cuál conviene hacer primero.",
+    beneficio: "Decidir qué hacer primero, según urgencia e importancia, es una habilidad de organización que se puede entrenar como cualquier otra.",
+    categoria: "logica", edadMin: 11, dificultad: "media", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "numeros-ordenar-de-menor-a-mayor", nombre: "De menor a mayor", descripcion: "Ordená estos números de menor a mayor.",
+    beneficio: "Ordenar números es una de las habilidades más básicas y fundamentales del pensamiento matemático temprano.",
+    categoria: "numeros", edadMin: 8, dificultad: "facil", duracion: "3-5 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "numeros-ordenar-fracciones", nombre: "Ordenar fracciones", descripcion: "Ordená estas fracciones de menor a mayor.",
+    beneficio: "Ordenar fracciones requiere entender que el valor no depende solo de los números que las forman, sino de la relación entre ellos.",
+    categoria: "numeros", edadMin: 11, dificultad: "media", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "numeros-ordenar-decimales", nombre: "Ordenar decimales", descripcion: "Ordená estos números decimales de menor a mayor.",
+    beneficio: "Ordenar números decimales entrena la comprensión de que la posición de cada dígito después de la coma tiene un valor distinto.",
+    categoria: "numeros", edadMin: 11, dificultad: "media", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "numeros-ordenar-negativos", nombre: "Ordenar números negativos", descripcion: "Ordená estos números, incluyendo negativos, de menor a mayor.",
+    beneficio: "Ordenar números negativos junto con positivos entrena la comprensión de la recta numérica completa, no solo los números 'naturales'.",
+    categoria: "numeros", edadMin: 11, dificultad: "media", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "numeros-orden-de-longitudes", nombre: "Orden de longitudes", descripcion: "Ordená estas unidades de más corta a más larga.",
+    beneficio: "Ordenar unidades de medida por su magnitud real (no por el número que las acompaña) entrena la comprensión conceptual de las unidades.",
+    categoria: "numeros", edadMin: 10, dificultad: "media", duracion: "3-5 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "numeros-ordenar-porcentajes", nombre: "Ordenar porcentajes", descripcion: "Ordená estos porcentajes de menor a mayor.",
+    beneficio: "Ordenar porcentajes entrena la comprensión de que representan una proporción, comparable directamente entre sí.",
+    categoria: "numeros", edadMin: 10, dificultad: "media", duracion: "3-5 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "flexibilidad-cambiar-de-criterio", nombre: "Cambiar de criterio", descripcion: "Ordená primero por un criterio, después por otro.",
+    beneficio: "Cambiar el criterio de ordenamiento en medio de la tarea (de tamaño a alfabético, por ejemplo) entrena la flexibilidad cognitiva: la capacidad de soltar una regla y adoptar otra.",
+    categoria: "flexibilidad", edadMin: 11, dificultad: "profundo", duracion: "5-8 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "flexibilidad-de-lo-concreto-a-lo-abstracto", nombre: "De lo concreto a lo abstracto", descripcion: "Ordená de la idea más concreta a la más abstracta.",
+    beneficio: "Pasar de ideas concretas a abstracciones cada vez mayores entrena la flexibilidad para moverse entre niveles de pensamiento.",
+    categoria: "flexibilidad", edadMin: 12, dificultad: "profundo", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "flexibilidad-prioridades-que-cambian", nombre: "Prioridades que cambian", descripcion: "Reordená tus prioridades según cambia la situación.",
+    beneficio: "Ajustar prioridades cuando la situación cambia, en vez de aferrarse al primer plan, es un componente central de la flexibilidad cognitiva.",
+    categoria: "flexibilidad", edadMin: 12, dificultad: "profundo", duracion: "4-6 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "flexibilidad-doble-clasificacion", nombre: "Doble clasificación", descripcion: "Ordená considerando dos características a la vez.",
+    beneficio: "Ordenar según dos criterios combinados (no uno solo) entrena la capacidad de sostener varias reglas activas al mismo tiempo.",
+    categoria: "flexibilidad", edadMin: 12, dificultad: "profundo", duracion: "5-8 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "flexibilidad-orden-inverso-a-pedido", nombre: "Orden inverso", descripcion: "Ordená al revés de lo que parece natural.",
+    beneficio: "Invertir deliberadamente un orden habitual (como contar hacia atrás) entrena el control inhibitorio: frenar la respuesta automática y aplicar una regla distinta.",
+    categoria: "flexibilidad", edadMin: 10, dificultad: "media", duracion: "3-5 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
+
+  { id: "flexibilidad-reglas-que-cambian-de-a-una", nombre: "Reglas que cambian", descripcion: "La regla de ordenar cambia en cada ronda: prestá atención.",
+    beneficio: "Cambiar de regla ronda a ronda, sin previo aviso salvo la instrucción, es un ejercicio directo de flexibilidad cognitiva, la misma que se mide en pruebas neuropsicológicas como el Wisconsin Card Sorting Test.",
+    categoria: "flexibilidad", edadMin: 12, dificultad: "profundo", duracion: "5-8 min",
+    tipo: "individual", movil: true, puntuable: true, logros: true, disponible: true,
+    archivo: "js/juegos/ordenar-tematica.js" },
 ];
 
 // Utilidades del catálogo
