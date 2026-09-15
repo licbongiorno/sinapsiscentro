@@ -19,6 +19,7 @@
  */
 const RECURSOS_SITIO = [
   { id: "inicio", nombre: "Inicio", icono: "🏠", href: "index.html" },
+  { id: "buscar", nombre: "Buscar", icono: "🔍", href: "buscar.html" },
   { id: "juegos", nombre: "Juegos", icono: "🎮", href: "juegos.html" },
   { id: "ejercicios", nombre: "Ejercicios", icono: "🌱", href: "ejercicios.html" },
   { id: "mindfulness", nombre: "Mindfulness", icono: "🧘", href: "mindfulness.html" },

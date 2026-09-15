@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+  <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscar | SINAPSIS — Centro de Salud Integral</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#08202e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/ejercicios.css">
+  <link rel="stylesheet" href="css/resource-nav.css">
+  <link rel="stylesheet" href="css/accesibilidad.css">
+  <style>
+    .bh-header { background: linear-gradient(135deg, var(--navy), #0f3244); padding: 20px 18px 30px; }
+    .bh-topbar { display: flex; align-items: center; justify-content: space-between; }
+    .bh-intro { margin-top: 18px; color: white; max-width: 480px; }
+    .bh-intro h1 { color: white; font-size: 1.4rem; margin-bottom: 4px; }
+    .bh-intro p { font-size: 0.85rem; color: rgba(255,255,255,0.72); line-height: 1.5; }
+    .bh-buscador { max-width: 640px; margin: -20px auto 0; padding: 0 18px; position: relative; z-index: 2; }
+    .bh-buscador input { width: 100%; border: none; border-radius: 50px; padding: 16px 22px; font-family: inherit; font-size: 1rem; background: white; box-shadow: 0 12px 30px rgba(8,32,46,0.15); }
+    .bh-resultados { max-width: 640px; margin: 26px auto 0; padding: 0 18px 60px; }
+    .bh-seccion-badge { display: inline-block; font-size: 0.62rem; font-weight: 800; color: var(--teal-deep); background: var(--teal-pale); border-radius: 50px; padding: 2px 8px; margin-top: 4px; }
+    .bh-conteo { font-size: 0.8rem; color: var(--text-soft); margin-bottom: 12px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<header class="bh-header">
+  <div class="bh-topbar">
+    <button class="rn-trigger" id="rnTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="rnPanel" aria-label="Ir a...">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="site-brand">
+      <div class="logo-mark"><span class="logo-symbol" aria-hidden="true">✦</span></div>
+      <div class="brand-text"><b>SINAPSIS</b><small>Centro de Salud Integral</small></div>
+    </a>
+    <div style="width:42px;"></div>
+  </div>
+  <div class="bh-intro">
+    <h1>🔍 Buscar</h1>
+    <p>Juegos, ejercicios, mindfulness, creatividad, Zona Infantil y sonidos — todo en un solo lugar.</p>
+  </div>
+</header>
+<div class="rn-overlay" id="rnOverlay"></div>
+<nav class="rn-panel" id="rnPanel" aria-label="Secciones del sitio">
+  <div class="rn-panel-header">
+    <h2>Ir a...</h2>
+    <button class="rn-cerrar" id="rnCerrar" aria-label="Cerrar menú">✕</button>
+  </div>
+  <div class="rn-lista" id="rnLista"></div>
+</nav>
+
+<main>
+<div class="bh-buscador">
+  <input type="text" id="inputBuscar" placeholder="Escribí lo que buscás…" autofocus>
+</div>
+<div class="bh-resultados">
+  <p class="bh-conteo" id="conteo" hidden></p>
+  <div class="eh-lista" id="resultadosLista"></div>
+</div>
+</main>
+
+<script src="js/resource-nav.js" defer></script>
+<script src="data/juegos-catalogo.js" defer></script>
+<script src="data/ejercicios.js" defer></script>
+<script src="data/mindfulness-datos.js" defer></script>
+<script src="data/creatividad-actividades.js" defer></script>
+<script src="data/infantil-datos.js" defer></script>
+<script src="data/sonidos-datos.js" defer></script>
+<script src="js/buscador.js" defer></script>
+<script type="module">
+  const input = document.getElementById("inputBuscar");
+  const lista = document.getElementById("resultadosLista");
+  const conteo = document.getElementById("conteo");
+  const LIMITE = 60;
+
+  function escaparHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function filaResultado(r) {
+    return `<a class="eh-fila" href="${r.href}">
+      <div class="icono">${r.seccionIcono}</div>
+      <div class="info">
+        <div class="titulo">${escaparHtml(r.titulo)}</div>
+        <div class="desc">${escaparHtml(r.descripcion || "")}</div>
+        <span class="bh-seccion-badge">${escaparHtml(r.seccion)}${r.categoria ? " · " + escaparHtml(r.categoria) : ""}</span>
+      </div>
+    </a>`;
+  }
+
+  function pintar(query) {
+    const q = query.trim();
+    if (!q) {
+      lista.innerHTML = `<p class="eh-vacio">Empezá a escribir para buscar entre todos los recursos del sitio.</p>`;
+      conteo.hidden = true;
+      return;
+    }
+    const resultados = BuscadorGlobal.buscarTodo(q);
+    if (!resultados.length) {
+      lista.innerHTML = `<p class="eh-vacio">No encontramos nada para "${escaparHtml(q)}". Probá con otra palabra.</p>`;
+      conteo.hidden = true;
+      return;
+    }
+    conteo.hidden = false;
+    conteo.textContent = resultados.length > LIMITE
+      ? `Mostrando ${LIMITE} de ${resultados.length} resultados — probá afinar la búsqueda`
+      : `${resultados.length} resultado${resultados.length === 1 ? "" : "s"}`;
+    lista.innerHTML = resultados.slice(0, LIMITE).map(filaResultado).join("");
+  }
+
+  let timer = null;
+  input.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => pintar(input.value), 120);
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  const qInicial = params.get("q") || "";
+  if (qInicial) { input.value = qInicial; pintar(qInicial); }
+  else { pintar(""); }
+</script>
+  <script src="js/accesibilidad.js" defer></script>
+  <script src="js/sw-registro.js" defer></script>
+</body>
+</html>
