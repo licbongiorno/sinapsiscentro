@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="css/accesibilidad.css">
   <link rel="stylesheet" href="css/compartir.css">
   <link rel="stylesheet" href="css/lector.css">
+  <link rel="stylesheet" href="css/dictado.css">
 </head>
 <body>
 
@@ -92,6 +93,7 @@
 <script src="js/audio-engine.js" defer></script>
 <script src="js/compartir.js" defer></script>
 <script src="js/lector.js" defer></script>
+<script src="js/dictado.js" defer></script>
 <script src="js/game-engine.js" defer></script>
 <script type="module">
 const params = new URLSearchParams(window.location.search);
@@ -321,6 +323,7 @@ if (!actividad || !actividad.activo) {
 
   function renderEntrada() {
     const entrada = document.getElementById("cvEntrada");
+    if (typeof Dictado !== "undefined") Dictado.detener();
     if (salidaElegida === "foto") {
       renderCapturaFoto();
       renderAcciones();
@@ -344,7 +347,8 @@ if (!actividad || !actividad.activo) {
       entrada.querySelector("[data-deshacer]").addEventListener("click", () => lienzo.deshacer());
       entrada.querySelector("[data-limpiar]").addEventListener("click", () => lienzo.limpiar());
     } else {
-      entrada.innerHTML = `<textarea class="ee-textarea" id="cvTextarea" placeholder="Escribí acá…" style="min-height:180px;"></textarea>`;
+      entrada.innerHTML = `<div class="dictado-fila"><textarea class="ee-textarea" id="cvTextarea" placeholder="Escribí acá…" style="min-height:180px;"></textarea>${Dictado.boton("cvTextarea")}</div>`;
+      Dictado.conectar(entrada);
     }
     renderAcciones();
   }

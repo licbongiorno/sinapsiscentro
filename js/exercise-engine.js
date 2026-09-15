@@ -138,6 +138,7 @@ const ExerciseEngine = (() => {
 
   function avanzar() {
     limpiarTimers();
+    if (typeof Dictado !== "undefined") Dictado.detener();
     pasoActual += 1;
     if (pasoActual >= ejercicio.pasos.length) { pantallaFinal(); return; }
     renderPaso();
@@ -254,13 +255,17 @@ const ExerciseEngine = (() => {
     contenedor.innerHTML = `
       <div class="ee-paso">
         <div class="lector-fila"><p class="ee-texto-grande">${paso.pregunta}</p>${Lector.boton(paso.pregunta)}</div>
-        <textarea class="ee-textarea" id="eeTextarea" placeholder="${paso.placeholder || "Escribí lo que quieras…"}"></textarea>
+        <div class="dictado-fila">
+          <textarea class="ee-textarea" id="eeTextarea" placeholder="${paso.placeholder || "Escribí lo que quieras…"}"></textarea>
+          ${Dictado.boton("eeTextarea")}
+        </div>
         <div class="ee-fila-botones">
           <button class="ee-btn ee-btn-secundario" id="eeContinuarSinGuardar">Continuar sin guardar</button>
           <button class="ee-btn ee-btn-principal" id="eeGuardarReflexion">Guardar y continuar</button>
         </div>
       </div>`;
     Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("eeContinuarSinGuardar").addEventListener("click", avanzar);
     document.getElementById("eeGuardarReflexion").addEventListener("click", (e) => {
       const texto = document.getElementById("eeTextarea").value.trim();

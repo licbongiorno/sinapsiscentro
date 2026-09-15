@@ -93,6 +93,7 @@ const InfantilEngine = (() => {
 
   function pantallaFinal(mensaje) {
     limpiarTimers();
+    if (typeof Dictado !== "undefined") Dictado.detener();
     beep(660, 110, "triangle", 0.05);
     timers.push(setTimeout(() => beep(880, 180, "triangle", 0.06), 130));
     vibrar([30, 40, 30]);
@@ -315,10 +316,14 @@ const InfantilEngine = (() => {
     contenedor.innerHTML = `
       <div class="ie-paso">
         <div class="ie-pregunta-fila"><p class="ie-pregunta">${actividad.contenido.pregunta}</p>${Lector.boton(actividad.contenido.pregunta)}</div>
-        <textarea class="ie-textarea" id="ieTextarea" placeholder="${actividad.contenido.placeholder || "Escribí lo que quieras…"}"></textarea>
+        <div class="dictado-fila">
+          <textarea class="ie-textarea" id="ieTextarea" placeholder="${actividad.contenido.placeholder || "Escribí lo que quieras…"}"></textarea>
+          ${Dictado.boton("ieTextarea")}
+        </div>
         <button class="ie-btn ie-btn-principal" id="ieListoEscritura" style="margin-top:14px;">¡Listo!</button>
       </div>`;
     Lector.conectar(contenedor);
+    Dictado.conectar(contenedor);
     document.getElementById("ieListoEscritura").addEventListener("click", () => {
       const texto = document.getElementById("ieTextarea").value.trim();
       if (texto.length > 2) sumarEstrella(2);
