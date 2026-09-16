@@ -63,7 +63,7 @@
   transition: background 0.15s;
 }
 .rn-item:hover, .rn-item:focus-visible { background: var(--bg); outline: 2px solid var(--teal-mid); outline-offset: -2px; }
-.rn-item .rn-icono { font-size: 1.35rem; width: 30px; text-align: center; flex-shrink: 0; }
+.rn-item .rn-icono { font-size: 1.35rem; width: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 .rn-item.rn-inicio { border-bottom: 1px solid rgba(8,32,46,0.08); margin-bottom: 6px; padding-bottom: 15px; }
 
 @media (min-width: 700px) {

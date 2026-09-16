@@ -37,12 +37,14 @@ const PerfilModal = (() => {
     if (disparador) disparador.focus();
   }
 
+  const ICONO_PERFIL = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+
   function actualizarBotonPerfil(user) {
     const btn = document.getElementById("btnPerfil");
     if (user && user.photoURL) {
       btn.innerHTML = `<img src="${escapeHtml(user.photoURL)}" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`;
     } else {
-      btn.textContent = "👤";
+      btn.innerHTML = ICONO_PERFIL;
     }
   }
 
