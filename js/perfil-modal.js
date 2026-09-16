@@ -100,7 +100,7 @@ const PerfilModal = (() => {
     const info = Perfil.progresoNivelActual(perfil.xp);
     document.getElementById("modalNivel").textContent = info.nivel;
     document.getElementById("modalXpTexto").textContent = `${info.xpEnNivel} / ${info.xpParaSiguiente} XP`;
-    document.getElementById("modalNivelFill").style.width = `${Math.min(100, (info.xpEnNivel / info.xpParaSiguiente) * 100)}%`;
+    document.getElementById("modalNivelFill").style.transform = `scaleX(${Math.min(1, info.xpEnNivel / info.xpParaSiguiente)})`;
     modalPerfil.hidden = false;
     modalPerfil.addEventListener("keydown", atraparFoco);
     const focables = elementosFocables();

@@ -21,14 +21,13 @@
     const tam = Math.max(36, 64 - ronda * 2);
     const circulo = document.createElement("div");
     const maxX = zona.clientWidth - tam, maxY = zona.clientHeight - tam;
-    circulo.style.cssText = `position:absolute;width:${tam}px;height:${tam}px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-mid));cursor:pointer;left:${Math.random()*maxX}px;top:${Math.random()*maxY}px;transition:left 0.5s ease,top 0.5s ease;`;
+    circulo.style.cssText = `position:absolute;width:${tam}px;height:${tam}px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-mid));cursor:pointer;left:0;top:0;transform:translate(${Math.random()*maxX}px,${Math.random()*maxY}px);transition:transform 0.5s ease;`;
     zona.appendChild(circulo);
 
     let escapando = true;
     const escape = setInterval(() => {
       if (!escapando) return;
-      circulo.style.left = `${Math.random() * maxX}px`;
-      circulo.style.top = `${Math.random() * maxY}px`;
+      circulo.style.transform = `translate(${Math.random() * maxX}px,${Math.random() * maxY}px)`;
     }, 550);
 
     let terminada = false;

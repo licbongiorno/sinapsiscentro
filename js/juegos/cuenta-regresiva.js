@@ -12,7 +12,7 @@
     contenedor.innerHTML = `
       <div style="text-align:center;">
         <div style="height:8px;background:var(--teal-pale);border-radius:8px;overflow:hidden;margin-bottom:20px;width:min(90vw,300px);margin-left:auto;margin-right:auto;">
-          <div id="barraCR" style="height:100%;width:100%;background:var(--teal-mid);transition:width 0.1s linear;"></div>
+          <div id="barraCR" style="height:100%;width:100%;background:var(--teal-mid);transform-origin:left;transition:transform 0.1s linear;"></div>
         </div>
         <div style="font-size:2rem;font-weight:800;color:var(--navy);margin-bottom:22px;">${a} + ${b}</div>
         <div class="jg-opciones">${[...opciones].sort(() => Math.random() - 0.5).map(o => `<button class="jg-opcion" data-v="${o}" style="text-align:center;">${o}</button>`).join("")}</div>
@@ -22,7 +22,7 @@
       restante -= 2;
       const barra = document.getElementById("barraCR");
       if (!barra) { clearInterval(intervaloBarra); return; }
-      barra.style.width = Math.max(0, restante) + "%";
+      barra.style.transform = `scaleX(${Math.max(0, restante) / 100})`;
       if (restante <= 0) {
         clearInterval(intervaloBarra);
         GameEngine.restarVida();

@@ -19,9 +19,9 @@
     const rect = zona.getBoundingClientRect();
     const x = e.clientX - rect.left, y = e.clientY - rect.top;
     const onda = document.createElement("div");
-    onda.style.cssText = `position:absolute;left:${x}px;top:${y}px;width:10px;height:10px;border-radius:50%;border:2px solid var(--teal-mid);transform:translate(-50%,-50%);opacity:0.8;transition:width 2s ease-out,height 2s ease-out,opacity 2s ease-out;`;
+    onda.style.cssText = `position:absolute;left:${x}px;top:${y}px;width:220px;height:220px;border-radius:50%;border:2px solid var(--teal-mid);transform:translate(-50%,-50%) scale(0.045);opacity:0.8;transition:transform 2s ease-out,opacity 2s ease-out;`;
     zona.appendChild(onda);
-    requestAnimationFrame(() => { onda.style.width = "220px"; onda.style.height = "220px"; onda.style.opacity = "0"; });
+    requestAnimationFrame(() => { onda.style.transform = "translate(-50%,-50%) scale(1)"; onda.style.opacity = "0"; });
     setTimeout(() => onda.remove(), 2000);
     ondas += 1;
     document.getElementById("contadorOndas").textContent = `${ondas} / ${MAX} ondas`;

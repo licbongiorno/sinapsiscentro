@@ -16,17 +16,22 @@
     const esObjetivo = Math.random() < 0.4;
     const color = esObjetivo ? COLOR_OBJETIVO.hex : OTROS[Math.floor(Math.random() * OTROS.length)].hex;
     const tam = 40 + Math.random() * 30;
+    const DURACION = 3200;
+    const subida = zona.clientHeight * 1.05 + tam;
     const b = document.createElement("div");
-    b.style.cssText = `position:absolute;bottom:-${tam}px;left:${Math.random() * 85}%;width:${tam}px;height:${tam}px;border-radius:50%;background:${color};opacity:0.85;box-shadow:0 4px 12px rgba(0,0,0,0.15);cursor:pointer;transition:bottom 3.2s linear, transform 0.15s;`;
+    b.style.cssText = `position:absolute;bottom:-${tam}px;left:${Math.random() * 85}%;width:${tam}px;height:${tam}px;border-radius:50%;background:${color};opacity:0.85;box-shadow:0 4px 12px rgba(0,0,0,0.15);cursor:pointer;transition:transform ${DURACION}ms linear;`;
     zona.appendChild(b);
-    requestAnimationFrame(() => { b.style.bottom = "105%"; });
+    const inicio = Date.now();
+    requestAnimationFrame(() => { b.style.transform = `translateY(-${subida}px)`; });
     b.addEventListener("click", () => {
       if (color === COLOR_OBJETIVO.hex) {
         GameEngine.sumarPuntos(8);
       } else {
         GameEngine.restarVida();
       }
-      b.style.transform = "scale(0)";
+      const frac = Math.min(1, (Date.now() - inicio) / DURACION);
+      b.style.transition = "transform 0.15s";
+      b.style.transform = `translateY(-${subida * frac}px) scale(0)`;
       setTimeout(() => b.remove(), 150);
     });
     setTimeout(() => b.remove(), 3400);
