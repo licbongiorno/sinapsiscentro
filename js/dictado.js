@@ -5,12 +5,20 @@
  * Usa la Web Speech API (SpeechRecognition) del navegador — sin
  * backend ni costo. Si el navegador no la soporta (Firefox, algunos
  * de escritorio), boton() devuelve "" y no aparece nada.
+ *
+ * OJO con `continuous: true`: en varios navegadores de Android, el
+ * reconocedor va "revisando" texto que ya había marcado como final y
+ * lo reenvía en eventos posteriores, duplicándolo (p. ej. "probando"
+ * termina apareciendo como "probando probando probando…"). Por eso
+ * acá cada sesión de reconocimiento es corta (continuous: false) y
+ * se reinicia sola apenas termina, acumulando el texto ya cerrado de
+ * cada sesión en `estado.base` — así nunca se reprocesa un resultado
+ * que ya se había dado por final.
  */
 const Dictado = (() => {
   const Reconocedor = window.SpeechRecognition || window.webkitSpeechRecognition;
   const soportado = !!Reconocedor;
-  let recActivo = null;
-  let botonActivo = null;
+  let estado = null; // { rec, textarea, btn, base, detenido }
 
   function pararVisual(btn) {
     if (btn) {
@@ -18,47 +26,76 @@ const Dictado = (() => {
       btn.setAttribute("aria-pressed", "false");
       btn.title = "Dictar por voz";
     }
-    recActivo = null;
-    botonActivo = null;
   }
 
-  function iniciar(textarea, btn) {
+  function limpiar(texto) {
+    return texto.replace(/\s+/g, " ").trim();
+  }
+
+  function iniciarSesion() {
     const rec = new Reconocedor();
     rec.lang = "es-AR";
     rec.interimResults = true;
-    rec.continuous = true;
-    let base = textarea.value ? textarea.value.replace(/\s+$/, "") + " " : "";
+    rec.continuous = false;
+    let finalDeEstaSesion = "";
 
     rec.onresult = (e) => {
+      if (!estado || estado.rec !== rec) return;
       let final = "", interim = "";
-      for (let i = e.resultIndex; i < e.results.length; i++) {
+      for (let i = 0; i < e.results.length; i++) {
         const texto = e.results[i][0].transcript;
         if (e.results[i].isFinal) final += texto;
         else interim += texto;
       }
-      if (final) base = (base + final).replace(/\s+$/, "") + " ";
-      textarea.value = base + interim;
+      finalDeEstaSesion = final;
+      estado.textarea.value = limpiar(`${estado.base} ${final} ${interim}`);
     };
-    rec.onerror = () => pararVisual(btn);
-    rec.onend = () => pararVisual(btn);
 
-    recActivo = rec;
-    botonActivo = btn;
+    rec.onerror = (e) => {
+      if (!estado || estado.rec !== rec) return;
+      // "no-speech" (silencio) y "aborted" (lo detuvimos nosotros) no son
+      // errores reales — el onend que sigue decide si reinicia o no.
+      if (e.error === "no-speech" || e.error === "aborted") return;
+      pararVisual(estado.btn);
+      estado = null;
+    };
+
+    rec.onend = () => {
+      if (!estado || estado.rec !== rec) return;
+      if (finalDeEstaSesion) {
+        estado.base = limpiar(`${estado.base} ${finalDeEstaSesion}`);
+        estado.textarea.value = estado.base;
+      }
+      if (estado.detenido) { pararVisual(estado.btn); estado = null; return; }
+      iniciarSesion();
+    };
+
+    if (estado) estado.rec = rec;
+    try { rec.start(); } catch (err) { if (estado) { pararVisual(estado.btn); estado = null; } }
+  }
+
+  function iniciar(textarea, btn) {
+    const baseInicial = textarea.value ? limpiar(textarea.value) : "";
+    estado = { rec: null, textarea, btn, base: baseInicial, detenido: false };
     btn.classList.add("dictado-activo");
     btn.setAttribute("aria-pressed", "true");
     btn.title = "Escuchando… tocá para detener";
-    try { rec.start(); } catch (e) { pararVisual(btn); }
+    iniciarSesion();
+  }
+
+  function detenerEstadoActivo() {
+    if (!estado) return;
+    estado.detenido = true;
+    pararVisual(estado.btn);
+    if (estado.rec) { try { estado.rec.stop(); } catch (e) {} }
   }
 
   function alternar(textareaId, btn) {
     const textarea = document.getElementById(textareaId);
     if (!textarea) return;
-    if (recActivo) {
-      const eraElMismo = botonActivo === btn;
-      recActivo.stop();
-      pararVisual(botonActivo);
-      if (eraElMismo) return;
-    }
+    const eraElMismo = estado && estado.btn === btn;
+    if (estado) detenerEstadoActivo();
+    if (eraElMismo) return;
     iniciar(textarea, btn);
   }
 
@@ -83,7 +120,8 @@ const Dictado = (() => {
   }
 
   function detener() {
-    if (recActivo) { recActivo.stop(); pararVisual(botonActivo); }
+    detenerEstadoActivo();
+    estado = null;
   }
 
   return { soportado, boton, conectar, detener };
