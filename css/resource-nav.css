@@ -24,7 +24,7 @@
 
 .jp-disclaimer {
   text-align: center; font-size: 0.76rem; line-height: 1.6;
-  color: var(--text-soft); max-width: 520px; margin: 14px auto 0; padding: 0 20px;
+  color: var(--text-soft); max-width: 520px; margin: 14px auto 40px; padding: 0 20px;
 }
 
 .rn-trigger {
