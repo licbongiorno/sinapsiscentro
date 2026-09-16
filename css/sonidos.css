@@ -67,7 +67,7 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-mezclador-vacio { color: var(--text-soft); font-size: 0.85rem; text-align: center; padding: 10px; }
 
 .sh-btn { padding: 12px 22px; border-radius: 50px; border: none; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: transform 0.2s; }
-.sh-btn-principal { background: linear-gradient(135deg, var(--teal), var(--teal-mid)); color: white; box-shadow: 0 6px 16px rgba(42,174,194,0.3); }
+.sh-btn-principal { background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: white; box-shadow: 0 6px 16px rgba(42,174,194,0.3); }
 .sh-btn-secundario { background: var(--teal-pale); color: var(--teal-deep); }
 .sh-btn:hover { transform: translateY(-1px); }
 
@@ -107,7 +107,7 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-stat-card .valor { font-size: 1.3rem; font-weight: 800; color: var(--teal-deep); font-family: 'Playfair Display', serif; }
 .sh-stat-card .etiqueta { font-size: 0.66rem; color: var(--text-soft); margin-top: 2px; }
 
-.sh-logro-toast { position: fixed; top: 16px; left: 50%; transform: translateX(-50%) translateY(-120%); background: var(--navy); color: white; padding: 12px 20px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; z-index: 600; transition: transform 0.4s var(--easing); box-shadow: 0 10px 30px rgba(8,32,46,0.3); white-space: nowrap; }
+.sh-logro-toast { position: fixed; top: 16px; left: 50%; transform: translateX(-50%) translateY(-120%); background: var(--navy); color: white; padding: 12px 20px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; z-index: 600; transition: transform 0.4s var(--easing); box-shadow: 0 10px 30px rgba(0,0,0,0.3); white-space: nowrap; }
 .sh-logro-toast.mostrar { transform: translateX(-50%) translateY(0); }
 
 @media(min-width: 700px) {
@@ -146,7 +146,7 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 }
 .jp-modal-cerrar {
   width: 100%; border: none; border-radius: 50px; padding: 14px; font-weight: 700;
-  background: linear-gradient(135deg, var(--teal), var(--teal-mid)); color: white; cursor: pointer;
+  background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: white; cursor: pointer;
 }
 .jp-nivel-barra { height: 8px; background: var(--teal-pale); border-radius: 8px; overflow: hidden; margin: 6px 0 16px; }
 .jp-nivel-barra-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--teal-mid)); transition: width 0.4s; }

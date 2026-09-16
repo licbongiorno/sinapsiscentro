@@ -83,13 +83,13 @@ html.modo-accesible,
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(8, 32, 46, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, background 0.2s ease;
 }
 #btnAccesibilidad:hover { transform: scale(1.06); }
 #btnAccesibilidad[aria-pressed="true"] {
   background: #2aaec2;
-  box-shadow: 0 6px 20px rgba(42, 174, 194, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 #btnAccesibilidad:focus-visible {
   outline: 3px solid #0e4d5c;

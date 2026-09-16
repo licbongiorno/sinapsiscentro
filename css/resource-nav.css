@@ -81,6 +81,6 @@
   font-size: 1.05rem; font-weight: 700; color: white; letter-spacing: 0.08em;
 }
 .site-brand .brand-text small {
-  display: block; font-size: 0.56rem; letter-spacing: 0.15em; text-transform: uppercase;
+  display: block; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: var(--teal-soft); font-weight: 500;
 }

@@ -79,7 +79,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
   padding: 14px 20px; border-radius: 50px; border: none; font-weight: 700; font-size: 0.95rem;
   cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
 }
-.ge-btn-principal { background: linear-gradient(135deg, var(--teal), var(--teal-mid)); color: white; box-shadow: 0 8px 20px rgba(42,174,194,0.35); }
+.ge-btn-principal { background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
 .ge-btn-principal:hover { transform: translateY(-2px); }
 .ge-btn-secundario { background: var(--teal-pale); color: var(--teal-deep); }
 .ge-btn-secundario:hover { background: #c3ecf3; }
@@ -100,7 +100,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
 .jg-porque p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; padding-bottom: 13px; margin: 0; }
 .jg-tablero { display: grid; gap: 10px; width: min(94vw, 460px); margin: 0 auto 30px; padding: 0 12px; }
 .jg-carta {
-  aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, var(--teal), var(--teal-mid));
+  aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, var(--teal-deep), var(--teal));
   display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
   cursor: pointer; user-select: none; transition: transform 0.25s var(--easing);
   box-shadow: 0 6px 16px rgba(26,122,138,0.25); color: white;
