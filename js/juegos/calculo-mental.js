@@ -30,9 +30,12 @@
       </div>`;
     contenedor.querySelectorAll(".jg-opcion").forEach(btn => btn.addEventListener("click", () => {
       if (Number(btn.dataset.v) === resultado) {
+        btn.classList.add("correcta");
         GameEngine.sumarPuntos(10);
+      } else {
+        btn.classList.add("incorrecta");
       }
-      render();
+      setTimeout(render, 500);
     }));
   }
 

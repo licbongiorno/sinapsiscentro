@@ -28,11 +28,13 @@
       </div>`;
     contenedor.querySelectorAll(".jg-opcion").forEach(btn => btn.addEventListener("click", () => {
       if (btn.dataset.v === tinta.nombre) {
+        btn.classList.add("correcta");
         GameEngine.sumarPuntos(8);
       } else {
+        btn.classList.add("incorrecta");
         GameEngine.restarVida();
       }
-      render();
+      setTimeout(render, 500);
     }));
   }
 

@@ -15,8 +15,9 @@
       </div>`;
     const correcta = n % 2 === 0 ? "par" : "impar";
     contenedor.querySelectorAll("[data-v]").forEach(btn => btn.addEventListener("click", () => {
-      if (btn.dataset.v === correcta) GameEngine.sumarPuntos(6);
-      ronda();
+      if (btn.dataset.v === correcta) { btn.classList.add("correcta"); GameEngine.sumarPuntos(6); }
+      else btn.classList.add("incorrecta");
+      setTimeout(ronda, 500);
     }));
   }
 

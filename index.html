@@ -698,7 +698,8 @@ body.menu-open { overflow: hidden; }
 .tab-btn:hover:not(.active) { border-color: var(--teal-mid); color: var(--teal-texto); }
 
 .tab-pane { display: none; }
-.tab-pane.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 18px; }
+.tab-pane.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 18px; animation: tabFadeIn 0.35s var(--easing) both; }
+@keyframes tabFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 .service-tile {
   background: white; border-radius: var(--r); padding: 28px 24px;

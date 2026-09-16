@@ -21,8 +21,9 @@
         </div>
       </div>`;
     contenedor.querySelectorAll("[data-v]").forEach(btn => btn.addEventListener("click", () => {
-      if (Number(btn.dataset.v) === correcto) GameEngine.sumarPuntos(8);
-      ronda();
+      if (Number(btn.dataset.v) === correcto) { btn.classList.add("correcta"); GameEngine.sumarPuntos(8); }
+      else btn.classList.add("incorrecta");
+      setTimeout(ronda, 500);
     }));
   }
 

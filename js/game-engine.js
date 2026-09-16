@@ -57,11 +57,24 @@ const GameEngine = (() => {
     return hud;
   }
 
-  function actualizarVidasHUD() {
+  function actualizarVidasHUD(perdida = false) {
     const el = document.getElementById("geVidas");
     if (estado.vidas == null) { el.hidden = true; return; }
     el.hidden = false;
-    el.textContent = "❤️".repeat(Math.max(0, estado.vidas));
+    const corazones = el.querySelectorAll(".ge-corazon");
+    if (!perdida || corazones.length === 0) {
+      el.innerHTML = "";
+      for (let i = 0; i < Math.max(0, estado.vidas); i++) {
+        const span = document.createElement("span");
+        span.className = "ge-corazon";
+        span.textContent = "❤️";
+        el.appendChild(span);
+      }
+      return;
+    }
+    const ultimo = corazones[corazones.length - 1];
+    ultimo.classList.add("ge-corazon-perdida");
+    setTimeout(() => ultimo.remove(), 220);
   }
 
   function actualizarTiempoHUD() {
@@ -152,14 +165,18 @@ const GameEngine = (() => {
     sumarPuntos(n = 1) {
       if (!estado || estado.terminado) return;
       estado.puntos += n;
-      document.getElementById("gePuntos").querySelector("span").textContent = estado.puntos;
+      const el = document.getElementById("gePuntos");
+      el.querySelector("span").textContent = estado.puntos;
+      el.classList.remove("ge-bump");
+      void el.offsetWidth; // reinicia la animación si se suman puntos rápido seguido
+      el.classList.add("ge-bump");
       beep(660, 90, "triangle", 0.04);
     },
 
     restarVida() {
       if (!estado || estado.terminado || estado.vidas == null) return;
       estado.vidas -= 1;
-      actualizarVidasHUD();
+      actualizarVidasHUD(true);
       vibrar(40);
       beep(180, 150, "sawtooth", 0.05);
       if (estado.vidas <= 0) {
@@ -244,7 +261,7 @@ const GameEngine = (() => {
         <p class="ge-xp">+${xpGanada} XP · Nivel ${perfil.nivel} · Racha 🔥 ${racha.dias} día${racha.dias === 1 ? "" : "s"}</p>
         ${logrosNuevos.length ? `
           <div class="ge-logros-nuevos">
-            ${logrosNuevos.map(l => `<div class="ge-logro-chip">${l.icono} ${l.nombre}</div>`).join("")}
+            ${logrosNuevos.map((l, i) => `<div class="ge-logro-chip" style="animation-delay:${0.3 + i * 0.1}s">${l.icono} ${l.nombre}</div>`).join("")}
           </div>` : ""}
         ${ranking.length ? `
           <div class="ge-ranking">

@@ -15,8 +15,13 @@
         </div>
       </div>`;
     contenedor.querySelectorAll("[data-v]").forEach(btn => btn.addEventListener("click", () => {
-      if (Number(btn.dataset.v) === Math.max(a, b)) GameEngine.sumarPuntos(6);
-      ronda();
+      if (Number(btn.dataset.v) === Math.max(a, b)) {
+        btn.style.background = "#4caf6a";
+        GameEngine.sumarPuntos(6);
+      } else {
+        btn.style.background = "#e06060";
+      }
+      setTimeout(ronda, 500);
     }));
   }
 

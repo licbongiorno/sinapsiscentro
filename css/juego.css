@@ -43,6 +43,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
   color: white; font-weight: 700; font-size: 0.95rem;
   display: flex; align-items: center; gap: 4px;
 }
+#gePuntos.ge-bump { animation: geBump 220ms var(--easing); }
+@keyframes geBump { 0% { transform: scale(1); } 40% { transform: scale(1.25); } 100% { transform: scale(1); } }
+.ge-corazon { display: inline-block; transition: transform 0.2s var(--easing), opacity 0.2s var(--easing); }
+.ge-corazon-perdida { transform: scale(0.4); opacity: 0; }
 
 /* ── Overlays (pausa / fin) ── */
 .ge-overlay {
@@ -68,7 +72,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
 .ge-logro-chip {
   background: var(--teal-pale); color: var(--teal-deep); font-weight: 700; font-size: 0.78rem;
   padding: 6px 12px; border-radius: 50px;
+  animation: geLogroChipIn 0.4s var(--easing) both;
 }
+@keyframes geLogroChipIn { from { opacity: 0; transform: scale(0.5) translateY(6px); } to { opacity: 1; transform: none; } }
 .ge-fin-botones { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
 
 .ge-ranking { background: var(--bg); border-radius: var(--r); padding: 14px 18px; margin-top: 16px; text-align: left; }
