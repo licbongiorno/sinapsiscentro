@@ -21,7 +21,7 @@
     const tam = Math.max(36, 64 - ronda * 2);
     const circulo = document.createElement("div");
     const maxX = zona.clientWidth - tam, maxY = zona.clientHeight - tam;
-    circulo.style.cssText = `position:absolute;width:${tam}px;height:${tam}px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-mid));cursor:pointer;left:0;top:0;transform:translate(${Math.random()*maxX}px,${Math.random()*maxY}px);transition:transform 0.5s ease;`;
+    circulo.style.cssText = `position:absolute;width:${tam}px;height:${tam}px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-mid));cursor:pointer;left:0;top:0;transform:translate(${Math.random()*maxX}px,${Math.random()*maxY}px);transition:transform 0.25s cubic-bezier(0.77, 0, 0.175, 1);`;
     zona.appendChild(circulo);
 
     let escapando = true;

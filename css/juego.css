@@ -112,7 +112,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
 .jg-opcion {
   background: white; border: 2px solid var(--teal-pale); border-radius: var(--r);
   padding: 16px 20px; font-size: 1rem; font-weight: 600; color: var(--text);
-  cursor: pointer; text-align: left; transition: all 0.2s;
+  cursor: pointer; text-align: left; transition: border-color 0.2s, background 0.2s;
 }
 .jg-opcion:hover { border-color: var(--teal-mid); background: var(--teal-pale); }
 .jg-opcion.correcta { background: #d6f5df; border-color: #4caf6a; }

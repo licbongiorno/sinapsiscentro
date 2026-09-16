@@ -198,7 +198,12 @@ const InfantilEngine = (() => {
       Lector.conectar(contenedor);
       contenedor.querySelectorAll(".ie-grupo-btn").forEach(btn => btn.addEventListener("click", () => {
         if (btn.dataset.g === item.grupo) { sumarEstrella(); aciertos += 1; restantes.shift(); render(); }
-        else { beep(300, 90, "sine", 0.03); btn.classList.add("ie-intenta-de-nuevo"); timers.push(setTimeout(() => btn.classList.remove("ie-intenta-de-nuevo"), 500)); }
+        else {
+          beep(300, 90, "sine", 0.03);
+          btn.classList.add("ie-intenta-de-nuevo");
+          btn.disabled = true;
+          timers.push(setTimeout(() => { btn.classList.remove("ie-intenta-de-nuevo"); btn.disabled = false; }, 500));
+        }
       }));
     }
     render();

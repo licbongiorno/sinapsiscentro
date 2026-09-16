@@ -30,8 +30,9 @@
         GameEngine.restarVida();
       }
       const frac = Math.min(1, (Date.now() - inicio) / DURACION);
-      b.style.transition = "transform 0.15s";
-      b.style.transform = `translateY(-${subida * frac}px) scale(0)`;
+      b.style.transition = "transform 0.15s, opacity 0.15s";
+      b.style.opacity = "0";
+      b.style.transform = `translateY(-${subida * frac}px) scale(0.3)`;
       setTimeout(() => b.remove(), 150);
     });
     setTimeout(() => b.remove(), 3400);

@@ -4,7 +4,7 @@
 
   contenedor.innerHTML = `
     <div id="zonaEsquiva" style="position:relative;width:min(92vw,380px);height:56vh;max-height:440px;margin:0 auto;background:linear-gradient(180deg,#eaf7fa,#f5fafc);border:2px solid var(--teal-pale);border-radius:var(--r-lg);overflow:hidden;touch-action:none;">
-      <div id="jugadorEsquiva" style="position:absolute;bottom:10px;width:42px;height:20px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--teal-mid));"></div>
+      <div id="jugadorEsquiva" style="position:absolute;bottom:10px;left:0;width:42px;height:20px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--teal-mid));"></div>
     </div>
     <p style="text-align:center;color:var(--text-soft);font-size:0.78rem;margin-top:10px;">Arrastrá o usá las flechas del teclado</p>`;
 
@@ -12,11 +12,11 @@
   const jugador = document.getElementById("jugadorEsquiva");
   let anchoZona = zona.clientWidth, altoZona = zona.clientHeight;
   let jugadorX = anchoZona / 2 - 21;
-  jugador.style.left = jugadorX + "px";
+  jugador.style.transform = `translateX(${jugadorX}px)`;
 
   function moverA(x) {
     jugadorX = Math.max(0, Math.min(anchoZona - 42, x));
-    jugador.style.left = jugadorX + "px";
+    jugador.style.transform = `translateX(${jugadorX}px)`;
   }
   zona.addEventListener("pointermove", (e) => {
     if (e.pressure === 0 && e.pointerType === "mouse") return;
@@ -54,7 +54,7 @@
     if (!activo) return;
     obstaculos = obstaculos.filter(o => {
       o.y += velocidad;
-      o.el.style.top = o.y + "px";
+      o.el.style.transform = `translateY(${o.y + o.tam}px)`;
       const colision = !invulnerable && o.y + o.tam > altoZona - 30 && o.y < altoZona - 10 &&
         jugadorX < parseFloat(o.el.style.left) + o.tam && jugadorX + 42 > parseFloat(o.el.style.left);
       if (colision) {

@@ -119,10 +119,10 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 /* .lector-btn vive en css/lector.css (compartido con Ejercicios/Mindfulness/Creatividad). */
 
 .ie-opciones { display: flex; flex-direction: column; gap: 10px; }
-.ie-opcion { background: white; border: 3px solid var(--teal-pale); border-radius: var(--r); padding: 16px; font-size: 1rem; font-weight: 700; color: var(--text); cursor: pointer; transition: all 0.15s; }
+.ie-opcion { background: white; border: 3px solid var(--teal-pale); border-radius: var(--r); padding: 16px; font-size: 1rem; font-weight: 700; color: var(--text); cursor: pointer; transition: background 0.15s, border-color 0.15s; }
 .ie-opcion:hover { border-color: var(--kid-orange); }
 .ie-opcion.ie-correcta { background: #d6f5df; border-color: #4caf6a; }
-.ie-opcion.ie-intenta-de-nuevo { background: #ffe8d6; border-color: var(--kid-orange); animation: ieShake 0.4s; }
+.ie-opcion.ie-intenta-de-nuevo { background: #ffe8d6; border-color: var(--kid-orange); animation: ieShake 0.25s; }
 @keyframes ieShake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
 
 .ie-tablero { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: min(90vw, 340px); margin: 0 auto; }
@@ -133,13 +133,13 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ie-item-clasificar { font-size: 4rem; margin: 20px 0; }
 .ie-grupos { display: flex; gap: 14px; justify-content: center; }
 .ie-grupo-btn { flex: 1; max-width: 160px; padding: 20px 10px; border-radius: var(--r-lg); border: 3px solid var(--teal-pale); background: white; font-weight: 800; font-size: 0.95rem; cursor: pointer; }
-.ie-grupo-btn.ie-intenta-de-nuevo { animation: ieShake 0.4s; border-color: var(--kid-orange); }
+.ie-grupo-btn.ie-intenta-de-nuevo { animation: ieShake 0.25s; border-color: var(--kid-orange); }
 
 .ie-secuencia-elegidos { min-height: 44px; margin: 14px 0; text-align: left; }
 .ie-secuencia-item { background: var(--teal-pale); color: var(--teal-deep); border-radius: 10px; padding: 8px 14px; margin-bottom: 6px; font-weight: 700; }
 .ie-secuencia-disponibles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .ie-secuencia-btn { background: white; border: 3px solid var(--teal-pale); border-radius: 10px; padding: 10px 16px; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
-.ie-secuencia-btn.ie-intenta-de-nuevo { border-color: var(--kid-orange); background: #ffe8d6; animation: ieShake 0.4s; }
+.ie-secuencia-btn.ie-intenta-de-nuevo { border-color: var(--kid-orange); background: #ffe8d6; animation: ieShake 0.25s; }
 
 .ie-lienzo { background: white; border-radius: var(--r-lg); border: 3px solid var(--teal-pale); touch-action: none; max-width: 90vw; margin: 14px auto; display: block; }
 .ie-lienzo-colores { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }

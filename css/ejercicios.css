@@ -68,7 +68,7 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 .eh-selector-card { background: white; border-radius: var(--r-lg); padding: 22px 20px; box-shadow: 0 20px 50px rgba(8,32,46,0.12); }
 .eh-selector-card h2 { font-size: 1rem; margin-bottom: 14px; font-family: 'Nunito', sans-serif; font-weight: 800; color: var(--navy); }
 .eh-tiempo-grid { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-.eh-tiempo-btn { flex: 1; min-width: 58px; border: 2px solid var(--teal-pale); background: var(--bg); border-radius: 14px; padding: 10px 6px; text-align: center; font-weight: 700; font-size: 0.78rem; color: var(--text-mid); cursor: pointer; transition: all 0.2s; }
+.eh-tiempo-btn { flex: 1; min-width: 58px; border: 2px solid var(--teal-pale); background: var(--bg); border-radius: 14px; padding: 10px 6px; text-align: center; font-weight: 700; font-size: 0.78rem; color: var(--text-mid); cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; }
 .eh-tiempo-btn:hover, .eh-tiempo-btn.activo { background: var(--teal-pale); border-color: var(--teal-mid); color: var(--teal-deep); }
 .eh-necesidad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .eh-necesidad-btn { border: none; background: var(--bg); border-radius: 14px; padding: 12px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 0.66rem; font-weight: 700; color: var(--text-mid); cursor: pointer; transition: background 0.2s, transform 0.2s; text-align: center; }
@@ -197,7 +197,7 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 
 /* Selección */
 .ee-opciones-seleccion { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
-.ee-opcion-sel { background: white; border: 2px solid var(--teal-pale); border-radius: var(--r); padding: 15px 18px; font-size: 0.95rem; font-weight: 600; color: var(--text); cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+.ee-opcion-sel { background: white; border: 2px solid var(--teal-pale); border-radius: var(--r); padding: 15px 18px; font-size: 0.95rem; font-weight: 600; color: var(--text); cursor: pointer; text-align: left; transition: border-color 0.2s, background 0.2s; display: flex; align-items: center; gap: 10px; }
 .ee-opcion-sel:hover { border-color: var(--teal-mid); background: var(--teal-pale); }
 .ee-opcion-emoji { font-size: 1.2rem; }
 
@@ -225,7 +225,7 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 .ee-final-meta { font-size: 0.85rem; color: var(--text-soft); margin-bottom: 20px; }
 .ee-final-pregunta { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 12px; }
 .ee-final-feedback { display: flex; justify-content: center; gap: 10px; margin-bottom: 24px; }
-.ee-feedback-btn { font-size: 1.6rem; background: none; border: 2px solid transparent; border-radius: 50%; width: 52px; height: 52px; cursor: pointer; transition: all 0.2s; }
+.ee-feedback-btn { font-size: 1.6rem; background: none; border: 2px solid transparent; border-radius: 50%; width: 52px; height: 52px; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
 .ee-feedback-btn:hover, .ee-feedback-btn.activo { background: var(--teal-pale); border-color: var(--teal-mid); }
 .ee-final-botones { display: flex; gap: 10px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
 .ee-logros-nuevos { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px; }

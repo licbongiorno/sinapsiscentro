@@ -42,7 +42,7 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-cat-tab.activo { background: var(--navy); border-color: var(--navy); color: white; }
 
 .sh-pistas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.sh-pista-card { background: white; border-radius: var(--r); padding: 14px; text-align: left; box-shadow: 0 4px 14px rgba(8,32,46,0.05); border: 2px solid transparent; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; gap: 6px; }
+.sh-pista-card { background: white; border-radius: var(--r); padding: 14px; text-align: left; box-shadow: 0 4px 14px rgba(8,32,46,0.05); border: 2px solid transparent; cursor: pointer; transition: border-color 0.2s, background 0.2s; display: flex; flex-direction: column; gap: 6px; }
 .sh-pista-card:hover { border-color: var(--teal-pale); }
 .sh-pista-card.activa { border-color: var(--teal-mid); background: var(--teal-pale); }
 .sh-pista-card.no-disponible { opacity: 0.55; cursor: default; }
@@ -77,7 +77,7 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 
 /* ── Explorador de binaurales ── */
 .sh-bandas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-.sh-banda-card { border-radius: var(--r); padding: 14px 8px; text-align: center; cursor: pointer; border: 2px solid transparent; background: white; box-shadow: 0 4px 14px rgba(8,32,46,0.05); transition: all 0.2s; }
+.sh-banda-card { border-radius: var(--r); padding: 14px 8px; text-align: center; cursor: pointer; border: 2px solid transparent; background: white; box-shadow: 0 4px 14px rgba(8,32,46,0.05); transition: border-color 0.2s; }
 .sh-banda-card.activa { border-color: var(--teal-mid); }
 .sh-banda-card .nombre { font-weight: 800; font-size: 0.85rem; }
 .sh-banda-card .rango { font-size: 0.66rem; color: var(--text-soft); margin-top: 2px; }
