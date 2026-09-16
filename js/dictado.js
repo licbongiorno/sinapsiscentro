@@ -11,9 +11,16 @@
  * lo reenvía en eventos posteriores, duplicándolo (p. ej. "probando"
  * termina apareciendo como "probando probando probando…"). Por eso
  * acá cada sesión de reconocimiento es corta (continuous: false) y
- * se reinicia sola apenas termina, acumulando el texto ya cerrado de
- * cada sesión en `estado.base` — así nunca se reprocesa un resultado
- * que ya se había dado por final.
+ * se reinicia sola apenas termina.
+ *
+ * Pero reiniciar trae su propio problema: en Android, entre que una
+ * sesión termina y la siguiente arranca, el micrófono suele volver a
+ * capturar una cola de audio ya transcripta (solapamiento del buffer),
+ * así que la sesión nueva puede volver a "escuchar" el final de lo
+ * que ya se había dictado y repetirlo — cada reinicio agrega otra
+ * repetición, por eso crece cada vez más. `combinarSinSolape` detecta
+ * cuánto se repite entre el final de lo ya confirmado y el arranque
+ * de lo nuevo, y sólo agrega lo que realmente es texto nuevo.
  */
 const Dictado = (() => {
   const Reconocedor = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -32,6 +39,32 @@ const Dictado = (() => {
     return texto.replace(/\s+/g, " ").trim();
   }
 
+  /**
+   * Agrega `nuevo` al final de `base`, pero si el arranque de `nuevo`
+   * repite las últimas palabras de `base` (solapamiento entre
+   * sesiones), sólo agrega lo que sigue después de esa repetición.
+   * Compara sin mayúsculas/tildes para tolerar pequeñas variaciones
+   * de transcripción entre una sesión y la otra.
+   */
+  function combinarSinSolape(base, nuevo) {
+    nuevo = limpiar(nuevo);
+    if (!nuevo) return base;
+    if (!base) return nuevo;
+    const normalizar = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    const palabrasBase = base.split(" ");
+    const palabrasNuevo = nuevo.split(" ");
+    const maxSolape = Math.min(palabrasBase.length, palabrasNuevo.length, 12);
+    for (let n = maxSolape; n > 0; n--) {
+      const colaBase = normalizar(palabrasBase.slice(-n).join(" "));
+      const inicioNuevo = normalizar(palabrasNuevo.slice(0, n).join(" "));
+      if (colaBase === inicioNuevo) {
+        const resto = palabrasNuevo.slice(n).join(" ");
+        return resto ? `${base} ${resto}` : base;
+      }
+    }
+    return `${base} ${nuevo}`;
+  }
+
   function iniciarSesion() {
     const rec = new Reconocedor();
     rec.lang = "es-AR";
@@ -48,7 +81,8 @@ const Dictado = (() => {
         else interim += texto;
       }
       finalDeEstaSesion = final;
-      estado.textarea.value = limpiar(`${estado.base} ${final} ${interim}`);
+      const vistaPrevia = combinarSinSolape(estado.base, final);
+      estado.textarea.value = limpiar(`${vistaPrevia} ${interim}`);
     };
 
     rec.onerror = (e) => {
@@ -63,11 +97,17 @@ const Dictado = (() => {
     rec.onend = () => {
       if (!estado || estado.rec !== rec) return;
       if (finalDeEstaSesion) {
-        estado.base = limpiar(`${estado.base} ${finalDeEstaSesion}`);
+        estado.base = combinarSinSolape(estado.base, finalDeEstaSesion);
         estado.textarea.value = estado.base;
       }
       if (estado.detenido) { pararVisual(estado.btn); estado = null; return; }
-      iniciarSesion();
+      // Pequeña pausa antes de reabrir el micrófono: si se reinicia
+      // demasiado pegado al cierre anterior, en algunos Android el
+      // buffer de audio todavía se solapa con la sesión vieja.
+      const detenidoAlCerrar = estado;
+      setTimeout(() => {
+        if (estado === detenidoAlCerrar && !estado.detenido) iniciarSesion();
+      }, 250);
     };
 
     if (estado) estado.rec = rec;
