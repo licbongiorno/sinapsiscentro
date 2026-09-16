@@ -21,7 +21,6 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, background 0.2s ease;
 }
-#btnRecordatorioRacha:hover { transform: scale(1.06); }
 #btnRecordatorioRacha[aria-pressed="true"] {
   background: #e08a4a;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -37,4 +36,12 @@
 
 body:has(.sh-mezclador.abierto) #btnRecordatorioRacha {
   bottom: calc(60vh + 72px);
+}
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  #btnRecordatorioRacha:hover { transform: scale(1.06); }
 }

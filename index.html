@@ -267,7 +267,6 @@ nav.solid {
   filter: drop-shadow(0 2px 10px rgba(42,174,194,0.45));
   transition: filter 0.3s, transform 0.3s;
 }
-.logo-mark:hover { filter: drop-shadow(0 4px 18px rgba(42,174,194,0.7)); transform: scale(1.04); }
 .logo-mark img { height: 100%; width: auto; object-fit: contain; display: block; }
 .logo-symbol { color: var(--teal-soft); font-size: 2rem; line-height: 1; }
 .brand-text { line-height: 1.1; }
@@ -294,7 +293,6 @@ nav.solid {
   transition: transform 0.3s var(--easing);
 }
 .nav-links a:hover { color: white; }
-.nav-links a:hover::after { transform: scaleX(1); }
 .nav-link-recursos { display: flex; align-items: center; gap: 6px; }
 .nav-badge-gratis {
   background: var(--teal-soft); color: var(--navy);
@@ -309,7 +307,6 @@ nav.solid {
   font-weight: 600 !important;
 }
 .nav-cta::after { display:none !important; }
-.nav-cta:hover { background: var(--teal-soft) !important; color: var(--navy) !important; transform: translateY(-1px); }
 
 .nav-burger {
   display: none; width: 42px; height: 42px; border: none; background: rgba(126,214,228,0.1);
@@ -431,11 +428,9 @@ nav.solid {
   background: linear-gradient(135deg, var(--teal), var(--teal-deep));
   opacity: 0; transition: opacity 0.3s;
 }
-.btn-hero-main:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 44px rgba(0,0,0,0.32); }
 .btn-hero-main:hover::before { opacity:1; }
 .btn-hero-main span { position:relative; z-index:1; }
 .btn-hero-main .arrow { transition: transform 0.3s; position:relative; z-index:1; }
-.btn-hero-main:hover .arrow { transform: translateX(4px); }
 
 .btn-hero-ghost {
   color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.2);
@@ -485,7 +480,12 @@ nav.solid {
 .js-ready .rv.from-left   { transform: translateX(-36px); opacity: 0; }
 .js-ready .rv.from-right  { transform: translateX(36px); opacity: 0; }
 .js-ready .rv.scale-in    { transform: scale(0.92); opacity: 0; }
-.rv.visible { opacity:1 !important; transform:none !important; }
+.rv.visible { opacity:1 !important; }
+/* :not(:hover) para que esta regla no le gane al transform de :hover una vez
+   que la tarjeta ya se reveló — sin esto, cualquier .rv con hover propio
+   (levantar la tarjeta, escalar el ícono) queda inerte apenas termina de
+   aparecer en pantalla, que es la mayor parte del tiempo real de uso. */
+.rv.visible:not(:hover) { transform:none !important; }
 .d1 { transition-delay: 0.1s !important; }
 .d2 { transition-delay: 0.2s !important; }
 .d3 { transition-delay: 0.3s !important; }
@@ -561,8 +561,6 @@ nav.solid {
   transform: scaleY(0); transform-origin: bottom;
   transition: transform 0.35s var(--easing);
 }
-.pain-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(26,122,138,0.12); }
-.pain-card:hover::before { transform: scaleY(1); }
 .pain-card .icon { font-size: 1.8rem; margin-bottom: 14px; }
 .pain-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
 .pain-card p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.5; }
@@ -601,10 +599,6 @@ nav.solid {
   border-radius: var(--r-lg); padding: 36px 30px;
   text-align: center; position: relative;
   transition: background 0.3s var(--easing), border-color 0.3s var(--easing), transform 0.3s var(--easing), box-shadow 0.3s var(--easing); backdrop-filter: blur(8px);
-}
-.step-card:hover {
-  background: rgba(42,174,194,0.1); border-color: rgba(126,214,228,0.35);
-  transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.25);
 }
 .step-num {
   width: 64px; height: 64px; border-radius: 50%;
@@ -659,17 +653,11 @@ body.menu-open { overflow: hidden; }
   text-decoration: none; color: inherit;
   transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing), border-color 0.3s var(--easing);
 }
-.resource-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(8,32,46,0.1);
-  border-color: rgba(42,174,194,0.28);
-}
 .resource-icon {
   flex-shrink: 0; width: 50px; height: 50px; border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.4rem; transition: transform 0.3s var(--easing);
 }
-.resource-card:hover .resource-icon { transform: scale(1.12) rotate(-4deg); }
 .resource-text { flex: 1; min-width: 0; display: flex; flex-direction: column; text-align: left; }
 .resource-title {
   font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.02rem;
@@ -681,7 +669,6 @@ body.menu-open { overflow: hidden; }
   opacity: 0; transform: translateX(-6px);
   transition: opacity 0.3s var(--easing), transform 0.3s var(--easing);
 }
-.resource-card:hover .resource-arrow { opacity: 1; transform: translateX(0); }
 
 .servicios-header {
   max-width: 1160px; margin: 0 auto 64px;
@@ -721,7 +708,6 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
   background: linear-gradient(135deg, rgba(42,174,194,0.06), transparent);
   opacity:0; transition: opacity 0.35s;
 }
-.service-tile:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 16px 48px rgba(26,122,138,0.15); border-color: var(--teal-mid); }
 .service-tile:hover::after { opacity:1; }
 .tile-icon {
   width: 52px; height: 52px; border-radius: 14px;
@@ -729,7 +715,6 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
   margin-bottom: 16px;
   transition: transform 0.3s var(--easing);
 }
-.service-tile:hover .tile-icon { transform: scale(1.15) rotate(-4deg); }
 /* Variante "anillo": alterna con el chip relleno para que la grilla de
    servicios no lea como el mismo bloque icono+título repetido diez
    veces (ver reference/craft-floor.md del skill impeccable). */
@@ -787,10 +772,8 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
 .persona-card:nth-child(2) { background: linear-gradient(145deg, #e8f2f8, #d4e8f7); }
 .persona-card:nth-child(3) { background: linear-gradient(145deg, #f2e8f8, #e7d4f7); }
 .persona-card:nth-child(4) { background: linear-gradient(145deg, #f8e8f0, #f7d4e7); }
-.persona-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); border-color: rgba(42,174,194,0.2); }
 
 .persona-big-icon { font-size: 2.8rem; margin-bottom: 20px; display: block; transition: transform 0.3s var(--easing); }
-.persona-card:hover .persona-big-icon { transform: scale(1.15) rotate(-5deg); }
 .persona-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--navy); margin-bottom: 12px; }
 .persona-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
 .persona-card ul { margin-top: 14px; list-style: none; }
@@ -852,7 +835,6 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
   display: flex; align-items: center; gap: 18px;
   transition: transform 0.3s;
 }
-.h-card:hover { transform: translateX(6px); }
 .h-card.lv { background: linear-gradient(135deg, var(--teal-deep), var(--teal)); }
 .h-card.sa { background: white; border: 1.5px solid var(--teal-pale); }
 .h-card .h-icon { font-size: 1.8rem; flex-shrink:0; color: white; }
@@ -870,7 +852,6 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
   border-radius: var(--r); padding: 16px 20px;
   text-decoration: none; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; color: var(--text);
 }
-.c-pill:hover { border-color: var(--teal-mid); box-shadow: 0 4px 20px rgba(26,122,138,0.1); transform: translateX(4px); }
 .c-pill .ci {
   width: 38px; height: 38px; border-radius: 10px; background: var(--teal-pale);
   display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0;
@@ -928,7 +909,6 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
   box-shadow: 0 8px 28px rgba(0,0,0,0.3);
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
-.btn-wa-main:hover { background: #0a5c2e; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
 .btn-wa-main i { font-size: 1.2rem; }
 
 .btn-ig {
@@ -939,7 +919,6 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
   box-shadow: 0 8px 28px rgba(0,0,0,0.3);
   transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
 }
-.btn-ig:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
 .btn-ig i { font-size: 1.2rem; }
 
 /* ═══════════════════════════════════
@@ -966,7 +945,6 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   background: rgba(255,255,255,0.06); color: var(--teal-soft);
   transition: background 0.25s var(--easing), color 0.25s var(--easing), transform 0.25s var(--easing);
 }
-.footer-social a:hover { background: var(--teal); color: white; transform: translateY(-3px); }
 
 .footer-col h4 {
   font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
@@ -995,7 +973,6 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   box-shadow: 0 8px 28px rgba(0,0,0,0.3);
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
-.fab-recursos:hover { background: var(--teal-deep); transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
 @media(max-width:520px){
   .fab-recursos { bottom: 134px; left: 12px; padding: 15px; border-radius: 50%; }
   .fab-recursos-txt { display:none; }
@@ -1010,7 +987,6 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   box-shadow: 0 8px 32px rgba(37,211,102,0.5);
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
-.fab:hover { background: #0a6b2d; transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 48px rgba(37,211,102,0.6); }
 .fab i { font-size: 1.4rem; }
 @media(max-width:520px){
   .fab .fab-txt { display:none; }
@@ -1027,7 +1003,6 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   transition: opacity 0.3s, transform 0.3s, background 0.3s, border-color 0.3s; backdrop-filter: blur(10px);
 }
 .go-top.show { opacity:1; transform:scale(1); }
-.go-top:hover { background: var(--teal); border-color: var(--teal); transform: scale(1.1); }
 .go-top svg { stroke: white; fill: none; width: 18px; height: 18px; stroke-width:2.5; }
 
 /* ═══════════════════════════════════
@@ -1072,8 +1047,6 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   transform: scaleX(0); transform-origin: left;
   transition: transform 0.4s var(--easing);
 }
-.trust-card:hover { background: rgba(42,174,194,0.1); border-color: rgba(126,214,228,0.35); transform: translateY(-4px); }
-.trust-card:hover::before { transform: scaleX(1); }
 .trust-card .tc-icon { font-size: 1.8rem; margin-bottom: 12px; }
 .trust-card h3 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 6px; }
 .trust-card p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
@@ -1115,11 +1088,46 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   padding: 15px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
   box-shadow: 0 8px 24px rgba(66,133,244,0.35); transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
-.btn-google:hover { background: #3367d6; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(66,133,244,0.45); }
 
 @media(max-width:768px){
   .hero-inner { padding: 120px 20px 80px !important; }
   .hero-title { font-size: clamp(2.2rem, 10vw, 4rem) !important; }
+}
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  .logo-mark:hover { filter: drop-shadow(0 4px 18px rgba(42,174,194,0.7)); transform: scale(1.04); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta:hover { background: var(--teal-soft) !important; color: var(--navy) !important; transform: translateY(-1px); }
+  .btn-hero-main:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 44px rgba(0,0,0,0.32); }
+  .btn-hero-main:hover .arrow { transform: translateX(4px); }
+  .pain-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(26,122,138,0.12); }
+  .pain-card:hover::before { transform: scaleY(1); }
+  .resource-card:hover .resource-icon { transform: scale(1.12) rotate(-4deg); }
+  .resource-card:hover .resource-arrow { opacity: 1; transform: translateX(0); }
+  /* Estas 4 cards tienen la clase .rv (revelado al hacer scroll) en el
+     propio elemento, y .rv.visible fuerza transform:none !important una
+     vez que ya aparecieron — que es la mayor parte del tiempo real. Sin
+     el !important acá, el hover no se vería nunca. */
+  .resource-card:hover { transform: translateY(-4px) !important; box-shadow: 0 16px 36px rgba(8,32,46,0.1); border-color: rgba(42,174,194,0.28); }
+  .step-card:hover { background: rgba(42,174,194,0.1); border-color: rgba(126,214,228,0.35); transform: translateY(-6px) !important; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+  .service-tile:hover { transform: translateY(-6px) scale(1.01) !important; box-shadow: 0 16px 48px rgba(26,122,138,0.15); border-color: var(--teal-mid); }
+  .service-tile:hover .tile-icon { transform: scale(1.15) rotate(-4deg); }
+  .persona-card:hover { transform: translateY(-8px) !important; box-shadow: 0 20px 60px rgba(0,0,0,0.1); border-color: rgba(42,174,194,0.2); }
+  .persona-card:hover .persona-big-icon { transform: scale(1.15) rotate(-5deg); }
+  .h-card:hover { transform: translateX(6px); }
+  .c-pill:hover { border-color: var(--teal-mid); box-shadow: 0 4px 20px rgba(26,122,138,0.1); transform: translateX(4px); }
+  .btn-wa-main:hover { background: #0a5c2e; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+  .btn-ig:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+  .footer-social a:hover { background: var(--teal); color: white; transform: translateY(-3px); }
+  .fab-recursos:hover { background: var(--teal-deep); transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
+  .fab:hover { background: #0a6b2d; transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 48px rgba(37,211,102,0.6); }
+  .go-top:hover { background: var(--teal); border-color: var(--teal); transform: scale(1.1); }
+  .trust-card:hover { background: rgba(42,174,194,0.1); border-color: rgba(126,214,228,0.35); transform: translateY(-4px); }
+  .trust-card:hover::before { transform: scaleX(1); }
+  .btn-google:hover { background: #3367d6; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(66,133,244,0.45); }
 }
 </style>
   <link rel="stylesheet" href="css/accesibilidad.css">

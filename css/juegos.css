@@ -98,7 +98,6 @@ header.jp-header::before {
   transition: background 0.2s, transform 0.2s;
 }
 .jp-animo-btn .emoji { font-size: 1.5rem; }
-.jp-animo-btn:hover { background: var(--teal-pale); transform: translateY(-2px); }
 
 /* ── BUSCADOR ── */
 .jp-buscador { max-width: 640px; margin: 20px auto 0; padding: 0 18px; }
@@ -116,7 +115,6 @@ header.jp-header::before {
   box-shadow: 0 12px 30px rgba(42,174,194,0.35); cursor: pointer;
   transition: transform 0.2s;
 }
-.jp-azar-btn:hover { transform: translateY(-2px); }
 
 /* ── SECCIONES GENERALES ── */
 .jp-seccion { max-width: 640px; margin: 34px auto 0; padding: 0 18px; }
@@ -130,7 +128,6 @@ header.jp-header::before {
   box-shadow: 0 6px 18px rgba(8,32,46,0.06); border: 1px solid rgba(42,174,194,0.08);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.jp-cat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(8,32,46,0.12); }
 .jp-cat-card .emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
 .jp-cat-card .nombre { font-size: 0.78rem; font-weight: 700; color: var(--text); display: block; }
 .jp-cat-card .cantidad { font-size: 0.68rem; color: var(--text-soft); }
@@ -143,7 +140,6 @@ header.jp-header::before {
   box-shadow: 0 4px 14px rgba(8,32,46,0.06); border: 1px solid rgba(42,174,194,0.08);
   transition: transform 0.15s;
 }
-.jp-juego-card:hover { transform: translateX(4px); }
 .jp-juego-card .icono { font-size: 1.6rem; flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; background: var(--teal-pale); display: flex; align-items: center; justify-content: center; }
 .jp-juego-card .info { flex: 1; min-width: 0; }
 .jp-juego-card .info .nombre { font-weight: 700; font-size: 0.92rem; }
@@ -170,4 +166,15 @@ header.jp-header::before {
 @media(min-width: 700px) {
   .jp-categorias-grid { grid-template-columns: repeat(4, 1fr); }
   .jp-animo-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  .jp-animo-btn:hover { background: var(--teal-pale); transform: translateY(-2px); }
+  .jp-azar-btn:hover { transform: translateY(-2px); }
+  .jp-cat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(8,32,46,0.12); }
+  .jp-juego-card:hover { transform: translateX(4px); }
 }

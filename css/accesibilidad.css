@@ -86,7 +86,6 @@ html.modo-accesible,
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, background 0.2s ease;
 }
-#btnAccesibilidad:hover { transform: scale(1.06); }
 #btnAccesibilidad[aria-pressed="true"] {
   background: #2aaec2;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
@@ -104,4 +103,12 @@ html.modo-accesible,
    abierto) y puede tapar el botón — lo subimos mientras esté abierto. */
 body:has(.sh-mezclador.abierto) #btnAccesibilidad {
   bottom: calc(60vh + 12px);
+}
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  #btnAccesibilidad:hover { transform: scale(1.06); }
 }

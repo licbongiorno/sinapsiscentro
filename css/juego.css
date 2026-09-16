@@ -80,7 +80,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
   cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
 }
 .ge-btn-principal { background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-.ge-btn-principal:hover { transform: translateY(-2px); }
 .ge-btn-secundario { background: var(--teal-pale); color: var(--teal-deep); }
 .ge-btn-secundario:hover { background: #c3ecf3; }
 
@@ -130,3 +129,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
   font-family: inherit; font-size: 1rem; resize: vertical; min-height: 90px;
 }
 .jg-caja-texto:focus { border-color: var(--teal-mid); outline: none; }
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  .ge-btn-principal:hover { transform: translateY(-2px); }
+}

@@ -26,5 +26,12 @@
   cursor: pointer;
   transition: transform 0.15s;
 }
-.lector-btn:hover { transform: scale(1.08); }
 .lector-btn:active { transform: scale(0.94); }
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  .lector-btn:hover { transform: scale(1.08); }
+}

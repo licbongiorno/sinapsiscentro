@@ -30,7 +30,6 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 /* Puertas de entrada */
 .ih-puertas { max-width: 640px; margin: -20px auto 0; padding: 0 18px; position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .ih-puerta { background: white; border-radius: var(--r-lg); padding: 20px 14px; text-align: center; box-shadow: 0 16px 40px rgba(8,32,46,0.14); cursor: pointer; border: none; transition: transform 0.2s; }
-.ih-puerta:hover { transform: translateY(-4px); }
 .ih-puerta .emoji { font-size: 2.2rem; display: block; margin-bottom: 8px; }
 .ih-puerta .titulo { font-weight: 800; font-size: 1rem; color: var(--navy); }
 .ih-puerta .sub { font-size: 0.78rem; color: var(--text-soft); margin-top: 2px; }
@@ -51,7 +50,6 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 
 .ih-actividades-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .ih-actividad-card { background: white; border-radius: var(--r); padding: 16px 12px; text-align: center; box-shadow: 0 6px 18px rgba(8,32,46,0.06); border: 1px solid rgba(42,174,194,0.08); cursor: pointer; transition: transform 0.2s; }
-.ih-actividad-card:hover { transform: translateY(-3px); }
 .ih-actividad-card .emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
 .ih-actividad-card .titulo { font-size: 0.8rem; font-weight: 700; }
 .ih-actividad-card .desc { display:block; font-size: 0.68rem; color: var(--text-soft); margin-top: 5px; line-height: 1.35; }
@@ -108,7 +106,6 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 
 .ie-btn { padding: 15px 28px; border-radius: 50px; border: none; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.2s; }
 .ie-btn-principal { background: linear-gradient(135deg, var(--kid-orange), var(--kid-yellow)); color: var(--navy); box-shadow: 0 8px 20px rgba(240,149,74,0.3); }
-.ie-btn-principal:hover { transform: translateY(-2px); }
 .ie-btn-secundario { background: var(--teal-pale); color: var(--teal-deep); }
 
 .ie-pregunta { font-size: 1.2rem; color: var(--navy); line-height: 1.5; margin-bottom: 18px; font-weight: 700; }
@@ -157,3 +154,13 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ie-logros-nuevos { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
 .ie-logro-chip { background: var(--warm-lt); color: #7a5a2a; font-weight: 800; font-size: 0.78rem; padding: 7px 14px; border-radius: 50px; }
 .ie-final-botones { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  .ih-puerta:hover { transform: translateY(-4px); }
+  .ih-actividad-card:hover { transform: translateY(-3px); }
+  .ie-btn-principal:hover { transform: translateY(-2px); }
+}

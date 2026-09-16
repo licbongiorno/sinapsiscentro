@@ -35,7 +35,6 @@
   gap: 0;
   transition: transform 0.15s;
 }
-.compartir-btn.compartir-icono:hover { color: var(--teal-deep); transform: scale(1.08); }
 .compartir-btn.compartir-icono:active { transform: scale(0.94); }
 
 .compartir-overlay {
@@ -120,3 +119,11 @@
 }
 .compartir-opcion:hover { background: var(--teal-pale); border-color: var(--teal-soft); }
 .compartir-opcion-icono { font-size: 1.4rem; }
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  .compartir-btn.compartir-icono:hover { color: var(--teal-deep); transform: scale(1.08); }
+}

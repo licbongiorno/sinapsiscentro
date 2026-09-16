@@ -25,7 +25,6 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-necesidad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .sh-necesidad-btn { border: none; background: var(--bg); border-radius: 14px; padding: 12px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 0.68rem; font-weight: 700; color: var(--text-mid); cursor: pointer; text-align: center; transition: background 0.2s, transform 0.2s; }
 .sh-necesidad-btn .emoji { font-size: 1.4rem; }
-.sh-necesidad-btn:hover { background: var(--teal-pale); transform: translateY(-2px); }
 
 .sh-seccion { max-width: 640px; margin: 28px auto 0; padding: 0 18px; }
 .sh-seccion h2 { font-size: 1.05rem; margin-bottom: 4px; font-family: 'Nunito', sans-serif; font-weight: 800; }
@@ -69,7 +68,6 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-btn { padding: 12px 22px; border-radius: 50px; border: none; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: transform 0.2s; }
 .sh-btn-principal { background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: white; box-shadow: 0 6px 16px rgba(42,174,194,0.3); }
 .sh-btn-secundario { background: var(--teal-pale); color: var(--teal-deep); }
-.sh-btn:hover { transform: translateY(-1px); }
 
 .sh-barra-flotante { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy); color: white; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; z-index: 399; }
 .sh-barra-flotante[hidden] { display: none; }
@@ -150,3 +148,12 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 }
 .jp-nivel-barra { height: 8px; background: var(--teal-pale); border-radius: 8px; overflow: hidden; margin: 6px 0 16px; }
 .jp-nivel-barra-fill { width: 100%; height: 100%; background: linear-gradient(90deg, var(--teal), var(--teal-mid)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  .sh-necesidad-btn:hover { background: var(--teal-pale); transform: translateY(-2px); }
+  .sh-btn:hover { transform: translateY(-1px); }
+}

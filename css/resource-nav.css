@@ -90,7 +90,6 @@
   filter: drop-shadow(0 2px 10px rgba(42,174,194,0.45));
   transition: filter 0.3s, transform 0.3s;
 }
-.site-brand:hover .logo-mark { filter: drop-shadow(0 4px 18px rgba(42,174,194,0.7)); transform: scale(1.04); }
 .site-brand .logo-symbol { color: var(--teal-soft); font-size: 1.7rem; line-height: 1; }
 .site-brand .brand-text { line-height: 1.1; }
 .site-brand .brand-text b {
@@ -100,4 +99,12 @@
 .site-brand .brand-text small {
   display: block; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: var(--teal-soft); font-weight: 500;
+}
+
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto. */
+@media (hover: hover) and (pointer: fine) {
+  .site-brand:hover .logo-mark { filter: drop-shadow(0 4px 18px rgba(42,174,194,0.7)); transform: scale(1.04); }
 }
