@@ -31,7 +31,9 @@
   width: 42px; height: 42px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);
   background: rgba(255,255,255,0.1); cursor: pointer; padding: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  transition: transform 0.15s;
 }
+.rn-trigger:active { transform: scale(0.92); }
 .rn-trigger span { display: block; width: 17px; height: 2px; background: white; border-radius: 2px; transition: transform 0.2s var(--easing), opacity 0.15s; }
 .rn-trigger[aria-expanded="true"] span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
 .rn-trigger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -58,8 +60,10 @@
 .rn-cerrar {
   width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--bg);
   color: var(--text-soft); font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s, background 0.2s, color 0.2s;
 }
 .rn-cerrar:hover, .rn-cerrar:focus-visible { background: var(--teal-pale); color: var(--teal-deep); }
+.rn-cerrar:active { transform: scale(0.9); }
 
 .rn-lista { display: flex; flex-direction: column; gap: 4px; }
 .rn-item {

@@ -145,7 +145,8 @@ header.jp-header::before {
 .jp-juego-card .info .nombre { font-weight: 700; font-size: 0.92rem; }
 .jp-juego-card .info .desc { font-size: 0.78rem; color: var(--text-soft); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .jp-juego-card .meta { font-size: 0.7rem; color: var(--teal); font-weight: 700; flex-shrink: 0; }
-.jp-juego-card .fav-btn { flex-shrink: 0; background: none; border: none; font-size: 1.1rem; cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+.jp-juego-card .fav-btn { flex-shrink: 0; background: none; border: none; font-size: 1.1rem; cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: transform 0.15s; }
+.jp-juego-card .fav-btn:active { transform: scale(0.85); }
 .jp-juego-card.proximamente { opacity: 0.55; }
 .jp-juego-card.proximamente .meta { color: var(--warm); }
 
@@ -178,3 +179,7 @@ header.jp-header::before {
   .jp-cat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(8,32,46,0.12); }
   .jp-juego-card:hover { transform: translateX(4px); }
 }
+
+/* después del bloque de hover, para que gane el feedback de :active si se
+   hace click con mouse (hover y active a la vez, misma especificidad). */
+.jp-juego-card:active { transform: scale(0.98); }

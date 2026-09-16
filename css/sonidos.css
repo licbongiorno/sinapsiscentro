@@ -41,8 +41,9 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-cat-tab.activo { background: var(--navy); border-color: var(--navy); color: white; }
 
 .sh-pistas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.sh-pista-card { background: white; border-radius: var(--r); padding: 14px; text-align: left; box-shadow: 0 4px 14px rgba(8,32,46,0.05); border: 2px solid transparent; cursor: pointer; transition: border-color 0.2s, background 0.2s; display: flex; flex-direction: column; gap: 6px; }
+.sh-pista-card { background: white; border-radius: var(--r); padding: 14px; text-align: left; box-shadow: 0 4px 14px rgba(8,32,46,0.05); border: 2px solid transparent; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s; display: flex; flex-direction: column; gap: 6px; }
 .sh-pista-card:hover { border-color: var(--teal-pale); }
+.sh-pista-card:active { transform: scale(0.97); }
 .sh-pista-card.activa { border-color: var(--teal-mid); background: var(--teal-pale); }
 .sh-pista-card.no-disponible { opacity: 0.55; cursor: default; }
 .sh-pista-card .emoji { font-size: 1.5rem; }

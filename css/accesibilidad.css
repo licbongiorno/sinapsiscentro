@@ -112,3 +112,7 @@ body:has(.sh-mezclador.abierto) #btnAccesibilidad {
 @media (hover: hover) and (pointer: fine) {
   #btnAccesibilidad:hover { transform: scale(1.06); }
 }
+
+/* después del bloque de hover, para que gane el feedback de :active si se
+   hace click con mouse (hover y active a la vez, misma especificidad). */
+#btnAccesibilidad:active { transform: scale(0.92); }

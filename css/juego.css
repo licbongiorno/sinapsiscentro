@@ -34,9 +34,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
   width: 42px; height: 42px; border-radius: 50%; border: none;
   background: rgba(255,255,255,0.1); color: white; font-size: 1.1rem;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
 .ge-hud button:hover { background: rgba(255,255,255,0.2); }
+.ge-hud button:active { transform: scale(0.9); }
 .ge-hud-centro { display: flex; gap: 18px; align-items: center; }
 .ge-hud-item {
   color: white; font-weight: 700; font-size: 0.95rem;
@@ -137,3 +138,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
 @media (hover: hover) and (pointer: fine) {
   .ge-btn-principal:hover { transform: translateY(-2px); }
 }
+
+/* después del bloque de hover, para que gane el feedback de :active si se
+   hace click con mouse (hover y active a la vez, misma especificidad). */
+.ge-btn:active { transform: scale(0.96); }
