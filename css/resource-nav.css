@@ -22,6 +22,11 @@
 }
 .skip-link:focus { transform: translateY(0); }
 
+.jp-disclaimer {
+  text-align: center; font-size: 0.76rem; line-height: 1.6;
+  color: var(--text-soft); max-width: 520px; margin: 14px auto 0; padding: 0 20px;
+}
+
 .rn-trigger {
   width: 42px; height: 42px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);
   background: rgba(255,255,255,0.1); cursor: pointer; padding: 0;
