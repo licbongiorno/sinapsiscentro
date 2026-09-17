@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
   <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cargando ejercicio… | SINAPSIS</title>
+<title>Cargando ejercicio… | Centro Sinapsis</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="manifest" href="manifest.json">
@@ -54,7 +54,7 @@
     document.getElementById("eeContenedor").hidden = true;
     document.getElementById("eeError").hidden = false;
   } else {
-    document.title = `${ejercicio.titulo} | SINAPSIS`;
+    document.title = `${ejercicio.titulo} | Centro Sinapsis`;
     let arrancado = false;
     Auth.onCambio((user) => {
       if (arrancado) return;

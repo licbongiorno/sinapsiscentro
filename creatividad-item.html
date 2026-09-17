@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
   <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cargando… | SINAPSIS</title>
+<title>Cargando… | Centro Sinapsis</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="manifest" href="manifest.json">
@@ -106,7 +106,7 @@ if (!actividad || !actividad.activo) {
   document.getElementById("cvContenedor").hidden = true;
   document.getElementById("cvError").hidden = false;
 } else {
-  document.title = `${actividad.titulo} | SINAPSIS`;
+  document.title = `${actividad.titulo} | Centro Sinapsis`;
   document.getElementById("cvBarra").style.display = "flex";
   document.getElementById("cvVolver").addEventListener("click", () => { window.location.href = "creatividad.html"; });
 
@@ -231,7 +231,7 @@ if (!actividad || !actividad.activo) {
     document.getElementById("cvCompartir").addEventListener("click", () => {
       Compartir.compartir({
         titulo: actividad.titulo,
-        texto: `${actividad.titulo} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        texto: `${actividad.titulo} — un recurso gratuito de Centro Sinapsis.`,
         url: window.location.href,
       });
     });

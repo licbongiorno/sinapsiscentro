@@ -1,7 +1,7 @@
 {
-  "name": "Sinapsis — Juegos y Recursos",
-  "short_name": "Sinapsis",
-  "description": "Juegos, ejercicios y actividades de Sinapsis, Centro de Salud Integral.",
+  "name": "Centro Sinapsis — Juegos y Recursos",
+  "short_name": "C. Sinapsis",
+  "description": "Juegos, ejercicios y actividades de Centro Sinapsis, Berazategui, Quilmes y Zona Sur.",
   "start_url": "juegos.html",
   "scope": "/",
   "display": "standalone",

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
   <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cargando juego… | SINAPSIS</title>
+<title>Cargando juego… | Centro Sinapsis</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="manifest" href="manifest.json">
@@ -62,7 +62,7 @@
     document.getElementById("juego-area").hidden = true;
     document.getElementById("jgError").hidden = false;
   } else {
-    document.title = `${juego.nombre} | SINAPSIS`;
+    document.title = `${juego.nombre} | Centro Sinapsis`;
     document.getElementById("jgTitulo").textContent = juego.nombre;
     document.getElementById("jgInstruccion").textContent = juego.descripcion;
     if (juego.beneficio) {
