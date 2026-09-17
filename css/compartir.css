@@ -1,4 +1,10 @@
-@import url("variables.css");
+/* Esta hoja no define los tokens de color/espaciado (--navy, --teal,
+   --bg, etc.): siempre se carga junto a una hoja "principal" de
+   página (juego.css/juegos.css/ejercicios.css/infantil.css/sonidos.css)
+   que ya los define en :root — redeclararlos acá los pisaría, porque
+   esta hoja se linkea DESPUÉS en el <head> y gana el cascade (esto
+   rompía --bg/--kid-orange de infantil.css cuando resource-nav.css se
+   cargaba después con su propia copia de los valores base). */
 
 /* Botón de compartir — pensado para convivir con cualquier set de
    botones existente (ee-/ge-/ie-/cv-), por eso no hereda de ninguno. */

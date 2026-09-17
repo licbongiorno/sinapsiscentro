@@ -1,11 +1,14 @@
 /**
  * VARIABLES.CSS — Tokens de color/espaciado compartidos
  * ==========================================================
- * Antes este mismo bloque :root estaba copiado y pegado, letra por
- * letra, en juegos.css, juego.css, ejercicios.css e infantil.css.
- * Cada una de esas hojas lo importa con @import y, si necesita algún
- * valor propio (infantil.css cambia --bg y agrega los --kid-*; juego.css
- * usa un --r-lg distinto), lo sobreescribe después del @import.
+ * ESTE ARCHIVO YA NO SE ENLAZA NI SE IMPORTA DESDE NINGÚN LADO — queda
+ * sólo como referencia. Antes lo importaban con @import juegos.css,
+ * juego.css, ejercicios.css, infantil.css, sonidos.css, resource-nav.css,
+ * dictado.css, compartir.css y lector.css; un @import encadenado agrega
+ * una espera de red extra antes de poder aplicar el resto de la hoja
+ * que importa, así que ese mismo bloque :root ahora está copiado
+ * directamente al principio de cada una (si se cambia un valor acá,
+ * hay que replicarlo a mano en esos archivos).
  */
 :root {
   --navy: #08202e;

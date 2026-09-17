@@ -1,4 +1,25 @@
-@import url("variables.css");
+/* Tokens de css/variables.css inlineados acá en vez de @import: un
+   @import encadenado agrega una espera de red extra antes de poder
+   aplicar el resto de esta hoja (ver también el comentario sobre el
+   modal de perfil más abajo, mismo motivo). */
+:root {
+  --navy: #08202e;
+  --teal-deep: #0e4d5c;
+  --teal: #1a7a8a;
+  --teal-mid: #2aaec2;
+  --teal-soft: #7ed6e4;
+  --teal-pale: #d4f2f7;
+  --cream: #f7f2eb;
+  --warm: #c9a97e;
+  --warm-lt: #f0e6d3;
+  --bg: #f5fafc;
+  --text: #0d2535;
+  --text-mid: #3a5a6a;
+  --text-soft: #5a7583;
+  --easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --r: 18px;
+  --r-lg: 26px;
+}
 /* Modal de perfil: en línea acá (no @import a perfil-modal.css) a
    propósito — un @import encadenado (esta hoja importaba
    perfil-modal.css) resultó no aplicarse en producción por razones

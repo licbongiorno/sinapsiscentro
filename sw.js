@@ -15,7 +15,7 @@
  * para que los navegadores descarten la caché vieja.
  */
 
-const CACHE_VERSION = "sinapsis-v3";
+const CACHE_VERSION = "sinapsis-v4";
 
 const APP_SHELL = [
   "/", "/index.html", "/offline.html", "/manifest.json",
