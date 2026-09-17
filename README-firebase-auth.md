@@ -118,6 +118,19 @@ Si algo falla, abrí la consola del navegador (F12 → pestaña
 "Console") — Firebase suele mostrar ahí un mensaje bastante claro
 sobre qué paso falta (dominio no autorizado, reglas, etc.).
 
+**Si el selector de cuenta de Google aparece, elegís la cuenta, pero
+después no pasa nada** (no aparece error, y tampoco aparece el
+usuario en Authentication → Users de la consola de Firebase): eso
+pasaba con el flujo anterior (`signInWithRedirect`) en navegadores
+que bloquean cookies/storage de terceros por defecto (Chrome, Safari
+y Firefox actuales) — el viaje de ida y vuelta a Google se cortaba en
+silencio. Ya se cambió a `signInWithPopup` (con `signInWithRedirect`
+sólo como respaldo si el navegador bloquea directamente la ventana
+emergente), que no depende de eso. Si después de este cambio te sigue
+pasando lo mismo, lo más probable es que falte agregar el dominio
+real (por ejemplo `sinapsiscentro.com.ar`, sin `www`) en
+**Authentication → Settings → Authorized domains** — ver Paso 6.
+
 ## Qué se agregó al código (por si querés entender cómo funciona)
 
 - **`js/auth.js`** (nuevo): maneja el login/logout con Google usando

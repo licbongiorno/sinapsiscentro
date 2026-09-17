@@ -73,8 +73,15 @@ const PerfilModal = (() => {
         </button>
         <p style="font-size:0.72rem;color:var(--text-soft);text-align:center;margin-top:8px;">Tu progreso ya se está guardando en este dispositivo. Iniciá sesión para no perderlo si cambiás de celular o navegador.</p>`;
       document.getElementById("btnLoginGoogle").addEventListener("click", () => {
-        Auth.iniciarSesion().then(() => {
-          const u = Auth.usuarioActual();
+        Auth.iniciarSesion().then((resultado) => {
+          // Con signInWithPopup, "resultado" ya trae el usuario en
+          // .user apenas se resuelve la promesa — no hace falta
+          // esperar a Auth.onCambio (que igual también se dispara,
+          // de forma redundante/segura, vía onAuthStateChanged). Si
+          // en cambio cayó al fallback de signInWithRedirect, la
+          // página navega afuera y esto ni llega a ejecutarse; el
+          // login se completa solo al volver, vía Auth.onCambio.
+          const u = (resultado && resultado.user) || Auth.usuarioActual();
           if (u) Storage.vincularUsuario(u).then(() => { onCambioCallback(); abrir(); });
         }).catch((err) => {
           // Sin este catch, cualquier error acá (Firebase nunca inicializado,

@@ -33,9 +33,10 @@ const Auth = (() => {
     listeners.forEach((fn) => fn(usuarioActual));
   });
 
-  // Si volvemos de un signInWithRedirect, esto atrapa errores que de
-  // otra forma quedarían silenciosos (dominio no autorizado, etc.) —
-  // el usuario logueado en sí ya se refleja solo vía onAuthStateChanged.
+  // Si volvemos de un signInWithRedirect (fallback de más abajo), esto
+  // atrapa errores que de otra forma quedarían silenciosos (dominio no
+  // autorizado, etc.) — el usuario logueado en sí ya se refleja solo
+  // vía onAuthStateChanged.
   firebase.auth().getRedirectResult().catch((err) => {
     console.error("Auth: error al volver del login con Google", err);
     alert("No se pudo iniciar sesión con Google. Probá de nuevo.");
@@ -43,14 +44,24 @@ const Auth = (() => {
 
   return {
     iniciarSesion() {
-      // signInWithRedirect en vez de signInWithPopup: la ventana
-      // emergente de Google queda a merced de bloqueadores de
-      // pop-ups del navegador o extensiones (Brave Shields y
-      // similares), que la pueden bloquear en silencio sin que
-      // Firebase llegue a enterarse — el click no hacía nada visible.
-      // El redirect navega la página entera, así que no depende de
-      // que se permitan pop-ups.
-      return firebase.auth().signInWithRedirect(provider);
+      // signInWithPopup en vez de signInWithRedirect: el redirect
+      // dependía de que el navegador comparta cookies/storage entre
+      // esta página y el dominio auxiliar de Firebase
+      // (*.firebaseapp.com) al volver de Google — con el bloqueo de
+      // cookies de terceros que ya viene activado por defecto en
+      // Chrome/Safari/Firefox, esa vuelta puede fallar en silencio:
+      // Google deja elegir la cuenta, pero el navegador nunca completa
+      // el login (no aparece ni error ni usuario nuevo en Firebase).
+      // El popup no tiene ese problema (usa postMessage, no storage
+      // compartido) — sólo hace falta el fallback a redirect para el
+      // caso real, más raro hoy, de que el navegador bloquee el popup.
+      return firebase.auth().signInWithPopup(provider).catch((err) => {
+        if (err && err.code === "auth/popup-blocked") {
+          console.warn("Auth: pop-up bloqueado por el navegador, reintentando con redirect", err);
+          return firebase.auth().signInWithRedirect(provider);
+        }
+        throw err;
+      });
     },
     cerrarSesion() {
       return firebase.auth().signOut();
