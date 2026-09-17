@@ -170,7 +170,7 @@ const GameEngine = (() => {
       el.classList.remove("ge-bump");
       void el.offsetWidth; // reinicia la animación si se suman puntos rápido seguido
       el.classList.add("ge-bump");
-      beep(660, 90, "triangle", 0.04);
+      SFX.acierto();
     },
 
     restarVida() {
@@ -178,7 +178,7 @@ const GameEngine = (() => {
       estado.vidas -= 1;
       actualizarVidasHUD(true);
       vibrar(40);
-      beep(180, 150, "sawtooth", 0.05);
+      SFX.error();
       if (estado.vidas <= 0) {
         GameEngine.terminar({ puntaje: estado.puntos, exito: false, mensaje: "Se acabaron las vidas. ¡Probá de nuevo!" });
       }
@@ -231,7 +231,7 @@ const GameEngine = (() => {
 
       mostrarPantallaFin({ juego, puntaje, exito, mensaje, xpGanada, perfil, racha, mejoroRecord, logrosNuevos, ranking });
       vibrar(exito ? [30, 40, 30] : 60);
-      beep(exito ? 880 : 220, 200, exito ? "triangle" : "sawtooth", 0.05);
+      exito ? SFX.logro() : SFX.finSinExito();
     },
 
     reiniciar() {

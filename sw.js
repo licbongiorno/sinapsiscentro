@@ -15,7 +15,7 @@
  * para que los navegadores descarten la caché vieja.
  */
 
-const CACHE_VERSION = "sinapsis-v2";
+const CACHE_VERSION = "sinapsis-v3";
 
 const APP_SHELL = [
   "/", "/index.html", "/offline.html", "/manifest.json",
@@ -26,6 +26,7 @@ const APP_SHELL = [
   "/js/accesibilidad.js", "/js/audio-engine.js", "/js/auth.js", "/js/beep.js", "/js/compartir.js",
   "/js/creatividad-motor.js", "/js/exercise-engine.js", "/js/exportar.js", "/js/firebase-config.js",
   "/js/game-engine.js", "/js/infantil-engine.js", "/js/infantil-storage.js", "/js/lector.js", "/js/lienzo.js",
+  "/js/zzfx.js", "/js/sfx.js",
   "/js/logros.js", "/js/perfil.js", "/js/perfil-modal.js", "/js/resource-nav.js", "/js/storage.js", "/js/buscador.js", "/js/dictado.js",
   "/data/creatividad-actividades.js", "/data/creatividad-elementos.js", "/data/ejercicios.js",
   "/data/infantil-datos.js", "/data/juegos-catalogo.js", "/data/mindfulness-datos.js", "/data/sonidos-datos.js",

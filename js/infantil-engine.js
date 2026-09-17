@@ -15,7 +15,7 @@ const InfantilEngine = (() => {
 
   function limpiarTimers() { timers.forEach(clearTimeout); timers = []; }
 
-  // beep() vive en js/beep.js (compartido con exercise-engine.js/game-engine.js).
+  // SFX.* vive en js/sfx.js (sobre js/zzfx.js), compartido con game-engine.js.
   function vibrar(patron = 20) {
     if (navigator.vibrate) navigator.vibrate(patron);
   }
@@ -38,7 +38,7 @@ const InfantilEngine = (() => {
   function sumarEstrella(n = 1) {
     estrellasGanadas += n;
     actualizarEstrellas();
-    beep(880, 90, "triangle", 0.05);
+    SFX.acierto();
     vibrar(15);
   }
 
@@ -94,8 +94,7 @@ const InfantilEngine = (() => {
   function pantallaFinal(mensaje) {
     limpiarTimers();
     if (typeof Dictado !== "undefined") Dictado.detener();
-    beep(660, 110, "triangle", 0.05);
-    timers.push(setTimeout(() => beep(880, 180, "triangle", 0.06), 130));
+    SFX.logro();
     vibrar([30, 40, 30]);
     InfantilStorage.registrarActividadCompletada(actividad.id);
     InfantilStorage.sumarEstrellas(estrellasGanadas || 1);
@@ -141,7 +140,7 @@ const InfantilEngine = (() => {
         if (aciertos === pares.length) timers.push(setTimeout(() => pantallaFinal("¡Encontraste todos los pares!"), 500));
       } else {
         bloqueado = true;
-        beep(300, 90, "sine", 0.03);
+        SFX.suave();
         timers.push(setTimeout(() => { primera.volteada = false; c.volteada = false; primera = null; bloqueado = false; render(); }, 900));
       }
     }
@@ -167,7 +166,7 @@ const InfantilEngine = (() => {
         const acierto = Number(btn.dataset.i) === r.correctaIdx;
         if (acierto) { btn.classList.add("ie-correcta"); sumarEstrella(); timers.push(setTimeout(() => { i += 1; render(); }, 600)); }
         else {
-          beep(300, 90, "sine", 0.03);
+          SFX.suave();
           btn.classList.add("ie-intenta-de-nuevo");
           btn.disabled = true;
           timers.push(setTimeout(() => { btn.classList.remove("ie-intenta-de-nuevo"); }, 700));
@@ -199,7 +198,7 @@ const InfantilEngine = (() => {
       contenedor.querySelectorAll(".ie-grupo-btn").forEach(btn => btn.addEventListener("click", () => {
         if (btn.dataset.g === item.grupo) { sumarEstrella(); aciertos += 1; restantes.shift(); render(); }
         else {
-          beep(300, 90, "sine", 0.03);
+          SFX.suave();
           btn.classList.add("ie-intenta-de-nuevo");
           btn.disabled = true;
           timers.push(setTimeout(() => { btn.classList.remove("ie-intenta-de-nuevo"); btn.disabled = false; }, 500));
@@ -232,7 +231,7 @@ const InfantilEngine = (() => {
           if (elegidos.length === items.length) timers.push(setTimeout(() => pantallaFinal("¡Ordenaste todo!"), 500));
           else render();
         } else {
-          beep(300, 90, "sine", 0.03);
+          SFX.suave();
           btn.classList.add("ie-intenta-de-nuevo");
           btn.disabled = true;
           timers.push(setTimeout(() => { btn.classList.remove("ie-intenta-de-nuevo"); btn.disabled = false; }, 650));
