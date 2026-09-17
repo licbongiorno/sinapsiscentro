@@ -30,7 +30,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outline-offset: 2px; }
+a:focus-visible, button:focus-visible, [tabindex="-1"]:focus { outline: 2px solid var(--teal-mid); outline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }

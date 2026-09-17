@@ -148,6 +148,20 @@ if (!actividad || !actividad.activo) {
     resultado = actividad.tipo === "generador" ? (MOTORES[actividad.motor] || (() => ({})))() : resolverPrompt();
   }
 
+  /**
+   * renderIntro() y mostrarFinal() reemplazan #cvContenedor entero —
+   * sin esto, con teclado o lector de pantalla el foco queda perdido
+   * en <body> después de "Generar otra combinación" o al guardar la
+   * creación (mismo problema que en exercise-engine.js/
+   * infantil-engine.js, ver comentario ahí).
+   */
+  function enfocarTitulo() {
+    const el = document.querySelector("#cvContenedor .cv-titulo");
+    if (!el) return;
+    if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
+    el.focus();
+  }
+
   const ETIQUETAS_INGREDIENTE = {
     cabeza: "Cabeza de", cuerpo: "Cuerpo de", cola: "Cola de", color: "Color", textura: "Textura",
     habilidad: "Habilidad especial", habitat: "Vive en",
@@ -226,6 +240,7 @@ if (!actividad || !actividad.activo) {
 
     cont.innerHTML = html;
     Lector.conectar(cont);
+    enfocarTitulo();
 
     const btnRegenerar = document.getElementById("cvRegenerar");
     if (btnRegenerar) btnRegenerar.addEventListener("click", () => { generar(); renderIntro(); });
@@ -295,7 +310,7 @@ if (!actividad || !actividad.activo) {
     });
   }
 
-  function renderCapturaFoto() {
+  function renderCapturaFoto(primeraVez) {
     const entrada = document.getElementById("cvEntrada");
     entrada.innerHTML = `
       <div class="cv-foto-wrap">
@@ -312,6 +327,11 @@ if (!actividad || !actividad.activo) {
     const btnRetomar = document.getElementById("cvFotoRetomar");
     if (btnAbrir) btnAbrir.addEventListener("click", abrir);
     if (btnRetomar) btnRetomar.addEventListener("click", abrir);
+    // el <input type="file"> que disparó este render se destruye acá
+    // (se reconstruye entero) — sin esto el foco de teclado se pierde
+    // justo después de elegir una foto. En el primer render dejamos que
+    // enfocarTitulo() (desde renderIntro) se quede con el foco.
+    if (!primeraVez) (btnRetomar || btnAbrir)?.focus();
     input.addEventListener("change", async () => {
       const file = input.files && input.files[0];
       if (!file) return;
@@ -321,7 +341,7 @@ if (!actividad || !actividad.activo) {
         alert("No se pudo procesar la foto. Probá de nuevo.");
         return;
       }
-      renderCapturaFoto();
+      renderCapturaFoto(false);
       renderAcciones();
     });
   }
@@ -330,7 +350,7 @@ if (!actividad || !actividad.activo) {
     const entrada = document.getElementById("cvEntrada");
     if (typeof Dictado !== "undefined") Dictado.detener();
     if (salidaElegida === "foto") {
-      renderCapturaFoto();
+      renderCapturaFoto(true);
       renderAcciones();
       return;
     }
@@ -423,6 +443,7 @@ if (!actividad || !actividad.activo) {
         </div>
         ${nuevos.length ? `<div class="ee-logros-nuevos">${nuevos.map(l => `<div class="ee-logro-chip">${l.icono} ${l.nombre}</div>`).join("")}</div>` : ""}
       </div>`;
+    enfocarTitulo();
 
     const exportar = document.getElementById("cvExportar");
     if (tipo === "dibujo" || tipo === "foto") {

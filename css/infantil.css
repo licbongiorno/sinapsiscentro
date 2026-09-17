@@ -35,7 +35,9 @@ html { scroll-behavior: smooth; }
    (fixed, bottom:80px) no tape el último contenido de la página. */
 body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); padding-bottom: 140px; }
 a { color: inherit; text-decoration: none; }
-a:focus-visible, button:focus-visible, textarea:focus-visible { outline: 3px solid var(--kid-orange); outline-offset: 2px; border-radius: 4px; }
+/* --kid-orange-texto (no --kid-orange): ver comentario junto a
+   .ie-opcion más abajo — el tono claro no llega a 3:1 en un borde. */
+a:focus-visible, button:focus-visible, textarea:focus-visible, [tabindex="-1"]:focus { outline: 3px solid var(--kid-orange-texto); outline-offset: 2px; border-radius: 4px; }
 button { font-family: inherit; }
 h1, h2, h3 { font-family: 'Baloo 2', 'Playfair Display', serif; color: var(--navy); }
 
@@ -147,10 +149,14 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 /* .lector-btn vive en css/lector.css (compartido con Ejercicios/Mindfulness/Creatividad). */
 
 .ie-opciones { display: flex; flex-direction: column; gap: 10px; }
+/* --kid-orange-texto (no --kid-orange) para estos bordes: --kid-orange
+   da 1.95-2.31:1 contra blanco/#ffe8d6, bajo el 3:1 que pide WCAG para
+   el borde de un componente de UI. --kid-orange-texto ya existía para
+   texto (más contraste todavía) y sirve igual acá. */
 .ie-opcion { background: white; border: 3px solid var(--teal-pale); border-radius: var(--r); padding: 16px; font-size: 1rem; font-weight: 700; color: var(--text); cursor: pointer; transition: background 0.15s, border-color 0.15s, transform 0.12s; touch-action: manipulation; }
-.ie-opcion:active { border-color: var(--kid-orange); background: var(--warm-lt); transform: scale(0.97); }
+.ie-opcion:active { border-color: var(--kid-orange-texto); background: var(--warm-lt); transform: scale(0.97); }
 .ie-opcion.ie-correcta { background: #d6f5df; border-color: #4caf6a; animation: iePop 0.3s var(--easing); }
-.ie-opcion.ie-intenta-de-nuevo { background: #ffe8d6; border-color: var(--kid-orange); animation: ieShake 0.25s; }
+.ie-opcion.ie-intenta-de-nuevo { background: #ffe8d6; border-color: var(--kid-orange-texto); animation: ieShake 0.25s; }
 @keyframes iePop { 0% { transform: scale(1); } 45% { transform: scale(1.05); } 100% { transform: scale(1); } }
 @keyframes ieShake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
 
@@ -164,15 +170,15 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ie-item-clasificar { font-size: 4rem; margin: 20px 0; }
 .ie-grupos { display: flex; gap: 14px; justify-content: center; }
 .ie-grupo-btn { flex: 1; max-width: 160px; padding: 20px 10px; border-radius: var(--r-lg); border: 3px solid var(--teal-pale); background: white; font-weight: 800; font-size: 0.95rem; cursor: pointer; transition: transform 0.12s, border-color 0.15s; touch-action: manipulation; }
-.ie-grupo-btn:active { transform: scale(0.95); border-color: var(--kid-orange); }
-.ie-grupo-btn.ie-intenta-de-nuevo { animation: ieShake 0.25s; border-color: var(--kid-orange); }
+.ie-grupo-btn:active { transform: scale(0.95); border-color: var(--kid-orange-texto); }
+.ie-grupo-btn.ie-intenta-de-nuevo { animation: ieShake 0.25s; border-color: var(--kid-orange-texto); }
 
 .ie-secuencia-elegidos { min-height: 44px; margin: 14px 0; text-align: left; }
 .ie-secuencia-item { background: var(--teal-pale); color: var(--teal-deep); border-radius: 10px; padding: 8px 14px; margin-bottom: 6px; font-weight: 700; }
 .ie-secuencia-disponibles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .ie-secuencia-btn { background: white; border: 3px solid var(--teal-pale); border-radius: 10px; padding: 10px 16px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: transform 0.12s; touch-action: manipulation; }
 .ie-secuencia-btn:active { transform: scale(0.93); background: var(--teal-pale); }
-.ie-secuencia-btn.ie-intenta-de-nuevo { border-color: var(--kid-orange); background: #ffe8d6; animation: ieShake 0.25s; }
+.ie-secuencia-btn.ie-intenta-de-nuevo { border-color: var(--kid-orange-texto); background: #ffe8d6; animation: ieShake 0.25s; }
 
 .ie-lienzo { background: white; border-radius: var(--r-lg); border: 3px solid var(--teal-pale); touch-action: none; max-width: 90vw; margin: 14px auto; display: block; }
 .ie-lienzo-colores { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
@@ -201,8 +207,8 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
   .ih-puerta:hover { transform: translateY(-4px); }
   .ih-actividad-card:hover { transform: translateY(-3px); }
   .ie-btn-principal:hover { transform: translateY(-2px); }
-  .ie-opcion:hover { border-color: var(--kid-orange); }
-  .ie-grupo-btn:hover { border-color: var(--kid-orange); }
+  .ie-opcion:hover { border-color: var(--kid-orange-texto); }
+  .ie-grupo-btn:hover { border-color: var(--kid-orange-texto); }
   .ie-secuencia-btn:hover { background: var(--teal-pale); }
   .ie-lienzo-colores button[data-c]:hover { transform: scale(1.12); }
 }
