@@ -25,7 +25,8 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-necesidades-card { background: white; border-radius: var(--r-lg); padding: 20px; box-shadow: 0 20px 50px rgba(8,32,46,0.12); }
 .sh-necesidades-card h2 { font-size: 0.95rem; font-family: 'Nunito', sans-serif; font-weight: 800; margin-bottom: 12px; }
 .sh-necesidad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.sh-necesidad-btn { border: none; background: var(--bg); border-radius: 14px; padding: 12px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 0.68rem; font-weight: 700; color: var(--text-mid); cursor: pointer; text-align: center; transition: background 0.2s, transform 0.2s; }
+.sh-necesidad-btn { border: none; background: var(--bg); border-radius: 14px; padding: 12px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 0.68rem; font-weight: 700; color: var(--text-mid); cursor: pointer; text-align: center; transition: background 0.2s, transform 0.2s; touch-action: manipulation; }
+.sh-necesidad-btn:active { background: var(--teal-pale); transform: scale(0.94); }
 .sh-necesidad-btn .emoji { font-size: 1.4rem; }
 
 .sh-seccion { max-width: 640px; margin: 28px auto 0; padding: 0 18px; }
@@ -39,13 +40,13 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-porque-card p:not(.sh-porque-titulo) { font-size: 0.78rem; color: var(--text-mid); line-height: 1.6; }
 
 .sh-categorias-tabs { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 14px; }
-.sh-cat-tab { flex: 0 0 auto; border: 2px solid var(--teal-pale); background: white; border-radius: 50px; padding: 8px 16px; font-size: 0.82rem; font-weight: 700; color: var(--text-mid); cursor: pointer; white-space: nowrap; }
+.sh-cat-tab { flex: 0 0 auto; border: 2px solid var(--teal-pale); background: white; border-radius: 50px; padding: 8px 16px; font-size: 0.82rem; font-weight: 700; color: var(--text-mid); cursor: pointer; white-space: nowrap; transition: transform 0.15s; touch-action: manipulation; }
 .sh-cat-tab.activo { background: var(--navy); border-color: var(--navy); color: white; }
+.sh-cat-tab:active { transform: scale(0.93); }
 
 .sh-pistas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.sh-pista-card { background: white; border-radius: var(--r); padding: 14px; text-align: left; box-shadow: 0 4px 14px rgba(8,32,46,0.05); border: 2px solid transparent; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s; display: flex; flex-direction: column; gap: 6px; }
-.sh-pista-card:hover { border-color: var(--teal-pale); }
-.sh-pista-card:active { transform: scale(0.97); }
+.sh-pista-card { background: white; border-radius: var(--r); padding: 14px; text-align: left; box-shadow: 0 4px 14px rgba(8,32,46,0.05); border: 2px solid transparent; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s; display: flex; flex-direction: column; gap: 6px; touch-action: manipulation; }
+.sh-pista-card:active { transform: scale(0.97); border-color: var(--teal-pale); }
 .sh-pista-card.activa { border-color: var(--teal-mid); background: var(--teal-pale); }
 .sh-pista-card.no-disponible { opacity: 0.55; cursor: default; }
 .sh-pista-card .emoji { font-size: 1.5rem; }
@@ -68,7 +69,8 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-temporizador-select { border: 2px solid var(--teal-pale); border-radius: 50px; padding: 8px 14px; font-size: 0.8rem; font-weight: 700; color: var(--text-mid); background: white; }
 .sh-mezclador-vacio { color: var(--text-soft); font-size: 0.85rem; text-align: center; padding: 10px; }
 
-.sh-btn { padding: 12px 22px; border-radius: 50px; border: none; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: transform 0.2s; }
+.sh-btn { padding: 12px 22px; border-radius: 50px; border: none; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: transform 0.2s; touch-action: manipulation; }
+.sh-btn:active { transform: scale(0.95); }
 .sh-btn-principal { background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: white; box-shadow: 0 6px 16px rgba(42,174,194,0.3); }
 .sh-btn-secundario { background: var(--teal-pale); color: var(--teal-deep); }
 
@@ -78,13 +80,15 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 
 /* ── Explorador de binaurales ── */
 .sh-bandas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-.sh-banda-card { border-radius: var(--r); padding: 14px 8px; text-align: center; cursor: pointer; border: 2px solid transparent; background: white; box-shadow: 0 4px 14px rgba(8,32,46,0.05); transition: border-color 0.2s; }
+.sh-banda-card { border-radius: var(--r); padding: 14px 8px; text-align: center; cursor: pointer; border: 2px solid transparent; background: white; box-shadow: 0 4px 14px rgba(8,32,46,0.05); transition: border-color 0.2s, transform 0.15s; touch-action: manipulation; }
 .sh-banda-card.activa { border-color: var(--teal-mid); }
+.sh-banda-card:active { transform: scale(0.95); }
 .sh-banda-card .nombre { font-weight: 800; font-size: 0.85rem; }
 .sh-banda-card .rango { font-size: 0.66rem; color: var(--text-soft); margin-top: 2px; }
 .sh-banda-desc { background: white; border-radius: var(--r); padding: 16px; font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 16px; }
 .sh-explorador-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 18px; }
-.sh-explorador-btn { background: white; border: 2px solid var(--teal-pale); border-radius: var(--r); padding: 12px 8px; text-align: center; font-size: 0.78rem; font-weight: 700; color: var(--text-mid); cursor: pointer; }
+.sh-explorador-btn { background: white; border: 2px solid var(--teal-pale); border-radius: var(--r); padding: 12px 8px; text-align: center; font-size: 0.78rem; font-weight: 700; color: var(--text-mid); cursor: pointer; transition: transform 0.15s, background 0.15s; touch-action: manipulation; }
+.sh-explorador-btn:active { transform: scale(0.95); background: var(--teal-pale); }
 .sh-binaural-controles { background: white; border-radius: var(--r-lg); padding: 18px; box-shadow: 0 4px 14px rgba(8,32,46,0.05); }
 .sh-binaural-fila { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
 .sh-binaural-fila label { font-size: 0.8rem; font-weight: 700; width: 110px; flex-shrink: 0; }
@@ -97,7 +101,8 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .sh-mezcla-guardada .nombre { font-weight: 700; font-size: 0.88rem; }
 .sh-mezcla-guardada .detalle { font-size: 0.72rem; color: var(--text-soft); }
 .sh-mezcla-acciones { display: flex; gap: 6px; }
-.sh-mezcla-acciones button { border: none; background: var(--teal-pale); color: var(--teal-deep); border-radius: 50px; padding: 6px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+.sh-mezcla-acciones button { border: none; background: var(--teal-pale); color: var(--teal-deep); border-radius: 50px; padding: 6px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: transform 0.15s; touch-action: manipulation; }
+.sh-mezcla-acciones button:active { transform: scale(0.92); }
 .sh-mezcla-acciones button.eliminar { background: #ffe0e0; color: #a04040; }
 
 .sh-vacio { color: var(--text-soft); font-size: 0.85rem; text-align: center; padding: 20px; }
@@ -119,7 +124,8 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 }
 
 /* ── Botón de perfil (header) ── */
-.sh-perfil-btn { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0; }
+.sh-perfil-btn { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0; transition: transform 0.15s, background 0.2s; touch-action: manipulation; }
+.sh-perfil-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.2); }
 
 /* ── Modal de perfil: mismas reglas que juegos.css/ejercicios.css, en línea
    a propósito (no @import — ver comentario en esos archivos) ── */
@@ -139,7 +145,9 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .jp-avatar-opcion {
   width: 44px; height: 44px; border-radius: 50%; border: 2px solid transparent; background: var(--bg);
   font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s, border-color 0.2s, background 0.2s; touch-action: manipulation;
 }
+.jp-avatar-opcion:active { transform: scale(0.9); }
 .jp-avatar-opcion.activo { border-color: var(--teal-mid); background: var(--teal-pale); }
 .jp-modal input[type="text"] {
   width: 100%; border: 2px solid var(--teal-pale); border-radius: var(--r); padding: 12px 16px;
@@ -148,7 +156,9 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 .jp-modal-cerrar {
   width: 100%; border: none; border-radius: 50px; padding: 14px; font-weight: 700;
   background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: white; cursor: pointer;
+  transition: transform 0.15s; touch-action: manipulation;
 }
+.jp-modal-cerrar:active { transform: scale(0.97); }
 .jp-nivel-barra { height: 8px; background: var(--teal-pale); border-radius: 8px; overflow: hidden; margin: 6px 0 16px; }
 .jp-nivel-barra-fill { width: 100%; height: 100%; background: linear-gradient(90deg, var(--teal), var(--teal-mid)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
 
@@ -159,4 +169,7 @@ header.sh-header::before { content: ''; position: absolute; inset: 0; background
 @media (hover: hover) and (pointer: fine) {
   .sh-necesidad-btn:hover { background: var(--teal-pale); transform: translateY(-2px); }
   .sh-btn:hover { transform: translateY(-1px); }
+  .sh-pista-card:hover { border-color: var(--teal-pale); }
+  .sh-explorador-btn:hover { background: var(--teal-pale); }
+  .sh-mezcla-acciones button:hover { transform: translateY(-1px); }
 }

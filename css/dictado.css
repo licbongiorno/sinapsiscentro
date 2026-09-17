@@ -19,7 +19,9 @@
   font-size: 1.1rem;
   cursor: pointer;
   transition: transform 0.15s, background 0.2s, color 0.2s;
+  touch-action: manipulation;
 }
+.dictado-btn:active { transform: scale(0.9); }
 .dictado-btn.dictado-activo {
   background: #e05a5a;
   color: white;

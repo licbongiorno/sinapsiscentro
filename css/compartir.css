@@ -14,8 +14,10 @@
   font-size: 0.85rem;
   cursor: pointer;
   padding: 10px 6px;
+  transition: color 0.15s;
+  touch-action: manipulation;
 }
-.compartir-btn:hover { color: var(--teal-deep); }
+.compartir-btn:active { color: var(--teal-deep); }
 
 /* Variante circular compacta, del mismo tamaño que .lector-btn, para
    cuando compartir va junto al botón de escuchar en .rh-acciones
@@ -79,7 +81,10 @@
   border-radius: 50%;
   font-size: 0.85rem;
   cursor: pointer;
+  transition: transform 0.15s;
+  touch-action: manipulation;
 }
+.compartir-cerrar:active { transform: scale(0.9); }
 
 .compartir-titulo {
   font-weight: 800;
@@ -116,8 +121,10 @@
   font-family: inherit;
   cursor: pointer;
   text-align: center;
+  transition: background 0.15s, border-color 0.15s, transform 0.12s;
+  touch-action: manipulation;
 }
-.compartir-opcion:hover { background: var(--teal-pale); border-color: var(--teal-soft); }
+.compartir-opcion:active { background: var(--teal-pale); border-color: var(--teal-soft); transform: scale(0.95); }
 .compartir-opcion-icono { font-size: 1.4rem; }
 
 
@@ -125,5 +132,8 @@
    En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
    toque en otro lado — mover estas reglas acá evita ese efecto. */
 @media (hover: hover) and (pointer: fine) {
+  .compartir-btn:hover { color: var(--teal-deep); }
   .compartir-btn.compartir-icono:hover { color: var(--teal-deep); transform: scale(1.08); }
+  .compartir-cerrar:hover { transform: scale(1.08); }
+  .compartir-opcion:hover { background: var(--teal-pale); border-color: var(--teal-soft); }
 }

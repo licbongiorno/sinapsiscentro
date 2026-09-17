@@ -31,27 +31,32 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 
 /* Puertas de entrada */
 .ih-puertas { max-width: 640px; margin: -20px auto 0; padding: 0 18px; position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.ih-puerta { background: white; border-radius: var(--r-lg); padding: 20px 14px; text-align: center; box-shadow: 0 16px 40px rgba(8,32,46,0.14); cursor: pointer; border: none; transition: transform 0.2s; }
+.ih-puerta { background: white; border-radius: var(--r-lg); padding: 20px 14px; text-align: center; box-shadow: 0 16px 40px rgba(8,32,46,0.14); cursor: pointer; border: none; transition: transform 0.2s; touch-action: manipulation; }
+.ih-puerta:active { transform: scale(0.94); }
 .ih-puerta .emoji { font-size: 2.2rem; display: block; margin-bottom: 8px; }
 .ih-puerta .titulo { font-weight: 800; font-size: 1rem; color: var(--navy); }
 .ih-puerta .sub { font-size: 0.78rem; color: var(--text-soft); margin-top: 2px; }
 .ih-puerta.familias { grid-column: 1 / -1; background: linear-gradient(135deg, var(--warm-lt), white); }
 
 .ih-sorprendeme { max-width: 640px; margin: 18px auto 0; padding: 0 18px; }
-.ih-sorprendeme-btn { width: 100%; border: none; border-radius: var(--r-lg); background: linear-gradient(135deg, var(--kid-orange), var(--kid-yellow)); color: var(--navy); padding: 16px; font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: 0 12px 26px rgba(240,149,74,0.3); }
+.ih-sorprendeme-btn { width: 100%; border: none; border-radius: var(--r-lg); background: linear-gradient(135deg, var(--kid-orange), var(--kid-yellow)); color: var(--navy); padding: 16px; font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: 0 12px 26px rgba(240,149,74,0.3); transition: transform 0.15s; touch-action: manipulation; }
+.ih-sorprendeme-btn:active { transform: scale(0.96); }
 
 /* Vista de banda */
 .ih-banda-header { max-width: 640px; margin: 20px auto 0; padding: 0 18px; display: flex; align-items: center; gap: 10px; }
-.ih-volver-btn { width: 38px; height: 38px; border-radius: 50%; border: none; background: var(--teal-pale); color: var(--teal-deep); font-size: 1.1rem; cursor: pointer; }
+.ih-volver-btn { width: 38px; height: 38px; border-radius: 50%; border: none; background: var(--teal-pale); color: var(--teal-deep); font-size: 1.1rem; cursor: pointer; transition: transform 0.15s; touch-action: manipulation; }
+.ih-volver-btn:active { transform: scale(0.88); }
 .ih-banda-titulo { font-size: 1.3rem; }
 .ih-seccion { max-width: 640px; margin: 24px auto 0; padding: 0 18px; }
 .ih-seccion h2 { font-size: 1rem; margin-bottom: 12px; font-family: 'Nunito', sans-serif; font-weight: 800; }
 .ih-categorias-fila { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 18px; }
-.ih-cat-chip { flex: 0 0 auto; border: 2px solid var(--teal-pale); background: white; border-radius: 50px; padding: 8px 14px; font-size: 0.78rem; font-weight: 700; color: var(--text-mid); cursor: pointer; white-space: nowrap; }
+.ih-cat-chip { flex: 0 0 auto; border: 2px solid var(--teal-pale); background: white; border-radius: 50px; padding: 8px 14px; font-size: 0.78rem; font-weight: 700; color: var(--text-mid); cursor: pointer; white-space: nowrap; transition: transform 0.15s; touch-action: manipulation; }
 .ih-cat-chip.activo { background: var(--navy); border-color: var(--navy); color: white; }
+.ih-cat-chip:active { transform: scale(0.93); }
 
 .ih-actividades-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.ih-actividad-card { background: white; border-radius: var(--r); padding: 16px 12px; text-align: center; box-shadow: 0 6px 18px rgba(8,32,46,0.06); border: 1px solid rgba(42,174,194,0.08); cursor: pointer; transition: transform 0.2s; }
+.ih-actividad-card { background: white; border-radius: var(--r); padding: 16px 12px; text-align: center; box-shadow: 0 6px 18px rgba(8,32,46,0.06); border: 1px solid rgba(42,174,194,0.08); cursor: pointer; transition: transform 0.2s; touch-action: manipulation; }
+.ih-actividad-card:active { transform: scale(0.95); }
 .ih-actividad-card .emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
 .ih-actividad-card .titulo { font-size: 0.8rem; font-weight: 700; }
 .ih-actividad-card .desc { display:block; font-size: 0.68rem; color: var(--text-soft); margin-top: 5px; line-height: 1.35; }
@@ -59,8 +64,9 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 
 /* Familias */
 .ih-familia-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
-.ih-familia-tab { border: 2px solid var(--teal-pale); background: white; border-radius: 50px; padding: 8px 16px; font-size: 0.82rem; font-weight: 700; color: var(--text-mid); cursor: pointer; }
+.ih-familia-tab { border: 2px solid var(--teal-pale); background: white; border-radius: 50px; padding: 8px 16px; font-size: 0.82rem; font-weight: 700; color: var(--text-mid); cursor: pointer; transition: transform 0.15s; touch-action: manipulation; }
 .ih-familia-tab.activo { background: var(--teal); border-color: var(--teal); color: white; }
+.ih-familia-tab:active { transform: scale(0.93); }
 .ih-guia-card { background: white; border-radius: var(--r-lg); padding: 20px; box-shadow: 0 6px 18px rgba(8,32,46,0.06); margin-bottom: 16px; }
 .ih-guia-card h3 { font-size: 0.95rem; color: var(--teal-deep); margin-bottom: 6px; }
 .ih-guia-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 14px; }
@@ -79,8 +85,9 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ih-stat-card .etiqueta { font-size: 0.66rem; color: var(--text-soft); margin-top: 2px; }
 
 .ih-avatar-selector { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 16px 0; }
-.ih-avatar-opcion { width: 48px; height: 48px; border-radius: 50%; border: 3px solid transparent; background: var(--bg); font-size: 1.4rem; cursor: pointer; }
+.ih-avatar-opcion { width: 48px; height: 48px; border-radius: 50%; border: 3px solid transparent; background: var(--bg); font-size: 1.4rem; cursor: pointer; transition: transform 0.15s; touch-action: manipulation; }
 .ih-avatar-opcion.activo { border-color: var(--kid-orange); background: var(--warm-lt); }
+.ih-avatar-opcion:active { transform: scale(0.88); }
 
 @media(min-width: 700px) { .ih-puertas { grid-template-columns: repeat(4, 1fr); } .ih-puerta.familias { grid-column: auto; } .ih-actividades-grid { grid-template-columns: repeat(3, 1fr); } }
 
@@ -106,7 +113,8 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 .ie-porque summary:focus-visible { outline: 2px solid var(--teal-mid); outline-offset: 3px; border-radius: 6px; }
 .ie-porque p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; padding-bottom: 13px; margin: 0; }
 
-.ie-btn { padding: 15px 28px; border-radius: 50px; border: none; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.2s; }
+.ie-btn { padding: 15px 28px; border-radius: 50px; border: none; font-weight: 800; font-size: 1rem; cursor: pointer; transition: transform 0.2s; touch-action: manipulation; }
+.ie-btn:active { transform: scale(0.94); }
 .ie-btn-principal { background: linear-gradient(135deg, var(--kid-orange), var(--kid-yellow)); color: var(--navy); box-shadow: 0 8px 20px rgba(240,149,74,0.3); }
 .ie-btn-secundario { background: var(--teal-pale); color: var(--teal-deep); }
 
@@ -118,32 +126,37 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 /* .lector-btn vive en css/lector.css (compartido con Ejercicios/Mindfulness/Creatividad). */
 
 .ie-opciones { display: flex; flex-direction: column; gap: 10px; }
-.ie-opcion { background: white; border: 3px solid var(--teal-pale); border-radius: var(--r); padding: 16px; font-size: 1rem; font-weight: 700; color: var(--text); cursor: pointer; transition: background 0.15s, border-color 0.15s; }
-.ie-opcion:hover { border-color: var(--kid-orange); }
-.ie-opcion.ie-correcta { background: #d6f5df; border-color: #4caf6a; }
+.ie-opcion { background: white; border: 3px solid var(--teal-pale); border-radius: var(--r); padding: 16px; font-size: 1rem; font-weight: 700; color: var(--text); cursor: pointer; transition: background 0.15s, border-color 0.15s, transform 0.12s; touch-action: manipulation; }
+.ie-opcion:active { border-color: var(--kid-orange); background: var(--warm-lt); transform: scale(0.97); }
+.ie-opcion.ie-correcta { background: #d6f5df; border-color: #4caf6a; animation: iePop 0.3s var(--easing); }
 .ie-opcion.ie-intenta-de-nuevo { background: #ffe8d6; border-color: var(--kid-orange); animation: ieShake 0.25s; }
+@keyframes iePop { 0% { transform: scale(1); } 45% { transform: scale(1.05); } 100% { transform: scale(1); } }
 @keyframes ieShake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
 
 .ie-tablero { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: min(90vw, 340px); margin: 0 auto; }
-.ie-carta { aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, var(--kid-purple), var(--kid-pink)); display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; color: white; transition: transform 0.2s; }
+.ie-carta { aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, var(--kid-purple), var(--kid-pink)); display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; color: white; transition: transform 0.2s; touch-action: manipulation; }
 .ie-carta.volteada { background: white; border: 3px solid var(--teal-pale); }
 .ie-carta:active { transform: scale(0.94); }
 
 .ie-item-clasificar { font-size: 4rem; margin: 20px 0; }
 .ie-grupos { display: flex; gap: 14px; justify-content: center; }
-.ie-grupo-btn { flex: 1; max-width: 160px; padding: 20px 10px; border-radius: var(--r-lg); border: 3px solid var(--teal-pale); background: white; font-weight: 800; font-size: 0.95rem; cursor: pointer; }
+.ie-grupo-btn { flex: 1; max-width: 160px; padding: 20px 10px; border-radius: var(--r-lg); border: 3px solid var(--teal-pale); background: white; font-weight: 800; font-size: 0.95rem; cursor: pointer; transition: transform 0.12s, border-color 0.15s; touch-action: manipulation; }
+.ie-grupo-btn:active { transform: scale(0.95); border-color: var(--kid-orange); }
 .ie-grupo-btn.ie-intenta-de-nuevo { animation: ieShake 0.25s; border-color: var(--kid-orange); }
 
 .ie-secuencia-elegidos { min-height: 44px; margin: 14px 0; text-align: left; }
 .ie-secuencia-item { background: var(--teal-pale); color: var(--teal-deep); border-radius: 10px; padding: 8px 14px; margin-bottom: 6px; font-weight: 700; }
 .ie-secuencia-disponibles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-.ie-secuencia-btn { background: white; border: 3px solid var(--teal-pale); border-radius: 10px; padding: 10px 16px; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+.ie-secuencia-btn { background: white; border: 3px solid var(--teal-pale); border-radius: 10px; padding: 10px 16px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: transform 0.12s; touch-action: manipulation; }
+.ie-secuencia-btn:active { transform: scale(0.93); background: var(--teal-pale); }
 .ie-secuencia-btn.ie-intenta-de-nuevo { border-color: var(--kid-orange); background: #ffe8d6; animation: ieShake 0.25s; }
 
 .ie-lienzo { background: white; border-radius: var(--r-lg); border: 3px solid var(--teal-pale); touch-action: none; max-width: 90vw; margin: 14px auto; display: block; }
 .ie-lienzo-colores { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.ie-lienzo-colores button[data-c] { width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 1px var(--teal-pale); cursor: pointer; }
-.ie-lienzo-limpiar { border: none; background: var(--teal-pale); color: var(--teal-deep); border-radius: 50px; padding: 5px 14px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+.ie-lienzo-colores button[data-c] { width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 1px var(--teal-pale); cursor: pointer; transition: transform 0.15s; touch-action: manipulation; }
+.ie-lienzo-colores button[data-c]:active { transform: scale(1.25); }
+.ie-lienzo-limpiar { border: none; background: var(--teal-pale); color: var(--teal-deep); border-radius: 50px; padding: 5px 14px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: transform 0.15s; touch-action: manipulation; }
+.ie-lienzo-limpiar:active { transform: scale(0.93); }
 
 .ie-circulo { width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, var(--kid-yellow), var(--kid-orange)); margin: 16px auto; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(240,149,74,0.25); }
 .ie-circulo span { color: var(--navy); font-weight: 800; font-size: 1rem; }
@@ -165,4 +178,8 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
   .ih-puerta:hover { transform: translateY(-4px); }
   .ih-actividad-card:hover { transform: translateY(-3px); }
   .ie-btn-principal:hover { transform: translateY(-2px); }
+  .ie-opcion:hover { border-color: var(--kid-orange); }
+  .ie-grupo-btn:hover { border-color: var(--kid-orange); }
+  .ie-secuencia-btn:hover { background: var(--teal-pale); }
+  .ie-lienzo-colores button[data-c]:hover { transform: scale(1.12); }
 }

@@ -70,8 +70,9 @@ nav.svc-nav {
   text-decoration: none; font-weight: 700; font-size: 0.85rem;
   transition: background 0.25s, transform 0.25s;
   display: flex; align-items: center; gap: 8px;
+  touch-action: manipulation;
 }
-.svc-nav-cta:hover { background: var(--teal-soft); color: var(--navy); transform: translateY(-1px); }
+.svc-nav-cta:active { background: var(--teal-soft); color: var(--navy); transform: scale(0.96); }
 @media(max-width:640px){ .svc-nav-cta span.txt { display:none; } .svc-nav-cta { padding:10px 14px; } }
 
 /* ═══ MIGA DE PAN + HERO DE SERVICIO ═══ */
@@ -86,7 +87,7 @@ nav.svc-nav {
 .svc-hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
 .svc-breadcrumb { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 22px; }
 .svc-breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-.svc-breadcrumb a:hover { color: white; }
+.svc-breadcrumb a:active { color: white; }
 .svc-breadcrumb span { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
 .svc-breadcrumb em { color: var(--teal-soft); font-style: normal; font-size: 0.82rem; font-weight: 600; }
 .svc-tag {
@@ -110,14 +111,16 @@ nav.svc-nav {
   padding: 15px 32px; border-radius: 50px; text-decoration: none; font-weight: 700;
   font-size: 0.95rem; display: flex; align-items: center; gap: 10px;
   box-shadow: 0 8px 26px rgba(0,0,0,0.28); transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing);
+  touch-action: manipulation;
 }
-.svc-btn-main:hover { transform: translateY(-3px); box-shadow: 0 14px 38px rgba(0,0,0,0.32); }
+.svc-btn-main:active { transform: scale(0.97); box-shadow: 0 4px 16px rgba(0,0,0,0.28); }
 .svc-btn-ghost {
   color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.2);
   padding: 15px 28px; border-radius: 50px; text-decoration: none; font-weight: 600;
   font-size: 0.95rem; background: rgba(255,255,255,0.04); transition: all 0.3s;
+  touch-action: manipulation;
 }
-.svc-btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: white; }
+.svc-btn-ghost:active { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: white; }
 
 /* ═══ CONTENIDO ═══ */
 main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
@@ -171,7 +174,7 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
   gap: 20px; font-family: 'Nunito', sans-serif; font-size: 0.98rem; font-weight: 700;
   color: var(--navy); transition: color 0.2s;
 }
-.svc-faq-q:hover { color: var(--teal-texto); }
+.svc-faq-q:active { color: var(--teal-texto); }
 .svc-faq-icon {
   width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: var(--teal-pale);
   color: var(--teal-texto); display: flex; align-items: center; justify-content: center;
@@ -189,9 +192,9 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
 .svc-rel-card {
   background: white; border: 1.5px solid rgba(42,174,194,0.1); border-radius: var(--r);
   padding: 18px 20px; text-decoration: none; color: inherit; transition: all 0.3s var(--easing);
-  display: block;
+  display: block; touch-action: manipulation;
 }
-.svc-rel-card:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(8,32,46,0.08); }
+.svc-rel-card:active { border-color: var(--teal-mid); transform: scale(0.98); box-shadow: 0 6px 16px rgba(8,32,46,0.1); }
 .svc-rel-card b { display: block; font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1rem; margin-bottom: 4px; }
 .svc-rel-card span { font-size: 0.82rem; color: var(--text-soft); }
 
@@ -207,10 +210,24 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
 footer.svc-footer { background: #050f17; padding: 40px 6% 130px; text-align: center; }
 footer.svc-footer p { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
 footer.svc-footer a { color: var(--teal-soft); text-decoration: none; }
-footer.svc-footer a:hover { text-decoration: underline; }
+footer.svc-footer a:active { text-decoration: underline; }
 footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255,255,0.6); }
 
 @media(max-width:640px){
   .svc-hero { padding: 110px 6% 50px; }
   main.svc-main { padding: 50px 6% 30px; }
+}
+
+/* Hover con transform/scale: solo en dispositivos que de verdad tienen mouse.
+   En touch, :hover se dispara con el tap y queda "pegado" hasta el próximo
+   toque en otro lado — mover estas reglas acá evita ese efecto (mismo
+   patrón que juegos.css/ejercicios.css/infantil.css/sonidos.css). */
+@media (hover: hover) and (pointer: fine) {
+  .svc-nav-cta:hover { background: var(--teal-soft); color: var(--navy); transform: translateY(-1px); }
+  .svc-breadcrumb a:hover { color: white; }
+  .svc-btn-main:hover { transform: translateY(-3px); box-shadow: 0 14px 38px rgba(0,0,0,0.32); }
+  .svc-btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: white; }
+  .svc-faq-q:hover { color: var(--teal-texto); }
+  .svc-rel-card:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(8,32,46,0.08); }
+  footer.svc-footer a:hover { text-decoration: underline; }
 }
