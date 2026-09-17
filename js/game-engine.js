@@ -57,6 +57,33 @@ const GameEngine = (() => {
     return hud;
   }
 
+  /**
+   * Región aria-live compartida por todos los juegos: sin esto, sumar
+   * puntos, perder una vida o terminar la partida son cambios 100%
+   * visuales (el HUD se actualiza, pero nadie que use lector de pantalla
+   * se entera — no hay foco ahí para que lo lea). "polite" espera a que
+   * el lector termine de leer lo que esté leyendo antes de anunciar esto,
+   * para no interrumpir a mitad de frase.
+   */
+  function crearAnunciador() {
+    let el = document.getElementById("geAnunciador");
+    if (el) return el;
+    el = document.createElement("div");
+    el.id = "geAnunciador";
+    el.setAttribute("aria-live", "polite");
+    el.setAttribute("role", "status");
+    el.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;";
+    document.body.appendChild(el);
+    return el;
+  }
+
+  function anunciar(texto) {
+    const el = crearAnunciador();
+    el.textContent = "";
+    // fuerza que el lector detecte el cambio aunque el texto sea igual al anterior
+    setTimeout(() => { el.textContent = texto; }, 30);
+  }
+
   function actualizarVidasHUD(perdida = false) {
     const el = document.getElementById("geVidas");
     if (estado.vidas == null) { el.hidden = true; return; }
@@ -101,6 +128,9 @@ const GameEngine = (() => {
     overlay = document.createElement("div");
     overlay.id = "geFin";
     overlay.className = "ge-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-labelledby", "geFinTitulo");
     overlay.hidden = true;
     document.body.appendChild(overlay);
     return overlay;
@@ -112,10 +142,13 @@ const GameEngine = (() => {
     overlay = document.createElement("div");
     overlay.id = "gePausaOverlay";
     overlay.className = "ge-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-labelledby", "gePausaTitulo");
     overlay.hidden = true;
     overlay.innerHTML = `
       <div class="ge-card">
-        <h2>Pausa</h2>
+        <h2 id="gePausaTitulo" tabindex="-1">Pausa</h2>
         <p>Tomate el tiempo que necesites.</p>
         <button class="ge-btn ge-btn-principal" id="geReanudar">Continuar</button>
         <button class="ge-btn ge-btn-secundario" id="geSalirPausa">Volver al portal</button>
@@ -132,7 +165,7 @@ const GameEngine = (() => {
       const nombreJuego = (juego && (juego.titulo || juego.nombre)) || "Este juego";
       Compartir.compartir({
         titulo: nombreJuego,
-        texto: `${nombreJuego} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        texto: `${nombreJuego} — un recurso gratuito de Centro Sinapsis.`,
         url: window.location.href,
       });
     });
@@ -153,6 +186,7 @@ const GameEngine = (() => {
       crearHUD();
       crearOverlayFin();
       crearOverlayPausa();
+      crearAnunciador();
       actualizarVidasHUD();
       actualizarTiempoHUD();
       if (tiempoSegundos != null) {
@@ -171,6 +205,7 @@ const GameEngine = (() => {
       void el.offsetWidth; // reinicia la animación si se suman puntos rápido seguido
       el.classList.add("ge-bump");
       SFX.acierto();
+      anunciar(`Correcto. ${estado.puntos} puntos.`);
     },
 
     restarVida() {
@@ -181,6 +216,8 @@ const GameEngine = (() => {
       SFX.error();
       if (estado.vidas <= 0) {
         GameEngine.terminar({ puntaje: estado.puntos, exito: false, mensaje: "Se acabaron las vidas. ¡Probá de nuevo!" });
+      } else {
+        anunciar(`Incorrecto. Quedan ${estado.vidas} vida${estado.vidas === 1 ? "" : "s"}.`);
       }
     },
 
@@ -191,6 +228,15 @@ const GameEngine = (() => {
       estado.pausado = !estado.pausado;
       const overlay = document.getElementById("gePausaOverlay");
       overlay.hidden = !estado.pausado;
+      if (estado.pausado) {
+        // sin esto, un lector de pantalla no se entera de que se abrió el
+        // diálogo de pausa: el foco se queda en el botón ⏸ de atrás.
+        overlay.querySelector("h2")?.focus();
+        anunciar("Juego en pausa.");
+      } else {
+        document.getElementById("gePausa")?.focus();
+        anunciar("Juego reanudado.");
+      }
     },
 
     /**
@@ -255,7 +301,7 @@ const GameEngine = (() => {
     overlay.innerHTML = `
       <div class="ge-card">
         <div class="ge-fin-icono">${exito ? "🎉" : "💛"}</div>
-        <h2>${mensaje || (exito ? "¡Buen trabajo!" : "Fin de la partida")}</h2>
+        <h2 id="geFinTitulo" tabindex="-1">${mensaje || (exito ? "¡Buen trabajo!" : "Fin de la partida")}</h2>
         ${puntaje > 0 ? `<p class="ge-puntaje-final">${puntaje} puntos</p>` : ""}
         ${mejoroRecord ? `<p class="ge-record">📈 ¡Superaste tu récord!</p>` : ""}
         <p class="ge-xp">+${xpGanada} XP · Nivel ${perfil.nivel} · Racha 🔥 ${racha.dias} día${racha.dias === 1 ? "" : "s"}</p>
@@ -276,13 +322,17 @@ const GameEngine = (() => {
         </div>
         <button class="compartir-btn" id="geCompartir">🔗 Compartir este juego</button>
       </div>`;
+    // sin mover el foco acá, alguien navegando con teclado o lector de
+    // pantalla se queda "atrás" en el tablero ya cerrado — nunca se
+    // entera de que la partida terminó ni encuentra los botones nuevos.
+    document.getElementById("geFinTitulo")?.focus();
     document.getElementById("geJugarDeNuevo").addEventListener("click", () => window.location.reload());
     document.getElementById("geOtroJuego").addEventListener("click", () => window.location.href = window.__geVolverA || "juegos.html");
     document.getElementById("geCompartir").addEventListener("click", () => {
       const nombreJuego = (juego && (juego.titulo || juego.nombre)) || "Este juego";
       Compartir.compartir({
         titulo: nombreJuego,
-        texto: `${nombreJuego} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        texto: `${nombreJuego} — un recurso gratuito de Centro Sinapsis.`,
         url: window.location.href,
       });
     });

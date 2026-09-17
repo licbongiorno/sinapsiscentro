@@ -15,6 +15,21 @@ const InfantilEngine = (() => {
 
   function limpiarTimers() { timers.forEach(clearTimeout); timers = []; }
 
+  /**
+   * Cada paso/pantalla reemplaza el contenido de #ieContenedor entero
+   * (wizard de una sola vista, no hay "página" real) — sin esto, con
+   * teclado o lector de pantalla el foco queda perdido en <body> después
+   * de cada paso. Mueve el foco al título/pregunta del paso nuevo.
+   */
+  function enfocarPasoActual() {
+    const el = contenedor.querySelector(
+      "h1, .ie-intro-titulo, .ie-final-titulo, .ie-pregunta, .ie-paso p"
+    );
+    if (!el) return;
+    if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
+    el.focus();
+  }
+
   // SFX.* vive en js/sfx.js (sobre js/zzfx.js), compartido con game-engine.js.
   function vibrar(patron = 20) {
     if (navigator.vibrate) navigator.vibrate(patron);
@@ -68,6 +83,7 @@ const InfantilEngine = (() => {
         <button class="ie-btn ie-btn-principal" id="ieComenzar">¡Jugar!</button>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     document.getElementById("ieBarra").style.display = "none";
     document.getElementById("ieComenzar").addEventListener("click", () => {
       document.getElementById("ieBarra").style.display = "flex";
@@ -76,7 +92,7 @@ const InfantilEngine = (() => {
     document.getElementById("ieCompartir").addEventListener("click", () => {
       Compartir.compartir({
         titulo: actividad.titulo,
-        texto: `${actividad.titulo} — una actividad gratuita de Sinapsis, Centro de Salud Integral.`,
+        texto: `${actividad.titulo} — una actividad gratuita de Centro Sinapsis.`,
         url: window.location.href,
       });
     });
@@ -110,6 +126,7 @@ const InfantilEngine = (() => {
           <button class="ie-btn ie-btn-secundario" id="ieOtraActividad">Otra actividad</button>
         </div>
       </div>`;
+    enfocarPasoActual();
     document.getElementById("ieJugarDeNuevo").addEventListener("click", () => { estrellasGanadas = 0; arrancarTipo(); });
     document.getElementById("ieOtraActividad").addEventListener("click", () => { window.location.href = "infantil.html"; });
   }
@@ -123,10 +140,16 @@ const InfantilEngine = (() => {
     let primera = null, bloqueado = false, aciertos = 0;
 
     function render() {
+      const idEnfocada = contenedor.querySelector(".ie-carta:focus")?.dataset.id;
       contenedor.innerHTML = `<div class="ie-tablero">
-        ${cartas.map(c => `<div class="ie-carta ${c.volteada || c.encontrada ? "volteada" : ""}" data-id="${c.id}">${c.volteada || c.encontrada ? c.s : "❓"}</div>`).join("")}
+        ${cartas.map(c => `<button type="button" class="ie-carta ${c.volteada || c.encontrada ? "volteada" : ""}" data-id="${c.id}" aria-label="Carta ${c.id + 1} de ${cartas.length}${c.encontrada ? `, encontrada: ${c.s}` : (c.volteada ? `: ${c.s}` : ", boca abajo")}">${c.volteada || c.encontrada ? c.s : "❓"}</button>`).join("")}
       </div>`;
       contenedor.querySelectorAll(".ie-carta").forEach(el => el.addEventListener("click", () => voltear(Number(el.dataset.id))));
+      // .ie-tablero no tiene título propio (ya se mostró en la pantalla de
+      // inicio) — al arrancar el juego enfocamos la primera carta en vez
+      // del fallback genérico de enfocarPasoActual(), que acá no encontraría nada.
+      if (idEnfocada !== undefined) contenedor.querySelector(`.ie-carta[data-id="${idEnfocada}"]`)?.focus();
+      else contenedor.querySelector(".ie-carta")?.focus();
     }
     function voltear(id) {
       if (bloqueado) return;
@@ -162,6 +185,7 @@ const InfantilEngine = (() => {
           <p class="ie-progreso">${i + 1} / ${rondas.length}</p>
         </div>`;
       Lector.conectar(contenedor);
+      enfocarPasoActual();
       contenedor.querySelectorAll(".ie-opcion").forEach(btn => btn.addEventListener("click", () => {
         const acierto = Number(btn.dataset.i) === r.correctaIdx;
         if (acierto) { btn.classList.add("ie-correcta"); sumarEstrella(); timers.push(setTimeout(() => { i += 1; render(); }, 600)); }
@@ -195,6 +219,7 @@ const InfantilEngine = (() => {
           <p class="ie-progreso">${items.length - restantes.length + 1} / ${items.length}</p>
         </div>`;
       Lector.conectar(contenedor);
+      enfocarPasoActual();
       contenedor.querySelectorAll(".ie-grupo-btn").forEach(btn => btn.addEventListener("click", () => {
         if (btn.dataset.g === item.grupo) { sumarEstrella(); aciertos += 1; restantes.shift(); render(); }
         else {
@@ -213,7 +238,7 @@ const InfantilEngine = (() => {
     const { instruccion, items } = actividad.contenido;
     const mezclado = [...items].sort(() => Math.random() - 0.5);
     let elegidos = [];
-    function render() {
+    function render(primeraVez) {
       contenedor.innerHTML = `
         <div class="ie-paso">
           <div class="ie-pregunta-fila"><p class="ie-pregunta">${instruccion}</p>${Lector.boton(instruccion)}</div>
@@ -222,6 +247,8 @@ const InfantilEngine = (() => {
           <p class="ie-progreso">${elegidos.length} / ${items.length}</p>
         </div>`;
       Lector.conectar(contenedor);
+      if (primeraVez) enfocarPasoActual();
+      else contenedor.querySelector(".ie-secuencia-btn")?.focus();
       contenedor.querySelectorAll(".ie-secuencia-btn").forEach(btn => btn.addEventListener("click", () => {
         const elegido = mezclado[Number(btn.dataset.idx)];
         const esElSiguiente = elegido === items[elegidos.length];
@@ -229,7 +256,7 @@ const InfantilEngine = (() => {
           elegidos.push(elegido);
           sumarEstrella();
           if (elegidos.length === items.length) timers.push(setTimeout(() => pantallaFinal("¡Ordenaste todo!"), 500));
-          else render();
+          else render(false);
         } else {
           SFX.suave();
           btn.classList.add("ie-intenta-de-nuevo");
@@ -238,7 +265,7 @@ const InfantilEngine = (() => {
         }
       }));
     }
-    render();
+    render(true);
   }
 
   // ── HISTORIA (ramificada, elige tu propia aventura) ──
@@ -250,6 +277,7 @@ const InfantilEngine = (() => {
         sumarEstrella(2);
         contenedor.innerHTML = `<div class="ie-paso"><div class="ie-pregunta-fila"><p class="ie-pregunta" style="font-family:'Playfair Display',serif;font-size:1.2rem;">${nodo.texto}</p>${Lector.boton(nodo.texto)}</div></div>`;
         Lector.conectar(contenedor);
+        enfocarPasoActual();
         timers.push(setTimeout(() => pantallaFinal("¡Terminaste la historia!"), 1800));
         return;
       }
@@ -259,6 +287,7 @@ const InfantilEngine = (() => {
           <div class="ie-opciones">${nodo.opciones.map((o, idx) => `<button class="ie-opcion" data-idx="${idx}">${o.texto}</button>`).join("")}</div>
         </div>`;
       Lector.conectar(contenedor);
+      enfocarPasoActual();
       contenedor.querySelectorAll(".ie-opcion").forEach(btn => btn.addEventListener("click", () => {
         sumarEstrella();
         render(nodo.opciones[Number(btn.dataset.idx)].siguiente);
@@ -279,6 +308,7 @@ const InfantilEngine = (() => {
         <button class="ie-btn ie-btn-principal" id="ieListoDibujo" style="margin-top:16px;">¡Listo!</button>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     const canvas = document.getElementById("ieLienzo");
     const lienzo = crearLienzoDibujable(canvas, { colorInicial: COLORES[0], grosor: 6 });
     contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => lienzo.setColor(btn.dataset.c)));
@@ -297,6 +327,7 @@ const InfantilEngine = (() => {
         <p class="ie-progreso" id="ieCicloTexto">1 / ${ciclos}</p>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     function siguienteFase() {
       if (ciclo >= ciclos) { sumarEstrella(2); pantallaFinal("¡Qué bien respiraste!"); return; }
       const f = fases[fase];
@@ -327,6 +358,7 @@ const InfantilEngine = (() => {
         <button class="ie-btn ie-btn-principal" id="ieListoEscritura" style="margin-top:14px;">¡Listo!</button>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     Dictado.conectar(contenedor);
     document.getElementById("ieListoEscritura").addEventListener("click", () => {
       const texto = document.getElementById("ieTextarea").value.trim();

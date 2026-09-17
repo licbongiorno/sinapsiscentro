@@ -10,7 +10,7 @@
   --teal-soft: #7ed6e4;
   --teal-pale: #d4f2f7;
   --cream: #f7f2eb;
-  --warm: #c9a97e;
+  --warm: #7a5c33;
   --warm-lt: #f0e6d3;
   --bg: #f5fafc;
   --text: #0d2535;
@@ -155,7 +155,9 @@ header.ih-header::before { content: ''; position: absolute; inset: 0; background
 @keyframes ieShake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
 
 .ie-tablero { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: min(90vw, 340px); margin: 0 auto; }
-.ie-carta { aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, var(--kid-purple), var(--kid-pink)); display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; color: white; transition: transform 0.2s; touch-action: manipulation; }
+/* .ie-carta ahora es <button> (antes <div>) para que sea operable por
+   teclado — resetea el padding/borde nativos del <button>. */
+.ie-carta { aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, var(--kid-purple), var(--kid-pink)); display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; color: white; transition: transform 0.2s; touch-action: manipulation; border: none; padding: 0; margin: 0; font-family: inherit; }
 .ie-carta.volteada { background: white; border: 3px solid var(--teal-pale); }
 .ie-carta:active { transform: scale(0.94); }
 

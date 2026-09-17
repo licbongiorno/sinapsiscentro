@@ -20,6 +20,23 @@ const ExerciseEngine = (() => {
 
   function limpiarTimers() { timers.forEach(clearTimeout); timers.forEach(clearInterval); timers = []; }
 
+  /**
+   * Cada paso reemplaza el contenido de #eeContenedor entero (no hay
+   * "página" real, es un wizard de una sola vista) — sin esto, alguien
+   * con teclado o lector de pantalla queda con el foco perdido en
+   * <body> después de cada paso, como si hubiera "página en blanco".
+   * Mueve el foco al título/pregunta del paso nuevo, igual que
+   * cambiaría el foco en una navegación real entre páginas.
+   */
+  function enfocarPasoActual() {
+    const el = contenedor.querySelector(
+      "h1, .ee-intro-titulo, .ee-final-titulo, .ee-texto-grande, .ee-paso p"
+    );
+    if (!el) return;
+    if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
+    el.focus();
+  }
+
   // beep() vive en js/beep.js (compartido con game-engine.js).
 
   /**
@@ -94,6 +111,7 @@ const ExerciseEngine = (() => {
         <button class="ee-btn ee-btn-principal" id="eeComenzar">Comenzar</button>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     document.getElementById("eeBarra").style.display = "none";
     document.getElementById("eeComenzar").addEventListener("click", () => {
       document.getElementById("eeBarra").style.display = "flex";
@@ -103,7 +121,7 @@ const ExerciseEngine = (() => {
     document.getElementById("eeCompartir").addEventListener("click", () => {
       Compartir.compartir({
         titulo: ejercicio.titulo,
-        texto: `${ejercicio.titulo} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        texto: `${ejercicio.titulo} — un recurso gratuito de Centro Sinapsis.`,
         url: window.location.href,
       });
     });
@@ -132,6 +150,7 @@ const ExerciseEngine = (() => {
         ${mostrarSiguiente ? `<button class="ee-btn ee-btn-principal" id="eeSiguiente" style="margin-top:24px;">${textoBoton}</button>` : ""}
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     const btn = document.getElementById("eeSiguiente");
     if (btn) btn.addEventListener("click", avanzar);
   }
@@ -167,6 +186,7 @@ const ExerciseEngine = (() => {
         </div>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     let corriendo = true;
     const intervalo = setInterval(() => {
       if (!corriendo) return;
@@ -200,6 +220,7 @@ const ExerciseEngine = (() => {
         <button class="ee-btn ee-btn-secundario" id="eeSaltarRespiracion" style="margin-top:18px;">Continuar</button>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     document.getElementById("eeSaltarRespiracion").addEventListener("click", () => { detenido = true; avanzar(); });
 
     function siguienteFase() {
@@ -248,6 +269,7 @@ const ExerciseEngine = (() => {
         </div>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     contenedor.querySelectorAll(".ee-opcion-sel").forEach(btn => btn.addEventListener("click", () => avanzar()));
   }
 
@@ -265,6 +287,7 @@ const ExerciseEngine = (() => {
         </div>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     Dictado.conectar(contenedor);
     document.getElementById("eeContinuarSinGuardar").addEventListener("click", avanzar);
     document.getElementById("eeGuardarReflexion").addEventListener("click", (e) => {
@@ -282,7 +305,7 @@ const ExerciseEngine = (() => {
     const correcto = paso.items;
     const mezclado = [...correcto].sort(() => Math.random() - 0.5);
     let elegidos = [];
-    function pintar() {
+    function pintar(primeraVez) {
       contenedor.innerHTML = `
         <div class="ee-paso">
           <div class="lector-fila"><p class="ee-texto-grande">${paso.instruccion}</p>${Lector.boton(paso.instruccion)}</div>
@@ -292,13 +315,21 @@ const ExerciseEngine = (() => {
           </div>
         </div>`;
       Lector.conectar(contenedor);
+      if (primeraVez) {
+        enfocarPasoActual();
+      } else {
+        // en las repinturas (cada elección) no volvemos al título: eso
+        // obligaría a un usuario de teclado a re-tabular desde arriba
+        // en cada palabra — enfocamos el próximo botón disponible.
+        contenedor.querySelector(".ee-orden-btn")?.focus();
+      }
       contenedor.querySelectorAll(".ee-orden-btn").forEach(btn => btn.addEventListener("click", () => {
         elegidos.push(mezclado[Number(btn.dataset.t)]);
         if (elegidos.length === correcto.length) { setTimeout(avanzar, 400); }
-        pintar();
+        pintar(false);
       }));
     }
-    pintar();
+    pintar(true);
   }
 
   function renderDibujo(paso) {
@@ -315,6 +346,7 @@ const ExerciseEngine = (() => {
         <button class="ee-btn ee-btn-principal" id="eeSiguiente" style="margin-top:18px;">Continuar</button>
       </div>`;
     Lector.conectar(contenedor);
+    enfocarPasoActual();
     const canvas = document.getElementById("eeLienzo");
     const lienzo = crearLienzoDibujable(canvas, { colorInicial: COLORES[0] });
     contenedor.querySelectorAll("[data-c]").forEach(btn => btn.addEventListener("click", () => lienzo.setColor(btn.dataset.c)));
@@ -349,6 +381,7 @@ const ExerciseEngine = (() => {
         </div>
         <button class="compartir-btn" id="eeCompartirFinal">🔗 Compartir esta práctica</button>
       </div>`;
+    enfocarPasoActual();
 
     const resultado = Storage.registrarEjercicioCompletado(ejercicio.id, { minutos });
     const xp = { facil: 10, intermedio: 20, profundo: 30 }[ejercicio.dificultad] || 15;
@@ -376,7 +409,7 @@ const ExerciseEngine = (() => {
     document.getElementById("eeCompartirFinal").addEventListener("click", () => {
       Compartir.compartir({
         titulo: ejercicio.titulo,
-        texto: `${ejercicio.titulo} — un recurso gratuito de Sinapsis, Centro de Salud Integral.`,
+        texto: `${ejercicio.titulo} — un recurso gratuito de Centro Sinapsis.`,
         url: window.location.href,
       });
     });

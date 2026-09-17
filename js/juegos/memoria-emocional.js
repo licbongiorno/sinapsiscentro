@@ -25,12 +25,14 @@
   }
 
   function render() {
+    const idEnfocada = contenedor.querySelector(".jg-carta:focus")?.dataset.id;
     contenedor.innerHTML = `
       <p style="text-align:center;color:var(--text-mid);font-size:0.85rem;margin-bottom:10px;">Nivel ${nivel + 1} de ${NIVELES.length} — ${NIVELES[nivel]} pares</p>
       <div class="jg-tablero" style="grid-template-columns: repeat(4, 1fr);">
-      ${cartas.map(c => `<div class="jg-carta ${c.volteada || c.encontrada ? "volteada" : ""} ${c.encontrada ? "encontrada" : ""}" data-id="${c.id}" style="font-size:${c.txt.length > 2 ? "0.78rem" : "1.8rem"};">${c.volteada || c.encontrada ? c.txt : "❓"}</div>`).join("")}
+      ${cartas.map(c => `<button type="button" class="jg-carta ${c.volteada || c.encontrada ? "volteada" : ""} ${c.encontrada ? "encontrada" : ""}" data-id="${c.id}" style="font-size:${c.txt.length > 2 ? "0.78rem" : "1.8rem"};" aria-label="Carta ${c.id + 1} de ${cartas.length}${c.encontrada ? `, encontrada: ${c.txt}` : (c.volteada ? `: ${c.txt}` : ", boca abajo")}">${c.volteada || c.encontrada ? c.txt : "❓"}</button>`).join("")}
     </div>`;
     contenedor.querySelectorAll(".jg-carta").forEach(el => el.addEventListener("click", () => voltear(Number(el.dataset.id))));
+    if (idEnfocada !== undefined) contenedor.querySelector(`.jg-carta[data-id="${idEnfocada}"]`)?.focus();
   }
 
   function voltear(id) {

@@ -197,16 +197,16 @@
   <section class="svc-section">
     <h2>Preguntas frecuentes</h2>
     <div class="svc-faq-item">
-      <button class="svc-faq-q">¿Necesito derivación médica para sacar turno?<span class="svc-faq-icon">+</span></button>
+      <button class="svc-faq-q" aria-expanded="false">¿Necesito derivación médica para sacar turno?<span class="svc-faq-icon">+</span></button>
       <div class="svc-faq-a"><p>No necesitás derivación para consultar. Podés contactarnos directamente por WhatsApp, contarnos tu situación y coordinar una primera entrevista sin trámites previos.</p></div>
     </div><div class="svc-faq-item">
-      <button class="svc-faq-q">¿Atienden obras sociales y prepagas?<span class="svc-faq-icon">+</span></button>
+      <button class="svc-faq-q" aria-expanded="false">¿Atienden obras sociales y prepagas?<span class="svc-faq-icon">+</span></button>
       <div class="svc-faq-a"><p>Sí. Trabajamos con obras sociales, prepagas y pacientes particulares. Consultanos por las coberturas disponibles para tu caso particular y te orientamos sobre cómo gestionar la autorización si fuera necesario.</p></div>
     </div><div class="svc-faq-item">
-      <button class="svc-faq-q">¿Qué pasa si tengo o mi hijo/a tiene CUD?<span class="svc-faq-icon">+</span></button>
+      <button class="svc-faq-q" aria-expanded="false">¿Qué pasa si tengo o mi hijo/a tiene CUD?<span class="svc-faq-icon">+</span></button>
       <div class="svc-faq-a"><p>Trabajamos con personas con CUD y sin CUD. Si ya tiene el certificado, podemos orientarte para que la cobertura funcione correctamente. Y si todavía no lo tiene, podemos ayudarte a entender el proceso.</p></div>
     </div><div class="svc-faq-item">
-      <button class="svc-faq-q">¿Trabajan en conjunto con la escuela del niño o la niña?<span class="svc-faq-icon">+</span></button>
+      <button class="svc-faq-q" aria-expanded="false">¿Trabajan en conjunto con la escuela del niño o la niña?<span class="svc-faq-icon">+</span></button>
       <div class="svc-faq-a"><p>Sí, cuando hace falta articulamos con la institución escolar como parte del acompañamiento — psicoeducación y trabajo interdisciplinario son parte de cómo trabajamos con las familias.</p></div>
     </div>
   </section>
@@ -233,8 +233,10 @@
 <script>
 document.getElementById("footYear").textContent = new Date().getFullYear();
 document.querySelectorAll(".svc-faq-item").forEach(function (item) {{
-  item.querySelector(".svc-faq-q").addEventListener("click", function () {{
-    item.classList.toggle("open");
+  var boton = item.querySelector(".svc-faq-q");
+  boton.addEventListener("click", function () {{
+    var abierto = item.classList.toggle("open");
+    boton.setAttribute("aria-expanded", abierto ? "true" : "false");
   }});
 }});
 </script>

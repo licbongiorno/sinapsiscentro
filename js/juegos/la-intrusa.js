@@ -17,10 +17,11 @@
     const rotacionIntrusa = (rotacionBase + 90 + Math.floor(Math.random() * 2) * 90) % 360;
 
     const cols = Math.ceil(Math.sqrt(tam));
+    const DIRECCION = { 0: "arriba", 90: "derecha", 180: "abajo", 270: "izquierda" };
     contenedor.innerHTML = `
       <p style="text-align:center;color:var(--text-mid);font-size:0.85rem;margin-bottom:10px;">Ronda ${ronda} de ${TOTAL} — encontrá la flecha que mira distinto</p>
       <div class="jg-grilla-simbolos" style="grid-template-columns: repeat(${cols}, 1fr);">
-        ${Array.from({ length: tam }, (_, i) => `<div class="jg-simbolo" data-i="${i}" style="transform:rotate(${i === idxIntrusa ? rotacionIntrusa : rotacionBase}deg);font-size:1.4rem;">➤</div>`).join("")}
+        ${Array.from({ length: tam }, (_, i) => { const rot = i === idxIntrusa ? rotacionIntrusa : rotacionBase; return `<button type="button" class="jg-simbolo" data-i="${i}" style="transform:rotate(${rot}deg);font-size:1.4rem;" aria-label="Casilla ${i + 1} de ${tam}, flecha apunta hacia ${DIRECCION[rot]}">➤</button>`; }).join("")}
       </div>`;
     contenedor.querySelectorAll(".jg-simbolo").forEach(el => el.addEventListener("click", () => {
       if (Number(el.dataset.i) === idxIntrusa) {

@@ -17,7 +17,7 @@
     contenedor.innerHTML = `
       <p style="text-align:center;color:var(--text-mid);font-size:0.9rem;margin-bottom:10px;">Encontrá: ${objetivo}</p>
       <div class="jg-grilla-simbolos" style="grid-template-columns:repeat(${cols},1fr);">
-        ${Array.from({ length: tam }, (_, i) => `<div class="jg-simbolo" data-i="${i}" style="font-size:1.3rem;">${i === idxObjetivo ? objetivo : RELLENO}</div>`).join("")}
+        ${Array.from({ length: tam }, (_, i) => `<button type="button" class="jg-simbolo" data-i="${i}" style="font-size:1.3rem;" aria-label="Casilla ${i + 1} de ${tam}">${i === idxObjetivo ? objetivo : RELLENO}</button>`).join("")}
       </div>`;
     contenedor.querySelectorAll(".jg-simbolo").forEach(el => el.addEventListener("click", () => {
       if (Number(el.dataset.i) === idxObjetivo) { GameEngine.sumarPuntos(10); nuevaRonda(); }

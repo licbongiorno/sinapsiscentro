@@ -1,6 +1,6 @@
 :root {
   --navy: #08202e; --teal-deep: #0e4d5c; --teal: #1a7a8a; --teal-mid: #2aaec2;
-  --teal-soft: #7ed6e4; --teal-pale: #d4f2f7; --cream: #f7f2eb; --warm: #c9a97e;
+  --teal-soft: #7ed6e4; --teal-pale: #d4f2f7; --cream: #f7f2eb; --warm: #7a5c33;
   --warm-lt: #f0e6d3; --bg: #f5fafc; --text: #0d2535; --text-mid: #3a5a6a; --text-soft: #3a5a6a;
   --easing: cubic-bezier(0.16, 1, 0.3, 1); --r: 18px; --r-lg: 26px;
 }

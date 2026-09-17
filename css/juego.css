@@ -10,7 +10,7 @@
   --teal-soft: #7ed6e4;
   --teal-pale: #d4f2f7;
   --cream: #f7f2eb;
-  --warm: #c9a97e;
+  --warm: #7a5c33;
   --warm-lt: #f0e6d3;
   --bg: #f5fafc;
   --text: #0d2535;
@@ -132,6 +132,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
   cursor: pointer; user-select: none; transition: transform 0.25s var(--easing);
   box-shadow: 0 6px 16px rgba(26,122,138,0.25); color: white;
   touch-action: manipulation;
+  /* .jg-carta ahora es <button> (antes <div>) para que sea operable por
+     teclado — resetea el padding/borde nativos que el navegador le pone
+     a un <button> y que un <div> nunca tuvo. */
+  border: none; padding: 0; margin: 0; font-family: inherit;
 }
 .jg-carta.volteada, .jg-carta.encontrada { background: white; color: var(--text); border: 2px solid var(--teal-pale); }
 .jg-carta.encontrada { opacity: 0.55; cursor: default; }
@@ -158,6 +162,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal-mid); outl
   display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer;
   transition: transform 0.15s;
   touch-action: manipulation;
+  /* .jg-simbolo ahora es <button> en los juegos donde es interactivo
+     (antes <div>) — resetea el padding nativo del <button>. */
+  padding: 0; margin: 0; font-family: inherit; color: inherit;
 }
 .jg-simbolo:active { transform: scale(0.9); }
 .jg-caja-texto {

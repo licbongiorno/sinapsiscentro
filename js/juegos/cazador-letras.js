@@ -27,7 +27,7 @@
       <p style="text-align:center;color:var(--text-mid);font-size:0.85rem;margin-bottom:6px;">Ronda ${ronda} de ${TOTAL}</p>
       <p style="text-align:center;font-weight:800;font-size:1.2rem;color:var(--navy);margin-bottom:14px;">Encontrá la letra: <span style="color:var(--teal);">${objetivo}</span></p>
       <div class="jg-grilla-simbolos" style="grid-template-columns: repeat(${cols}, 1fr);">
-        ${posiciones.map((l, i) => `<div class="jg-simbolo" data-i="${i}" style="font-weight:800;">${l}</div>`).join("")}
+        ${posiciones.map((l, i) => `<button type="button" class="jg-simbolo" data-i="${i}" style="font-weight:800;" aria-label="Casilla ${i + 1} de ${cantidad}, letra ${l}">${l}</button>`).join("")}
       </div>`;
     contenedor.querySelectorAll(".jg-simbolo").forEach(el => el.addEventListener("click", () => {
       if (Number(el.dataset.i) === idxObjetivo) {

@@ -11,14 +11,16 @@
   GameEngine.iniciar({ juegoId: "memoria-clasica", vidas: null, tiempoSegundos: null });
 
   function render() {
+    const idEnfocada = contenedor.querySelector(".jg-carta:focus")?.dataset.id;
     contenedor.innerHTML = `<div class="jg-tablero" style="grid-template-columns: repeat(4, 1fr);">
       ${cartas.map(c => `
-        <div class="jg-carta ${c.volteada || c.encontrada ? "volteada" : ""} ${c.encontrada ? "encontrada" : ""}" data-id="${c.id}">
+        <button type="button" class="jg-carta ${c.volteada || c.encontrada ? "volteada" : ""} ${c.encontrada ? "encontrada" : ""}" data-id="${c.id}" aria-label="Carta ${c.id + 1} de ${cartas.length}${c.encontrada ? `, encontrada: ${c.simbolo}` : (c.volteada ? `: ${c.simbolo}` : ", boca abajo")}">
           ${c.volteada || c.encontrada ? c.simbolo : "❓"}
-        </div>`).join("")}
+        </button>`).join("")}
     </div>`;
     contenedor.querySelectorAll(".jg-carta").forEach(el =>
       el.addEventListener("click", () => voltear(Number(el.dataset.id))));
+    if (idEnfocada !== undefined) contenedor.querySelector(`.jg-carta[data-id="${idEnfocada}"]`)?.focus();
   }
 
   function voltear(id) {

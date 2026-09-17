@@ -22,7 +22,7 @@
       <p style="text-align:center;color:var(--text-mid);font-size:0.85rem;margin-bottom:6px;">Ronda ${ronda} de ${TOTAL}</p>
       <p style="text-align:center;font-weight:800;color:var(--navy);margin-bottom:12px;">Encontrá: <span style="font-size:1.4rem;">${objetivo}</span></p>
       <div class="jg-grilla-simbolos" style="grid-template-columns: repeat(${cols}, 1fr); gap:4px;">
-        ${Array.from({ length: tam }, (_, i) => `<div class="jg-simbolo" data-i="${i}" style="font-size:0.9rem;opacity:0.35;">${i === idxObjetivo ? objetivo : RELLENO}</div>`).join("")}
+        ${Array.from({ length: tam }, (_, i) => `<button type="button" class="jg-simbolo" data-i="${i}" style="font-size:0.9rem;opacity:0.35;" aria-label="Casilla ${i + 1} de ${tam}">${i === idxObjetivo ? objetivo : RELLENO}</button>`).join("")}
       </div>`;
     contenedor.querySelectorAll(".jg-simbolo").forEach(el => el.addEventListener("click", () => {
       if (Number(el.dataset.i) === idxObjetivo) {

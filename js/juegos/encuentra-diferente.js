@@ -23,7 +23,7 @@
     contenedor.innerHTML = `
       <p style="text-align:center;color:var(--text-mid);font-size:0.85rem;margin-bottom:10px;">Ronda ${ronda} de ${TOTAL_RONDAS}</p>
       <div class="jg-grilla-simbolos" style="grid-template-columns: repeat(${cols}, 1fr);">
-        ${Array.from({ length: tam }, (_, i) => `<div class="jg-simbolo" data-i="${i}">${i === posicionDiferente ? diferente : base}</div>`).join("")}
+        ${Array.from({ length: tam }, (_, i) => `<button type="button" class="jg-simbolo" data-i="${i}" aria-label="Casilla ${i + 1} de ${tam}">${i === posicionDiferente ? diferente : base}</button>`).join("")}
       </div>`;
     contenedor.querySelectorAll(".jg-simbolo").forEach(el => el.addEventListener("click", () => {
       if (Number(el.dataset.i) === posicionDiferente) {

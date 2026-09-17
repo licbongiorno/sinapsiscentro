@@ -20,7 +20,7 @@
       <p style="text-align:center;color:var(--text-mid);font-size:0.85rem;margin-bottom:6px;">Ronda ${ronda} de ${TOTAL}</p>
       <p style="text-align:center;font-weight:800;font-size:1.2rem;color:var(--navy);margin-bottom:14px;">Encontrá el número: <span style="color:var(--teal);">${objetivo}</span></p>
       <div class="jg-grilla-simbolos" style="grid-template-columns:repeat(${cols},1fr);">
-        ${numeros.map((n, i) => `<div class="jg-simbolo" data-i="${i}" style="font-weight:800;">${n}</div>`).join("")}
+        ${numeros.map((n, i) => `<button type="button" class="jg-simbolo" data-i="${i}" style="font-weight:800;" aria-label="Casilla ${i + 1} de ${cantidad}, número ${n}">${n}</button>`).join("")}
       </div>`;
     contenedor.querySelectorAll(".jg-simbolo").forEach(el => el.addEventListener("click", () => {
       if (Number(el.dataset.i) === idxObjetivo) { GameEngine.sumarPuntos(12); nuevaRonda(); }

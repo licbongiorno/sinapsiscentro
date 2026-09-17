@@ -16,10 +16,12 @@
   GameEngine.iniciar({ juegoId: "parejas-emocionales", vidas: null, tiempoSegundos: null });
 
   function render() {
+    const idEnfocada = contenedor.querySelector(".jg-carta:focus")?.dataset.id;
     contenedor.innerHTML = `<div class="jg-tablero" style="grid-template-columns: repeat(2, 1fr);">
-      ${cartas.map(c => `<div class="jg-carta ${c.volteada || c.encontrada ? "volteada" : ""} ${c.encontrada ? "encontrada" : ""}" data-id="${c.id}" style="font-size:${c.grande ? "1.8rem" : "0.78rem"};aspect-ratio:2;">${c.volteada || c.encontrada ? c.txt : "❓"}</div>`).join("")}
+      ${cartas.map(c => `<button type="button" class="jg-carta ${c.volteada || c.encontrada ? "volteada" : ""} ${c.encontrada ? "encontrada" : ""}" data-id="${c.id}" style="font-size:${c.grande ? "1.8rem" : "0.78rem"};aspect-ratio:2;" aria-label="Carta ${c.id + 1} de ${cartas.length}${c.encontrada ? `, encontrada: ${c.txt}` : (c.volteada ? `: ${c.txt}` : ", boca abajo")}">${c.volteada || c.encontrada ? c.txt : "❓"}</button>`).join("")}
     </div>`;
     contenedor.querySelectorAll(".jg-carta").forEach(el => el.addEventListener("click", () => voltear(Number(el.dataset.id))));
+    if (idEnfocada !== undefined) contenedor.querySelector(`.jg-carta[data-id="${idEnfocada}"]`)?.focus();
   }
   function voltear(id) {
     if (bloqueado) return;

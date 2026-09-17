@@ -129,16 +129,16 @@
   <section class="svc-section">
     <h2>Preguntas frecuentes</h2>
     <div class="svc-faq-item">
-      <button class="svc-faq-q">¿Los recursos gratuitos reemplazan una evaluación o un tratamiento?<span class="svc-faq-icon">+</span></button>
+      <button class="svc-faq-q" aria-expanded="false">¿Los recursos gratuitos reemplazan una evaluación o un tratamiento?<span class="svc-faq-icon">+</span></button>
       <div class="svc-faq-a"><p>No. Los juegos, ejercicios y audios de Centro Sinapsis son materiales complementarios para practicar en casa. No reemplazan una evaluación ni un tratamiento profesional.</p></div>
     </div><div class="svc-faq-item">
-      <button class="svc-faq-q">¿Para quién son estos recursos?<span class="svc-faq-icon">+</span></button>
+      <button class="svc-faq-q" aria-expanded="false">¿Para quién son estos recursos?<span class="svc-faq-icon">+</span></button>
       <div class="svc-faq-a"><p>Están pensados para chicos, adolescentes y adultos que quieran practicar atención, memoria, regulación emocional o creatividad. Cada recurso indica la edad orientativa cuando corresponde.</p></div>
     </div><div class="svc-faq-item">
-      <button class="svc-faq-q">¿Tienen costo?<span class="svc-faq-icon">+</span></button>
+      <button class="svc-faq-q" aria-expanded="false">¿Tienen costo?<span class="svc-faq-icon">+</span></button>
       <div class="svc-faq-a"><p>No, son gratuitos y de acceso libre, sin necesidad de crear una cuenta (crear un perfil es opcional, sólo para guardar el progreso).</p></div>
     </div><div class="svc-faq-item">
-      <button class="svc-faq-q">¿Qué hago si un recurso no me parece adecuado para mi situación?<span class="svc-faq-icon">+</span></button>
+      <button class="svc-faq-q" aria-expanded="false">¿Qué hago si un recurso no me parece adecuado para mi situación?<span class="svc-faq-icon">+</span></button>
       <div class="svc-faq-a"><p>Dejá de usarlo y consultanos por WhatsApp. Cada persona y cada situación son distintas, y estos materiales no están pensados para reemplazar una mirada profesional sobre un caso puntual.</p></div>
     </div>
   </section>
@@ -164,8 +164,10 @@
 <script>
 document.getElementById("footYear").textContent = new Date().getFullYear();
 document.querySelectorAll(".svc-faq-item").forEach(function (item) {
-  item.querySelector(".svc-faq-q").addEventListener("click", function () {
-    item.classList.toggle("open");
+  var boton = item.querySelector(".svc-faq-q");
+  boton.addEventListener("click", function () {
+    var abierto = item.classList.toggle("open");
+    boton.setAttribute("aria-expanded", abierto ? "true" : "false");
   });
 });
 </script>
