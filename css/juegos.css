@@ -43,7 +43,9 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Nunito', sans-serif;
   background: var(--bg); color: var(--text);
-  padding-bottom: 60px;
+  /* deja lugar abajo para que el botón flotante de accesibilidad
+     (fixed, bottom:80px) no tape el último contenido de la página. */
+  padding-bottom: 140px;
 }
 a { color: inherit; text-decoration: none; }
 

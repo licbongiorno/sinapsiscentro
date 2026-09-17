@@ -171,8 +171,9 @@ for pagina in PAGINAS_INDEXABLES:
         if href.startswith(("http://", "https://", "mailto:", "tel:", "#", "javascript:")):
             continue
         target = href.split("#")[0].split("?")[0]
-        if not target:
-            continue
+        if not target or target == "/":
+            continue  # la raíz "/" la sirve index.html (ver vercel.json)
+        target = target.lstrip("/")
         if not os.path.isfile(target):
             err(f"{pagina}: enlace interno roto → {href}")
 
