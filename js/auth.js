@@ -25,6 +25,12 @@ const Auth = (() => {
   }
 
   const provider = new firebase.auth.GoogleAuthProvider();
+  // Sin esto, Google reutiliza en silencio la sesión de Google activa
+  // en el navegador (la que quedó abierta la última vez) y ni muestra
+  // el selector de cuenta — "cerrar sesión" acá sólo cierra la sesión
+  // de la app, no la de Google en el navegador/celular. Con
+  // select_account, Google siempre pregunta qué cuenta usar.
+  provider.setCustomParameters({ prompt: "select_account" });
   let usuarioActual; // undefined = todavía no se resolvió el estado inicial
   const listeners = [];
 
