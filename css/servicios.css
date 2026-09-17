@@ -208,6 +208,7 @@ footer.svc-footer { background: #050f17; padding: 40px 6%; text-align: center; }
 footer.svc-footer p { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
 footer.svc-footer a { color: var(--teal-soft); text-decoration: none; }
 footer.svc-footer a:hover { text-decoration: underline; }
+footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255,255,0.6); }
 
 @media(max-width:640px){
   .svc-hero { padding: 110px 6% 50px; }

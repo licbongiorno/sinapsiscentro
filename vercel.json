@@ -1,5 +1,11 @@
 {
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.sinapsiscentro.com.ar" }],
+      "destination": "https://sinapsiscentro.com.ar/:path*",
+      "permanent": true
+    },
     { "source": "/recursos", "destination": "/#recursos", "permanent": false },
     { "source": "/index.html", "destination": "/", "permanent": true }
   ],

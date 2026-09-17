@@ -36,17 +36,12 @@
   ]
 }
 </script>
-<!-- Google Analytics 4 -->
-<!-- Para activarlo: reemplazá "G-XXXXXXXXXX" por tu Measurement ID real
-     (Google Analytics → Administrar → Flujos de datos → tu flujo web).
-     Mientras tenga este valor de ejemplo, no se envía ningún dato a
-     ningún lado — igual que js/firebase-config.js con sus credenciales. -->
+<!-- Google Analytics 4 (G-EMSJLNLRVJ, ver js/firebase-config.js para las credenciales de Firebase) -->
 <script>
 (function () {
   var GA_ID = "G-EMSJLNLRVJ";
   window.dataLayer = window.dataLayer || [];
   window.gtag = function () { dataLayer.push(arguments); };
-  if (GA_ID === "G-XXXXXXXXXX") return;
   gtag("js", new Date());
   gtag("config", GA_ID);
   var s = document.createElement("script");
