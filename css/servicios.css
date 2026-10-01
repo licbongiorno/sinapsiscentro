@@ -185,6 +185,31 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
 .svc-faq-item.open .svc-faq-a { max-height: 260px; }
 .svc-faq-a p { padding: 0 40px 20px 0; font-size: 0.92rem; color: var(--text-soft); line-height: 1.7; margin: 0; }
 
+/* equipo profesional (tarjeta por persona, ver equipo-profesional.html) */
+.svc-equipo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 18px; margin: 28px 0 8px; }
+.svc-equipo-card {
+  background: white; border: 1.5px solid rgba(42,174,194,0.1); border-radius: var(--r-lg);
+  padding: 24px 22px; display: flex; flex-direction: column; gap: 4px;
+}
+.svc-equipo-avatar {
+  width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--teal-deep), var(--teal)); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+.svc-equipo-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; color: var(--navy); }
+.svc-equipo-card .svc-equipo-rol { font-size: 0.82rem; font-weight: 700; color: var(--teal-texto); margin-bottom: 10px; }
+.svc-equipo-card .svc-equipo-dato { font-size: 0.82rem; color: var(--text-soft); line-height: 1.6; }
+.svc-equipo-card .svc-equipo-dato b { color: var(--text-mid); font-weight: 600; }
+.svc-equipo-card a.svc-equipo-link {
+  margin-top: 14px; font-size: 0.82rem; font-weight: 700; color: var(--teal);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+  transition: gap 0.25s var(--easing);
+}
+.svc-equipo-card a.svc-equipo-link:active { gap: 10px; }
+.svc-equipo-nota { font-size: 0.86rem; color: var(--text-soft); line-height: 1.7; margin: 18px 0 40px; }
+
 /* enlaces a otros servicios */
 .svc-relacionados { margin-top: 50px; }
 .svc-relacionados h2 { margin-bottom: 18px; }
@@ -229,5 +254,6 @@ footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255
   .svc-btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: white; }
   .svc-faq-q:hover { color: var(--teal-texto); }
   .svc-rel-card:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(8,32,46,0.08); }
+  .svc-equipo-card a.svc-equipo-link:hover { gap: 10px; }
   footer.svc-footer a:hover { text-decoration: underline; }
 }
