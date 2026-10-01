@@ -6,10 +6,10 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 
 **Dónde:** `/equipo-profesional.html` (página creada en esta tanda, en `noindex` a propósito).
 
-**Estado (2026-10-01):** ya se cargaron 4 profesionales con datos confirmados por el centro (nombre, especialidad, formación, matrícula): Karen Morel, Thomas D'Alessandro y Sol Aylen López (Psicología), y Rocío González (Terapia Ocupacional). La página salió de `noindex`, tiene tarjeta por profesional, `Person` en JSON-LD (referenciados también como `employee` en el `MedicalBusiness` de `index.html`) y ya está en `sitemap.xml`.
+**Estado (2026-10-01):** ya se cargaron 5 profesionales con datos confirmados por el centro (nombre, especialidad, formación, matrícula): Karen Morel, Thomas D'Alessandro, Sol Aylen López y Nicolás Bongiorno (Psicología — Bongiorno atiende online), y Rocío González (Terapia Ocupacional). La página salió de `noindex`, tiene tarjeta por profesional, `Person` en JSON-LD (referenciados también como `employee` en el `MedicalBusiness` de `index.html`) y ya está en `sitemap.xml`.
 
 **Qué sigue faltando:**
-- Foto, bio corta y población atendida de estos 4 profesionales (opcional, se puede sumar después).
+- Foto, bio corta y población atendida de estos 5 profesionales (opcional, se puede sumar después).
 - Profesionales de psicopedagogía, fonoaudiología y evaluaciones (ADOS-2/ADI-R, neurocognitiva) — la página ya aclara que esas áreas siguen pendientes.
 - Evaluar si conviene sumar `author`/`reviewedBy` con estos profesionales en las páginas de servicio individuales (psicologia-berazategui.html, terapia-ocupacional-integracion-sensorial.html) — no se tocó todavía.
 
