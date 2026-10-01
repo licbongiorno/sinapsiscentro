@@ -766,6 +766,27 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
 }
 .cud-strip p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin-top: 4px; }
 
+/* Link al equipo profesional, mismo formato de "franja" que el badge de CUD
+   de arriba pero clickeable y en blanco, para que no compita visualmente
+   con el mensaje de coberturas. */
+.equipo-strip {
+  max-width: 1160px; margin: 16px auto 0;
+  background: white; border: 1.5px solid rgba(42,174,194,0.15);
+  border-radius: var(--r-lg); padding: 30px 40px;
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.3s var(--easing), transform 0.25s var(--easing), box-shadow 0.3s var(--easing);
+  touch-action: manipulation;
+}
+.equipo-strip:active { transform: scale(0.99); border-color: var(--teal-mid); }
+.equipo-strip .icon { font-size: 2.1rem; color: var(--teal); flex-shrink: 0; }
+.equipo-strip h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--navy); }
+.equipo-strip p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.6; margin-top: 4px; }
+.equipo-strip-arrow {
+  margin-left: auto; font-size: 1.2rem; font-weight: 700; color: var(--teal);
+  transition: transform 0.3s var(--easing); flex-shrink: 0;
+}
+
 /* ═══════════════════════════════════
    PARA QUIÉN
 ═══════════════════════════════════ */
@@ -1161,6 +1182,8 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   .go-top:hover { background: var(--teal); border-color: var(--teal); transform: scale(1.1); }
   .trust-card:hover { background: rgba(42,174,194,0.1); border-color: rgba(126,214,228,0.35); transform: translateY(-4px); }
   .trust-card:hover::before { transform: scaleX(1); }
+  .equipo-strip:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(8,32,46,0.1); }
+  .equipo-strip:hover .equipo-strip-arrow { transform: translateX(4px); }
   .btn-google:hover { background: #3367d6; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(66,133,244,0.45); }
 }
 
@@ -1435,6 +1458,15 @@ footer { background: #050f17; padding: 72px 6% 34px; }
       <p>Atendemos obras sociales, prepagas y pacientes particulares. Consulta por coberturas disponibles en tu caso.</p>
     </div>
   </div>
+
+  <a href="equipo-profesional.html" class="equipo-strip rv from-bottom d3">
+    <div class="icon"><svg viewBox="0 0 640 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M96 128a128 128 0 1 0 256 0A128 128 0 1 0 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM609.3 512H471.4c5.4-9.4 8.6-20.3 8.6-32v-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2h61.4C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.8C372.4 196.5 384 163.6 384 128c0-30.2-8.4-58.4-23-82.4C382.1 16.4 413.6 0 448 0c70.7 0 128 57.3 128 128s-57.3 128-128 128z"/></svg></div>
+    <div>
+      <h3>Conocé a nuestro equipo de profesionales</h3>
+      <p>Nombre, formación y matrícula de cada psicólogo y terapista que te puede atender.</p>
+    </div>
+    <span class="equipo-strip-arrow" aria-hidden="true">→</span>
+  </a>
 </section>
 
 <!-- ═══ PARA QUIÉN ═══ -->
