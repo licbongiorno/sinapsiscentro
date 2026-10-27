@@ -67,6 +67,4 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 
 **Dónde:** `index.html`, sección `#instagram-feed` (entre "Reseñas en Google" y "Horarios & Ubicación").
 
-**Qué falta:** mostrar ahí los últimos posts de Instagram en vivo (cuadrícula tipo widget). Hoy esa sección funciona con un link directo a Instagram — no se inventó ningún ID de widget ni cuenta de terceros.
-
-**Qué hace falta para activarlo:** crear una cuenta gratis en un servicio de embed (ej. `snapwidget.com`, `lightwidget.com`) y conectar ahí la cuenta real `@sinapsiscentro` — ese paso requiere el login de Instagram del centro, así que solo lo puede hacer su dueño. Una vez conectado, copiar el `<iframe>` que da el servicio y pegarlo en el `index.html` reemplazando el bloque `<div class="ig-feed-fallback">` dentro de `.ig-feed-card` (hay instrucciones paso a paso en un comentario HTML justo ahí).
+**Estado (2026-10-27):** resuelto. El centro conectó `@sinapsiscentro` en SnapWidget y armó el widget; la sección muestra la cuadrícula en vivo (`<iframe src="https://snapwidget.com/embed/57dfa61a-385c-40aa-a8e2-30028ec8e0ee">`) con un botón "Seguir a @sinapsiscentro" debajo. El widget depende de SnapWidget (servicio gratuito de terceros) — si en algún momento se da de baja esa cuenta o el widget, la cuadrícula deja de cargar y habría que rehacer este paso.
