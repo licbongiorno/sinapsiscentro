@@ -62,3 +62,11 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 **Dónde:** no aplica a ningún archivo del código — es una acción 100% externa.
 
 **Qué falta:** reseñas genuinas en Google, respuestas a esas reseñas, menciones en directorios locales. Ver la lista completa de acciones externas en `SEO_GEO_AUDIT_AFTER.md`, sección "Acciones que debe realizar el dueño fuera del código".
+
+## 8. Cuadrícula de Instagram en la home
+
+**Dónde:** `index.html`, sección `#instagram-feed` (entre "Reseñas en Google" y "Horarios & Ubicación").
+
+**Qué falta:** mostrar ahí los últimos posts de Instagram en vivo (cuadrícula tipo widget). Hoy esa sección funciona con un link directo a Instagram — no se inventó ningún ID de widget ni cuenta de terceros.
+
+**Qué hace falta para activarlo:** crear una cuenta gratis en un servicio de embed (ej. `snapwidget.com`, `lightwidget.com`) y conectar ahí la cuenta real `@sinapsiscentro` — ese paso requiere el login de Instagram del centro, así que solo lo puede hacer su dueño. Una vez conectado, copiar el `<iframe>` que da el servicio y pegarlo en el `index.html` reemplazando el bloque `<div class="ig-feed-fallback">` dentro de `.ig-feed-card` (hay instrucciones paso a paso en un comentario HTML justo ahí).
