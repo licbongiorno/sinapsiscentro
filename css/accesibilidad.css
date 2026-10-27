@@ -94,6 +94,10 @@ html.modo-accesible,
   outline: 3px solid #0e4d5c;
   outline-offset: 3px;
 }
+#btnAccesibilidad.scroll-dim { opacity: 0.38; }
+@media (prefers-reduced-motion: reduce) {
+  #btnAccesibilidad.scroll-dim { opacity: 1; }
+}
 
 @media (max-width: 480px) {
   #btnAccesibilidad { width: 46px; height: 46px; font-size: 1.3rem; bottom: 72px; left: 12px; }

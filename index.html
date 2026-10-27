@@ -1291,7 +1291,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
     <div class="hero-cta-row">
       <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="btn-hero-main">
         <span>Pedir una primera entrevista</span>
-        <span class="arrow">→</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </a>
       <a href="#servicios" class="btn-hero-ghost">
         Ver servicios ↓
@@ -1410,7 +1410,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   <div class="steps-cta rv from-bottom d2">
     <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20obtener%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener" class="btn-hero-main" style="display:inline-flex;">
       <span>Empezar ahora</span>
-      <span class="arrow">→</span>
+      <span class="arrow" aria-hidden="true">→</span>
     </a>
   </div>
 </section>
@@ -2008,6 +2008,10 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 const navEl = document.getElementById('nav');
 const goTopBtn = document.getElementById('goTop');
 const fabRecursosEl = document.querySelector('.fab-recursos');
+/* El botón de accesibilidad maneja su propio atenuado-en-scroll desde
+   js/accesibilidad.js (corre en todo el sitio) — acá solo sumamos los
+   dos fabs propios del home para no duplicar el mismo listener. */
+const getScrollDimBtns = () => [fabRecursosEl, document.querySelector('.fab')].filter(Boolean);
 const getFloatingBtns = () => [fabRecursosEl, document.querySelector('.fab'), document.getElementById('btnAccesibilidad')].filter(Boolean);
 
 window.addEventListener('scroll',()=>{
@@ -2023,10 +2027,10 @@ window.addEventListener('scroll',()=>{
    oculten contenido que el usuario está intentando leer o tocar. */
 let scrollDimTimeout;
 window.addEventListener('scroll', () => {
-  getFloatingBtns().forEach((btn) => btn.classList.add('scroll-dim'));
+  getScrollDimBtns().forEach((btn) => btn.classList.add('scroll-dim'));
   clearTimeout(scrollDimTimeout);
   scrollDimTimeout = setTimeout(() => {
-    getFloatingBtns().forEach((btn) => btn.classList.remove('scroll-dim'));
+    getScrollDimBtns().forEach((btn) => btn.classList.remove('scroll-dim'));
   }, 220);
 }, { passive: true });
 

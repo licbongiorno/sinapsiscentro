@@ -39,6 +39,20 @@
     actualizarBoton(btn);
   }
 
+  // El botón es fixed y queda arriba de cualquier contenido que scrollee
+  // a esa posición de pantalla (FAQ, botones, tarjetas) — se atenúa
+  // mientras el usuario scrollea activamente y vuelve a su opacidad
+  // normal apenas se detiene, para no tapar ni interceptar toques sobre
+  // lo que el usuario está tratando de leer o tocar.
+  function activarAtenuadoEnScroll(btn) {
+    let temporizador;
+    window.addEventListener("scroll", () => {
+      btn.classList.add("scroll-dim");
+      clearTimeout(temporizador);
+      temporizador = setTimeout(() => btn.classList.remove("scroll-dim"), 220);
+    }, { passive: true });
+  }
+
   function crearBoton() {
     if (document.getElementById("btnAccesibilidad")) return;
     const btn = document.createElement("button");
@@ -48,6 +62,7 @@
     actualizarBoton(btn);
     btn.addEventListener("click", () => alternar(btn));
     document.body.appendChild(btn);
+    activarAtenuadoEnScroll(btn);
   }
 
   if (document.readyState === "loading") {

@@ -163,7 +163,7 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
   background: var(--teal-pale); color: var(--teal-texto); font-weight: 800;
   display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif;
 }
-.svc-paso h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.svc-paso h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
 .svc-paso p { font-size: 0.9rem; margin: 0; }
 
 /* FAQ (mismo componente visual que index.html) */
