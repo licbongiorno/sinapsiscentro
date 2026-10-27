@@ -6,11 +6,13 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 
 **Dónde:** `/equipo-profesional.html` (página creada en esta tanda, en `noindex` a propósito).
 
-**Estado (2026-10-23):** 5 profesionales con datos confirmados por el centro: Nicolás Bongiorno, Thomas D'Alessandro y Sol Aylen López (Psicología — Bongiorno atiende online), y Flavia Avellaneda y Rocío González (Terapia Ocupacional). La página salió de `noindex`, tiene tarjeta por profesional, `Person` en JSON-LD (referenciados también como `employee` en el `MedicalBusiness` de `index.html`) y ya está en `sitemap.xml`. Karen Morel se dio de baja del equipo (sacada de todas las páginas, JSON-LD y del sitemap de referencias).
+**Estado (2026-10-27):** 6 profesionales con datos confirmados por el centro: Nicolás Bongiorno, Thomas D'Alessandro y Sol Aylen López (Psicología — Bongiorno atiende online), Flavia Avellaneda y Rocío González (Terapia Ocupacional), e Ian Lautaro Guzmán (Kinesiología, M.P. 9372). La página salió de `noindex`, tiene tarjeta por profesional, `Person` en JSON-LD (referenciados también como `employee` en el `MedicalBusiness` de `index.html`) y ya está en `sitemap.xml`. Karen Morel se dio de baja del equipo (sacada de todas las páginas, JSON-LD y del sitemap de referencias). Kinesiología también se sumó como categoría nueva en el listado de servicios de la home (`index.html#servicios`), sin página propia todavía — por eso esa tarjeta no tiene link, igual que Estimulación Temprana/Cognitiva, Alfabetización y Psicodiagnóstico.
 
 **Qué sigue faltando:**
 - Formación (universidad) de Flavia Avellaneda — no se publicó esa línea a pedido del centro hasta tener el dato confirmado.
-- Foto, bio corta y población atendida de los 5 profesionales (opcional, se puede sumar después).
+- Formación, trayectoria y bio de Ian Lautaro Guzmán — su matrícula (M.P. 9372) y la propuesta de gimnasio terapéutico para adultos mayores vinieron de material de difusión del centro, pero no hay confirmación directa de su universidad ni antecedentes, así que esa línea no se publicó.
+- Confirmar si el gimnasio de Kinesiología ya está funcionando o sigue en etapa de propuesta, y crear su página de servicio dedicada (siguiendo el patrón de las demás) cuando esté confirmado — recién ahí conviene enlazarla desde la tarjeta de Guzmán en `equipo-profesional.html` y desde la tarjeta de servicios de la home.
+- Foto, bio corta y población atendida de los 6 profesionales (opcional, se puede sumar después).
 - Profesionales de psicopedagogía, fonoaudiología y evaluaciones (ADOS-2/ADI-R, neurocognitiva) — la página ya aclara que esas áreas siguen pendientes.
 - Evaluar si conviene sumar `author`/`reviewedBy` con estos profesionales en las páginas de servicio individuales (psicologia-berazategui.html, terapia-ocupacional-integracion-sensorial.html) — no se tocó todavía.
 
