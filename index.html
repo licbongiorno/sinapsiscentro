@@ -656,6 +656,10 @@ nav.solid {
 }
 
 body.menu-open { overflow: hidden; }
+/* El botón de accesibilidad (fixed, inyectado por accesibilidad.js) queda
+   flotando arriba del panel de navegación mobile si no se esconde acá —
+   mismo tipo de solape que el del footer, pero éste no lo cubría. */
+body.menu-open #btnAccesibilidad { opacity: 0; pointer-events: none; }
 
 #recursos { padding: 100px 6%; background: white; }
 
@@ -1002,7 +1006,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   transition: background 0.25s var(--easing), color 0.25s var(--easing), transform 0.25s var(--easing);
 }
 
-.footer-col h4 {
+.footer-col h3 {
   font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--teal-soft); font-weight: 700; margin-bottom: 18px;
 }
@@ -1034,6 +1038,10 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 }
 .fab-recursos.show { opacity: 1; pointer-events: auto; transform: scale(1); }
 .fab-recursos.near-footer, .fab.near-footer, #btnAccesibilidad.near-footer { opacity: 0 !important; pointer-events: none !important; }
+.fab-recursos.scroll-dim, .fab.scroll-dim, #btnAccesibilidad.scroll-dim { opacity: 0.38; }
+@media (prefers-reduced-motion: reduce) {
+  .fab-recursos.scroll-dim, .fab.scroll-dim, #btnAccesibilidad.scroll-dim { opacity: 1; }
+}
 @media(max-width:520px){
   .fab-recursos { bottom: 134px; left: 12px; padding: 15px; border-radius: 50%; }
   .fab-recursos-txt { display:none; }
@@ -1666,8 +1674,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   </div>
   <div class="promise-strip rv from-bottom d2">
     <div class="promise-item"><span class="pi-check"><svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></span>Sin derivación previa</div>
-    <div class="promise-item"><span class="pi-check"><svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></span>Obras sociales y prepagas</div>
-    <div class="promise-item"><span class="pi-check"><svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></span>Atención con y sin CUD</div>
+    <div class="promise-item"><span class="pi-check"><svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></span>Obras sociales, prepagas y CUD</div>
     <div class="promise-item"><span class="pi-check"><svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></span>Turnos esta semana</div>
     <div class="promise-item"><span class="pi-check"><svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg></span>Equipo interdisciplinario</div>
   </div>
@@ -1845,7 +1852,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
       </div>
     </div>
     <div class="footer-col">
-      <h4>Navegación</h4>
+      <h3>Navegación</h3>
       <ul>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#para-quien">Pacientes</a></li>
@@ -1854,7 +1861,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Recursos gratuitos</h4>
+      <h3>Recursos gratuitos</h3>
       <ul>
         <li><a href="juegos.html">Juegos</a></li>
         <li><a href="ejercicios.html">Ejercicios</a></li>
@@ -1863,7 +1870,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Legal</h4>
+      <h3>Legal</h3>
       <ul>
         <li><a href="equipo-profesional.html">Equipo profesional</a></li>
         <li><a href="uso-de-recursos.html">Uso de los recursos</a></li>
@@ -2001,6 +2008,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 const navEl = document.getElementById('nav');
 const goTopBtn = document.getElementById('goTop');
 const fabRecursosEl = document.querySelector('.fab-recursos');
+const getFloatingBtns = () => [fabRecursosEl, document.querySelector('.fab'), document.getElementById('btnAccesibilidad')].filter(Boolean);
 
 window.addEventListener('scroll',()=>{
   const scrolled = window.scrollY > 50;
@@ -2009,12 +2017,24 @@ window.addEventListener('scroll',()=>{
   if (fabRecursosEl) fabRecursosEl.classList.toggle('show', window.scrollY > 500);
 }, {passive:true});
 
+/* Los botones flotantes a veces tapan el final de una card mientras se
+   scrollea rápido — se atenúan durante el scroll activo y vuelven a su
+   opacidad normal apenas el usuario se detiene, para que no molesten ni
+   oculten contenido que el usuario está intentando leer o tocar. */
+let scrollDimTimeout;
+window.addEventListener('scroll', () => {
+  getFloatingBtns().forEach((btn) => btn.classList.add('scroll-dim'));
+  clearTimeout(scrollDimTimeout);
+  scrollDimTimeout = setTimeout(() => {
+    getFloatingBtns().forEach((btn) => btn.classList.remove('scroll-dim'));
+  }, 220);
+}, { passive: true });
+
 /* Los botones flotantes (recursos, WhatsApp, accesibilidad) tapan los
    íconos de redes del footer en mobile si quedan prendidos ahí — se
    esconden apenas el footer entra en pantalla. */
 if ('IntersectionObserver' in window) {
   const footerEl = document.querySelector('footer');
-  const getFloatingBtns = () => [fabRecursosEl, document.querySelector('.fab'), document.getElementById('btnAccesibilidad')].filter(Boolean);
   if (footerEl) {
     const footerObs = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
