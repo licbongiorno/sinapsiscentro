@@ -6,12 +6,12 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 
 **Dónde:** `/equipo-profesional.html` (página creada en esta tanda, en `noindex` a propósito).
 
-**Estado (2026-10-27):** 6 profesionales con datos confirmados por el centro: Nicolás Bongiorno, Thomas D'Alessandro y Sol Aylen López (Psicología — Bongiorno atiende online), Flavia Avellaneda y Rocío González (Terapia Ocupacional), e Ian Lautaro Guzmán (Kinesiología, M.P. 9372). La página salió de `noindex`, tiene tarjeta por profesional, `Person` en JSON-LD (referenciados también como `employee` en el `MedicalBusiness` de `index.html`) y ya está en `sitemap.xml`. Karen Morel se dio de baja del equipo (sacada de todas las páginas, JSON-LD y del sitemap de referencias). Kinesiología también se sumó como categoría nueva en el listado de servicios de la home (`index.html#servicios`), sin página propia todavía — por eso esa tarjeta no tiene link, igual que Estimulación Temprana/Cognitiva, Alfabetización y Psicodiagnóstico.
+**Estado (2026-10-27):** 6 profesionales con datos confirmados por el centro: Nicolás Bongiorno, Thomas D'Alessandro y Sol Aylen López (Psicología — Bongiorno atiende online), Flavia Avellaneda y Rocío González (Terapia Ocupacional), e Ian Lautaro Guzmán (Kinesiología, M.P. 9372). La página salió de `noindex`, tiene tarjeta por profesional, `Person` en JSON-LD (referenciados también como `employee` en el `MedicalBusiness` de `index.html`) y ya está en `sitemap.xml`. Karen Morel se dio de baja del equipo (sacada de todas las páginas, JSON-LD y del sitemap de referencias).
 
 **Qué sigue faltando:**
 - Formación (universidad) de Flavia Avellaneda — no se publicó esa línea a pedido del centro hasta tener el dato confirmado.
 - Formación, trayectoria y bio de Ian Lautaro Guzmán — su matrícula (M.P. 9372) y la propuesta de gimnasio terapéutico para adultos mayores vinieron de material de difusión del centro, pero no hay confirmación directa de su universidad ni antecedentes, así que esa línea no se publicó.
-- Confirmar si el gimnasio de Kinesiología ya está funcionando o sigue en etapa de propuesta, y crear su página de servicio dedicada (siguiendo el patrón de las demás) cuando esté confirmado — recién ahí conviene enlazarla desde la tarjeta de Guzmán en `equipo-profesional.html` y desde la tarjeta de servicios de la home.
+- Confirmar horarios y modalidad (grupal/individual) del gimnasio de Kinesiología — la página ya está creada (`kinesiologia-adultos-mayores-berazategui.html`) pero el FAQ de esa página deriva esa pregunta a WhatsApp porque todavía no está confirmado.
 - Foto, bio corta y población atendida de los 6 profesionales (opcional, se puede sumar después).
 - Profesionales de psicopedagogía, fonoaudiología y evaluaciones (ADOS-2/ADI-R, neurocognitiva) — la página ya aclara que esas áreas siguen pendientes.
 - Evaluar si conviene sumar `author`/`reviewedBy` con estos profesionales en las páginas de servicio individuales (psicologia-berazategui.html, terapia-ocupacional-integracion-sensorial.html) — no se tocó todavía.
@@ -68,3 +68,14 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 **Dónde:** `index.html`, sección `#instagram-feed` (entre "Reseñas en Google" y "Horarios & Ubicación").
 
 **Estado (2026-10-27):** resuelto. El centro conectó `@sinapsiscentro` en SnapWidget y armó el widget; la sección muestra la cuadrícula en vivo (`<iframe src="https://snapwidget.com/embed/57dfa61a-385c-40aa-a8e2-30028ec8e0ee">`) con un botón "Seguir a @sinapsiscentro" debajo. El widget depende de SnapWidget (servicio gratuito de terceros) — si en algún momento se da de baja esa cuenta o el widget, la cuadrícula deja de cargar y habría que rehacer este paso.
+
+## 9. Páginas nuevas de servicio (de la revisión UX del index)
+
+**Dónde:** `estimulacion-temprana-berazategui.html`, `estimulacion-cognitiva-berazategui.html`, `alfabetizacion-berazategui.html`, `psicodiagnostico-berazategui.html`, `kinesiologia-adultos-mayores-berazategui.html`.
+
+**Por qué se crearon:** una revisión de UX del `index.html` encontró que 5 de las 11 tiles de la sección de Servicios no tenían link — eran `<div>` sin `href` con el mismo hover que las que sí linkean, prometiendo un click que no existía. Se armaron las 5 páginas que faltaban, siguiendo el mismo template que las demás páginas de servicio (`psicologia-berazategui.html`, etc.), y se linkearon desde `index.html`.
+
+**Qué contienen y qué no:**
+- Las 4 primeras (Estimulación Temprana, Estimulación Cognitiva, Alfabetización, Psicodiagnóstico) describen el servicio de forma genérica/estándar — qué es, para quién está indicado, cómo es la primera entrevista — sin atribuirle al centro ningún dato específico que no esté confirmado (no se nombra ningún profesional de esas áreas, no se inventan protocolos ni resultados).
+- Kinesiología usa los datos reales confirmados de Ian Lautaro Guzmán (ver ítem 1) y agrega una tarjeta "¿Quién te atiende?" que linkea a su perfil en `equipo-profesional.html`.
+- Las 5 quedaron en `index, follow` y se agregaron a `sitemap.xml`.

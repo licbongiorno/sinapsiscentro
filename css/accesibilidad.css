@@ -84,7 +84,7 @@ html.modo-accesible,
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 #btnAccesibilidad[aria-pressed="true"] {
   background: #2aaec2;

@@ -1017,6 +1017,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   opacity: 0; pointer-events: none; transform: scale(0.85);
 }
 .fab-recursos.show { opacity: 1; pointer-events: auto; transform: scale(1); }
+.fab-recursos.near-footer, .fab.near-footer, #btnAccesibilidad.near-footer { opacity: 0 !important; pointer-events: none !important; }
 @media(max-width:520px){
   .fab-recursos { bottom: 134px; left: 12px; padding: 15px; border-radius: 50%; }
   .fab-recursos-txt { display:none; }
@@ -1029,7 +1030,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   padding: 15px 26px; border-radius: 50px;
   text-decoration: none; font-weight: 700; font-size: 1rem;
   box-shadow: 0 8px 32px rgba(37,211,102,0.5);
-  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s, opacity 0.3s;
 }
 .fab i { font-size: 1.4rem; }
 @media(max-width:520px){
@@ -1091,7 +1092,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   transform: scaleX(0); transform-origin: left;
   transition: transform 0.4s var(--easing);
 }
-.trust-card .tc-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.trust-card .tc-icon { font-size: 1.8rem; margin-bottom: 12px; color: var(--teal-soft); }
 .trust-card h3 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 6px; }
 .trust-card p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
 
@@ -1426,39 +1427,39 @@ footer { background: #050f17; padding: 72px 6% 34px; }
         <p>Lenguaje, habla, voz y deglución. Intervención en TEL, dislalias y comunicación aumentativa.</p>
         <span class="tile-tag">Comunicación</span>
       </a>
-      <div class="service-tile rv scale-in d2">
+      <a class="service-tile rv scale-in d2" href="estimulacion-temprana-berazategui.html">
         <div class="tile-icon" style="background:#e8faf0;"><svg viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M512 32c0 113.6-84.6 207.5-194.2 222c-7.1-53.4-30.6-101.6-65.3-139.3C290.8 46.3 364 0 448 0h32c17.7 0 32 14.3 32 32zM0 96C0 78.3 14.3 64 32 64H64c123.7 0 224 100.3 224 224v32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V320C100.3 320 0 219.7 0 96z"/></svg></div>
         <h3>Estimulación Temprana</h3>
         <p>Programa de acompañamiento para bebés y niños pequeños en sus primeros años de desarrollo.</p>
         <span class="tile-tag">0 a 6 años</span>
-      </div>
-      <div class="service-tile rv scale-in d3">
+      </a>
+      <a class="service-tile rv scale-in d3" href="estimulacion-cognitiva-berazategui.html">
         <div class="tile-icon ring"><svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg></div>
         <h3>Estimulación Cognitiva</h3>
         <p>Rehabilitación y entrenamiento de funciones cognitivas: memoria, atención, funciones ejecutivas.</p>
         <span class="tile-tag">Cognición</span>
-      </div>
-      <div class="service-tile rv scale-in d1">
+      </a>
+      <a class="service-tile rv scale-in d1" href="alfabetizacion-berazategui.html">
         <div class="tile-icon" style="background:#fffbe8;"><svg viewBox="0 0 576 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M112 0C99.1 0 87.4 7.8 82.5 19.7l-66.7 160-13.3 32c-6.8 16.3 .9 35 17.2 41.8s35-.9 41.8-17.2L66.7 224h90.7l5.1 12.3c6.8 16.3 25.5 24 41.8 17.2s24-25.5 17.2-41.8l-13.3-32-66.7-160C136.6 7.8 124.9 0 112 0zm18.7 160H93.3L112 115.2 130.7 160zM256 32v96 96c0 17.7 14.3 32 32 32h80c44.2 0 80-35.8 80-80c0-23.1-9.8-43.8-25.4-58.4c6-11.2 9.4-24 9.4-37.6c0-44.2-35.8-80-80-80H288c-17.7 0-32 14.3-32 32zm96 64H320V64h32c8.8 0 16 7.2 16 16s-7.2 16-16 16zm-32 64h32 16c8.8 0 16 7.2 16 16s-7.2 16-16 16H320V160zM566.6 310.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L352 434.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l192-192z"/></svg></div>
         <h3>Alfabetización</h3>
         <p>Intervención en procesos de adquisición de lectura y escritura para niños con dificultades específicas.</p>
         <span class="tile-tag">Lectoescritura</span>
-      </div>
-      <div class="service-tile rv scale-in d2">
+      </a>
+      <a class="service-tile rv scale-in d2" href="kinesiologia-adultos-mayores-berazategui.html">
         <div class="tile-icon" style="background:#ffece8;"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M9 0H15V9H24V15H15V24H9V15H0V9H9V0Z"/></svg></div>
         <h3>Kinesiología</h3>
         <p>Gimnasio terapéutico para adultos mayores: prevención de caídas, equilibrio, fortalecimiento y mantenimiento de la autonomía.</p>
         <span class="tile-tag">Nuevo · Adultos mayores</span>
-      </div>
+      </a>
     </div>
     
     <div class="tab-pane" id="tab-evaluaciones" role="tabpanel" aria-labelledby="tab-control-evaluaciones" hidden>
-      <div class="service-tile rv scale-in d1">
+      <a class="service-tile rv scale-in d1" href="psicodiagnostico-berazategui.html">
         <div class="tile-icon" style="background:#e8f8fb;"><svg viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M160 32c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32c17.7 0 32 14.3 32 32V288c0 17.7-14.3 32-32 32c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32c-17.7 0-32-14.3-32-32V64c0-17.7 14.3-32 32-32zM32 448H320c70.7 0 128-57.3 128-128s-57.3-128-128-128V128c106 0 192 86 192 192c0 49.2-18.5 94-48.9 128H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H320 32c-17.7 0-32-14.3-32-32s14.3-32 32-32zm80-64H304c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg></div>
         <h3>Psicodiagnóstico</h3>
         <p>Evaluación psicológica completa con batería de instrumentos validados. Informe detallado y devolución personalizada.</p>
         <span class="tile-tag">Diagnóstico</span>
-      </div>
+      </a>
       <a class="service-tile rv scale-in d2" href="evaluacion-ados-2-adi-r-berazategui.html">
         <div class="tile-icon ring"><svg viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zm-312 8v64c0 13.3 10.7 24 24 24s24-10.7 24-24l0-64c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80-96V280c0 13.3 10.7 24 24 24s24-10.7 24-24V120c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80 64v96c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></div>
         <h3>ADOS 2 y ADI-R</h3>
@@ -1976,6 +1977,22 @@ window.addEventListener('scroll',()=>{
   goTopBtn.classList.toggle('show', window.scrollY > 600);
   if (fabRecursosEl) fabRecursosEl.classList.toggle('show', window.scrollY > 500);
 }, {passive:true});
+
+/* Los botones flotantes (recursos, WhatsApp, accesibilidad) tapan los
+   íconos de redes del footer en mobile si quedan prendidos ahí — se
+   esconden apenas el footer entra en pantalla. */
+if ('IntersectionObserver' in window) {
+  const footerEl = document.querySelector('footer');
+  const getFloatingBtns = () => [fabRecursosEl, document.querySelector('.fab'), document.getElementById('btnAccesibilidad')].filter(Boolean);
+  if (footerEl) {
+    const footerObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        getFloatingBtns().forEach((btn) => btn.classList.toggle('near-footer', entry.isIntersecting));
+      });
+    }, { threshold: 0.05 });
+    footerObs.observe(footerEl);
+  }
+}
 
 /* ════════════════════
    MENÚ MOBILE
