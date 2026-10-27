@@ -4,7 +4,7 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 
 ## 1. Equipo profesional
 
-**Dónde:** `/equipo-profesional.html` (página creada en esta tanda, en `noindex` a propósito).
+**Dónde:** `/equipo-profesional.html` (ya indexada desde el 2026-10-23, ver "Estado" abajo).
 
 **Estado (2026-10-27):** 6 profesionales con datos confirmados por el centro: Nicolás Bongiorno, Thomas D'Alessandro y Sol Aylen López (Psicología — Bongiorno atiende online), Flavia Avellaneda y Rocío González (Terapia Ocupacional), e Ian Lautaro Guzmán (Kinesiología, M.P. 9372). La página salió de `noindex`, tiene tarjeta por profesional, `Person` en JSON-LD (referenciados también como `employee` en el `MedicalBusiness` de `index.html`) y ya está en `sitemap.xml`. Karen Morel se dio de baja del equipo (sacada de todas las páginas, JSON-LD y del sitemap de referencias).
 
@@ -14,7 +14,7 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 - Confirmar horarios y modalidad (grupal/individual) del gimnasio de Kinesiología — la página ya está creada (`kinesiologia-adultos-mayores-berazategui.html`) pero el FAQ de esa página deriva esa pregunta a WhatsApp porque todavía no está confirmado.
 - Foto, bio corta y población atendida de los 6 profesionales (opcional, se puede sumar después).
 - Profesionales de psicopedagogía, fonoaudiología y evaluaciones (ADOS-2/ADI-R, neurocognitiva) — la página ya aclara que esas áreas siguen pendientes.
-- Evaluar si conviene sumar `author`/`reviewedBy` con estos profesionales en las páginas de servicio individuales (psicologia-berazategui.html, terapia-ocupacional-integracion-sensorial.html) — no se tocó todavía.
+- `reviewedBy` ya se agregó (2026-10-27) en `psicologia-berazategui.html`, `terapia-ocupacional-integracion-sensorial.html` y `kinesiologia-adultos-mayores-berazategui.html`, apuntando a los `Person` reales correspondientes. Falta en las otras 8 páginas de servicio (psicopedagogía, fonoaudiología, las 2 evaluaciones, y 3 de las páginas nuevas) porque no tienen un profesional confirmado de esa especialidad todavía — recién se puede agregar cuando ese dato llegue.
 
 ## 2. Fuentes clínicas para ADOS-2 / ADI-R
 
@@ -34,11 +34,7 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 
 ## 4. Modalidad de atención (presencial / virtual / híbrida)
 
-**Dónde:** ninguna página lo afirma explícitamente hoy.
-
-**Qué falta:** confirmar si la atención es 100% presencial, si hay telesalud disponible para algún servicio, o ambas.
-
-**Qué se hizo mientras tanto:** ninguna página nueva ni editada afirma la modalidad — se evitó deliberadamente, incluso cuando el ejemplo de GEO provisto en el pedido la mencionaba ("atención principalmente presencial"), porque no hay confirmación en el proyecto de que sea así.
+**Estado (2026-10-27):** resuelto. `index.html` ahora afirma la modalidad explícitamente (hero-sub: "Atención principalmente presencial en nuestra sede..."; y una pregunta del FAQ: "Atendemos principalmente de forma presencial en nuestra sede de Berazategui. Para algunos casos podemos sumar seguimiento virtual..."). Esto llegó confirmado por el centro en una sesión posterior a la nota original de este ítem.
 
 ## 5. Datos legales para privacidad/términos
 
@@ -79,3 +75,24 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 - Las 4 primeras (Estimulación Temprana, Estimulación Cognitiva, Alfabetización, Psicodiagnóstico) describen el servicio de forma genérica/estándar — qué es, para quién está indicado, cómo es la primera entrevista — sin atribuirle al centro ningún dato específico que no esté confirmado (no se nombra ningún profesional de esas áreas, no se inventan protocolos ni resultados).
 - Kinesiología usa los datos reales confirmados de Ian Lautaro Guzmán (ver ítem 1) y agrega una tarjeta "¿Quién te atiende?" que linkea a su perfil en `equipo-profesional.html`.
 - Las 5 quedaron en `index, follow` y se agregaron a `sitemap.xml`.
+- **Actualización (2026-10-27):** las aperturas "¿Qué es?" de las 4 páginas genéricas se reescribieron para anclarlas a "Centro Sinapsis... Berazategui" (antes no nombraban ni el centro ni la ubicación — un gap de citabilidad por IA detectado en la auditoría GEO de ese día). Kinesiología ya tenía ese anclaje desde que se creó.
+
+## 10. Plan SEO/GEO — ejecutado (2026-10-27)
+
+**Dónde:** ver `/root/.claude/plans/clever-wobbling-shamir.md` para el plan completo con el detalle línea por línea de cada hallazgo.
+
+**Qué se hizo (sin pedir datos nuevos al centro):**
+- Recortadas las 3 meta descriptions que estaban fuera de rango (`index.html`, `estimulacion-temprana-berazategui.html`, `estimulacion-cognitiva-berazategui.html`) a ≤160 caracteres.
+- Agregado `reviewedBy` en JSON-LD en las 3 páginas de servicio con profesional confirmado (psicología, terapia ocupacional, kinesiología) — ver ítem 1.
+- Ancladas a "Centro Sinapsis... Berazategui" las 4 aperturas "¿Qué es?" que quedaban genéricas — ver ítem 9.
+- Ampliados a 4 cards los 6 grids de "Otros servicios relacionados" de las páginas originales, agregando un link hacia cada una de las 5 páginas nuevas (antes esas 5 recibían muy pocos enlaces internos).
+- Creado `/llms.txt` en la raíz (no existía) con el resumen estructurado del sitio para crawlers de IA.
+- Sacado el badge duplicado "Obras sociales, prepagas y CUD" del promise-strip del home (quedaba repetido con la card de `#servicios`) — queda lugar libre para cuando llegue la lista real de obras sociales (ítem 6).
+- Lazy-load agregado al iframe de Instagram del home.
+- Borrado el código muerto del canvas animado del hero (estaba deshabilitado desde hacía tiempo, pero se seguía descargando igual).
+- Re-corrida `scripts/validar_seo.py`: 0 errores, 0 avisos, 22 URLs en sitemap, 27 páginas auditadas.
+- Sincronizados `SEO_GEO_AUDIT_AFTER.md` y `SEO_GEO_VALIDATION.md`, que tenían afirmaciones desactualizadas (ver ese mismo plan).
+
+**Qué sigue pendiente (necesita un dato real del centro):** todo el Track B del plan — profesionales de psicopedagogía/fonoaudiología/evaluaciones, fuentes clínicas de ADOS-2/ADI-R y batería neurocognitiva, lista de obras sociales, formación de Flavia Avellaneda e Ian Guzmán, historia real del centro/fundador, permiso para reseñas reales, y fotos reales. Son los mismos ítems 1-7 de este mismo archivo.
+
+**Verificación real pendiente:** correr a mano una muestra de las preguntas de `SEO_GEO_PROMPTS.md` contra ChatGPT/Perplexity/Google AI Overviews para confirmar si esto efectivamente mejoró las recomendaciones — no hay forma automática de medirlo.

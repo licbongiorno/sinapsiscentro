@@ -13,11 +13,11 @@ Verifica:
 - Todos los bloques `<script type="application/ld+json">` parsean como JSON válido.
 - Todos los `href` locales (sin `http`, `mailto:`, `tel:`, `#`) apuntan a un archivo que existe.
 
-**Resultado de la última corrida (2026-09-17):**
+**Resultado de la última corrida (2026-10-27, tras el plan SEO/GEO — meta descriptions recortadas, `reviewedBy` agregado, cross-linking entre páginas de servicio, `llms.txt` nuevo):**
 ```
-sitemap.xml: 16 URLs listadas
+sitemap.xml: 22 URLs listadas
 robots.txt: OK (sin bloqueos de CSS/JS, referencia sitemap sin www)
-22 páginas HTML auditadas (title/description/canonical/H1/JSON-LD)
+27 páginas HTML auditadas (title/description/canonical/H1/JSON-LD)
 Enlaces internos verificados (archivos locales referenciados por href)
 
 AVISOS (0):
@@ -25,6 +25,8 @@ AVISOS (0):
 ERRORES (0):
 ```
 Código de salida: `0`.
+
+(La corrida de 2026-09-17 citada más abajo en este doc quedó desactualizada — contaba 16 URLs en el sitemap y 22 páginas auditadas; hoy son 22 y 27 respectivamente, porque se agregaron `equipo-profesional.html` al índice y las 5 páginas de servicio nuevas desde entonces.)
 
 ## 2. Validación JSON-LD completa (los 32 bloques del sitio)
 

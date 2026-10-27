@@ -8,7 +8,7 @@ Fecha: 2026-09-17. Ver `SEO_GEO_AUDIT_BEFORE.md` para el estado previo, `SEO_GEO
 - **Redirección `www` → sin `www`** agregada en `vercel.json` (regla `has: [{type: "host", value: "www.sinapsiscentro.com.ar"}]`). Requiere una acción externa para activarse — ver sección 7.
 - **Código muerto del placeholder de Analytics** (`G-XXXXXXXXXX`) eliminado de `index.html` y las 6 páginas de recursos; el ID real `G-EMSJLNLRVJ` queda como única referencia, sin condicionales confusos.
 - **`medicalSpecialty`** en el JSON-LD de la home corregido a valores válidos del enum de schema.org (`Psychiatric`, `SpeechPathology`) — no existe un valor oficial para "terapia ocupacional" ni "psicopedagogía" en ese enum (limitación real de schema.org, documentada, no un error nuestro).
-- **`sitemap.xml`**: `lastmod` actualizado a la fecha real de esta edición, agregadas las 3 páginas nuevas indexables (`uso-de-recursos.html`, `privacidad.html`, `terminos.html`). `equipo-profesional.html` queda deliberadamente fuera (está en `noindex`).
+- **`sitemap.xml`**: `lastmod` actualizado a la fecha real de esta edición, agregadas las 3 páginas nuevas indexables (`uso-de-recursos.html`, `privacidad.html`, `terminos.html`). `equipo-profesional.html` quedaba deliberadamente fuera en `noindex` en esta fecha — **desactualizado**: desde el 2026-10-23 ya tiene datos reales de profesionales, salió de `noindex` y está en el sitemap (ver `SEO_GEO_CONTENT_NEEDED.md`, ítem 1).
 
 ### Analytics y conversiones
 - Nuevo `js/analytics-eventos.js` compartido: trackea clics en WhatsApp, email, **teléfono** (nuevo) y **mapa/dirección** (nuevo) en cualquier página que lo cargue. Antes sólo `index.html` trackeaba WhatsApp/email, y ninguna página trackeaba teléfono ni mapa.
@@ -30,7 +30,7 @@ Fecha: 2026-09-17. Ver `SEO_GEO_AUDIT_BEFORE.md` para el estado previo, `SEO_GEO
 - Agregada la sección "Fuentes y referencias" en las 2 páginas clínicas (ADOS-2/ADI-R, Neurocognitiva). La de ADOS-2/ADI-R tiene una fuente real (OMS); la de Neurocognitiva queda con un aviso honesto de que está pendiente, en vez de una fuente inventada.
 
 ### Páginas nuevas
-- `/equipo-profesional.html` — estructura lista, en `noindex` hasta tener datos reales, sin nombres inventados.
+- `/equipo-profesional.html` — estructura lista, en `noindex` hasta tener datos reales, sin nombres inventados. **Desactualizado**: desde 2026-10-23 tiene 6 profesionales reales con matrícula/formación, salió de `noindex` y está indexada — ver `SEO_GEO_CONTENT_NEEDED.md`.
 - `/privacidad.html` — borrador prudente basado en lo que el sitio realmente hace técnicamente (Firebase Auth, Analytics, localStorage), marcado para revisión legal.
 - `/terminos.html` — borrador prudente, marcado para revisión legal.
 - `/uso-de-recursos.html` — consolida la aclaración "estos recursos son complementarios..." con FAQ propia y enlaces a las 6 secciones de recursos.
@@ -100,8 +100,8 @@ Fecha: 2026-09-17. Ver `SEO_GEO_AUDIT_BEFORE.md` para el estado previo, `SEO_GEO
 - Conseguir menciones/enlaces reales desde directorios locales o profesionales (colegios profesionales, cámaras de comercio de Berazategui, etc.).
 - Verificar consistencia del NAP (nombre/dirección/teléfono) en cualquier directorio externo donde ya figure el centro.
 - Enviar el sitemap actualizado a Google Search Console y Bing Webmaster Tools una vez desplegado.
-- Decidir y confirmar la modalidad de atención (presencial/virtual/híbrida) para poder afirmarla en el sitio.
-- Cuando exista, entregar la información real de cada profesional para completar `/equipo-profesional.html`.
+- ~~Decidir y confirmar la modalidad de atención (presencial/virtual/híbrida) para poder afirmarla en el sitio.~~ Resuelto: `index.html` ya afirma "atención principalmente presencial... seguimiento virtual para algunos casos" (hero-sub y FAQ).
+- Entregar la información real de los profesionales de psicopedagogía, fonoaudiología y evaluaciones que todavía faltan en `/equipo-profesional.html` (6 de los profesionales confirmados ya están cargados — ver `SEO_GEO_CONTENT_NEEDED.md` ítem 1).
 - Revisar `/privacidad.html` y `/terminos.html` con asesoría legal antes de considerarlos definitivos.
 - Correr Lighthouse/PageSpeed Insights contra la URL real una vez desplegado, para tener números reales de Core Web Vitals (LCP/INP/CLS) — el código ya está preparado (font-display swap, preconnect, defer, sin bloqueos) pero el número final depende también del hosting/CDN en producción.
 
