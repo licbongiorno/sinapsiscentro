@@ -30,7 +30,7 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 
 **Qué falta:** qué batería/protocolo específico usa el centro (por ejemplo BANFE, ENI, NEUROPSI, WAIS, etc. — no se puede saber sin confirmación), y una fuente clínica verificable acorde (asociación de neuropsicología, manual del instrumento).
 
-**Qué se hizo mientras tanto:** se dejó la sección con un texto visible honesto ("Estamos completando esta sección...") en vez de fuentes inventadas.
+**Qué se hizo mientras tanto:** se dejó la sección con un texto visible honesto ("Usamos pruebas estandarizadas y reconocidas, elegidas según lo que cada persona necesita evaluar.") en vez de fuentes inventadas — reescrito en la ronda de tono cálido del 2026-10-30 (antes decía "Estamos completando esta sección...", que sonaba a página sin terminar).
 
 ## 4. Modalidad de atención (presencial / virtual / híbrida)
 
