@@ -254,6 +254,7 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s, opacity 0.3s;
 }
 .fab.scroll-dim { opacity: 0.38; }
+.fab.near-footer { opacity: 0 !important; pointer-events: none !important; }
 @media (prefers-reduced-motion: reduce) { .fab.scroll-dim { opacity: 1; } }
 @media (max-width: 520px) { .fab .fab-txt { display: none; } .fab { padding: 17px; border-radius: 50%; } }
 
