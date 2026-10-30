@@ -45,13 +45,20 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 - Si hace falta un consentimiento explícito adicional en el formulario/WhatsApp antes de coordinar una consulta.
 - Razón social / CUIT del responsable, si se quiere incluir.
 
-## 6. Obras sociales y prepagas específicas
+## 6. Obras sociales y prepagas — prestaciones por discapacidad
 
-**Estado (2026-10-30):** resuelto. El centro confirmó el listado real de 25 coberturas: OSECAC, OSDO, OSPIP, OSPI, APRES, GALENO, OSPOSE, OPSECOM, DASUTEN, OSDEPYM, SANCOR SALUD, OSDE, SWISS MEDICAL, MEDIFÉ, UNIÓN PERSONAL, OSPE, OSPEDYC, OSPLAD, AVALIAN, OMINT, MEDICUS, JERÁRQUICOS SALUD, FEDERADA SALUD, BOREAL SALUD y SANIDAD.
+**Estado (2026-10-30):** la página `/obras-sociales-prepagas.html` se redefinió para ser exclusivamente sobre **prestaciones para personas con discapacidad** (no una cartilla general de obras sociales, y no la cobertura de consultas particulares de psicología/psicopedagogía/fonoaudiología/terapia ocupacional — el centro pidió explícitamente no confundir ambas cosas). Título, copy, FAQ y disclaimer se reescribieron en esa línea.
 
-**Dónde se publicó:** página nueva `/obras-sociales-prepagas.html` (indexada, en `sitemap.xml` y en `llms.txt`), con el listado completo, un FAQ ("¿Tu obra social no aparece en el listado?") y el disclaimer de que la cobertura/autorización depende del plan y los convenios vigentes — texto provisto por el centro, no inventado.
+**Listado de coberturas (31), confirmado por el centro con correcciones puntuales:**
+OSECAC, OSDO, OSPIP, OSPI, APRES, GALENO, OSPOCE, DASUTEN, OSDEPYM, SANCOR SALUD, OSDE, SWISS MEDICAL, MEDIFÉ, UNIÓN PERSONAL, OSPE, OSPEDYC, OSPLAD, AVALIAN, OMINT, MEDICUS, JERÁRQUICOS SALUD, FEDERADA SALUD, BOREAL SALUD, OSPSA – SANIDAD, OSPECON, OSSEG, OSPRERA, OSFATUN, OSPIA, OSUTHGRA, OSCCPTAC.
 
-**Dónde se linkeó:** se agregó un link a esa página desde las 12 ubicaciones que antes solo decían el texto genérico — `index.html` y las 11 páginas `*-berazategui.html` — en el badge de CUD/obras sociales y en la respuesta de la FAQ "¿Atienden obras sociales y prepagas?" (visible y su `FAQPage` JSON-LD correspondiente).
+- **OPSECOM**: sacada del listado — el centro pidió no publicarla hasta confirmar su denominación oficial.
+- **OSPOSE → OSPOCE**: se reemplazó. Búsqueda externa (2026-10-30) confirma que OSPOCE es una obra social real y activa (ospoce.com.ar), con un manual propio de acceso a terapias de rehabilitación para personas con discapacidad — encaja con el tema de la página. No se encontró ningún rastro de "OSPOSE" como entidad real, lo que respalda que era un error de tipeo. Si el centro confirma que son dos entidades distintas, hay que agregar "OSPOSE" de nuevo por separado.
+- **OSPI**: el centro pidió "identificar correctamente" esta entidad. Una búsqueda no encontró ninguna obra social registrada exactamente como "OSPI" — el resultado más cercano es OSPIF (Obra Social del Personal de la Industria del Fósforo, Encendido y Afines, actualmente en proceso de baja ante la Superintendencia), que no parece ser lo mismo. **Sigue pendiente**: confirmar con el centro a qué entidad corresponde "OSPI" antes de dar esa tarjeta por definitiva.
+
+**Dónde se publicó:** `/obras-sociales-prepagas.html` (indexada, en `sitemap.xml` y `llms.txt`), con el listado de 31 tarjetas, un FAQ de 3 preguntas acotado al tema de discapacidad, el disclaimer pedido por el centro ("la inclusión... no implica que exista un convenio confirmado") y un botón flotante de WhatsApp propio de esa página.
+
+**Pendiente de revisar (fuera de alcance de esta pasada, no modificado):** `index.html` y las 11 páginas `*-berazategui.html` siguen linkeando a esta página desde su FAQ genérica "¿Atienden obras sociales y prepagas?" (sobre consultas particulares) — un link que quedó desalineado con el nuevo enfoque exclusivo a discapacidad de la página de destino. Ver conversación para la decisión pendiente del centro sobre si corresponde sacar esos links o redirigirlos a la pregunta de CUD.
 
 ## 7. Reseñas y menciones externas
 
