@@ -47,11 +47,11 @@ Este archivo lista cada lugar del sitio donde falta un dato real del negocio. Na
 
 ## 6. Obras sociales y prepagas específicas
 
-**Dónde:** todas las páginas dicen genéricamente "obras sociales y prepagas" / "con y sin CUD", sin listar nombres.
+**Estado (2026-10-30):** resuelto. El centro confirmó el listado real de 25 coberturas: OSECAC, OSDO, OSPIP, OSPI, APRES, GALENO, OSPOSE, OPSECOM, DASUTEN, OSDEPYM, SANCOR SALUD, OSDE, SWISS MEDICAL, MEDIFÉ, UNIÓN PERSONAL, OSPE, OSPEDYC, OSPLAD, AVALIAN, OMINT, MEDICUS, JERÁRQUICOS SALUD, FEDERADA SALUD, BOREAL SALUD y SANIDAD.
 
-**Qué falta:** el listado real de obras sociales y prepagas con las que se trabaja (si existe), para reemplazar el texto genérico por algo más específico y con más señal para búsquedas tipo "¿atienden [nombre de obra social]?".
+**Dónde se publicó:** página nueva `/obras-sociales-prepagas.html` (indexada, en `sitemap.xml` y en `llms.txt`), con el listado completo, un FAQ ("¿Tu obra social no aparece en el listado?") y el disclaimer de que la cobertura/autorización depende del plan y los convenios vigentes — texto provisto por el centro, no inventado.
 
-**Qué se hizo mientras tanto:** no se inventó ningún nombre de obra social ni prepaga — se mantuvo el texto genérico ya existente.
+**Dónde se linkeó:** se agregó un link a esa página desde las 12 ubicaciones que antes solo decían el texto genérico — `index.html` y las 11 páginas `*-berazategui.html` — en el badge de CUD/obras sociales y en la respuesta de la FAQ "¿Atienden obras sociales y prepagas?" (visible y su `FAQPage` JSON-LD correspondiente).
 
 ## 7. Reseñas y menciones externas
 

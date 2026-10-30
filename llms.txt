@@ -22,6 +22,10 @@ Atención sin derivación médica previa, con y sin CUD, obras sociales y prepag
 
 - [Equipo profesional](https://sinapsiscentro.com.ar/equipo-profesional.html): nombre, formación y matrícula de cada profesional del centro.
 
+## Coberturas
+
+- [Obras sociales y prepagas](https://sinapsiscentro.com.ar/obras-sociales-prepagas.html): listado de coberturas que se pueden consultar, entre ellas OSDE, Swiss Medical, Galeno, Medicus, Sancor Salud, OMINT, Avalian, Medifé, Unión Personal, Jerárquicos Salud y Federada Salud.
+
 ## Recursos gratuitos
 
 - [Juegos](https://sinapsiscentro.com.ar/juegos.html), [Ejercicios](https://sinapsiscentro.com.ar/ejercicios.html), [Mindfulness](https://sinapsiscentro.com.ar/mindfulness.html), [Creatividad](https://sinapsiscentro.com.ar/creatividad.html), [Zona infantil](https://sinapsiscentro.com.ar/infantil.html), [Biblioteca sonora](https://sinapsiscentro.com.ar/sonidos.html): actividades breves, gratuitas y sin registro, pensadas como complemento y no como reemplazo de una consulta profesional.
