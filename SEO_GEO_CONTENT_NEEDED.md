@@ -99,7 +99,7 @@ Con eso se corrigió el link desalineado: el badge de CUD y la FAQ "¿Atienden o
 - Sacado el badge duplicado "Obras sociales, prepagas y CUD" del promise-strip del home (quedaba repetido con la card de `#servicios`) — queda lugar libre para cuando llegue la lista real de obras sociales (ítem 6).
 - Lazy-load agregado al iframe de Instagram del home.
 - Borrado el código muerto del canvas animado del hero (estaba deshabilitado desde hacía tiempo, pero se seguía descargando igual).
-- Re-corrida `scripts/validar_seo.py`: 0 errores, 0 avisos, 22 URLs en sitemap, 27 páginas auditadas.
+- Re-corrida `scripts/validar_seo.py`: 0 errores, 0 avisos, 22 URLs en sitemap, 27 páginas auditadas (al 2026-10-27; al 2026-10-30, tras sumar la página de discapacidad y la de historia, son 24 URLs y 29 páginas — ver ítem 12).
 - Sincronizados `SEO_GEO_AUDIT_AFTER.md` y `SEO_GEO_VALIDATION.md`, que tenían afirmaciones desactualizadas (ver ese mismo plan).
 
 **Qué sigue pendiente (necesita un dato real del centro):** todo el Track B del plan — profesionales de psicopedagogía/fonoaudiología/evaluaciones, fuentes clínicas de ADOS-2/ADI-R y batería neurocognitiva, lista de obras sociales, formación de Flavia Avellaneda e Ian Guzmán, historia real del centro/fundador, permiso para reseñas reales, y fotos reales. Son los mismos ítems 1-7 de este mismo archivo.
@@ -113,3 +113,17 @@ Con eso se corrigió el link desalineado: el badge de CUD y la FAQ "¿Atienden o
 **Dónde se publicó:** página nueva `/nuestra-historia.html` (indexada, en `sitemap.xml` y `llms.txt`), con el texto completo que dio el centro casi textual, los 4 valores como tarjetas, y la frase sello destacada como cita. JSON-LD `AboutPage` + `BreadcrumbList`.
 
 **Dónde se integró:** `index.html`, sección "Por qué elegirnos" (`.confianza-body`) — el párrafo genérico ("nació con un propósito claro") se reemplazó por un resumen con la fecha real y el origen del nombre, con link a la historia completa. Se agregó `"foundingDate": "2026-02"` al JSON-LD `MedicalBusiness` del home (dato real, no estaba declarado antes). Se agregó el link en el footer del home.
+
+## 12. Checkpoint de mejora SEO/GEO — ejecutado (2026-10-30)
+
+**Dónde:** ver `/root/.claude/plans/clever-wobbling-shamir.md` para el plan completo. Se volvió a auditar todo el sitio desde cero (no se asumió que los docs estaban al día) para ver qué quedaba pendiente después de todo lo hecho hasta acá.
+
+**Resultado de la auditoría:** `validar_seo.py` en 0 errores/avisos, 29 páginas, 24 URLs en sitemap. JSON-LD válido en todo, `FAQPage` coincide con el texto visible en el 100% de las páginas (chequeado con script). Conclusión: la fruta más baja de SEO técnico ya estaba cosechada — lo que quedaba era arquitectura de información y mantenimiento de fechas.
+
+**Qué se hizo:**
+- `nuestra-historia.html` era la página peor enlazada del sitio (solo 2 links, los dos en `index.html`) a pesar de ser justo el tipo de contenido que más le sirve a una IA para citar con confianza. Se agregó un link a esa página en el footer de las 11 páginas de servicio + `equipo-profesional.html` + `obras-sociales-prepagas.html` + `uso-de-recursos.html`.
+- La columna "Legal" del footer del home tenía "Equipo profesional" y "Nuestra historia" adentro, que no son documentos legales — se renombró a "Institucional".
+- Sincronizadas las fechas `lastmod` de `sitemap.xml` y `dateModified` del JSON-LD que habían quedado desactualizadas en 14 páginas (editadas el 2026-10-30 pero con fecha vieja).
+- Agregado a `scripts/validar_seo.py` un chequeo nuevo que compara el `lastmod` de cada URL del sitemap contra la fecha del último commit de git que tocó ese archivo, para que esta desincronización se detecte sola de ahora en más (no usa el mtime del filesystem, que no es confiable después de un `git clone`).
+
+**Qué sigue pendiente (necesita un dato real del centro):** ver ítems 1-7 de este archivo. El más urgente es el ítem 6 (confirmar la entidad "OSPI" — ya está publicada sin confirmar en `/obras-sociales-prepagas.html`).

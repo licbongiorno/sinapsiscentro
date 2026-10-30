@@ -15,6 +15,7 @@ import glob
 import json
 import os
 import re
+import subprocess
 import sys
 import xml.etree.ElementTree as ET
 
@@ -34,6 +35,7 @@ def warn(msg):
 # ── 1. Cargar sitemap.xml ──
 sitemap_path = "sitemap.xml"
 sitemap_locs = []
+sitemap_lastmod = {}  # loc -> "YYYY-MM-DD", para el chequeo de frescura de la sección 5
 try:
     tree = ET.parse(sitemap_path)
     ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
@@ -47,6 +49,8 @@ try:
             err(f"sitemap.xml: URL con parámetros/fragmento (no debería estar en el sitemap): {loc}")
         if lastmod is None or not re.match(r"^\d{4}-\d{2}-\d{2}$", lastmod.text.strip()):
             err(f"sitemap.xml: lastmod inválido o ausente en {loc}")
+        elif lastmod is not None:
+            sitemap_lastmod[loc] = lastmod.text.strip()
 except Exception as e:
     err(f"sitemap.xml no es XML válido: {e}")
 
@@ -178,6 +182,36 @@ for pagina in PAGINAS_INDEXABLES:
             err(f"{pagina}: enlace interno roto → {href}")
 
 print("Enlaces internos verificados (archivos locales referenciados por href)")
+
+# ── 5. Frescura del sitemap: lastmod vs. el último commit real que tocó el archivo ──
+# Se usa git log (no el mtime del filesystem) porque un `git clone` fresco no
+# preserva las fechas de edición originales — el mtime sería siempre "hoy".
+def git_disponible():
+    try:
+        subprocess.run(["git", "rev-parse", "--is-inside-work-tree"],
+                        capture_output=True, check=True, text=True)
+        return True
+    except Exception:
+        return False
+
+if git_disponible():
+    for loc, lastmod in sitemap_lastmod.items():
+        path = loc.replace("https://sinapsiscentro.com.ar/", "")
+        local = path if path else "index.html"
+        if not os.path.isfile(local):
+            continue  # ya lo marca como error la sección 1
+        try:
+            resultado = subprocess.run(
+                ["git", "log", "-1", "--format=%cd", "--date=short", "--", local],
+                capture_output=True, check=True, text=True,
+            )
+            ultimo_commit = resultado.stdout.strip()
+        except Exception:
+            continue  # archivo sin historial de git (recién creado, no commiteado) — no hay con qué comparar
+        if ultimo_commit and ultimo_commit > lastmod:
+            warn(f"sitemap.xml: lastmod de {local} ({lastmod}) quedó desactualizado — el último commit que lo tocó es del {ultimo_commit}")
+else:
+    warn("No se pudo verificar la frescura del sitemap: este directorio no es un repositorio git")
 
 # ── Resumen ──
 print()
