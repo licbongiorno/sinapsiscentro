@@ -160,3 +160,16 @@ Con eso se corrigió el link desalineado: el badge de CUD y la FAQ "¿Atienden o
 **Qué NO se tocó, deliberadamente:** el H1/slug de `obras-sociales-prepagas.html` ("Prestaciones para personas con discapacidad" — demasiado radio de impacto para un cambio de tono, está replicado en metadatos/sitemap/12 FAQ), el nav label corto "Pacientes", las citas académicas de `sonidos.html`, y bios nuevas para el equipo (necesitaría datos reales que el centro no dio — ver ítem 2, sigue abierto).
 
 **Verificación:** `validar_seo.py` en 0 errores/0 avisos. Chequeo automático (ad-hoc) de que el `textContent` de cada FAQ visible coincide con el `text` de su `FAQPage` JSON-LD en las 29 páginas del sitio, no solo en las tocadas — sigue coincidiendo en el 100%. JSON-LD válido en todo el sitio. Playwright confirmó que ningún texto nuevo (más largo o más corto que el original) rompe el layout de las tarjetas de servicio del home ni de las páginas de servicio reescritas.
+
+## 15. IndexNow — ejecutado (2026-10-30)
+
+**Por qué:** se midió con Lighthouse en producción y con búsquedas web reales si el trabajo técnico de SEO/GEO estaba dando resultado. Conclusión: el sitio técnicamente está bien (Lighthouse: accesibilidad 100, SEO 100 en todas las páginas indexables, performance 84-100 según la página) pero **no aparecía en ninguna búsqueda real, ni siquiera buscando el nombre exacto del centro** — no había rastro de verificación en Search Console, así que probablemente nunca se había indexado. El dueño lo resolvió verificando el dominio y enviando `sitemap.xml` en Google Search Console y Bing Webmaster Tools.
+
+IndexNow es el complemento técnico de eso: un protocolo liviano (lo soportan Bing, Yandex, Seznam.cz, Naver — Google todavía no) para avisar activamente "esta URL cambió" en vez de esperar un rastreo pasivo.
+
+**Qué se hizo:**
+- Clave de verificación generada y publicada en `/<clave>.txt` en la raíz del sitio (se sirve como estático, igual que `robots.txt`/`sitemap.xml`).
+- `scripts/indexnow_submit.py`: lee las URLs de `sitemap.xml` (misma lógica que `validar_seo.py`) y las envía en un solo POST a `https://api.indexnow.org/indexnow`, que redistribuye el aviso a todos los buscadores participantes.
+- **Convención a seguir de ahora en más:** correr `python3 scripts/indexnow_submit.py` después de cualquier tanda de cambios de contenido en el sitio — mismo momento en que ya se corre `validar_seo.py`.
+
+**Pendiente (no se pudo hacer desde este entorno):** el primer envío real todavía no se mandó. Hacen falta dos cosas: (1) que el commit con `<clave>.txt` esté deployado en producción (IndexNow verifica la clave accediendo a esa URL), y (2) acceso de red a `api.indexnow.org` desde el entorno donde se corra el script — no estaba en la lista de hosts permitidos de este sandbox. Una vez deployado, correr el script (desde este entorno agregando `api.indexnow.org` a Network access, o el dueño puede correrlo él mismo — no tiene dependencias más allá de la librería estándar de Python).
