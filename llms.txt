@@ -1,6 +1,6 @@
 # Centro Sinapsis
 
-> Centro de salud interdisciplinario en Berazategui, Zona Sur de Buenos Aires (Quilmes, Florencio Varela, Avellaneda y alrededores): psicología, psicopedagogía, fonoaudiología, terapia ocupacional, kinesiología y evaluaciones del desarrollo, para bebés, niños, adolescentes y adultos.
+> Centro de salud interdisciplinario en Berazategui, Zona Sur de Buenos Aires (Quilmes, Florencio Varela, Avellaneda y alrededores): psicología, psicopedagogía, fonoaudiología, terapia ocupacional, kinesiología y evaluaciones del desarrollo, para bebés, niños, adolescentes y adultos. Fundado en febrero de 2026 bajo la idea de que cada persona necesita ser escuchada y sentirse parte de un espacio, no solo recibir una prestación.
 
 Atención sin derivación médica previa, con y sin CUD, obras sociales y prepagas. Primera entrevista coordinada por WhatsApp. Dirección: Calle 27 Nº3907 esq. 139, Berazategui, Buenos Aires. Horarios: lunes a viernes 9 a 20 hs, sábados 9 a 13 hs.
 
@@ -21,6 +21,7 @@ Atención sin derivación médica previa, con y sin CUD, obras sociales y prepag
 ## Equipo
 
 - [Equipo profesional](https://sinapsiscentro.com.ar/equipo-profesional.html): nombre, formación y matrícula de cada profesional del centro.
+- [Nuestra historia](https://sinapsiscentro.com.ar/nuestra-historia.html): por qué y cómo nació Centro Sinapsis en febrero de 2026, el significado del nombre, y los cuatro valores que guían el trabajo del centro.
 
 ## Coberturas
 

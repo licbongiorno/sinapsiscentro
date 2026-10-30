@@ -105,3 +105,11 @@ Con eso se corrigió el link desalineado: el badge de CUD y la FAQ "¿Atienden o
 **Qué sigue pendiente (necesita un dato real del centro):** todo el Track B del plan — profesionales de psicopedagogía/fonoaudiología/evaluaciones, fuentes clínicas de ADOS-2/ADI-R y batería neurocognitiva, lista de obras sociales, formación de Flavia Avellaneda e Ian Guzmán, historia real del centro/fundador, permiso para reseñas reales, y fotos reales. Son los mismos ítems 1-7 de este mismo archivo.
 
 **Verificación real pendiente:** correr a mano una muestra de las preguntas de `SEO_GEO_PROMPTS.md` contra ChatGPT/Perplexity/Google AI Overviews para confirmar si esto efectivamente mejoró las recomendaciones — no hay forma automática de medirlo.
+
+## 11. Historia del centro/fundador
+
+**Estado (2026-10-30):** resuelto. El centro confirmó la historia real: Centro Sinapsis nació en febrero de 2026, el origen del nombre (sinapsis = conexión), los cuatro valores que guían el trabajo (conexiones humanas, trabajo interdisciplinario, la persona en el centro, construir algo diferente) y la frase sello "Vos sos el centro. Nosotros conectamos con vos."
+
+**Dónde se publicó:** página nueva `/nuestra-historia.html` (indexada, en `sitemap.xml` y `llms.txt`), con el texto completo que dio el centro casi textual, los 4 valores como tarjetas, y la frase sello destacada como cita. JSON-LD `AboutPage` + `BreadcrumbList`.
+
+**Dónde se integró:** `index.html`, sección "Por qué elegirnos" (`.confianza-body`) — el párrafo genérico ("nació con un propósito claro") se reemplazó por un resumen con la fecha real y el origen del nombre, con link a la historia completa. Se agregó `"foundingDate": "2026-02"` al JSON-LD `MedicalBusiness` del home (dato real, no estaba declarado antes). Se agregó el link en el footer del home.

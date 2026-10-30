@@ -49,6 +49,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://sinapsiscentro.com.ar/nuestra-historia.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://sinapsiscentro.com.ar/estimulacion-temprana-berazategui.html</loc>
     <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
