@@ -127,3 +127,19 @@ Con eso se corrigió el link desalineado: el badge de CUD y la FAQ "¿Atienden o
 - Agregado a `scripts/validar_seo.py` un chequeo nuevo que compara el `lastmod` de cada URL del sitemap contra la fecha del último commit de git que tocó ese archivo, para que esta desincronización se detecte sola de ahora en más (no usa el mtime del filesystem, que no es confiable después de un `git clone`).
 
 **Qué sigue pendiente (necesita un dato real del centro):** ver ítems 1-7 de este archivo. El ítem 6 ("OSPI") ya no es urgente — se sacó del listado público (ver arriba) hasta confirmarla; si el centro la confirma, se vuelve a agregar.
+
+## 13. Accesibilidad, consistencia visual y rendimiento — ejecutado (2026-10-30)
+
+**Dónde:** ver `/root/.claude/plans/clever-wobbling-shamir.md` para el plan completo. Pedido del centro: "mejora todo". Se auditaron tres áreas que no se habían revisado de punta a punta (rendimiento, accesibilidad, consistencia visual) con tres auditorías de solo lectura en paralelo, verificadas a mano contra el código real antes de confiar en ellas (se descartó un falso positivo: `.svc-facts` se había marcado como bug de contraste visible, pero por grep se confirmó que era CSS muerto, sin uso en ningún HTML).
+
+**Qué se hizo (22 archivos tocados, todo fixes de código, sin inventar ningún dato):**
+- Contraste: subida la opacidad de `.svc-breadcrumb a`/`.svc-breadcrumb span`/`.svc-cta-final p` (`css/servicios.css`) y `.cta-final-sub` (`index.html`) de ~0.3-0.6 a 0.75 — el texto blanco translúcido perdía contraste del lado más claro (`teal-deep`) del degradado del hero/CTA.
+- Color de link faltante en las respuestas de FAQ (mismo patrón de bug que el del badge CUD, corregido antes): `.svc-faq-a p a` (`css/servicios.css`) y `.faq-a p a` (`index.html`) ahora usan el teal del sitio en vez del azul/violeta default del navegador.
+- `.svc-equipo-card` (tarjetas de `equipo-profesional.html`) ahora tiene el mismo `:hover` que sus tarjetas hermanas (`.svc-rel-card`, `.svc-obras-card`, `.svc-identidad-card`).
+- Accesibilidad: `aria-label` explícito en los botones flotantes (antes dependían del `title` como fallback), `aria-hidden`/`focusable="false"` en el SVG de "volver arriba", `aria-label="Buscar"` en los 5 buscadores que solo tenían `placeholder`, `for="inputNombre"` en los 5 labels de "Tu nombre" que no estaban asociados a su input, y `aria-controls`/`id` en el acordeón de FAQ de las 13 páginas que lo tenían incompleto (ya funcionaba bien en `index.html`, ahora es igual en todas).
+- `css/sonidos.css` (la única hoja de estilos sin el bloque universal de `prefers-reduced-motion`) lo tiene ahora.
+- Rendimiento: `defer` en el script de SnapWidget (único script bloqueante del sitio), borrado el CSS muerto de `.svc-facts`, y subido el `Cache-Control` de CSS/JS/data en `vercel.json` de 1 hora a 1 día.
+
+**Verificación:** `validar_seo.py` en 0 errores/0 avisos después de los cambios. Playwright confirmó en el DOM real: los nuevos `aria-label`, el `for`/`id` del label de nombre, el `aria-controls` coincidiendo con el `id` de la respuesta de FAQ, el color del link dentro de la FAQ, el hover de `.svc-equipo-card`, y que `sonidos.html` respeta `prefers-reduced-motion` (duración de transición efectivamente en 0 con la preferencia activada). Capturas del hero y el CTA final confirmaron que el texto se sigue viendo bien tras subir la opacidad — no "demasiado blanco", sólo más legible.
+
+**Qué sigue pendiente (necesita medición en el sitio en vivo, no accesible desde este entorno):** extraer el `<style>` de 1074 líneas embebido en `index.html` a un CSS externo cacheable, y optimizar el payload de ~1.6MB de `buscar.html` (construir un índice de búsqueda liviano en vez de cargar los 6 catálogos completos) — quedan fuera de este plan porque el beneficio real depende de medir en producción, no son quick wins de código.

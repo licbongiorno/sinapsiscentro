@@ -278,8 +278,12 @@
 
 <script>
 document.getElementById("footYear").textContent = new Date().getFullYear();
-document.querySelectorAll(".svc-faq-item").forEach(function (item) {{
+document.querySelectorAll(".svc-faq-item").forEach(function (item, index) {{
   var boton = item.querySelector(".svc-faq-q");
+  var respuesta = item.querySelector(".svc-faq-a");
+  var answerId = "svc-faq-answer-" + (index + 1);
+  respuesta.id = answerId;
+  boton.setAttribute("aria-controls", answerId);
   boton.addEventListener("click", function () {{
     var abierto = item.classList.toggle("open");
     boton.setAttribute("aria-expanded", abierto ? "true" : "false");
