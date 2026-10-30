@@ -64,9 +64,9 @@ Con eso se corrigió el link desalineado: el badge de CUD y la FAQ "¿Atienden o
 
 ## 7. Reseñas y menciones externas
 
-**Dónde:** no aplica a ningún archivo del código — es una acción 100% externa.
+**Estado (2026-10-30):** parcialmente resuelto. El dueño confirmó permiso explícito de las pacientes para citarlas con nombre, y pasó el texto real de 6 reseñas de Google. De esas, se usaron 3 con contenido textual sustancial (Ludmila Molina, Valentina Sanchez, Isabella B.) en `index.html`, sección `#testimonios` — reemplazó la tarjeta que solo linkeaba a Google por una grilla de 3 citas reales más una tarjeta secundaria "¿Querés ver más?" que sigue linkeando al perfil completo. Se descartaron del listado: una reseña de Nicolás Bongiorno (es psicólogo del propio equipo, no un paciente — mostrarla como testimonio hubiera sido engañoso), una de solo emoji sin texto, y dos entradas sin texto visible.
 
-**Qué falta:** reseñas genuinas en Google, respuestas a esas reseñas, menciones en directorios locales. Ver la lista completa de acciones externas en `SEO_GEO_AUDIT_AFTER.md`, sección "Acciones que debe realizar el dueño fuera del código".
+**Qué sigue faltando:** no se agregó `Review`/`AggregateRating` en JSON-LD porque no se confirmó la calificación en estrellas de cada reseña (no se va a inventar un número) — si el dueño confirma que fueron 5 estrellas, se puede sumar ese structured data. También sigue pendiente: respuestas del centro a esas reseñas, y menciones/presencia en directorios locales (Doctoralia, Google Business Profile) — ver `SEO_GEO_AUDIT_AFTER.md`, sección "Acciones que debe realizar el dueño fuera del código".
 
 ## 8. Cuadrícula de Instagram en la home
 
