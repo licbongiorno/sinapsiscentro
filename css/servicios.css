@@ -154,6 +154,8 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
 .svc-cud-strip svg { flex-shrink: 0; color: white; width: 26px; height: 26px; margin-top: 3px; }
 .svc-cud-strip h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: white; margin-bottom: 6px; }
 .svc-cud-strip p { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin: 0; }
+.svc-cud-strip p a { color: var(--teal-soft); text-decoration: underline; }
+.svc-cud-strip p a:active { color: white; }
 
 /* pasos */
 .svc-pasos { display: grid; gap: 18px; margin-top: 20px; }
@@ -291,6 +293,7 @@ footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255
   .svc-rel-card:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(8,32,46,0.08); }
   .svc-obras-card:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(8,32,46,0.08); }
   .fab:hover { background: #0a5c2e; transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 48px rgba(14,122,53,0.55); }
+  .svc-cud-strip p a:hover { color: white; }
   .svc-equipo-card a.svc-equipo-link:hover { gap: 10px; }
   footer.svc-footer a:hover { text-decoration: underline; }
 }
