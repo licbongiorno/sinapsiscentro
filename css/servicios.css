@@ -164,6 +164,7 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
   flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
   background: var(--teal-pale); color: var(--teal-texto); font-weight: 800;
   display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif;
+  transition: transform 0.3s var(--easing);
 }
 .svc-paso h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
 .svc-paso p { font-size: 0.9rem; margin: 0; }
@@ -260,20 +261,36 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
 @media (prefers-reduced-motion: reduce) { .fab.scroll-dim { opacity: 1; } }
 @media (max-width: 520px) { .fab .fab-txt { display: none; } .fab { padding: 17px; border-radius: 50%; } }
 
+/* historia: prosa narrativa — más contraste y más aire que el copy
+   breve de una página de servicio, porque acá se lee un relato largo */
+.svc-historia-prosa p { color: var(--text); font-size: 1.05rem; line-height: 1.95; margin-bottom: 24px; }
+.svc-historia-prosa p:last-child { margin-bottom: 0; }
+
 /* historia: cita destacada */
 .svc-pullquote {
-  border-left: 4px solid var(--teal-mid); padding: 4px 0 4px 24px; margin: 40px 0;
-  font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem;
-  color: var(--navy); line-height: 1.6;
+  border-left: 4px solid var(--teal-mid); padding: 6px 0 6px 28px; margin: 48px 0;
+  font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem;
+  color: var(--navy); line-height: 1.65;
 }
 
-/* historia: grilla de identidad (4 pilares) */
+/* historia: grilla de identidad (4 pilares) — mismo círculo numerado
+   que .svc-paso-num (ver "Cómo es la primera entrevista") para que
+   se lea como parte del mismo sistema visual, no como un elemento aparte */
 .svc-identidad-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.svc-identidad-card { background: white; border: 1.5px solid rgba(42,174,194,0.1); border-radius: var(--r); padding: 24px; }
-.svc-identidad-card .num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--teal-texto); line-height: 1; margin-bottom: 8px; }
-.svc-identidad-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+.svc-identidad-card {
+  background: white; border: 1.5px solid rgba(42,174,194,0.1); border-radius: var(--r);
+  padding: 26px; display: flex; gap: 18px; align-items: flex-start;
+  transition: border-color 0.3s var(--easing), transform 0.3s var(--easing), box-shadow 0.3s var(--easing);
+}
+.svc-identidad-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--navy); margin-bottom: 6px; }
 .svc-identidad-card p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.7; margin: 0; }
 @media (max-width: 640px) { .svc-identidad-grid { grid-template-columns: 1fr; } }
+
+/* micro-animación de entrada al hacer scroll, reusable en cualquier
+   página de servicio (hoy solo se usa en nuestra-historia.html) */
+.svc-reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--easing), transform 0.7s var(--easing); }
+.svc-reveal.in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .svc-reveal { opacity: 1; transform: none; transition: none; } }
 
 /* CTA final */
 .svc-cta-final {
@@ -308,6 +325,8 @@ footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255
   .svc-rel-card:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(8,32,46,0.08); }
   .svc-obras-card:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(8,32,46,0.08); }
   .fab:hover { background: #0a5c2e; transform: translateY(-4px) scale(1.04); box-shadow: 0 14px 48px rgba(14,122,53,0.55); }
+  .svc-identidad-card:hover { border-color: var(--teal-mid); transform: translateY(-4px); box-shadow: 0 14px 32px rgba(8,32,46,0.09); }
+  .svc-identidad-card:hover .svc-paso-num { transform: scale(1.08); }
   .svc-cud-strip p a:hover { color: white; }
   .svc-equipo-card a.svc-equipo-link:hover { gap: 10px; }
   footer.svc-footer a:hover { text-decoration: underline; }
