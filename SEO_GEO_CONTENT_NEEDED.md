@@ -58,7 +58,9 @@ OSECAC, OSDO, OSPIP, OSPI, APRES, GALENO, OSPOCE, DASUTEN, OSDEPYM, SANCOR SALUD
 
 **Dónde se publicó:** `/obras-sociales-prepagas.html` (indexada, en `sitemap.xml` y `llms.txt`), con el listado de 31 tarjetas, un FAQ de 3 preguntas acotado al tema de discapacidad, el disclaimer pedido por el centro ("la inclusión... no implica que exista un convenio confirmado") y un botón flotante de WhatsApp propio de esa página.
 
-**Pendiente de revisar (fuera de alcance de esta pasada, no modificado):** `index.html` y las 11 páginas `*-berazategui.html` siguen linkeando a esta página desde su FAQ genérica "¿Atienden obras sociales y prepagas?" (sobre consultas particulares) — un link que quedó desalineado con el nuevo enfoque exclusivo a discapacidad de la página de destino. Ver conversación para la decisión pendiente del centro sobre si corresponde sacar esos links o redirigirlos a la pregunta de CUD.
+**Resuelto (2026-10-30):** el centro aclaró cómo funciona la cobertura por obra social para pacientes **ambulatorios, no por discapacidad** (psicología, psicopedagogía, fonoaudiología, terapia ocupacional en consulta particular): se puede atender con **cualquier obra social o prepaga**, pero siempre **por reintegro** — el paciente abona la sesión, se le da la factura correspondiente, y la presenta en su obra social para que le reintegren el total o una parte, según las condiciones de su propio plan (no es convenio/facturación directa). Este dato no estaba documentado en ningún lado hasta ahora.
+
+Con eso se corrigió el link desalineado: el badge de CUD y la FAQ "¿Atienden obras sociales y prepagas?" en `index.html` y las 11 páginas `*-berazategui.html` ya no prometen un listado de coberturas por discapacidad para consultas particulares — ahora explican el modelo de reintegro, y el link a `/obras-sociales-prepagas.html` quedó solo en el contexto correcto (pacientes con CUD).
 
 ## 7. Reseñas y menciones externas
 
