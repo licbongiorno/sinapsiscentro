@@ -335,3 +335,26 @@ footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255
   .svc-equipo-card:hover { border-color: var(--teal-mid); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(8,32,46,0.08); }
   footer.svc-footer a:hover { text-decoration: underline; }
 }
+
+/* ═══ HERO CON ILUSTRACIÓN DE MARCA (img/ilustraciones, scripts/ilustraciones.py) ═══
+   Un disco crema con la ilustración de cada servicio, en la misma paleta que
+   Centro Sinapsis usa en Instagram (crema, salvia, oliva, terracota). */
+.svc-hero--ilustrada .svc-hero-inner {
+  max-width: 1080px; display: grid; grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 56px; align-items: center;
+}
+.svc-hero-art {
+  width: 260px; height: 260px; display: block;
+  filter: drop-shadow(0 18px 40px rgba(0,0,0,0.28));
+  animation: svc-art-in 0.9s var(--easing) both 0.15s;
+}
+@keyframes svc-art-in { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: none; } }
+@media (max-width: 860px) {
+  .svc-hero--ilustrada .svc-hero-inner { grid-template-columns: minmax(0, 1fr) 170px; gap: 28px; }
+  .svc-hero-art { width: 170px; height: 170px; }
+}
+@media (max-width: 640px) {
+  .svc-hero--ilustrada .svc-hero-inner { grid-template-columns: 1fr; gap: 0; }
+  .svc-hero-art { order: -1; width: 112px; height: 112px; margin: -6px 0 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .svc-hero-art { animation: none; } }

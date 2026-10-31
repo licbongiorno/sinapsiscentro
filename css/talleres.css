@@ -5,16 +5,17 @@
  * servicios.css), pero el cuerpo tiene un clima propio: crema, beige,
  * verde salvia, oliva y terracota, con ilustraciones botánicas en SVG
  * inline (sin imágenes externas, carga instantánea).
- * Todos los colores de texto se eligieron con contraste AA sobre crema.
+ * Valores calibrados con los colores de las publicaciones de Instagram de la marca
+ * (ver scripts/ilustraciones.py). Todos los colores de texto tienen contraste AA sobre crema.
  */
 .tl-page {
-  --tl-cream:      #f7f2eb;
-  --tl-beige:      #efe6d6;
-  --tl-sage:       #9fb39a;   /* decorativo */
+  --tl-cream:      #f4efe4;
+  --tl-beige:      #e8e0d1;
+  --tl-sage:       #a4af91;   /* decorativo */
   --tl-sage-pale:  #e4ebdf;
   --tl-sage-deep:  #46613f;   /* texto/botones: 6.3:1 sobre crema */
   --tl-olive:      #5f6232;   /* texto: 6.4:1 sobre crema */
-  --tl-terra:      #c27450;   /* decorativo */
+  --tl-terra:      #b46e50;   /* decorativo */
   --tl-terra-pale: #f3e0d4;
   --tl-terra-deep: #96472a;   /* texto/botones: 6.0:1 sobre crema */
   --tl-ink:        #2c2a22;
