@@ -33,6 +33,9 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "img", "ilustraciones")
 PH = os.path.join(ROOT, "scripts", "phosphor")
+# Subir este número cada vez que cambien las ilustraciones: va como ?v= en las URLs,
+# para que los navegadores no muestren la versión guardada en caché (7 días).
+VERSION = 2
 
 CREAM, PAPER = "#f4efe4", "#fffdf8"
 SAGE, SAGE_L, SAGE_P, SAGE_D = "#7b9476", "#a4af91", "#e3e9da", "#3f5839"

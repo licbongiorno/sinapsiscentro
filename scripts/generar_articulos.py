@@ -701,7 +701,7 @@ def indice_html():
     ld_html = "\n".join('<script type="application/ld+json">\n' + json.dumps(o, ensure_ascii=False, indent=2) + "\n</script>" for o in ld)
     tarjetas = "".join(f'''
       <a class="gu-card" href="{s}">
-        <img src="img/ilustraciones/{ilu}.svg" alt="" width="120" height="120" loading="lazy" decoding="async">
+        <img src="img/ilustraciones/{ilu}.svg?v={P.ILU.VERSION}" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">{esc(tag)}</span><h2>{esc(t)}</h2><p>{esc(d)}</p></div>
       </a>''' for s, ilu, t, d, tag in INDICE)
     # se reutiliza la página de un artículo como base visual (nav, hero, footer)
