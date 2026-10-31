@@ -91,7 +91,7 @@ REL = {
 def ilu_img(p):
     n = p["ilu"]
     alt = ILU.alt_de(n)
-    return f'<img class="svc-hero-art" src="img/ilustraciones/{n}.svg" alt="{esc(alt)}" width="260" height="260" decoding="async">'
+    return f'<img class="svc-hero-art" src="img/ilustraciones/{n}.svg?v={ILU.VERSION}" alt="{esc(alt)}" width="260" height="260" decoding="async">'
 
 
 def strip_tags(s):

@@ -117,7 +117,7 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 import ilustraciones as ILU
 def ilu(nombre, w=300, cls=""):
     alt = ILU.alt_de(nombre)
-    return f'<img src="img/ilustraciones/{nombre}.svg" alt="{esc(alt)}" width="{w}" height="{w}" loading="lazy" decoding="async"{cls}>'
+    return f'<img src="img/ilustraciones/{nombre}.svg?v={ILU.VERSION}" alt="{esc(alt)}" width="{w}" height="{w}" loading="lazy" decoding="async"{cls}>'
 ART_ALFA = ilu("alfabetizacion")
 ART_INF = ilu("taller-cognitiva-ninos")
 ART_ADU = ilu("estimulacion-cognitiva")
