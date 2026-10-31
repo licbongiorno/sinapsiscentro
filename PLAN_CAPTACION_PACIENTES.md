@@ -77,3 +77,11 @@ No ofrezcas descuentos a cambio de reseñas: Google lo prohíbe.
 
 ## 3. Qué esperar
 Las páginas nuevas suelen tardar entre 4 y 12 semanas en posicionarse. El Perfil de Empresa con reseñas y fotos mueve más rápido las búsquedas "cerca de mí". Revisar cada mes en Search Console qué búsquedas traen visitas y en GA4 qué página genera más `generate_lead`, y reforzar esas páginas.
+
+## 4. Sistema visual y guías (2026-10-31)
+
+- **Ilustraciones** (`img/ilustraciones/*.svg`, 32 en total) e **íconos** de la home: se generan con `python3 scripts/ilustraciones.py`. Paleta medida sobre el Instagram de la marca (crema, beige, salvia, oliva, terracota, durazno, azul marino). Criterio: cada imagen muestra de qué trata su página, con personas cuando la página habla de personas.
+- **Guías para familias** (`/guias.html` + 7 artículos nuevos: dislexia, pronunciación, tartamudez, ansiedad infantil, integración sensorial, olvidos en adultos mayores y prevención de caídas): `python3 scripts/generar_articulos.py`, con la plantilla compartida `scripts/plantilla_paginas.py`.
+- **Talleres**: `python3 scripts/generar_talleres.py`.
+- Para sumar un artículo: agregar un `dict` a `ART` en `scripts/generar_articulos.py` (y su ilustración en `scripts/ilustraciones.py`), correr ambos scripts, sumar la URL a `sitemap.xml` y `llms.txt`, correr `scripts/validar_seo.py` y, ya publicado, `scripts/indexnow_submit.py`.
+- Ideas de próximos artículos según lo que más se busca: "¿A qué edad se habla?", "Hitos del desarrollo del bebé", "Dificultades de atención en el aula", "Diagnóstico de autismo en adultos", "Qué hace un psicopedagogo", "Terapia ocupacional en adultos mayores".
