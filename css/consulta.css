@@ -1,0 +1,70 @@
+/**
+ * CONSULTA.CSS — Formulario de primera consulta (js/consulta.js) y
+ * franjas de captación. Funciona tanto en las páginas de servicio
+ * (servicios.css) como en index.html: los colores tienen fallback
+ * propio por si la página no declara las mismas variables.
+ */
+.cq-form {
+  background: var(--white, #fff);
+  border: 1px solid rgba(26,122,138,0.18);
+  border-radius: var(--r-lg, 28px);
+  padding: 34px 32px 26px;
+  box-shadow: 0 18px 50px rgba(8,32,46,0.08);
+  text-align: left;
+}
+.cq-titulo {
+  font-family: 'Playfair Display', serif; font-weight: 500;
+  font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--navy, #08202e);
+  margin: 0 0 8px;
+}
+.cq-sub { color: var(--text-mid, #3a5a6a); font-size: 0.95rem; line-height: 1.7; margin: 0 0 22px; }
+.cq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; margin-bottom: 22px; }
+@media (max-width: 600px) { .cq-grid { grid-template-columns: 1fr; } .cq-form { padding: 26px 18px 20px; } }
+.cq-campo { display: flex; flex-direction: column; gap: 6px; }
+.cq-campo label { font-size: 0.85rem; font-weight: 700; color: var(--navy, #08202e); }
+.cq-campo select, .cq-campo input {
+  font: inherit; font-size: 16px; /* 16px evita el zoom automático en iOS */
+  padding: 12px 14px; border-radius: 12px;
+  border: 1.5px solid rgba(8,32,46,0.16); background: var(--bg, #f5fafc);
+  color: var(--text, #0d2535); width: 100%; min-height: 48px;
+}
+.cq-campo select:focus-visible, .cq-campo input:focus-visible {
+  outline: 2px solid var(--teal-mid, #2aaec2); outline-offset: 1px; border-color: transparent;
+}
+.cq-enviar { border: 0; cursor: pointer; font: inherit; width: 100%; justify-content: center; }
+.cq-legal { font-size: 0.8rem; color: var(--text-soft, #5a7583); margin: 12px 0 0; text-align: center; }
+
+/* promesas bajo el CTA del hero de las páginas de captación */
+.svc-hero-promesas {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 8px 18px;
+  margin: 26px 0 0; padding: 0;
+}
+.svc-hero-promesas li {
+  color: rgba(255,255,255,0.8); font-size: 0.86rem; font-weight: 600;
+  display: flex; align-items: center; gap: 7px;
+}
+.svc-hero-promesas li::before { content: "✓"; color: var(--teal-soft, #7ed6e4); font-weight: 800; }
+
+.svc-nota-fuentes { font-size: 0.85rem !important; color: var(--text-soft, #5a7583) !important; margin-top: 10px; }
+.svc-footer-links { margin-bottom: 8px; }
+
+/* franja de accesos a TEA / discapacidad (home y páginas de servicio) */
+.cq-accesos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px auto 0; max-width: 1160px; }
+@media (max-width: 700px) { .cq-accesos { grid-template-columns: 1fr; } }
+.cq-acceso {
+  display: flex; align-items: center; gap: 14px; text-decoration: none;
+  background: var(--white, #fff); border: 1.5px solid rgba(26,122,138,0.2);
+  border-radius: var(--r, 18px); padding: 18px 20px; color: var(--navy, #08202e);
+  transition: border-color 0.25s, transform 0.25s;
+}
+.cq-acceso b { display: block; font-size: 1rem; }
+.cq-acceso span { display: block; font-size: 0.86rem; color: var(--text-mid, #3a5a6a); margin-top: 2px; }
+.cq-acceso .cq-flecha { margin-left: auto; color: var(--teal, #1a7a8a); font-size: 1.2rem; }
+@media (hover: hover) { .cq-acceso:hover { border-color: var(--teal-mid, #2aaec2); transform: translateY(-2px); } }
+
+/* sección del formulario en index.html */
+#consulta-home { padding: 80px 6%; background: var(--cream, #f7f2eb); }
+#consulta-home .cq-wrap { max-width: 760px; margin: 0 auto; }
+
+/* que el nav fijo no tape el formulario al saltar a #consulta */
+#consulta, #consulta-home { scroll-margin-top: 90px; }
