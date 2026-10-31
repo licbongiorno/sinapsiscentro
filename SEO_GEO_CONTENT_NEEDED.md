@@ -173,3 +173,17 @@ IndexNow es el complemento técnico de eso: un protocolo liviano (lo soportan Bi
 - **Convención a seguir de ahora en más:** correr `python3 scripts/indexnow_submit.py` después de cualquier tanda de cambios de contenido en el sitio — mismo momento en que ya se corre `validar_seo.py`.
 
 **Pendiente (no se pudo hacer desde este entorno):** el primer envío real todavía no se mandó. Hacen falta dos cosas: (1) que el commit con `<clave>.txt` esté deployado en producción (IndexNow verifica la clave accediendo a esa URL), y (2) acceso de red a `api.indexnow.org` desde el entorno donde se corra el script — no estaba en la lista de hosts permitidos de este sandbox. Una vez deployado, correr el script (desde este entorno agregando `api.indexnow.org` a Network access, o el dueño puede correrlo él mismo — no tiene dependencias más allá de la librería estándar de Python).
+
+## 7. Talleres (`/talleres.html`, creada 2026-10-31)
+
+La página publica sólo lo que el centro definió: nombre, descripción, qué se trabaja y a quién está dirigido cada uno de los 4 talleres (Alfabetización, Estimulación Cognitiva para Niños, Estimulación Cognitiva para Adultos, Habilidades Sociales). Todo lo demás se deriva a WhatsApp con el texto "Consultanos por disponibilidad, grupos y horarios".
+
+**Qué falta (no se inventó nada de esto):**
+- Días y horarios de cada taller.
+- Edades o franjas de edad de cada grupo.
+- Cantidad de participantes y cupos.
+- Modalidad (presencial / virtual) de cada taller.
+- Profesional o profesionales a cargo de cada uno (con eso se puede sumar `provider`/`Person` en el JSON-LD).
+- Precio o cobertura (si alguno se puede hacer con CUD u obra social).
+- Fechas de inicio, si los talleres son por ciclos. Con fechas reales se podría usar el tipo `Event` o `Course` de schema.org, que hoy no se usa justamente por no tener esos datos.
+- Fotos reales de los talleres (opcional; hoy hay ilustraciones propias en SVG).
