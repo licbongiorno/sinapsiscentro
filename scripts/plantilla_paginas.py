@@ -90,7 +90,7 @@ REL = {
 
 def ilu_img(p):
     n = p["ilu"]
-    alt = "Ilustración: " + ILU.ILUSTRACIONES[n][1][0].lower() + ILU.ILUSTRACIONES[n][1][1:]
+    alt = ILU.alt_de(n)
     return f'<img class="svc-hero-art" src="img/ilustraciones/{n}.svg" alt="{esc(alt)}" width="260" height="260" decoding="async">'
 
 

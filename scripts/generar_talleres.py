@@ -116,7 +116,7 @@ ART_PROP = ('<svg viewBox="0 0 160 160" aria-hidden="true" focusable="false">'
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 import ilustraciones as ILU
 def ilu(nombre, w=300, cls=""):
-    alt = "Ilustración: " + ILU.ILUSTRACIONES[nombre][1][0].lower() + ILU.ILUSTRACIONES[nombre][1][1:]
+    alt = ILU.alt_de(nombre)
     return f'<img src="img/ilustraciones/{nombre}.svg" alt="{esc(alt)}" width="{w}" height="{w}" loading="lazy" decoding="async"{cls}>'
 ART_ALFA = ilu("alfabetizacion")
 ART_INF = ilu("taller-cognitiva-ninos")
