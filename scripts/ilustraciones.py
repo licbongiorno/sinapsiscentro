@@ -591,6 +591,110 @@ def guias():
         + sprig(150, 146, 42, 0, .6))
 
 
+# — artículos (tanda 2) —
+
+def psicologo_infantil():
+    # cuándo llevar a mi hijo al psicólogo: la psicóloga juega y dibuja con un niño
+    return base(
+        rect(170, 60, 64, 52, PAPER, 3, f'stroke="{OLIVE}" stroke-width="1.6"') + dot(190, 82, 8, PEACH) + stem("M206 94 l8 -12 l8 12", SAGE, 2.4) + stem("M180 104 h44", SAGE_L, 2)
+        + mesa(80, 210, 44)
+        + rect(112, 180, 40, 8, PAPER, 1, f'stroke="{OLIVE}" stroke-width="1"') + stem("M118 182 q8 -4 16 0 t14 0", TERRA, 1.6)
+        + "".join(rect(160 + i * 9, 176, 6, 12, c, 1) for i, c in enumerate((TERRA, SAGE, PEACH)))
+        + persona(72, G, 1.0, piel=1, pelo="castaño", estilo="corto", ropa=PEACH, sentado=True, dir=1, nino=True, manos=((36, 4), (44, 0)), asiento="puf", asiento_color=SAGE_L)
+        + silla(236, -1, 1, SAND) + persona(236, G, 1.0, piel=3, pelo="oscuro", estilo="largo", ropa=SAGE, sentado=True, dir=-1, manos=((-30, 14), (-22, 24))))
+
+
+def berrinche():
+    # rabietas: un nene llora en el piso y su papá se agacha a su altura, con calma
+    return base(
+        f'<ellipse cx="150" cy="{G - 1}" rx="108" ry="12" fill="{SAGE_XL}"/>'
+        + rect(84, G - 26, 46, 22, PEACH, 11)
+        + cabeza(108, G - 46, 15, PIEL[0], "rubio", "corto", 0, "llanto")
+        + f'<path d="M100 {G - 42} q-3 6 0 8 q3 -2 0 -8z M116 {G - 42} q-3 6 0 8 q3 -2 0 -8z" fill="#8fbcd0"/>'
+        + f'<ellipse cx="108" cy="{G - 37}" rx="4" ry="3" fill="{BROWN}"/>'
+        + brazo(92, G - 22, 70, G - 8, PEACH, PIEL[0], 8) + brazo(124, G - 22, 146, G - 8, PEACH, PIEL[0], 8)
+        + stem(f"M90 {G - 6} l-18 2 M126 {G - 6} l18 2", SLATE, 8)
+        + persona(210, G, 1.0, piel=2, pelo="oscuro", estilo="corto", ropa=SAGE, sentado=True, dir=-1, manos=((-46, 14), (-20, 26)), asiento="puf", asiento_color=BEIGE)
+        + stem("M150 92 q10 -10 20 0 q10 10 20 0", PEACH, 2.2) + stem("M156 108 q8 -8 16 0 q8 8 16 0", SAGE_L, 2.2))
+
+
+def primera_consulta():
+    # primera consulta con el psicólogo: la psicóloga recibe a una persona en su consultorio
+    return base(
+        rect(206, 70, 50, 162, SAGE, 3) + dot(214, 156, 2.6, CREAM) + rect(198, 64, 66, 8, BROWN, 2)
+        + silla(96, 1, 1, SAGE_L) + maceta(54, G, .9)
+        + persona(150, G, 1.0, piel=1, pelo="cobrizo", estilo="largo", ropa=TERRA, dir=-1, manos=((-6, 40), (26, 14)))
+        + persona(230, G, .98, piel=3, pelo="oscuro", estilo="rodete", ropa=PEACH, dir=-1, manos=((-36, 14), (6, 40)))
+        + burbuja(118, 58, 78, 34, 160, 1) + text(157, 81, "¡Hola!", 16, SAGE_D))
+
+
+def psicopedagogo():
+    # qué hace un psicopedagogo: una alumna con su mochila y la psicopedagoga revisan juntas una tarea
+    return base(
+        rect(44, 64, 82, 54, SAGE_D, 4) + text(85, 98, "2 + 3", 18, PAPER) + stem("M50 124 H120", BROWN, 3)
+        + mesa(110, 246, 62)
+        + rect(150, 162, 50, 8, PAPER, 1, f'stroke="{OLIVE}" stroke-width="1.2"') + rect(210, 154, 22, 16, TERRA, 3)
+        + persona(84, G, 1.0, piel=2, pelo="oscuro", estilo="colita", ropa=SAGE, nino=True, dir=1, manos=((24, 18), (30, 14)),
+                  delante=rect(64, 158, 14, 26, PEACH, 4))
+        + persona(232, G, 1.0, piel=0, pelo="castaño", estilo="rodete", ropa=TERRA, dir=-1, gafas=True, manos=((-48, 10), (-6, 40))))
+
+
+def discalculia():
+    # discalculia: a una niña le cuestan los números; ábaco y cuentas sobre la mesa
+    nums = "".join(f'<g transform="translate({x} {y}) rotate({r})">' + text(0, 0, t, 24, c, False) + "</g>"
+                   for x, y, r, t, c in ((170, 82, -10, "7", TERRA), (204, 66, 12, "3", SAGE_D), (232, 96, -6, "+", BROWN), (196, 108, 8, "=", TERRA), (142, 104, 14, "?", OLIVE)))
+    abaco = rect(160, 138, 70, 40, "none", 3, f'stroke="{BROWN}" stroke-width="3"') + "".join(
+        stem(f"M162 {y} H228", BROWN, 1.4) + "".join(dot(170 + i * 9, y, 4, c) for i in range(n)) for y, n, c in ((148, 4, TERRA), (158, 2, SAGE), (168, 5, PEACH)))
+    return base(
+        nums + mesa(120, 250, 54) + abaco
+        + silla(98, 1, .68, SAND) + persona(98, G, 1.0, piel=1, pelo="castaño", estilo="largo", ropa=PEACH, sentado=True, dir=1, nino=True, expresion="preocupado", manos=((30, 2), (42, -2))))
+
+
+def disgrafia():
+    # dificultades en la escritura: un niño escribe con esfuerzo, las letras le salen desparejas
+    hoja = (rect(118, 120, 116, 70, PAPER, 3, f'stroke="{OLIVE}" stroke-width="1.6" transform="rotate(-4 176 155)"')
+            + "".join(stem(f"M126 {y} H226", SAGE_L, 1.2) for y in (140, 158, 176))
+            + text(140, 138, "c", 20, TERRA) + text(156, 134, "a", 26, TERRA) + text(176, 140, "s", 16, TERRA) + text(192, 136, "a", 22, TERRA)
+            + f'<g transform="translate(214 150) rotate(35)">' + rect(-4, -40, 8, 38, PEACH, 2) + f'<path d="M-4 -2 L0 8 L4 -2 Z" fill="{SAND}"/></g>')
+    return base(
+        hoja + stem("M100 200 H250", SAND, 8)
+        + persona(84, G, 1.0, piel=3, pelo="oscuro", estilo="rulos", ropa=SAGE, sentado=True, dir=1, nino=True, expresion="preocupado",
+                  manos=((52, -14), (64, -22)), asiento="puf", asiento_color=BEIGE))
+
+
+def autonomia():
+    # qué hace la terapia ocupacional: una nena aprende a abrocharse la campera con la terapista
+    return base(
+        rect(40, 60, 46, 70, BEIGE, 4, f'stroke="{OLIVE}" stroke-width="1.4"') + stem("M63 60 V130", OLIVE, 1.4) + dot(58, 96, 2, BROWN) + dot(68, 96, 2, BROWN)
+        + persona(124, G, 1.15, piel=0, pelo="castaño", estilo="colita", ropa=TERRA, nino=True, dir=1, manos=((14, 12), (-6, 14)),
+                  delante=stem("M124 166 V192", PAPER, 2.4) + "".join(dot(124, y, 2.2, PAPER) for y in (172, 181, 190)))
+        + persona(206, G, 1.0, piel=2, pelo="oscuro", estilo="rodete", ropa=SAGE, sentado=True, dir=-1, manos=((-44, -4), (-36, 4)), asiento="puf", asiento_color=SAGE_L)
+)
+
+
+def motricidad_fina():
+    # motricidad fina: un niño enhebra cuentas y recorta papel en la mesa
+    cuentas = "".join(dot(150 + i * 13, 156 - (i % 2) * 3, 5.5, c) for i, c in enumerate((TERRA, SAGE, PEACH, SAGE_L, TERRA)))
+    tijera = (f'<g transform="translate(214 160) rotate(-20)">' + f'<circle cx="-8" cy="6" r="5" fill="none" stroke="{TERRA}" stroke-width="2.4"/>'
+              + f'<circle cx="6" cy="8" r="5" fill="none" stroke="{TERRA}" stroke-width="2.4"/>' + stem("M-4 2 L16 -18 M2 4 L-6 -18", OLIVE, 2) + "</g>")
+    return base(
+        mesa(110, 252, 62) + stem("M140 160 Q190 140 214 158", BROWN, 1.4) + cuentas + tijera
+        + rect(226, 154, 22, 16, SAGE_L, 2) + stem("M230 162 h14", PAPER, 1.4, 'stroke-dasharray="2 2"')
+        + silla(94, 1, .68, SAND) + persona(94, G, 1.0, piel=1, pelo="cobrizo", estilo="corto", ropa=SAGE, sentado=True, dir=1, nino=True, manos=((44, -4), (52, -8))))
+
+
+def ejercicio_mayores():
+    # ejercicio para adultos mayores: dos personas mayores ejercitan con pelotas y bandas, con la kinesióloga
+    return base(
+        rect(40, 226, 220, 6, SAGE_XL, 3)
+        + persona(84, G, .96, piel=1, pelo="canoso", estilo="rodete", ropa=TERRA, gafas=True, manos=((-6, -34), (6, -34)))
+        + dot(84, 90, 9, PEACH)
+        + persona(150, G, 1.0, piel=3, pelo="canoso", estilo="corto", ropa=SAGE, manos=((-26, 6), (26, 6)))
+        + stem("M120 152 Q150 166 180 152", TERRA, 3)
+        + persona(222, G, .98, piel=0, pelo="oscuro", estilo="colita", ropa=PEACH, dir=-1, manos=((-22, -20), (8, 40)))
+        + dot(256, 220, 11, SAGE_L))
+
+
 ILUSTRACIONES = {
     "psicologia": (psicologia, "Una sesión de psicología: dos personas sentadas conversando"),
     "psicopedagogia": (psicopedagogia, "Una niña escribe en su cuaderno mientras la psicopedagoga la acompaña"),
@@ -623,6 +727,15 @@ ILUSTRACIONES = {
     "olvidos": (olvidos, "Una señora mayor revisa sus notas y el calendario, con las llaves sobre la mesa"),
     "caidas": (caidas, "Un señor mayor camina con bastón en un pasillo con baranda, buena luz y alfombra antideslizante"),
     "guias": (guias, "Un libro abierto con señalador y hojas de artículos"),
+    "psicologo-infantil": (psicologo_infantil, "La psicóloga juega y dibuja con un niño en el consultorio"),
+    "berrinche": (berrinche, "Un nene llora en el piso y su papá se agacha a su altura, con calma"),
+    "primera-consulta": (primera_consulta, "La psicóloga recibe a una persona en su consultorio para la primera consulta"),
+    "psicopedagogo": (psicopedagogo, "Una alumna con su mochila y la psicopedagoga revisan juntas una tarea"),
+    "discalculia": (discalculia, "Una niña con un ábaco, mientras los números parecen confundirse a su alrededor"),
+    "disgrafia": (disgrafia, "Un niño escribe con esfuerzo y las letras le salen de distintos tamaños"),
+    "autonomia": (autonomia, "Una nena aprende a abrocharse la campera acompañada por la terapista ocupacional"),
+    "motricidad-fina": (motricidad_fina, "Un niño enhebra cuentas y recorta papel en la mesa"),
+    "ejercicio-mayores": (ejercicio_mayores, "Dos personas mayores hacen ejercicio con pelota y banda elástica, guiadas por la kinesióloga"),
 }
 
 
