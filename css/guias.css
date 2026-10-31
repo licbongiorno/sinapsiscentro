@@ -1,0 +1,17 @@
+/**
+ * GUIAS.CSS — Índice /guias.html (Guías para familias).
+ * Tarjetas con la ilustración de cada artículo, en la paleta de la marca.
+ */
+.gu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 10px 0 40px; }
+@media (max-width: 680px) { .gu-grid { grid-template-columns: 1fr; } }
+.gu-card {
+  display: flex; gap: 16px; align-items: center; text-decoration: none;
+  background: #fffdf8; border: 1px solid rgba(103,115,87,0.2); border-radius: 20px; padding: 14px 18px 14px 14px;
+  transition: transform 0.3s var(--easing), box-shadow 0.3s var(--easing), border-color 0.3s;
+}
+.gu-card img { width: 96px; height: 96px; flex-shrink: 0; }
+.gu-card h2 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.12rem; color: var(--navy); line-height: 1.3; margin: 4px 0; }
+.gu-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.55; }
+.gu-tag { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: #96472a; }
+@media (hover: hover) { .gu-card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(8,32,46,0.08); border-color: #a4af91; } }
+.gu-card:focus-visible { outline: 2px solid #b46e50; outline-offset: 3px; }
