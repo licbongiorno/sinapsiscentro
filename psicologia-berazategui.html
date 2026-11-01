@@ -71,11 +71,17 @@
     "@id": "https://sinapsiscentro.com.ar/#organization"
   },
   "reviewedBy": [
-    { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#nicolas-bongiorno" },
-    { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#thomas-dalessandro" },
-    { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#sol-aylen-lopez" }
+    {
+      "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#nicolas-bongiorno"
+    },
+    {
+      "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#thomas-dalessandro"
+    },
+    {
+      "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#sol-aylen-lopez"
+    }
   ],
-  "dateModified": "2026-10-30"
+  "dateModified": "2026-11-01"
 }
 </script>
 <script type="application/ld+json">
@@ -122,6 +128,22 @@
         "@type": "Answer",
         "text": "Atendemos desde bebés (estimulación temprana) hasta adultos, con enfoques y herramientas adaptadas a cada etapa del ciclo vital."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El centro receta medicación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. En Centro Sinapsis no hay atención psiquiátrica ni se indica medicación. Si en algún momento se considera necesaria una evaluación psiquiátrica, te orientamos para que puedas hacer esa consulta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La terapia es confidencial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Lo que se habla en sesión está protegido por el secreto profesional. Con niños, niñas y adolescentes se comparte con la familia lo necesario para acompañar el proceso, cuidando siempre su intimidad."
+      }
     }
   ]
 }
@@ -137,7 +159,9 @@
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () { document.head.appendChild(s); };
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () { setTimeout(cargar, 1200); });
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -198,8 +222,27 @@
 
   <div class="svc-callout">El primer paso no es diagnosticar, es escuchar. En la primera entrevista se define, junto al paciente o la familia, qué profesional o combinación de profesionales del equipo es la más indicada.</div>
 
+
+<!-- SINAPSIS:ESTRUCTURA -->
   <section class="svc-section">
-    <h2>Cómo es la primera entrevista</h2>
+    <h2>Situaciones que acompañamos</h2>
+    <ul class="svc-lista-check"><li>Ansiedad, preocupaciones constantes, miedos o ataques de pánico.</li><li>Tristeza que se prolonga, desgano o pérdida de interés por lo que antes disfrutabas.</li><li>Duelos, separaciones, mudanzas y otros cambios difíciles de atravesar.</li><li>Conflictos en la familia, la pareja, la escuela o el trabajo.</li><li>En la infancia: rabietas intensas, dificultades para dormir, miedos o cambios de conducta que preocupan.</li><li>En la adolescencia: aislamiento, problemas en los vínculos, la autoestima o la identidad.</li><li>Acompañamiento a personas con TEA, TDAH u otras formas de neurodivergencia, y a sus familias.</li></ul>
+    <p class="svc-nota">Si lo que te pasa no aparece en la lista, escribinos igual: en la primera entrevista vemos juntos qué conviene.</p>
+  </section>
+
+  <section class="svc-section">
+    <h2>Cómo trabajamos</h2>
+    <div class="svc-como"><div class="svc-como-item"><h3>Escucha primero</h3><p>Las primeras sesiones sirven para entender qué te pasa, desde cuándo y en qué contexto. No hay apuro por poner nombres.</p></div><div class="svc-como-item"><h3>Objetivos acordados</h3><p>Con esa información se definen, junto a vos (o a la familia, si es un niño o niña), qué se quiere trabajar y cómo.</p></div><div class="svc-como-item"><h3>Un proceso que se revisa</h3><p>El tratamiento se ajusta a medida que avanza. Si hace falta, se suma a otro profesional del equipo o se orienta hacia otra especialidad, como psiquiatría, cuando corresponde.</p></div></div>
+  </section>
+
+  <section class="svc-section">
+    <h2>Qué podés esperar</h2>
+    <ul class="svc-lista-check"><li>Un espacio confidencial, sin juicios, donde podés hablar con tus palabras.</li><li>Explicaciones claras sobre cómo se va a trabajar y por qué.</li><li>Con niños y niñas, el juego como herramienta y encuentros periódicos con la familia.</li><li>Honestidad: si otro tipo de abordaje es más adecuado para tu situación, te lo vamos a decir.</li></ul>
+  </section>
+<!-- /SINAPSIS:ESTRUCTURA -->
+
+  <section class="svc-section">
+    <h2>Cómo pedir una consulta</h2>
     <div class="svc-pasos"><div class="svc-paso"><div class="svc-paso-num">1</div><div><h3>Escribinos</h3><p>Contanos brevemente qué está pasando o qué necesitás. Sin formularios largos, sin demoras. Solo un mensaje de WhatsApp es suficiente para comenzar.</p></div></div><div class="svc-paso"><div class="svc-paso-num">2</div><div><h3>Primera entrevista</h3><p>Nos conocemos, escuchamos tu situación y definimos juntos el plan de acompañamiento más adecuado. Sin apuro, sin etiquetas apresuradas.</p></div></div><div class="svc-paso"><div class="svc-paso-num">3</div><div><h3>Empezás el proceso</h3><p>Comenzás el trabajo terapéutico o de evaluación con el profesional asignado. El equipo te acompaña en cada paso del camino.</p></div></div></div>
   </section>
 
@@ -228,6 +271,12 @@
     </div><div class="svc-faq-item">
       <button class="svc-faq-q" aria-expanded="false">¿Con qué edades trabajan?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
       <div class="svc-faq-a"><p>Atendemos desde bebés (estimulación temprana) hasta adultos, con enfoques y herramientas adaptadas a cada etapa del ciclo vital.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿El centro receta medicación?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>No. En Centro Sinapsis no hay atención psiquiátrica ni se indica medicación. Si en algún momento se considera necesaria una evaluación psiquiátrica, te orientamos para que puedas hacer esa consulta.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿La terapia es confidencial?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>Sí. Lo que se habla en sesión está protegido por el secreto profesional. Con niños, niñas y adolescentes se comparte con la familia lo necesario para acompañar el proceso, cuidando siempre su intimidad.</p></div>
     </div>
   </section>
 

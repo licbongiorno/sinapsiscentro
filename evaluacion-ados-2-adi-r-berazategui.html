@@ -5,7 +5,7 @@
 <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Evaluación de autismo ADOS-2 en Berazategui | Centro Sinapsis</title>
-<meta name="description" content="Evaluaciones ADOS-2 y ADI-R para el diagnóstico del Trastorno del Espectro Autista en Berazategui, niños y adultos. Sin derivación médica previa.">
+<meta name="description" content="ADOS-2 y ADI-R en Berazategui: observación y entrevista estandarizadas dentro de una evaluación clínica integral del TEA. Niños y adultos.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://sinapsiscentro.com.ar/evaluacion-ados-2-adi-r-berazategui.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -14,7 +14,7 @@
 <meta name="theme-color" content="#08202e">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Evaluación de autismo ADOS-2 en Berazategui | Centro Sinapsis">
-<meta property="og:description" content="Evaluaciones ADOS-2 y ADI-R para el diagnóstico del Trastorno del Espectro Autista en Berazategui, niños y adultos. Sin derivación médica previa.">
+<meta property="og:description" content="ADOS-2 y ADI-R en Berazategui: observación y entrevista estandarizadas dentro de una evaluación clínica integral del TEA. Niños y adultos.">
 <meta property="og:url" content="https://sinapsiscentro.com.ar/evaluacion-ados-2-adi-r-berazategui.html">
 <meta property="og:site_name" content="Centro Sinapsis">
 <meta property="og:locale" content="es_AR">
@@ -24,7 +24,7 @@
 <meta property="og:image:alt" content="Evaluación ADOS-2 y ADI-R — Centro Sinapsis, Berazategui, Quilmes y Zona Sur.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Evaluación de autismo ADOS-2 en Berazategui | Centro Sinapsis">
-<meta name="twitter:description" content="Evaluaciones ADOS-2 y ADI-R para el diagnóstico del Trastorno del Espectro Autista en Berazategui, niños y adultos. Sin derivación médica previa.">
+<meta name="twitter:description" content="ADOS-2 y ADI-R en Berazategui: observación y entrevista estandarizadas dentro de una evaluación clínica integral del TEA. Niños y adultos.">
 <meta name="twitter:image" content="https://sinapsiscentro.com.ar/og-image.jpg">
 <script type="application/ld+json">
 {
@@ -58,7 +58,7 @@
   "@type": "MedicalWebPage",
   "name": "Evaluación ADOS-2 y ADI-R en Berazategui",
   "url": "https://sinapsiscentro.com.ar/evaluacion-ados-2-adi-r-berazategui.html",
-  "description": "Evaluaciones ADOS-2 y ADI-R para el diagnóstico del Trastorno del Espectro Autista en Berazategui, niños y adultos. Sin derivación médica previa.",
+  "description": "ADOS-2 y ADI-R en Berazategui: observación y entrevista estandarizadas dentro de una evaluación clínica integral del TEA. Niños y adultos.",
   "inLanguage": "es-AR",
   "isPartOf": {
     "@id": "https://sinapsiscentro.com.ar/#website"
@@ -70,7 +70,7 @@
   "publisher": {
     "@id": "https://sinapsiscentro.com.ar/#organization"
   },
-  "dateModified": "2026-09-17"
+  "dateModified": "2026-11-01"
 }
 </script>
 <script type="application/ld+json">
@@ -109,6 +109,22 @@
         "@type": "Answer",
         "text": "El proceso varía según cada caso — incluye las sesiones de evaluación y, después, una devolución con el informe completo. Te damos el detalle específico en la primera entrevista, según la situación particular."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El ADOS-2 diagnostica autismo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No por sí solo. El ADOS-2 es una herramienta de observación estandarizada que aporta información muy valiosa, pero el diagnóstico de TEA es clínico: lo realiza un profesional al integrar la observación, la historia del desarrollo, las entrevistas y, cuando hace falta, otras evaluaciones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se puede evaluar a un adulto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. El ADOS-2 tiene un módulo para adolescentes y adultos con lenguaje fluido. En el caso del ADI-R, se necesita que participe alguien que conozca la historia temprana de la persona, como un familiar."
+      }
     }
   ]
 }
@@ -124,7 +140,9 @@
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () { document.head.appendChild(s); };
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () { setTimeout(cargar, 1200); });
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,20 +192,39 @@
 <main id="main" class="svc-main">
   <section class="svc-section">
     <h2>¿Qué es?</h2>
-    <p>Centro Sinapsis realiza evaluaciones ADOS-2 y ADI-R en Berazategui, Quilmes y toda la Zona Sur para la evaluación del Trastorno del Espectro Autista (TEA). Son las herramientas más utilizadas en el mundo para este tipo de evaluación. Se usan junto con el resto de la evaluación clínica — ningún instrumento por sí solo da un diagnóstico, pero juntos ayudan a entender mejor la situación.</p>
+    <p>Centro Sinapsis realiza evaluaciones ADOS-2 y ADI-R en Berazategui, Quilmes y toda la Zona Sur para la evaluación del Trastorno del Espectro Autista (TEA). Son instrumentos estandarizados y ampliamente usados en la evaluación del autismo. Es importante decirlo con claridad: <strong>ni el ADOS-2 ni el ADI-R establecen un diagnóstico por sí solos</strong>. Aportan información valiosa que el profesional integra con la historia clínica, la entrevista, la observación en otros contextos y, cuando hace falta, otras evaluaciones.</p>
 <p>El ADOS-2 consiste en una serie de actividades guiadas: el profesional juega, conversa e interactúa con la persona evaluada para observar de cerca su comunicación, su interacción social y su conducta. El ADI-R, en cambio, es una entrevista a los padres o cuidadores, pensada para reconstruir junto a ellos la historia de desarrollo de la persona.</p>
-<p>En Centro Sinapsis, los dos se aplican siguiendo los mismos pasos validados internacionalmente, tanto en niños como en adultos, y el proceso incluye un informe con devolución personalizada a la familia.</p>
+<p>Los dos se administran siguiendo su procedimiento estandarizado. El ADOS-2 tiene distintos módulos según la edad y el lenguaje de la persona, por eso puede usarse desde la primera infancia hasta la adultez. Al terminar, hay una devolución personalizada y un informe escrito.</p>
   </section>
 
   <section class="svc-section">
     <h2>¿Para quién está indicado?</h2>
-    <div style="margin-bottom:18px;"><h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px;">Niños</h3><p style="margin:0;">Cuando algo en su desarrollo te hace pensar que valdría la pena evaluar si hay TEA.</p></div><div style="margin-bottom:18px;"><h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px;">Adultos</h3><p style="margin:0;">Incluido el diagnóstico tardío, cada vez más frecuente en consulta.</p></div>
+    <div style="margin-bottom:18px;"><h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px;">Niños</h3><p style="margin:0;">Cuando algo en su desarrollo te hace pensar que valdría la pena evaluar si hay TEA.</p></div><div style="margin-bottom:18px;"><h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px;">Adultos</h3><p style="margin:0;">Adultos que se preguntan si sus dificultades de siempre podrían explicarse por el autismo. Cada vez más personas consultan por primera vez en la adultez.</p></div>
   </section>
 
   <div class="svc-callout"><strong>ADOS-2</strong> observa a la persona en actividades guiadas. <strong>ADI-R</strong> es una conversación con los padres o cuidadores sobre su historia de desarrollo. Se complementan: no se usa uno en lugar del otro.</div>
 
+
+<!-- SINAPSIS:ESTRUCTURA -->
   <section class="svc-section">
-    <h2>Cómo es la primera entrevista</h2>
+    <h2>Situaciones que acompañamos</h2>
+    <ul class="svc-lista-check"><li>Familias que notan diferencias en la comunicación, el juego o la interacción social de su hijo o hija.</li><li>Pedidos de evaluación del desarrollo por parte de la escuela, el pediatra u otro profesional.</li><li>Adolescentes y adultos que se preguntan si el autismo podría explicar dificultades que tuvieron toda la vida.</li><li>Personas que necesitan un informe para iniciar el trámite del CUD u organizar apoyos.</li></ul>
+    <p class="svc-nota">Si lo que te pasa no aparece en la lista, escribinos igual: en la primera entrevista vemos juntos qué conviene.</p>
+  </section>
+
+  <section class="svc-section">
+    <h2>Cómo trabajamos</h2>
+    <div class="svc-como"><div class="svc-como-item"><h3>Entrevista inicial</h3><p>Se conversa sobre el motivo de consulta y la historia del desarrollo, para decidir qué evaluación es la más adecuada.</p></div><div class="svc-como-item"><h3>Observación estandarizada (ADOS-2)</h3><p>El profesional propone actividades, juegos y conversaciones que permiten observar la comunicación, la interacción social, el juego y los intereses.</p></div><div class="svc-como-item"><h3>Entrevista a la familia (ADI-R)</h3><p>Una entrevista estructurada con padres o cuidadores sobre el desarrollo temprano y la vida diaria actual.</p></div><div class="svc-como-item"><h3>Integración clínica y devolución</h3><p>Los resultados se integran con el resto de la información clínica. El diagnóstico es una conclusión del profesional, no el puntaje de un test. Todo se explica en la devolución y en un informe escrito.</p></div></div>
+  </section>
+
+  <section class="svc-section">
+    <h2>Qué podés esperar</h2>
+    <ul class="svc-lista-check"><li>Información clara sobre cada etapa antes de empezar.</li><li>Un trato respetuoso y adaptado a la persona evaluada: con niños, a través del juego.</li><li>Una devolución en la que se explica qué se observó, qué significa y qué opciones hay para seguir.</li><li>Orientación sobre los próximos pasos: terapias, apoyos escolares o trámite del CUD, según cada caso.</li></ul>
+  </section>
+<!-- /SINAPSIS:ESTRUCTURA -->
+
+  <section class="svc-section">
+    <h2>Cómo pedir una consulta</h2>
     <div class="svc-pasos"><div class="svc-paso"><div class="svc-paso-num">1</div><div><h3>Escribinos</h3><p>Contanos brevemente qué está pasando o qué necesitás. Sin formularios largos, sin demoras. Solo un mensaje de WhatsApp es suficiente para comenzar.</p></div></div><div class="svc-paso"><div class="svc-paso-num">2</div><div><h3>Primera entrevista</h3><p>Nos conocemos, escuchamos tu situación y definimos juntos el plan de acompañamiento más adecuado. Sin apuro, sin etiquetas apresuradas.</p></div></div><div class="svc-paso"><div class="svc-paso-num">3</div><div><h3>Empezás el proceso</h3><p>Comenzás el trabajo terapéutico o de evaluación con el profesional asignado. El equipo te acompaña en cada paso del camino.</p></div></div></div>
   </section>
 
@@ -213,6 +250,12 @@
     </div><div class="svc-faq-item">
       <button class="svc-faq-q" aria-expanded="false">¿Cuánto dura el proceso de evaluación?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
       <div class="svc-faq-a"><p>El proceso varía según cada caso — incluye las sesiones de evaluación y, después, una devolución con el informe completo. Te damos el detalle específico en la primera entrevista, según la situación particular.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿El ADOS-2 diagnostica autismo?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>No por sí solo. El ADOS-2 es una herramienta de observación estandarizada que aporta información muy valiosa, pero el diagnóstico de TEA es clínico: lo realiza un profesional al integrar la observación, la historia del desarrollo, las entrevistas y, cuando hace falta, otras evaluaciones.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿Se puede evaluar a un adulto?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>Sí. El ADOS-2 tiene un módulo para adolescentes y adultos con lenguaje fluido. En el caso del ADI-R, se necesita que participe alguien que conozca la historia temprana de la persona, como un familiar.</p></div>
     </div>
   </section>
 

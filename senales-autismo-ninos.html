@@ -171,7 +171,9 @@
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () { document.head.appendChild(s); };
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () { setTimeout(cargar, 1200); });
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -288,7 +290,7 @@
 
   <section class="svc-section svc-relacionados">
     <h2>También te puede servir</h2>
-    <div class="svc-rel-grid"><a class="svc-rel-card" href="autismo-tea-berazategui.html"><b>Autismo / TEA</b><span>Acompañamiento integral</span></a><a class="svc-rel-card" href="evaluacion-ados-2-adi-r-berazategui.html"><b>Evaluación ADOS-2 y ADI-R</b><span>Diagnóstico de TEA</span></a><a class="svc-rel-card" href="retraso-lenguaje-ninos.html"><b>Mi hijo no habla</b><span>Lenguaje</span></a><a class="svc-rel-card" href="estimulacion-temprana-berazategui.html"><b>Estimulación Temprana</b><span>Bebés y niños pequeños</span></a><a class="svc-rel-card" href="fonoaudiologia-berazategui.html"><b>Fonoaudiología</b><span>Lenguaje y habla</span></a><a class="svc-rel-card" href="centro-discapacidad-zona-sur.html"><b>Discapacidad y CUD</b><span>Prestaciones</span></a></div>
+    <div class="svc-rel-grid"><a class="svc-rel-card" href="autismo-tea-berazategui.html"><b>Autismo / TEA</b><span>Acompañamiento integral</span></a><a class="svc-rel-card" href="evaluacion-ados-2-adi-r-berazategui.html"><b>Evaluación ADOS-2 y ADI-R</b><span>Evaluación del TEA</span></a><a class="svc-rel-card" href="retraso-lenguaje-ninos.html"><b>Mi hijo no habla</b><span>Lenguaje</span></a><a class="svc-rel-card" href="estimulacion-temprana-berazategui.html"><b>Estimulación Temprana</b><span>Bebés y niños pequeños</span></a><a class="svc-rel-card" href="fonoaudiologia-berazategui.html"><b>Fonoaudiología</b><span>Lenguaje y habla</span></a><a class="svc-rel-card" href="centro-discapacidad-zona-sur.html"><b>Discapacidad y CUD</b><span>Prestaciones</span></a></div>
   </section>
 <section class="svc-cta-final">
   <h2>¿Te quedaste con dudas?</h2>

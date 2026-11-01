@@ -1,0 +1,87 @@
+# Auditoría mensual del sitio publicado + recordatorio trimestral de estrategia.
+#
+# Qué hace:  revisa producción (URLs del sitemap, robots, redirecciones, noindex,
+#            frescura del contenido), corre Lighthouse en móvil sobre páginas clave
+#            y abre (o actualiza) un issue con el informe.
+# Qué NO hace: no modifica el sitio. Las mejoras se preparan en una rama aparte
+#            (a mano o con un agente de IA autorizado) y pasan por PR + "Calidad del sitio".
+name: Auditoría periódica
+
+on:
+  schedule:
+    - cron: "17 11 2 * *"   # día 2 de cada mes, 08:17 hora Argentina
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Auditoría del sitio publicado
+        id: audit
+        continue-on-error: true
+        run: python3 scripts/auditoria_periodica.py --salida informe.md
+
+      - name: Lighthouse móvil (home, un servicio y talleres)
+        continue-on-error: true
+        run: |
+          npm i -g lighthouse@12.2.1 >/dev/null 2>&1
+          {
+            echo ""
+            echo "### Lighthouse móvil"
+            echo ""
+            echo "| Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO | LCP | CLS |"
+            echo "|---|---|---|---|---|---|---|"
+          } >> informe.md
+          for p in "" psicologia-berazategui.html talleres.html; do
+            lighthouse "https://sinapsiscentro.com.ar/$p" --quiet --chrome-flags="--headless --no-sandbox" \
+              --form-factor=mobile --output=json --output-path=lh.json >/dev/null 2>&1 || continue
+            python3 - "$p" >> informe.md <<'PY'
+          import json, sys
+          d = json.load(open("lh.json")); c = d["categories"]; a = d["audits"]
+          s = lambda k: round((c[k]["score"] or 0) * 100)
+          print(f"| /{sys.argv[1]} | {s('performance')} | {s('accessibility')} | {s('best-practices')} | {s('seo')} | "
+                f"{a['largest-contentful-paint']['displayValue']} | {a['cumulative-layout-shift']['displayValue']} |")
+          PY
+          done
+
+      - name: Checklist trimestral (enero, abril, julio, octubre)
+        run: |
+          mes=$(date +%m)
+          if [ "$mes" = "01" ] || [ "$mes" = "04" ] || [ "$mes" = "07" ] || [ "$mes" = "10" ]; then
+            cat >> informe.md <<'MD'
+
+          ### Revisión trimestral de estrategia
+          - [ ] Competencia: revisar webs y perfiles de Google de centros de Berazategui, Quilmes y Florencio Varela (servicios nuevos, contenidos, reseñas).
+          - [ ] Palabras clave: exportar consultas de Search Console de los últimos 3 meses y detectar temas con impresiones sin página propia.
+          - [ ] GEO: preguntar a ChatGPT, Gemini, Perplexity y Copilot "centro interdisciplinario en Berazategui", "evaluación ADOS-2 en Zona Sur" y "terapia ocupacional Berazategui"; anotar si citan el sitio y qué fuentes usan.
+          - [ ] Contenido: elegir 2 o 3 guías nuevas a partir de las preguntas reales de las familias.
+          - [ ] Datos institucionales: confirmar equipo, horarios, coberturas y llms.txt.
+          MD
+          fi
+
+      - name: Publicar el informe en un issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          titulo="Auditoría periódica $(date +%Y-%m)"
+          gh label create auditoria --color 7b9476 --description "Informes automáticos de auditoría" 2>/dev/null || true
+          existente=$(gh issue list --label auditoria --state open --search "$titulo in:title" --json number --jq '.[0].number')
+          if [ -n "$existente" ]; then
+            gh issue comment "$existente" --body-file informe.md
+          else
+            gh issue create --title "$titulo" --label auditoria --body-file informe.md
+          fi
+
+      - name: Marcar el job en rojo si hubo hallazgos críticos
+        if: steps.audit.outcome == 'failure'
+        run: exit 1

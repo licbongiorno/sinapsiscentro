@@ -45,10 +45,17 @@
   "url": "https://sinapsiscentro.com.ar/estimulacion-temprana-berazategui.html",
   "description": "Programa de estimulación temprana para bebés y niños pequeños en Berazategui, acompañando el desarrollo motor, cognitivo, del lenguaje y social en los primeros años.",
   "inLanguage": "es-AR",
-  "isPartOf": { "@id": "https://sinapsiscentro.com.ar/#website" },
-  "about": { "@type": "MedicalTherapy", "name": "Estimulación Temprana" },
-  "publisher": { "@id": "https://sinapsiscentro.com.ar/#organization" },
-  "dateModified": "2026-10-27"
+  "isPartOf": {
+    "@id": "https://sinapsiscentro.com.ar/#website"
+  },
+  "about": {
+    "@type": "MedicalTherapy",
+    "name": "Estimulación Temprana"
+  },
+  "publisher": {
+    "@id": "https://sinapsiscentro.com.ar/#organization"
+  },
+  "dateModified": "2026-11-01"
 }
 </script>
 <script type="application/ld+json">
@@ -59,22 +66,42 @@
     {
       "@type": "Question",
       "name": "¿Necesito derivación médica para sacar turno?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No necesitás derivación para consultar. Podés contactarnos directamente por WhatsApp, contarnos tu situación y coordinar una primera entrevista sin trámites previos." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No necesitás derivación para consultar. Podés contactarnos directamente por WhatsApp, contarnos tu situación y coordinar una primera entrevista sin trámites previos."
+      }
     },
     {
       "@type": "Question",
       "name": "¿Atienden obras sociales y prepagas?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Podés consultar con cualquier obra social o prepaga por reintegro: abonás la sesión, te damos la factura correspondiente, y la presentás en tu obra social para que te reintegre el total o una parte, según las condiciones de tu plan. Si tenés CUD, consultá nuestra página de coberturas por discapacidad." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Podés consultar con cualquier obra social o prepaga por reintegro: abonás la sesión, te damos la factura correspondiente, y la presentás en tu obra social para que te reintegre el total o una parte, según las condiciones de tu plan. Si tenés CUD, consultá nuestra página de coberturas por discapacidad."
+      }
     },
     {
       "@type": "Question",
       "name": "¿Qué pasa si mi hijo/a tiene CUD?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Trabajamos con personas con CUD y sin CUD. Si ya tiene el certificado, podemos orientarte para que la cobertura funcione correctamente. Y si todavía no lo tiene, podemos ayudarte a entender el proceso." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trabajamos con personas con CUD y sin CUD. Si ya tiene el certificado, podemos orientarte para que la cobertura funcione correctamente. Y si todavía no lo tiene, podemos ayudarte a entender el proceso."
+      }
     },
     {
       "@type": "Question",
       "name": "¿A qué edad conviene empezar?",
-      "acceptedAnswer": { "@type": "Answer", "text": "La estimulación temprana está pensada para bebés y niños pequeños, desde los primeros meses hasta los 6 años aproximadamente. Cuanto antes se detecta una alerta en el desarrollo, antes se puede empezar a acompañar — pero nunca es tarde para hacer una primera consulta." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La estimulación temprana está pensada para bebés y niños pequeños, desde los primeros meses hasta los 6 años aproximadamente. Cuanto antes se detecta una alerta en el desarrollo, antes se puede empezar a acompañar — pero nunca es tarde para hacer una primera consulta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hace falta un diagnóstico para empezar estimulación temprana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Se puede empezar ante una alerta en el desarrollo, sin esperar a tener un diagnóstico. Esperar suele ser lo menos recomendable en los primeros años."
+      }
     }
   ]
 }
@@ -90,7 +117,9 @@
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () { document.head.appendChild(s); };
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () { setTimeout(cargar, 1200); });
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,8 +179,27 @@
 
   <div class="svc-callout">Cuanto antes se identifica una alerta en el desarrollo, antes se puede empezar a acompañar — pero la estimulación temprana también tiene valor preventivo, sin necesidad de un diagnóstico previo.</div>
 
+
+<!-- SINAPSIS:ESTRUCTURA -->
   <section class="svc-section">
-    <h2>Cómo es la primera entrevista</h2>
+    <h2>Situaciones que acompañamos</h2>
+    <ul class="svc-lista-check"><li>Bebés que no alcanzan algunos hitos esperados para su edad (sostener la cabeza, sentarse, gatear, caminar).</li><li>Niños y niñas pequeños que hablan poco, no responden a su nombre o interactúan poco.</li><li>Bebés que nacieron prematuros o tuvieron complicaciones al nacer.</li><li>Niños y niñas con una condición ya identificada, como TEA o síndrome de Down, entre otras.</li><li>Familias que quieren orientación sobre cómo acompañar el desarrollo en casa.</li></ul>
+    <p class="svc-nota">Si lo que te pasa no aparece en la lista, escribinos igual: en la primera entrevista vemos juntos qué conviene.</p>
+  </section>
+
+  <section class="svc-section">
+    <h2>Cómo trabajamos</h2>
+    <div class="svc-como"><div class="svc-como-item"><h3>Observación del desarrollo</h3><p>Se observa al bebé o niño pequeño en juego, en las áreas motora, cognitiva, del lenguaje y social.</p></div><div class="svc-como-item"><h3>Trabajo con la familia</h3><p>En esta etapa la familia es protagonista: muchas propuestas se piensan para que puedan repetirse en la rutina diaria.</p></div><div class="svc-como-item"><h3>Coordinación interdisciplinaria</h3><p>Si aparecen necesidades específicas, se suma la mirada de fonoaudiología, terapia ocupacional o psicología.</p></div></div>
+  </section>
+
+  <section class="svc-section">
+    <h2>Qué podés esperar</h2>
+    <ul class="svc-lista-check"><li>Sesiones a través del juego, respetando el ritmo y el estado de ánimo del niño o la niña.</li><li>Pautas concretas para la casa.</li><li>Un espacio para que la familia pueda hacer preguntas y compartir lo que le preocupa.</li></ul>
+  </section>
+<!-- /SINAPSIS:ESTRUCTURA -->
+
+  <section class="svc-section">
+    <h2>Cómo pedir una consulta</h2>
     <div class="svc-pasos"><div class="svc-paso"><div class="svc-paso-num">1</div><div><h3>Escribinos</h3><p>Contanos brevemente qué está pasando o qué necesitás. Sin formularios largos, sin demoras. Solo un mensaje de WhatsApp es suficiente para comenzar.</p></div></div><div class="svc-paso"><div class="svc-paso-num">2</div><div><h3>Primera entrevista</h3><p>Nos conocemos, escuchamos tu situación y definimos juntos el plan de acompañamiento más adecuado. Sin apuro, sin etiquetas apresuradas.</p></div></div><div class="svc-paso"><div class="svc-paso-num">3</div><div><h3>Empezás el proceso</h3><p>Comenzás el trabajo terapéutico o de evaluación con el profesional asignado. El equipo te acompaña en cada paso del camino.</p></div></div></div>
   </section>
 
@@ -177,6 +225,9 @@
     </div><div class="svc-faq-item">
       <button class="svc-faq-q" aria-expanded="false">¿A qué edad conviene empezar?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
       <div class="svc-faq-a"><p>La estimulación temprana está pensada para bebés y niños pequeños, desde los primeros meses hasta los 6 años aproximadamente. Cuanto antes se detecta una alerta en el desarrollo, antes se puede empezar a acompañar — pero nunca es tarde para hacer una primera consulta.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿Hace falta un diagnóstico para empezar estimulación temprana?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>No. Se puede empezar ante una alerta en el desarrollo, sin esperar a tener un diagnóstico. Esperar suele ser lo menos recomendable en los primeros años.</p></div>
     </div>
   </section>
 

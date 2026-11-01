@@ -2,7 +2,7 @@
 
 > Centro de salud interdisciplinario en Berazategui, Zona Sur de Buenos Aires (Quilmes, Florencio Varela, Avellaneda y alrededores): psicología, psicopedagogía, fonoaudiología, terapia ocupacional, kinesiología y evaluaciones del desarrollo, para bebés, niños, adolescentes y adultos. Fundado en febrero de 2026 bajo la idea de que cada persona necesita ser escuchada y sentirse parte de un espacio, no solo recibir una prestación.
 
-Atención sin derivación médica previa, con y sin CUD, obras sociales y prepagas. Primera entrevista coordinada por WhatsApp. Dirección: Calle 27 Nº3907 esq. 139, Berazategui, Buenos Aires. Horarios: lunes a viernes 9 a 20 hs, sábados 9 a 13 hs.
+Atención sin derivación médica previa, con y sin CUD. Sin CUD, se atiende por reintegro con cualquier obra social o prepaga (el paciente abona y presenta la factura según su plan); con CUD, prestaciones por discapacidad según cobertura. Primera entrevista coordinada por WhatsApp. Dirección: Calle 27 Nº3907 esq. 139, Berazategui, Buenos Aires. Horarios: lunes a viernes 9 a 20 hs, sábados 9 a 13 hs.
 
 ## Servicios
 
@@ -15,12 +15,13 @@ Atención sin derivación médica previa, con y sin CUD, obras sociales y prepag
 - [Estimulación Cognitiva](https://sinapsiscentro.com.ar/estimulacion-cognitiva-berazategui.html): memoria, atención y funciones ejecutivas.
 - [Alfabetización](https://sinapsiscentro.com.ar/alfabetizacion-berazategui.html): procesos de adquisición de lectura y escritura.
 - [Psicodiagnóstico](https://sinapsiscentro.com.ar/psicodiagnostico-berazategui.html): evaluación psicológica con batería de instrumentos validados.
-- [Evaluación ADOS-2 y ADI-R](https://sinapsiscentro.com.ar/evaluacion-ados-2-adi-r-berazategui.html): evaluación estándar internacional para el diagnóstico del Trastorno del Espectro Autista.
+- [Evaluación ADOS-2 y ADI-R](https://sinapsiscentro.com.ar/evaluacion-ados-2-adi-r-berazategui.html): observación (ADOS-2) y entrevista (ADI-R) estandarizadas que forman parte de una evaluación clínica integral del Trastorno del Espectro Autista; ningún instrumento diagnostica por sí solo.
 - [Evaluación Neurocognitiva](https://sinapsiscentro.com.ar/evaluacion-neurocognitiva-berazategui.html): funciones ejecutivas, memoria y perfil neuropsicológico.
+- [Orientación vocacional y ocupacional](https://sinapsiscentro.com.ar/orientacion-vocacional-ocupacional-berazategui.html): elección de estudios, cambio de rumbo y proyecto laboral, para adolescentes, adultos y personas con discapacidad.
 
 ## Autismo, discapacidad y consultas frecuentes
 
-- [Autismo / TEA en Berazategui y Zona Sur](https://sinapsiscentro.com.ar/autismo-tea-berazategui.html): evaluación ADOS-2 y ADI-R, fonoaudiología, terapia ocupacional, psicología, psicopedagogía, estimulación temprana y orientación a familias, para niños, adolescentes y adultos (incluye diagnóstico tardío). Con y sin CUD.
+- [Autismo / TEA en Berazategui y Zona Sur](https://sinapsiscentro.com.ar/autismo-tea-berazategui.html): evaluación ADOS-2 y ADI-R, fonoaudiología, terapia ocupacional, psicología, psicopedagogía, estimulación temprana y orientación a familias, para niños, adolescentes y adultos (incluye consultas por primera vez en la adultez). Con y sin CUD.
 - [Centro de atención para personas con discapacidad en Zona Sur](https://sinapsiscentro.com.ar/centro-discapacidad-zona-sur.html): prestaciones interdisciplinarias para personas con CUD, qué es el CUD, cómo tramitarlo (gratuito) y cómo funciona la cobertura según la Ley 24.901.
 - [¿Cómo saber si mi hijo tiene autismo? Señales por edad](https://sinapsiscentro.com.ar/senales-autismo-ninos.html): guía para familias con señales de alerta a los 12 meses, 18 meses y 2 años, y qué hacer si se notan.
 - [TDAH en Berazategui y Zona Sur](https://sinapsiscentro.com.ar/tdah-berazategui.html): evaluación neurocognitiva, psicodiagnóstico, psicología y psicopedagogía para niños, adolescentes y adultos. El centro no receta medicación.
