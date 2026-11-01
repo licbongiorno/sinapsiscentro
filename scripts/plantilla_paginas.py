@@ -46,6 +46,10 @@ FUENTES = {
     "medline_habla": ("MedlinePlus — Trastornos del habla y la comunicación", "https://medlineplus.gov/spanish/speechandcommunicationdisorders.html"),
     "ley24901": ("Ley 24.901 — Sistema de prestaciones básicas para personas con discapacidad (Argentina.gob.ar)", "https://www.argentina.gob.ar/normativa/nacional/ley-24901-47677"),
     "cud": ("Argentina.gob.ar — Cómo obtener el Certificado Único de Discapacidad (CUD)", "https://www.argentina.gob.ar/servicio/como-obtener-el-certificado-unico-de-discapacidad-cud"),
+    "cud_leysimple": ("Argentina.gob.ar (Derecho Fácil) — Ley simple: Certificado Único de Discapacidad", "https://www.argentina.gob.ar/justicia/derechofacil/leysimple/certificado-unico-discapacidad"),
+    "sss_reclamo": ("Argentina.gob.ar — Reclamar por prestaciones de discapacidad (Superintendencia de Servicios de Salud)", "https://www.argentina.gob.ar/servicio/reclamar-por-prestaciones-de-discapacidad"),
+    "ley24901_texto": ("InfoLEG — Ley 24.901, texto actualizado", "https://servicios.infoleg.gob.ar/infolegInternet/anexos/45000-49999/47677/texact.htm"),
+    "ley27793": ("Ley 27.793 — Emergencia en discapacidad (Biblioteca ARCA)", "https://biblioteca.afip.gob.ar/dcp/LEY_C_027793_2025_07_10"),
 }
 
 REL = {
@@ -62,6 +66,8 @@ REL = {
     "temprana": ("estimulacion-temprana-berazategui.html", "Estimulación Temprana", "Bebés y niños pequeños"),
     "neuro": ("evaluacion-neurocognitiva-berazategui.html", "Evaluación Neurocognitiva", "Neuropsicología"),
     "psicodx": ("psicodiagnostico-berazategui.html", "Psicodiagnóstico", "Diagnóstico"),
+    "cud_guia": ("como-tramitar-cud-berazategui.html", "Cómo tramitar el CUD", "Guía"),
+    "ley24901": ("prestaciones-discapacidad-ley-24901.html", "Qué cubre tu obra social", "Ley 24.901"),
     "obras": ("obras-sociales-prepagas.html", "Coberturas por discapacidad", "Obras sociales y prepagas"),
     "zona": ("centro-terapeutico-zona-sur.html", "Zona Sur", "Quilmes, Varela y alrededores"),
     "kine": ("kinesiologia-adultos-mayores-berazategui.html", "Kinesiología", "Adultos mayores"),
@@ -88,6 +94,13 @@ REL = {
     "vocacional": ("orientacion-vocacional-ocupacional-berazategui.html", "Orientación vocacional", "Estudio y trabajo"),
 }
 
+
+# Borradores: no se indexan y muestran un aviso visible. Un artículo marcado
+# borrador=True NO debe sumarse a INDICE, sitemap.xml ni llms.txt hasta que el
+# profesional revisor y el centro lo aprueben (ver PLAN_EDITORIAL.md).
+BANNER_BORRADOR = ('  <div class="svc-callout" role="note" style="border-left-color:#b46e50;background:#f3e0d4;">'
+                   '<strong>Borrador en revisión.</strong> Este texto todavía no fue validado por el equipo de Centro Sinapsis '
+                   'y no está publicado oficialmente.</div>\n')
 
 def ilu_img(p):
     n = p["ilu"]
@@ -174,7 +187,7 @@ def page(p):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="{'noindex, nofollow' if p.get('borrador') else 'index, follow, max-image-preview:large'}">
 <link rel="canonical" href="{url}">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="manifest" href="manifest.json">
@@ -261,7 +274,7 @@ def page(p):
 
 
 <main id="main" class="svc-main">
-{p['body']}
+{BANNER_BORRADOR if p.get('borrador') else ''}{p['body']}
 
   <section class="svc-section">
     <h2>Cómo empezamos</h2>

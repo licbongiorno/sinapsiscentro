@@ -653,6 +653,114 @@ ART.append(dict(
 ))
 
 
+# ═════════════════════ BORRADORES (no publicar sin revisión) ═════════════════════
+# Datos verificados el 2026-11-01 en fuentes oficiales (ver "sources"). Antes de
+# publicar: confirmar sede y horario de la Junta de Berazategui por teléfono,
+# revisar si cambió la normativa (proyecto de nueva Ley de Discapacidad con media
+# sanción en Diputados el 22/10/2026) y obtener la conformidad del revisor.
+
+# ───────── BORRADOR 1: cómo tramitar el CUD en Berazategui ─────────
+ART.append(dict(
+    slug="como-tramitar-cud-berazategui.html", ilu="discapacidad", articulo=True, borrador=True,
+    title="Cómo tramitar el CUD en Berazategui, paso a paso | Sinapsis",
+    desc="Guía para sacar o renovar el Certificado Único de Discapacidad (CUD) en Berazategui: qué es, dónde se pide, qué documentación llevar y qué pasa después.",
+    crumb_parent=GUIAS, crumb="Cómo tramitar el CUD", tag="Guía · Discapacidad",
+    h1="Cómo tramitar el CUD en Berazategui, paso a paso",
+    lead="Qué es el Certificado Único de Discapacidad, dónde se pide si vivís en Berazategui, qué documentación reunir y cómo sigue el trámite.",
+    cta="Consultar por el CUD", motivo="cud",
+    wa="Hola! Quisiera orientación sobre el trámite del CUD.",
+    about={"@type": "GovernmentService", "name": "Certificado Único de Discapacidad (CUD)", "serviceType": "Certificación de discapacidad"},
+    body=
+    sec("La respuesta corta",
+        "<p>El <strong>Certificado Único de Discapacidad (CUD)</strong> es un documento público, <strong>gratuito y voluntario</strong>, que lo otorga una <strong>Junta Evaluadora interdisciplinaria</strong> después de evaluar a la persona. "
+        "Para pedirlo hay que hacer una consulta en <a href=\"https://www.argentina.gob.ar/servicio/como-obtener-el-certificado-unico-de-discapacidad-cud\" target=\"_blank\" rel=\"noopener\">argentina.gob.ar</a>, que indica qué documentación llevar y a qué junta ir. Con eso se saca turno, la persona se presenta a la evaluación y después se retira el certificado.</p>"
+        "<p>No hace falta pagar a ningún gestor ni intermediario: el trámite es personal y sin costo.</p>")
+    + sec("Paso a paso",
+          card("1. Hacé la consulta personalizada", "En el sitio oficial del CUD respondés unas preguntas sobre la persona que va a tramitarlo. El sistema te indica qué certificados, planillas y estudios tenés que llevar y cuál es la junta evaluadora que te corresponde.")
+          + card("2. Reuní la documentación con el equipo que atiende a la persona", "Certificados e informes de los profesionales tratantes, planillas completas y estudios complementarios. Este es el paso que más demora: conviene pedirlos con tiempo.")
+          + card("3. Pedí turno en la junta y presentate", "Con la documentación lista, se pide turno en el lugar asignado. El día de la evaluación, un equipo interdisciplinario revisa la documentación y evalúa a la persona.")
+          + card("4. Retirá el certificado", "El CUD (o la denegatoria) se retira en el mismo lugar, en la fecha que te indiquen. Puede retirarlo cualquier persona mayor de 18 años con el documento original de quien hizo el trámite."))
+    + sec("¿Dónde se tramita si vivís en Berazategui?",
+          "<p>La junta que corresponde depende del domicilio que figura en el DNI, y la consulta oficial te la indica. Según el listado de juntas evaluadoras de la Defensoría del Pueblo de la Provincia de Buenos Aires, la junta de Berazategui funciona en la <strong>Unidad Sanitaria Dr. Sabatto</strong>, los <strong>jueves y viernes de 8 a 14 hs</strong>.</p>"
+          "<!-- VERIFICAR ANTES DE PUBLICAR: sede, dirección, días, horario y forma de pedir turno de la Junta Evaluadora de Berazategui (llamar a la Unidad Sanitaria o al área de discapacidad del Municipio). No publicar la dirección hasta confirmarla. -->"
+          "<p><strong>Antes de ir, confirmá día y horario:</strong> pueden cambiar, y el dato oficial actualizado es el que te da la consulta en argentina.gob.ar.</p>")
+    + '  <div class="svc-callout">El CUD <strong>no es un diagnóstico</strong>: certifica una discapacidad a partir de la documentación clínica y de la evaluación de la junta. Por eso es tan importante que los informes de los profesionales que atienden a la persona estén completos y actualizados.</div>\n'
+    + sec("¿Para qué sirve?",
+          ul(["<b>Cobertura del 100 %</b> de las prestaciones básicas por discapacidad (tratamientos de rehabilitación, apoyos educativos, entre otras), a cargo de la obra social o prepaga. Lo explicamos en <a href=\"prestaciones-discapacidad-ley-24901.html\">qué tiene que cubrir tu obra social</a>.",
+              "<b>Transporte público nacional gratuito</b> (trenes, subtes, colectivos y micros de corta, media y larga distancia).",
+              "Acceso al <b>Símbolo Internacional de Acceso</b> para estacionar, que se tramita aparte.",
+              "<b>Asignaciones familiares</b> específicas y otros beneficios (por ejemplo, exención de algunas tasas municipales), según cada caso."]))
+    + sec("Cambios recientes que conviene tener en cuenta",
+          "<p>En los últimos meses cambió el organismo nacional a cargo: el trámite figura hoy bajo la <strong>Secretaría Nacional de Discapacidad</strong>, dentro del Ministerio de Salud. "
+          "Además, en octubre de 2026 la Cámara de Diputados aprobó un proyecto de nueva ley de discapacidad que todavía debe tratar el Senado. "
+          "Por eso, ante cualquier duda sobre vencimientos o renovaciones, la referencia es siempre el sitio oficial.</p>")
+    + sec("Cómo te podemos acompañar desde Centro Sinapsis",
+          "<p>Si la persona se atiende con nuestro equipo, podemos orientarte sobre qué informes hacen falta y prepararlos desde las áreas que la acompañan. "
+          "Si todavía no tiene un tratamiento, una <a href=\"centro-discapacidad-zona-sur.html\">primera entrevista</a> sirve para ordenar los pasos. El trámite ante la junta, de todos modos, es siempre personal.</p>"),
+    faqs=[
+        ("¿Cuánto cuesta sacar el CUD?", "Nada. El trámite del Certificado Único de Discapacidad es gratuito y voluntario. Nadie puede cobrarte por iniciarlo ni por conseguir un turno."),
+        ("¿Dónde se tramita el CUD si vivo en Berazategui?", "En la junta evaluadora que corresponde al domicilio de tu DNI. La consulta en argentina.gob.ar te indica cuál es y qué documentación llevar. Antes de ir, confirmá día y horario."),
+        ("¿Qué documentación se necesita?", "Depende de cada situación: en general, el DNI, certificados e informes de los profesionales tratantes, planillas y estudios complementarios. La lista exacta la da la consulta personalizada del sitio oficial."),
+        ("¿El CUD es lo mismo que un diagnóstico?", "No. El diagnóstico lo hacen los profesionales que atienden a la persona. El CUD lo otorga una junta interdisciplinaria y certifica una discapacidad a partir de esa documentación y de su propia evaluación."),
+        ("¿Me pueden ayudar en Centro Sinapsis con el trámite?", "Podemos orientarte y, si la persona se atiende con nuestro equipo, preparar los informes de las áreas que la acompañan. La presentación ante la junta es personal."),
+    ],
+    sources=["cud", "cud_leysimple"],
+    related=["disc", "ley24901", "obras", "ados", "tea", "guias"],
+))
+
+# ───────── BORRADOR 2: Ley 24.901, qué tiene que cubrir la obra social ─────────
+ART.append(dict(
+    slug="prestaciones-discapacidad-ley-24901.html", ilu="obras-sociales", articulo=True, borrador=True,
+    title="Qué cubre tu obra social con CUD: Ley 24.901 | Sinapsis",
+    desc="Qué prestaciones por discapacidad tienen que cubrir las obras sociales y prepagas según la Ley 24.901, qué suelen pedir y a dónde reclamar si no cumplen.",
+    crumb_parent=GUIAS, crumb="Qué cubre tu obra social", tag="Guía · Discapacidad",
+    h1="Prestaciones por discapacidad: qué tiene que cubrir tu obra social",
+    lead="Qué dice la Ley 24.901, qué prestaciones incluye, qué documentación suele pedirse y qué hacer si la cobertura se demora o se rechaza.",
+    cta="Consultar por prestaciones con CUD", motivo="cud",
+    wa="Hola! Quisiera consultar por prestaciones por discapacidad con CUD.",
+    about={"@type": "Legislation", "name": "Ley 24.901 — Sistema de prestaciones básicas en habilitación y rehabilitación integral a favor de las personas con discapacidad", "legislationIdentifier": "Ley 24.901"},
+    body=
+    sec("La respuesta corta",
+        "<p>La <strong>Ley 24.901</strong> crea un sistema de prestaciones básicas de atención integral para las personas con discapacidad. "
+        "Establece que las obras sociales tienen a su cargo, <strong>con carácter obligatorio, la cobertura total</strong> de esas prestaciones (art. 2). "
+        "Las personas que no tienen obra social también tienen derecho a acceder a ellas a través del Estado (arts. 3 y 4). Para acceder, la discapacidad se acredita con el <a href=\"como-tramitar-cud-berazategui.html\">Certificado Único de Discapacidad</a>.</p>")
+    + sec("¿Qué prestaciones incluye?",
+          ul(["<b>Preventivas</b>: controles y atención desde el embarazo y la primera infancia, con apoyo a la familia (art. 14).",
+              "<b>De rehabilitación</b>: procesos continuos y coordinados para recuperar o desarrollar capacidades (art. 15).",
+              "<b>Terapéuticas educativas</b> y <b>educativas</b>: apoyos para el aprendizaje y la autonomía (arts. 16 y 17).",
+              "<b>Asistenciales</b>: cobertura de necesidades básicas como hábitat, alimentación y atención especializada (art. 18).",
+              "<b>Servicios específicos</b>, entre ellos <b>estimulación temprana</b> (arts. 19 y 20).",
+              "<b>Formación laboral</b>, para la preparación e inserción en el trabajo (art. 23).",
+              "<b>Transporte especial</b> hacia la escuela o el centro de rehabilitación, cuando la persona no puede usar el transporte público (art. 13)."])
+          + "<p>Antes de definir las prestaciones, la ley prevé una <strong>evaluación y orientación por equipos interdisciplinarios</strong> (art. 11).</p>")
+    + sec("¿Qué suele pedir la obra social?",
+          "<p>Cada obra social o prepaga tiene su propio circuito de autorización. En general se pide el <strong>CUD vigente</strong>, una <strong>indicación o prescripción</strong> del tratamiento, un <strong>plan de trabajo</strong> o informe de los profesionales y, en muchos casos, un <strong>presupuesto del prestador</strong>. Conviene consultar a tu cobertura cuáles son sus formularios y plazos.</p>"
+          "<!-- VERIFICAR CON LA ADMINISTRACIÓN DEL CENTRO: documentación que efectivamente piden las obras sociales con las que trabaja Sinapsis y quién hace la gestión (centro o familia). Ver DATOS_PENDIENTES, pregunta 35. -->")
+    + sec("Si la cobertura se demora o te la rechazan",
+          ul(["<b>Pedí la respuesta por escrito</b>, con fecha y motivo, y guardá copia de todo lo que presentaste.",
+              "<b>Reclamá primero en tu obra social o prepaga</b>, por los canales que tenga habilitados.",
+              "Si tu cobertura es una <b>obra social nacional o una prepaga</b>, podés reclamar ante la <b>Superintendencia de Servicios de Salud</b>: línea gratuita <b>0800-222-SALUD (72583)</b> o el trámite en <a href=\"https://www.argentina.gob.ar/servicio/reclamar-por-prestaciones-de-discapacidad\" target=\"_blank\" rel=\"noopener\">argentina.gob.ar</a>.",
+              "Si tu cobertura es <b>provincial (por ejemplo, IOMA)</b>, el reclamo sigue el circuito propio de esa obra social y de la Provincia; la Superintendencia no la controla.",
+              "Ante situaciones urgentes o reiteradas, la <b>Defensoría del Pueblo</b> también recibe consultas."])
+          + "<p class=\"svc-nota\">Esta guía es informativa y no reemplaza el asesoramiento legal de un profesional del derecho.</p>")
+    + sec("Un contexto normativo en revisión",
+          "<p>En 2025 se sancionó la <strong>Ley 27.793</strong>, que declara la emergencia en discapacidad hasta el 31 de diciembre de 2026 y establece que los aranceles de las prestaciones deben ser iguales para todas las obras sociales. "
+          "El decreto que la promulgó (681/2025) suspendió su ejecución hasta que el Congreso defina su financiamiento. "
+          "En octubre de 2026, además, Diputados aprobó un proyecto de nueva ley de discapacidad que todavía debe tratar el Senado. "
+          "Actualizaremos esta guía cuando haya cambios definitivos.</p>")
+    + sec("Prestaciones por discapacidad en Centro Sinapsis",
+          "<p>Trabajamos con personas con CUD y sin CUD. Para pacientes con CUD, podés ver el <a href=\"obras-sociales-prepagas.html\">listado de coberturas por discapacidad</a> y la página de <a href=\"centro-discapacidad-zona-sur.html\">atención a personas con discapacidad</a>. "
+          "Que una cobertura figure en el listado no implica un convenio confirmado para cada prestación: escribinos y lo revisamos para tu caso.</p>"),
+    faqs=[
+        ("¿La obra social tiene que cubrir el 100 % de las terapias con CUD?", "La Ley 24.901 establece que las obras sociales tienen a su cargo, con carácter obligatorio, la cobertura total de las prestaciones básicas que enumera la ley. Cada obra social define su circuito de autorización y la documentación que pide."),
+        ("¿Qué pasa si no tengo obra social?", "La ley prevé que las personas con discapacidad sin obra social también accedan a las prestaciones básicas a través del Estado. Conviene consultar en el área de discapacidad del municipio o en los organismos nacionales."),
+        ("¿Dónde reclamo si mi obra social no cubre una prestación?", "Primero, en la propia obra social o prepaga, pidiendo la respuesta por escrito. Si es una obra social nacional o una prepaga, podés reclamar ante la Superintendencia de Servicios de Salud (0800-222-72583). Las obras sociales provinciales, como IOMA, tienen su propio circuito."),
+        ("¿Esta guía reemplaza a un abogado?", "No. Es información general para orientarte. Ante un conflicto con tu cobertura, conviene consultar a un profesional del derecho o a la Defensoría del Pueblo."),
+    ],
+    sources=["ley24901_texto", "cud_leysimple", "sss_reclamo", "ley27793"],
+    related=["disc", "cud_guia", "obras", "tea", "temprana", "guias"],
+))
+
 # ───────────────────────── índice /guias.html ─────────────────────────
 INDICE = [
     # Psicología
