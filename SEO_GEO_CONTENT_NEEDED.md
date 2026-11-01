@@ -187,3 +187,10 @@ La página publica sólo lo que el centro definió: nombre, descripción, qué s
 - Precio o cobertura (si alguno se puede hacer con CUD u obra social).
 - Fechas de inicio, si los talleres son por ciclos. Con fechas reales se podría usar el tipo `Event` o `Course` de schema.org, que hoy no se usa justamente por no tener esos datos.
 - Fotos reales de los talleres (opcional; hoy hay ilustraciones propias en SVG).
+
+## 10. Pendientes de la auditoría integral (2026-11-01)
+
+Detalle completo en `AUDITORIA_INTEGRAL_2026-11.md`, sección 8. Resumen de datos a confirmar:
+- **Orientación vocacional y ocupacional** (página nueva): profesional a cargo, edades, modalidad, cantidad de encuentros.
+- **ADOS-2 / ADI-R**: profesional que los administra y su formación/acreditación en el instrumento.
+- **Plazos publicados** ("primera entrevista en menos de 48 hs", "turnos esta semana"): confirmar que se cumplen; si no, cambiarlos. La auditoría mensual los recuerda.

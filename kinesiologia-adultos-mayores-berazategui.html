@@ -53,11 +53,20 @@
   "url": "https://sinapsiscentro.com.ar/kinesiologia-adultos-mayores-berazategui.html",
   "description": "Gimnasio terapéutico de kinesiología para adultos mayores en Berazategui: prevención de caídas, equilibrio, fortalecimiento y autonomía.",
   "inLanguage": "es-AR",
-  "isPartOf": { "@id": "https://sinapsiscentro.com.ar/#website" },
-  "about": { "@type": "MedicalTherapy", "name": "Kinesiología" },
-  "publisher": { "@id": "https://sinapsiscentro.com.ar/#organization" },
-  "reviewedBy": { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#ian-lautaro-guzman" },
-  "dateModified": "2026-10-30"
+  "isPartOf": {
+    "@id": "https://sinapsiscentro.com.ar/#website"
+  },
+  "about": {
+    "@type": "MedicalTherapy",
+    "name": "Kinesiología"
+  },
+  "publisher": {
+    "@id": "https://sinapsiscentro.com.ar/#organization"
+  },
+  "reviewedBy": {
+    "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#ian-lautaro-guzman"
+  },
+  "dateModified": "2026-11-01"
 }
 </script>
 <script type="application/ld+json">
@@ -68,17 +77,34 @@
     {
       "@type": "Question",
       "name": "¿Necesito derivación médica para sacar turno?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No necesitás derivación para consultar. Podés contactarnos directamente por WhatsApp, contarnos tu situación y coordinar una primera entrevista sin trámites previos." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No necesitás derivación para consultar. Podés contactarnos directamente por WhatsApp, contarnos tu situación y coordinar una primera entrevista sin trámites previos."
+      }
     },
     {
       "@type": "Question",
       "name": "¿Atienden obras sociales y prepagas?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Podés consultar con cualquier obra social o prepaga por reintegro: abonás la sesión, te damos la factura correspondiente, y la presentás en tu obra social para que te reintegre el total o una parte, según las condiciones de tu plan. Si tenés CUD, consultá nuestra página de coberturas por discapacidad." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Podés consultar con cualquier obra social o prepaga por reintegro: abonás la sesión, te damos la factura correspondiente, y la presentás en tu obra social para que te reintegre el total o una parte, según las condiciones de tu plan. Si tenés CUD, consultá nuestra página de coberturas por discapacidad."
+      }
     },
     {
       "@type": "Question",
       "name": "¿Cómo son los horarios y la modalidad?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Estamos arrancando este espacio — escribinos por WhatsApp y te contamos los turnos, horarios y modalidad disponibles." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Estamos arrancando este espacio — escribinos por WhatsApp y te contamos los turnos, horarios y modalidad disponibles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito una indicación médica para empezar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para coordinar la primera consulta no hace falta. Igual, si tenés alguna condición de salud, es recomendable que tu médico de cabecera esté al tanto de que vas a empezar actividad física, y en la valoración inicial lo conversamos."
+      }
     }
   ]
 }
@@ -94,7 +120,9 @@
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () { document.head.appendChild(s); };
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () { setTimeout(cargar, 1200); });
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -152,8 +180,27 @@
 
   <div class="svc-callout">Antes de empezar, conocemos tu estado de salud y tu situación particular, para armar un trabajo kinésico pensado específicamente para vos.</div>
 
+
+<!-- SINAPSIS:ESTRUCTURA -->
   <section class="svc-section">
-    <h2>Cómo es la primera entrevista</h2>
+    <h2>Situaciones que acompañamos</h2>
+    <ul class="svc-lista-check"><li>Miedo a caerse, inseguridad al caminar o caídas recientes.</li><li>Pérdida de fuerza o de equilibrio con los años.</li><li>Rigidez articular o dificultad para moverse con comodidad.</li><li>Ganas de mantenerse activo con un acompañamiento profesional y adaptado.</li><li>Personas que, después de una indicación médica, necesitan sostener la actividad física de forma segura.</li></ul>
+    <p class="svc-nota">Si lo que te pasa no aparece en la lista, escribinos igual: en la primera entrevista vemos juntos qué conviene.</p>
+  </section>
+
+  <section class="svc-section">
+    <h2>Cómo trabajamos</h2>
+    <div class="svc-como"><div class="svc-como-item"><h3>Valoración inicial</h3><p>Antes de empezar, el kinesiólogo conoce tu estado de salud, tus antecedentes y tus objetivos.</p></div><div class="svc-como-item"><h3>Plan de ejercicios adaptado</h3><p>Se trabaja fuerza, equilibrio y movilidad, siempre dentro de tus posibilidades y con progresión gradual.</p></div><div class="svc-como-item"><h3>Seguimiento</h3><p>El plan se revisa con el tiempo para ajustarlo a cómo te vas sintiendo.</p></div></div>
+  </section>
+
+  <section class="svc-section">
+    <h2>Qué podés esperar</h2>
+    <ul class="svc-lista-check"><li>Un espacio cuidado, a tu ritmo, con supervisión profesional.</li><li>Ejercicios que se pueden trasladar a la vida diaria.</li><li>Consejos para prevenir caídas en casa.</li></ul>
+  </section>
+<!-- /SINAPSIS:ESTRUCTURA -->
+
+  <section class="svc-section">
+    <h2>Cómo pedir una consulta</h2>
     <div class="svc-pasos"><div class="svc-paso"><div class="svc-paso-num">1</div><div><h3>Escribinos</h3><p>Contanos brevemente qué necesitás. Sin formularios largos, sin demoras. Solo un mensaje de WhatsApp es suficiente para comenzar.</p></div></div><div class="svc-paso"><div class="svc-paso-num">2</div><div><h3>Primera entrevista</h3><p>Nos conocemos, escuchamos tu situación y hacemos una valoración inicial para definir el plan de trabajo.</p></div></div><div class="svc-paso"><div class="svc-paso-num">3</div><div><h3>Empezás el proceso</h3><p>Comenzás el trabajo con el profesional asignado, a tu ritmo y según tus posibilidades.</p></div></div></div>
   </section>
 
@@ -176,6 +223,9 @@
     </div><div class="svc-faq-item">
       <button class="svc-faq-q" aria-expanded="false">¿Cómo son los horarios y la modalidad?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
       <div class="svc-faq-a"><p>Estamos arrancando este espacio — escribinos por WhatsApp y te contamos los turnos, horarios y modalidad disponibles.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿Necesito una indicación médica para empezar?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>Para coordinar la primera consulta no hace falta. Igual, si tenés alguna condición de salud, es recomendable que tu médico de cabecera esté al tanto de que vas a empezar actividad física, y en la valoración inicial lo conversamos.</p></div>
     </div>
   </section>
 

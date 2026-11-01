@@ -54,7 +54,7 @@ REL = {
     "disc": ("centro-discapacidad-zona-sur.html", "Discapacidad y CUD", "Prestaciones"),
     "tdah": ("tdah-berazategui.html", "TDAH", "Atención e impulsividad"),
     "lenguaje": ("retraso-lenguaje-ninos.html", "Mi hijo no habla", "Lenguaje"),
-    "ados": ("evaluacion-ados-2-adi-r-berazategui.html", "Evaluación ADOS-2 y ADI-R", "Diagnóstico de TEA"),
+    "ados": ("evaluacion-ados-2-adi-r-berazategui.html", "Evaluación ADOS-2 y ADI-R", "Evaluación del TEA"),
     "fono": ("fonoaudiologia-berazategui.html", "Fonoaudiología", "Lenguaje y habla"),
     "to": ("terapia-ocupacional-integracion-sensorial.html", "Terapia Ocupacional", "Integración sensorial"),
     "psico": ("psicologia-berazategui.html", "Psicología", "Salud mental"),
@@ -85,6 +85,7 @@ REL = {
     "to_ninos": ("que-hace-terapia-ocupacional-ninos.html", "¿Qué hace la terapia ocupacional?", "Guía"),
     "motricidad": ("motricidad-fina-ninos.html", "Motricidad fina", "Guía"),
     "ejercicio": ("ejercicio-adultos-mayores.html", "Ejercicio en adultos mayores", "Guía"),
+    "vocacional": ("orientacion-vocacional-ocupacional-berazategui.html", "Orientación vocacional", "Estudio y trabajo"),
 }
 
 
@@ -205,7 +206,9 @@ def page(p):
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () {{ document.head.appendChild(s); }};
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () {{ setTimeout(cargar, 1200); }});
 }})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">

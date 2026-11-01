@@ -71,10 +71,14 @@
     "@id": "https://sinapsiscentro.com.ar/#organization"
   },
   "reviewedBy": [
-    { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#flavia-avellaneda" },
-    { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#rocio-gonzalez" }
+    {
+      "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#flavia-avellaneda"
+    },
+    {
+      "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#rocio-gonzalez"
+    }
   ],
-  "dateModified": "2026-10-30"
+  "dateModified": "2026-11-01"
 }
 </script>
 <script type="application/ld+json">
@@ -105,6 +109,22 @@
         "@type": "Answer",
         "text": "Trabajamos con personas con CUD y sin CUD. Si ya tiene el certificado, podemos orientarte para que la cobertura funcione correctamente. Y si todavía no lo tiene, podemos ayudarte a entender el proceso."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es la integración sensorial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es la forma en que el sistema nervioso organiza la información que llega por los sentidos (tacto, movimiento, sonidos, posición del cuerpo) para responder al entorno. Cuando ese proceso no funciona de manera eficiente, pueden aparecer reacciones exageradas, búsqueda de estímulos o dificultades en la vida diaria."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La terapia ocupacional es solo para niños?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. También acompaña a adolescentes y adultos cuando la autonomía en las actividades cotidianas necesita apoyo."
+      }
     }
   ]
 }
@@ -120,7 +140,9 @@
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () { document.head.appendChild(s); };
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () { setTimeout(cargar, 1200); });
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -181,8 +203,27 @@
 
   
 
+
+<!-- SINAPSIS:ESTRUCTURA -->
   <section class="svc-section">
-    <h2>Cómo es la primera entrevista</h2>
+    <h2>Situaciones que acompañamos</h2>
+    <ul class="svc-lista-check"><li>Reacciones muy intensas a ruidos, texturas, luces o al contacto físico.</li><li>Búsqueda constante de movimiento, o rechazo a columpios, toboganes y juegos de movimiento.</li><li>Dificultades para vestirse, comer, higienizarse o con otras actividades de la vida diaria.</li><li>Dificultades de motricidad fina: agarrar el lápiz, recortar, abrocharse.</li><li>Torpeza motriz, dificultades de coordinación o de planificación del movimiento.</li><li>Personas con discapacidad que buscan ganar autonomía en su día a día.</li></ul>
+    <p class="svc-nota">Si lo que te pasa no aparece en la lista, escribinos igual: en la primera entrevista vemos juntos qué conviene.</p>
+  </section>
+
+  <section class="svc-section">
+    <h2>Cómo trabajamos</h2>
+    <div class="svc-como"><div class="svc-como-item"><h3>Evaluación funcional y sensorial</h3><p>Se observa cómo la persona participa de sus actividades cotidianas y cómo procesa la información sensorial.</p></div><div class="svc-como-item"><h3>Intervención a través de la actividad</h3><p>El trabajo se hace con actividades significativas: juego, tareas de la vida diaria, propuestas sensoriales y motrices.</p></div><div class="svc-como-item"><h3>Adaptaciones en casa y en la escuela</h3><p>Se sugieren ajustes del entorno y de las rutinas para que la persona pueda participar con mayor autonomía.</p></div></div>
+  </section>
+
+  <section class="svc-section">
+    <h2>Qué podés esperar</h2>
+    <ul class="svc-lista-check"><li>Sesiones en las que el juego y el movimiento son herramientas de trabajo.</li><li>Orientación concreta para la familia y, si hace falta, para la escuela.</li><li>Objetivos pensados para la vida diaria, no para el consultorio.</li></ul>
+  </section>
+<!-- /SINAPSIS:ESTRUCTURA -->
+
+  <section class="svc-section">
+    <h2>Cómo pedir una consulta</h2>
     <div class="svc-pasos"><div class="svc-paso"><div class="svc-paso-num">1</div><div><h3>Escribinos</h3><p>Contanos brevemente qué está pasando o qué necesitás. Sin formularios largos, sin demoras. Solo un mensaje de WhatsApp es suficiente para comenzar.</p></div></div><div class="svc-paso"><div class="svc-paso-num">2</div><div><h3>Primera entrevista</h3><p>Nos conocemos, escuchamos tu situación y definimos juntos el plan de acompañamiento más adecuado. Sin apuro, sin etiquetas apresuradas.</p></div></div><div class="svc-paso"><div class="svc-paso-num">3</div><div><h3>Empezás el proceso</h3><p>Comenzás el trabajo terapéutico o de evaluación con el profesional asignado. El equipo te acompaña en cada paso del camino.</p></div></div></div>
   </section>
 
@@ -205,6 +246,12 @@
     </div><div class="svc-faq-item">
       <button class="svc-faq-q" aria-expanded="false">¿Qué pasa si tengo o mi hijo/a tiene CUD?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
       <div class="svc-faq-a"><p>Trabajamos con personas con CUD y sin CUD. Si ya tiene el certificado, podemos orientarte para que la cobertura funcione correctamente. Y si todavía no lo tiene, podemos ayudarte a entender el proceso.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿Qué es la integración sensorial?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>Es la forma en que el sistema nervioso organiza la información que llega por los sentidos (tacto, movimiento, sonidos, posición del cuerpo) para responder al entorno. Cuando ese proceso no funciona de manera eficiente, pueden aparecer reacciones exageradas, búsqueda de estímulos o dificultades en la vida diaria.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿La terapia ocupacional es solo para niños?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>No. También acompaña a adolescentes y adultos cuando la autonomía en las actividades cotidianas necesita apoyo.</p></div>
     </div>
   </section>
 

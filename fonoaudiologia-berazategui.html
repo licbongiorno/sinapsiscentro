@@ -70,7 +70,7 @@
   "publisher": {
     "@id": "https://sinapsiscentro.com.ar/#organization"
   },
-  "dateModified": "2026-09-17"
+  "dateModified": "2026-11-01"
 }
 </script>
 <script type="application/ld+json">
@@ -109,6 +109,22 @@
         "@type": "Answer",
         "text": "Son formas de comunicarse que no dependen solo de hablar — gestos, imágenes o apoyos visuales — para que cada persona pueda expresarse, ya sea sumando estas herramientas al habla o en su lugar."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "¿A qué edad conviene consultar si mi hijo no habla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No hace falta esperar. Si a los 18 meses no dice ninguna palabra, o a los 2 años no combina dos palabras, vale la pena consultar. Una evaluación temprana permite saber si es parte de su ritmo o si necesita acompañamiento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Trabajan comunicación aumentativa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Para personas que no usan el lenguaje oral, o que lo usan de forma limitada, se trabaja con sistemas de comunicación aumentativa o alternativa adaptados a cada persona."
+      }
     }
   ]
 }
@@ -124,7 +140,9 @@
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () { document.head.appendChild(s); };
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () { setTimeout(cargar, 1200); });
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -185,8 +203,27 @@
 
   
 
+
+<!-- SINAPSIS:ESTRUCTURA -->
   <section class="svc-section">
-    <h2>Cómo es la primera entrevista</h2>
+    <h2>Situaciones que acompañamos</h2>
+    <ul class="svc-lista-check"><li>Niños y niñas que hablan poco o empezaron a hablar más tarde de lo esperado.</li><li>Dificultades para pronunciar algunos sonidos (dislalias) o para que se les entienda.</li><li>Dificultades para comprender consignas o para armar frases.</li><li>Tartamudez o bloqueos al hablar.</li><li>Personas que necesitan sistemas de comunicación aumentativa o alternativa.</li><li>Cambios en la voz, cansancio vocal o dificultades para tragar.</li></ul>
+    <p class="svc-nota">Si lo que te pasa no aparece en la lista, escribinos igual: en la primera entrevista vemos juntos qué conviene.</p>
+  </section>
+
+  <section class="svc-section">
+    <h2>Cómo trabajamos</h2>
+    <div class="svc-como"><div class="svc-como-item"><h3>Evaluación del lenguaje y el habla</h3><p>Se observa cómo se comunica la persona: comprensión, expresión, pronunciación, voz y, si corresponde, deglución.</p></div><div class="svc-como-item"><h3>Objetivos funcionales</h3><p>El trabajo apunta a que la comunicación sirva en la vida real: en casa, en la escuela y con otras personas.</p></div><div class="svc-como-item"><h3>La familia como parte del proceso</h3><p>Con los más chicos, se dan pautas concretas para estimular el lenguaje en la rutina diaria.</p></div></div>
+  </section>
+
+  <section class="svc-section">
+    <h2>Qué podés esperar</h2>
+    <ul class="svc-lista-check"><li>Sesiones dinámicas, con juego en el caso de los niños y niñas.</li><li>Pautas claras para acompañar en casa entre sesión y sesión.</li><li>Coordinación con otras áreas del equipo cuando la situación lo requiere, por ejemplo terapia ocupacional o psicopedagogía.</li></ul>
+  </section>
+<!-- /SINAPSIS:ESTRUCTURA -->
+
+  <section class="svc-section">
+    <h2>Cómo pedir una consulta</h2>
     <div class="svc-pasos"><div class="svc-paso"><div class="svc-paso-num">1</div><div><h3>Escribinos</h3><p>Contanos brevemente qué está pasando o qué necesitás. Sin formularios largos, sin demoras. Solo un mensaje de WhatsApp es suficiente para comenzar.</p></div></div><div class="svc-paso"><div class="svc-paso-num">2</div><div><h3>Primera entrevista</h3><p>Nos conocemos, escuchamos tu situación y definimos juntos el plan de acompañamiento más adecuado. Sin apuro, sin etiquetas apresuradas.</p></div></div><div class="svc-paso"><div class="svc-paso-num">3</div><div><h3>Empezás el proceso</h3><p>Comenzás el trabajo terapéutico o de evaluación con el profesional asignado. El equipo te acompaña en cada paso del camino.</p></div></div></div>
   </section>
 
@@ -212,6 +249,12 @@
     </div><div class="svc-faq-item">
       <button class="svc-faq-q" aria-expanded="false">¿Qué es la comunicación aumentativa?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
       <div class="svc-faq-a"><p>Son formas de comunicarse que no dependen solo de hablar — gestos, imágenes o apoyos visuales — para que cada persona pueda expresarse, ya sea sumando estas herramientas al habla o en su lugar.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿A qué edad conviene consultar si mi hijo no habla?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>No hace falta esperar. Si a los 18 meses no dice ninguna palabra, o a los 2 años no combina dos palabras, vale la pena consultar. Una evaluación temprana permite saber si es parte de su ritmo o si necesita acompañamiento.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿Trabajan comunicación aumentativa?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>Sí. Para personas que no usan el lenguaje oral, o que lo usan de forma limitada, se trabaja con sistemas de comunicación aumentativa o alternativa adaptados a cada persona.</p></div>
     </div>
   </section>
 

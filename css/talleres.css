@@ -180,3 +180,5 @@
 .tl-card-art { display: flex; align-items: center; justify-content: center; padding: 14px 0; }
 .tl-card-art img { height: 100%; width: auto; max-height: 230px; display: block; }
 .tl-hero-art img { width: 100%; height: auto; display: block; filter: drop-shadow(0 18px 40px rgba(44,42,34,0.12)); }
+/* contraste AA del texto del acceso a talleres sobre el fondo crema (antes 4.37:1) */
+.tl-home-strip p { color: #4a5f6a !important; }

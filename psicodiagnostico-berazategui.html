@@ -45,10 +45,17 @@
   "url": "https://sinapsiscentro.com.ar/psicodiagnostico-berazategui.html",
   "description": "Evaluación psicológica completa en Berazategui, con batería de instrumentos validados, informe detallado y devolución personalizada.",
   "inLanguage": "es-AR",
-  "isPartOf": { "@id": "https://sinapsiscentro.com.ar/#website" },
-  "about": { "@type": "MedicalTest", "name": "Psicodiagnóstico" },
-  "publisher": { "@id": "https://sinapsiscentro.com.ar/#organization" },
-  "dateModified": "2026-10-27"
+  "isPartOf": {
+    "@id": "https://sinapsiscentro.com.ar/#website"
+  },
+  "about": {
+    "@type": "MedicalTest",
+    "name": "Psicodiagnóstico"
+  },
+  "publisher": {
+    "@id": "https://sinapsiscentro.com.ar/#organization"
+  },
+  "dateModified": "2026-11-01"
 }
 </script>
 <script type="application/ld+json">
@@ -59,22 +66,42 @@
     {
       "@type": "Question",
       "name": "¿Necesito derivación médica para sacar turno?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No necesitás derivación para consultar. Podés contactarnos directamente por WhatsApp, contarnos tu situación y coordinar una primera entrevista sin trámites previos." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No necesitás derivación para consultar. Podés contactarnos directamente por WhatsApp, contarnos tu situación y coordinar una primera entrevista sin trámites previos."
+      }
     },
     {
       "@type": "Question",
       "name": "¿Atienden obras sociales y prepagas?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Podés consultar con cualquier obra social o prepaga por reintegro: abonás la sesión, te damos la factura correspondiente, y la presentás en tu obra social para que te reintegre el total o una parte, según las condiciones de tu plan. Si tenés CUD, consultá nuestra página de coberturas por discapacidad." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Podés consultar con cualquier obra social o prepaga por reintegro: abonás la sesión, te damos la factura correspondiente, y la presentás en tu obra social para que te reintegre el total o una parte, según las condiciones de tu plan. Si tenés CUD, consultá nuestra página de coberturas por discapacidad."
+      }
     },
     {
       "@type": "Question",
       "name": "¿Qué incluye el proceso?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Entrevistas iniciales, las pruebas que correspondan según lo que se necesite evaluar, y una devolución personalizada con el informe y sus resultados explicados en una reunión, no solo entregados por escrito." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Entrevistas iniciales, las pruebas que correspondan según lo que se necesite evaluar, y una devolución personalizada con el informe y sus resultados explicados en una reunión, no solo entregados por escrito."
+      }
     },
     {
       "@type": "Question",
       "name": "¿Para qué se suele pedir un psicodiagnóstico?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Puede pedirse por una inquietud personal, un pedido escolar o laboral, o como parte de un proceso terapéutico que necesita un diagnóstico más preciso. El motivo de consulta se conversa en la primera entrevista." }
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Puede pedirse por una inquietud personal, un pedido escolar o laboral, o como parte de un proceso terapéutico que necesita un diagnóstico más preciso. El motivo de consulta se conversa en la primera entrevista."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El psicodiagnóstico siempre termina en un diagnóstico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No necesariamente. El objetivo es comprender cómo funciona la persona y responder la pregunta que motivó la consulta. A veces eso permite arribar a un diagnóstico, y otras veces el resultado es una descripción de fortalezas y dificultades con recomendaciones para seguir."
+      }
     }
   ]
 }
@@ -90,7 +117,9 @@
   var s = document.createElement("script");
   s.async = true;
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-  document.head.appendChild(s);
+  // se carga después del evento load para no competir con el contenido (mejor LCP/TBT)
+  var cargar = function () { document.head.appendChild(s); };
+  if (document.readyState === "complete") cargar(); else window.addEventListener("load", function () { setTimeout(cargar, 1200); });
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,13 +172,32 @@
 
   <section class="svc-section">
     <h2>¿Para quién está indicado?</h2>
-    <div style="margin-bottom:18px;"><h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px;">Niños, adolescentes y adultos</h3><p style="margin:0;">Que necesitan un diagnóstico claro: por una inquietud personal, un pedido escolar o laboral, o como parte de un proceso terapéutico.</p></div>
+    <div style="margin-bottom:18px;"><h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px;">Niños, adolescentes y adultos</h3><p style="margin:0;">Que necesitan comprender con claridad lo que les pasa: por una inquietud personal, un pedido escolar o laboral, o como parte de un proceso terapéutico.</p></div>
   </section>
 
   <div class="svc-callout">La devolución es parte central del proceso: los resultados se explican en una reunión personalizada, con espacio para preguntas — no es solo un informe entregado por escrito.</div>
 
+
+<!-- SINAPSIS:ESTRUCTURA -->
   <section class="svc-section">
-    <h2>Cómo es la primera entrevista</h2>
+    <h2>Situaciones que acompañamos</h2>
+    <ul class="svc-lista-check"><li>Un pedido de la escuela, de otro profesional o de una institución para conocer el funcionamiento psicológico de una persona.</li><li>Dudas sobre el origen de dificultades emocionales, de conducta o de aprendizaje.</li><li>La necesidad de orientar un tratamiento con más información.</li><li>Trámites o situaciones que requieren un informe psicológico.</li></ul>
+    <p class="svc-nota">Si lo que te pasa no aparece en la lista, escribinos igual: en la primera entrevista vemos juntos qué conviene.</p>
+  </section>
+
+  <section class="svc-section">
+    <h2>Cómo trabajamos</h2>
+    <div class="svc-como"><div class="svc-como-item"><h3>Entrevistas iniciales</h3><p>Se conversa con la persona y, en el caso de niños y adolescentes, con su familia, para entender el motivo de consulta.</p></div><div class="svc-como-item"><h3>Administración de pruebas</h3><p>Se usan técnicas y pruebas psicológicas elegidas según la edad y lo que se necesita evaluar.</p></div><div class="svc-como-item"><h3>Integración y devolución</h3><p>El profesional integra toda la información y la explica en una entrevista de devolución, con un informe escrito.</p></div></div>
+  </section>
+
+  <section class="svc-section">
+    <h2>Qué podés esperar</h2>
+    <ul class="svc-lista-check"><li>Saber desde el principio para qué se hace la evaluación y qué pasos tiene.</li><li>Un informe con lenguaje claro, que también se explica en persona.</li><li>Recomendaciones concretas sobre cómo seguir.</li></ul>
+  </section>
+<!-- /SINAPSIS:ESTRUCTURA -->
+
+  <section class="svc-section">
+    <h2>Cómo pedir una consulta</h2>
     <div class="svc-pasos"><div class="svc-paso"><div class="svc-paso-num">1</div><div><h3>Escribinos</h3><p>Contanos brevemente qué está pasando o qué necesitás. Sin formularios largos, sin demoras. Solo un mensaje de WhatsApp es suficiente para comenzar.</p></div></div><div class="svc-paso"><div class="svc-paso-num">2</div><div><h3>Primera entrevista</h3><p>Nos conocemos, escuchamos tu situación y definimos juntos el plan de evaluación más adecuado. Sin apuro, sin etiquetas apresuradas.</p></div></div><div class="svc-paso"><div class="svc-paso-num">3</div><div><h3>Empezás el proceso</h3><p>Comenzás la evaluación con el profesional asignado, hasta llegar a la devolución con el informe y sus resultados.</p></div></div></div>
   </section>
 
@@ -175,6 +223,9 @@
     </div><div class="svc-faq-item">
       <button class="svc-faq-q" aria-expanded="false">¿Para qué se suele pedir un psicodiagnóstico?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
       <div class="svc-faq-a"><p>Puede pedirse por una inquietud personal, un pedido escolar o laboral, o como parte de un proceso terapéutico que necesita un diagnóstico más preciso. El motivo de consulta se conversa en la primera entrevista.</p></div>
+    </div><div class="svc-faq-item" data-faq-extra>
+      <button class="svc-faq-q" aria-expanded="false">¿El psicodiagnóstico siempre termina en un diagnóstico?<span class="svc-faq-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
+      <div class="svc-faq-a"><p>No necesariamente. El objetivo es comprender cómo funciona la persona y responder la pregunta que motivó la consulta. A veces eso permite arribar a un diagnóstico, y otras veces el resultado es una descripción de fortalezas y dificultades con recomendaciones para seguir.</p></div>
     </div>
   </section>
 

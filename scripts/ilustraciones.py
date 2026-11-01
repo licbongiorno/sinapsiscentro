@@ -140,6 +140,7 @@ def spot(principal, secundario, acento="salvia", semilla=1, badge_lado="der"):
 ILUSTRACIONES = {
     # servicios
     "psicologia": ("chats-circle", "heart", "salvia", "Ilustración de psicología: globos de diálogo y un corazón"),
+    "orientacion-vocacional": ("compass", "graduation-cap", "durazno", "Ilustración de orientación vocacional y ocupacional: una brújula y un birrete"),
     "psicopedagogia": ("book-open-text", "pencil-simple-line", "durazno", "Ilustración de psicopedagogía: un libro abierto y un lápiz"),
     "fonoaudiologia": ("ear", "waveform", "salvia", "Ilustración de fonoaudiología: un oído y una onda de sonido"),
     "terapia-ocupacional": ("hand-heart", "shapes", "durazno", "Ilustración de terapia ocupacional: una mano que cuida y figuras de encastre"),
@@ -204,6 +205,7 @@ ICONOS = {
     "fonoaudiologia": "ear", "estimulacion-temprana": "baby", "estimulacion-cognitiva": "brain",
     "alfabetizacion": "text-aa", "kinesiologia": "person-simple-walk", "psicodiagnostico": "file-magnifying-glass",
     "evaluacion-ados": "clipboard-text", "evaluacion-neurocognitiva": "head-circuit",
+    "orientacion-vocacional": "compass",
     # "Para quién"
     "ninos": "baby", "adolescentes": "student", "adultos": "person", "familias": "users-three",
     # "El centro que necesitabas"

@@ -1,0 +1,25 @@
+# Control de calidad en cada cambio: corre antes de que algo llegue a producción.
+# Si falla, el PR muestra la cruz roja y no conviene mergear hasta corregir.
+name: Calidad del sitio
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: SEO técnico (títulos, descripciones, canonical, JSON-LD, sitemap, enlaces internos)
+        run: python3 scripts/validar_seo.py
+      - name: Contenido y coherencia (FAQ visible = JSON-LD, profundidad, frescura)
+        run: python3 scripts/auditoria_periodica.py --sin-red

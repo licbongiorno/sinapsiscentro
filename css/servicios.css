@@ -306,7 +306,7 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
 /* footer (idéntico a index.html, versión reducida) */
 footer.svc-footer { background: #050f17; padding: 40px 6% 130px; text-align: center; }
 footer.svc-footer p { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
-footer.svc-footer a { color: var(--teal-soft); text-decoration: none; }
+footer.svc-footer a { color: var(--teal-soft); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.28); text-underline-offset: 3px; }
 footer.svc-footer a:active { text-decoration: underline; }
 footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255,255,0.6); }
 
@@ -360,3 +360,18 @@ footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255
 @media (prefers-reduced-motion: reduce) { .svc-hero-art { animation: none; } }
 
 .svc-cud-strip a { color: #f3d3c0; }
+
+/* ── Estructura editorial de servicios (scripts/enriquecer_servicios.py) ── */
+.svc-nota { font-size: 0.92rem; color: var(--text-soft, #4a5a63); margin-top: 12px; font-style: italic; }
+.svc-como { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 8px; counter-reset: como; }
+.svc-como-item {
+  background: #fff; border: 1px solid rgba(8,32,46,0.08); border-radius: 18px;
+  padding: 20px 20px 18px; position: relative; counter-increment: como;
+}
+.svc-como-item::before {
+  content: counter(como, decimal-leading-zero); display: block;
+  font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem;
+  color: var(--teal-texto); margin-bottom: 6px;
+}
+.svc-como-item h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.svc-como-item p { font-size: 0.94rem; line-height: 1.65; margin: 0; }
