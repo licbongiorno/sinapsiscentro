@@ -63,7 +63,7 @@ jobs:
           ### Revisión trimestral de estrategia
           - [ ] Competencia: revisar webs y perfiles de Google de centros de Berazategui, Quilmes y Florencio Varela (servicios nuevos, contenidos, reseñas).
           - [ ] Palabras clave: exportar consultas de Search Console de los últimos 3 meses y detectar temas con impresiones sin página propia.
-          - [ ] GEO: preguntar a ChatGPT, Gemini, Perplexity y Copilot "centro interdisciplinario en Berazategui", "evaluación ADOS-2 en Zona Sur" y "terapia ocupacional Berazategui"; anotar si citan el sitio y qué fuentes usan.
+          - [ ] GEO: correr las 20 consultas de SEGUIMIENTO_GEO.md en ChatGPT, Gemini, Perplexity y Copilot y registrar los resultados en seguimiento-geo.csv (solo lo observado).
           - [ ] Contenido: elegir 2 o 3 guías nuevas a partir de las preguntas reales de las familias.
           - [ ] Datos institucionales: confirmar equipo, horarios, coberturas y llms.txt.
           MD
@@ -72,10 +72,11 @@ jobs:
       - name: Publicar el informe en un issue
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
           titulo="Auditoría periódica $(date +%Y-%m)"
           gh label create auditoria --color 7b9476 --description "Informes automáticos de auditoría" 2>/dev/null || true
-          existente=$(gh issue list --label auditoria --state open --search "$titulo in:title" --json number --jq '.[0].number')
+          existente=$(gh issue list --label auditoria --state open --search "$titulo in:title" --json number --jq '.[0].number // empty')
           if [ -n "$existente" ]; then
             gh issue comment "$existente" --body-file informe.md
           else
