@@ -1,0 +1,131 @@
+/* Estilos de las piezas de Instagram — misma paleta y tipografías que la web */
+:root {
+  --navy: #08202e;
+  --teal-deep: #0e4d5c;
+  --teal: #1a7a8a;
+  --teal-mid: #2aaec2;
+  --teal-soft: #7ed6e4;
+  --teal-pale: #d4f2f7;
+  --cream: #f7f2eb;
+  --warm: #7a5c33;
+  --warm-lt: #f0e6d3;
+  --text: #0d2535;
+  --text-mid: #3a5a6a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #ccc; font-family: "Nunito", sans-serif; color: var(--text); }
+
+.slide {
+  position: relative; overflow: hidden;
+  width: 1080px; height: 1350px;
+  padding: 110px 96px 150px;
+  background: var(--cream);
+  display: flex; flex-direction: column; justify-content: center;
+  margin-bottom: 20px;
+}
+.slide.story { height: 1920px; padding: 290px 90px 400px; justify-content: flex-start; }
+.slide.dark { background: var(--navy); color: #fff; }
+.slide.teal { background: var(--teal-deep); color: #fff; }
+.slide.pale { background: var(--teal-pale); }
+
+/* Decoración de fondo */
+.slide::before {
+  content: ""; position: absolute; width: 760px; height: 760px; border-radius: 50%;
+  right: -300px; top: -300px; background: var(--teal-pale); opacity: .55; z-index: 0;
+}
+.slide.dark::before, .slide.teal::before { background: var(--teal); opacity: .22; }
+.slide.pale::before { background: #fff; opacity: .5; }
+.slide > * { position: relative; z-index: 1; }
+
+.kicker {
+  font-weight: 800; font-size: 30px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 34px;
+}
+.dark .kicker, .teal .kicker { color: var(--teal-soft); }
+
+h1, h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 700; line-height: 1.08; }
+h1 { font-size: 104px; letter-spacing: -.01em; }
+h2 { font-size: 76px; margin-bottom: 44px; }
+h1 em, h2 em { font-style: italic; color: var(--teal); }
+.dark h1 em, .dark h2 em, .teal h1 em, .teal h2 em { color: var(--teal-soft); }
+
+.sub { font-size: 42px; line-height: 1.4; margin-top: 40px; color: var(--text-mid); }
+.dark .sub, .teal .sub { color: #cfe7ec; }
+.body { font-size: 42px; line-height: 1.45; }
+.body p + p { margin-top: 28px; }
+.body strong { color: var(--teal-deep); }
+.dark .body strong, .teal .body strong { color: var(--teal-soft); }
+
+.ilus { width: 420px; height: 420px; margin-top: auto; align-self: flex-end; }
+.ilus.chica { width: 300px; height: 300px; }
+
+/* Lista con viñetas */
+ul.lista { list-style: none; display: flex; flex-direction: column; gap: 30px; }
+ul.lista li { font-size: 40px; line-height: 1.38; padding-left: 62px; position: relative; }
+ul.lista li::before {
+  content: "✦"; position: absolute; left: 0; top: 2px; color: var(--teal-mid); font-size: 38px;
+}
+ul.lista li strong { color: var(--teal-deep); }
+.dark ul.lista li strong, .teal ul.lista li strong { color: var(--teal-soft); }
+
+/* Pasos numerados */
+ol.pasos { list-style: none; display: flex; flex-direction: column; gap: 34px; counter-reset: p; }
+ol.pasos li { counter-increment: p; display: flex; gap: 34px; align-items: flex-start; }
+ol.pasos li::before {
+  content: counter(p); flex: 0 0 76px; height: 76px; border-radius: 50%;
+  background: var(--teal); color: #fff; font-weight: 800; font-size: 38px;
+  display: flex; align-items: center; justify-content: center;
+}
+.dark ol.pasos li::before, .teal ol.pasos li::before { background: var(--teal-soft); color: var(--navy); }
+ol.pasos .t { font-weight: 800; font-size: 40px; line-height: 1.25; }
+ol.pasos .d { font-size: 34px; line-height: 1.38; color: var(--text-mid); margin-top: 6px; }
+.dark ol.pasos .d, .teal ol.pasos .d { color: #cfe7ec; }
+
+/* Recuadro destacado */
+.nota {
+  background: #fff; border-left: 14px solid var(--teal-mid); border-radius: 26px;
+  padding: 50px 54px; font-size: 40px; line-height: 1.42; box-shadow: 0 10px 30px rgba(8,32,46,.08);
+}
+.nota + .nota { margin-top: 34px; }
+.nota .big { font-family: "Playfair Display", serif; font-weight: 700; font-size: 60px; color: var(--teal-deep); display: block; margin-bottom: 14px; }
+
+/* Tarjetas de recursos */
+.tarjetas { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.tarjeta { background: #fff; border-radius: 26px; padding: 34px 36px; font-size: 32px; line-height: 1.3; box-shadow: 0 8px 24px rgba(8,32,46,.07); }
+.tarjeta b { display: block; font-size: 38px; color: var(--teal-deep); margin-bottom: 8px; }
+
+/* Botón / CTA */
+.boton {
+  display: inline-block; align-self: flex-start; margin-top: 54px;
+  background: var(--teal-soft); color: var(--navy); font-weight: 800; font-size: 40px;
+  padding: 30px 52px; border-radius: 999px;
+}
+.light-boton { background: var(--teal); color: #fff; }
+
+/* Pie de cada placa */
+.pie {
+  position: absolute; left: 96px; right: 96px; bottom: 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 28px; font-weight: 700; color: var(--text-mid);
+}
+.dark .pie, .teal .pie { color: #9fc6ce; }
+.pie .marca { display: flex; align-items: center; gap: 14px; }
+.pie .marca i { font-style: normal; color: var(--teal-mid); font-size: 34px; }
+.pie .desliza { color: var(--teal); }
+.dark .pie .desliza, .teal .pie .desliza { color: var(--teal-soft); }
+
+/* Historias */
+.story .pie { bottom: 300px; left: 90px; right: 90px; }
+.story h1 { font-size: 96px; }
+.opciones { display: flex; flex-direction: column; gap: 26px; margin-top: 60px; }
+.opcion { background: #fff; color: var(--navy); border-radius: 30px; padding: 34px 44px; font-size: 44px; font-weight: 800; }
+.zona-sticker {
+  /* Espacio libre donde se pega el sticker de Instagram (encuesta, link, quiz…). */
+  height: 300px; margin-top: 50px; visibility: hidden;
+}
+.dark .zona-sticker, .teal .zona-sticker { color: var(--teal-soft); border-color: var(--teal-soft); }
+.datos { display: flex; flex-direction: column; gap: 34px; margin-top: 30px; }
+.datos div { font-size: 44px; line-height: 1.35; }
+.datos small { display: block; font-size: 28px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-soft); }
+.fuente { margin-top: auto; font-size: 26px; color: var(--text-mid); line-height: 1.35; }
+.dark .fuente, .teal .fuente { color: #9fc6ce; }
