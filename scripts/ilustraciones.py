@@ -146,6 +146,7 @@ ILUSTRACIONES = {
     "terapia-ocupacional": ("hand-heart", "shapes", "durazno", "Ilustración de terapia ocupacional: una mano que cuida y figuras de encastre"),
     "evaluacion-ados": ("clipboard-text", "shapes", "salvia", "Ilustración de evaluación del desarrollo: una planilla y figuras de juego"),
     "evaluacion-neurocognitiva": ("head-circuit", "clock", "durazno", "Ilustración de evaluación neurocognitiva: una cabeza con conexiones y un reloj"),
+    "aptos": ("seal-check", "clipboard-text", "salvia", "Ilustración de aptos psicológicos: un sello de aprobación y una planilla de evaluación"),
     "psicodiagnostico": ("file-magnifying-glass", "seal-check", "salvia", "Ilustración de psicodiagnóstico: un informe con una lupa y un sello de verificación"),
     "estimulacion-temprana": ("baby", "plant", "durazno", "Ilustración de estimulación temprana: un bebé y un brote"),
     "estimulacion-cognitiva": ("brain", "lightbulb", "salvia", "Ilustración de estimulación cognitiva: un cerebro y una lamparita"),
@@ -205,7 +206,7 @@ ICONOS = {
     "fonoaudiologia": "ear", "estimulacion-temprana": "baby", "estimulacion-cognitiva": "brain",
     "alfabetizacion": "text-aa", "kinesiologia": "person-simple-walk", "psicodiagnostico": "file-magnifying-glass",
     "evaluacion-ados": "clipboard-text", "evaluacion-neurocognitiva": "head-circuit",
-    "orientacion-vocacional": "compass",
+    "orientacion-vocacional": "compass", "aptos": "seal-check",
     # "Para quién"
     "ninos": "baby", "adolescentes": "student", "adultos": "person", "familias": "users-three",
     # "El centro que necesitabas"
