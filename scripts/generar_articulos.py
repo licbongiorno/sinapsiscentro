@@ -839,7 +839,13 @@ def indice_html():
 
 
 if __name__ == "__main__":
+    # Los borradores (borrador=True) sólo se generan con --borradores, para
+    # revisarlos en local; así nunca llegan a producción por un merge.
+    con_borradores = "--borradores" in sys.argv
     for a in ART:
+        if a.get("borrador") and not con_borradores:
+            print("borrador (no generado)", a["slug"])
+            continue
         with open(os.path.join(P.ROOT, a["slug"]), "w", encoding="utf-8") as f:
             f.write(P.page(a))
         print("ok", a["slug"], len(a["title"]), len(a["desc"]))

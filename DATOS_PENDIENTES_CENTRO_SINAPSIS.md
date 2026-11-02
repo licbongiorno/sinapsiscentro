@@ -123,6 +123,17 @@ Hoy están publicadas. Si alguna no se cumple siempre, se cambia por una frase q
 59. 🟡 "**Respondemos de lunes a viernes de 9 a 20 y sábados de 9 a 13**" (formulario). ¿Es el horario real de respuesta por WhatsApp?
 60. ⚪ "**Atención principalmente presencial**". ¿Sigue siendo así?
 
+## K. Aptos psicológicos y psicotécnicos (página publicada el 2026-11-02 con lo confirmado)
+
+Confirmado: licencias de conducir, aptos laborales y aptos para carreras que lo piden. Armas: todavía no.
+
+61. 🟡 **Licencias:** ¿la Dirección de Licencias de Berazategui acepta el informe del centro? ¿Para licencia particular, profesional o ambas? ¿Y en otros municipios de la zona (Quilmes, Florencio Varela)?
+62. 🟡 **Plazo de entrega** habitual del informe (el flyer dice "entrega ágil"; la web dice "se acuerda al pedir el turno").
+63. 🟡 **Duración** de la evaluación y qué tiene que llevar la persona además del DNI.
+64. 🟡 **Fuerzas de seguridad** (figuran en el flyer): ¿cuáles aceptan el apto del centro? Hasta confirmarlo no se publican.
+65. ⚪ ¿Se puede publicar el **valor** del apto o un rango?
+66. ⚪ ¿Qué profesionales del equipo los realizan?
+
 ---
 
 ## Configuraciones externas (no son preguntas: son tareas de quien administra las cuentas)
