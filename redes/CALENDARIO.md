@@ -21,7 +21,7 @@ Cada posteo sale de una página de la web que ya existe. Así cada publicación 
 | Semana | Lunes (familias) | Miércoles (docentes y familias) | Viernes (discapacidad / centro) | Estado |
 |---|---|---|---|---|
 | 1 | Dislexia: señales que conviene mirar | Recursos gratis para casa y el aula | CUD: qué es y cómo empezar las terapias | ✅ Lista (`semana-01/`) |
-| 2 | ¿Cuándo llevar a mi hijo al psicólogo? (`cuando-llevar-a-mi-hijo-al-psicologo.html`) | Motricidad fina: juegos para el aula y para casa (`motricidad-fina-ninos.html`) | Señales tempranas de autismo (`senales-autismo-ninos.html`) | Pendiente |
+| 2 | ¿Cuándo llevar a mi hijo al psicólogo? (`cuando-llevar-a-mi-hijo-al-psicologo.html`) | Motricidad fina: juegos para el aula y para casa (`motricidad-fina-ninos.html`) | Señales tempranas de autismo (`senales-autismo-ninos.html`) | ✅ Lista (`semana-02/`) |
 | 3 | Rabietas y berrinches: qué hacer en el momento (`rabietas-berrinches-ninos.html`) | Un ejercicio de calma para después del recreo (`ejercicios.html`) | ¿Mi obra social cubre las terapias? Las 30 coberturas (`obras-sociales-prepagas.html`) | Pendiente |
 | 4 | Retraso del lenguaje: qué esperar a cada edad (`retraso-lenguaje-ninos.html`) | Integración sensorial: señales en el aula (`integracion-sensorial-senales.html`) | Conocé al equipo (`equipo-profesional.html`)* | Pendiente |
 
