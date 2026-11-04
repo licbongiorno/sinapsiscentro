@@ -653,15 +653,16 @@ ART.append(dict(
 ))
 
 
-# ═════════════════════ BORRADORES (no publicar sin revisión) ═════════════════════
-# Datos verificados el 2026-11-01 en fuentes oficiales (ver "sources"). Antes de
-# publicar: confirmar sede y horario de la Junta de Berazategui por teléfono,
-# revisar si cambió la normativa (proyecto de nueva Ley de Discapacidad con media
-# sanción en Diputados el 22/10/2026) y obtener la conformidad del revisor.
+# ═════════════════════ GUÍAS DEL CUD (publicadas el 2026-11-04) ═════════════════════
+# Publicadas a pedido del centro. Datos verificados el 2026-11-01 en fuentes oficiales
+# (ver "sources"); sede de la junta y organismo nacional reconfirmados el 2026-11-04.
+# No se publican días ni horarios de la junta (no confirmados). Pendiente: revisión
+# de quien coordina la orientación sobre CUD en el centro (ver PLAN_EDITORIAL.md) y
+# seguir el proyecto de nueva Ley de Discapacidad (media sanción el 22/10/2026).
 
 # ───────── BORRADOR 1: cómo tramitar el CUD en Berazategui ─────────
 ART.append(dict(
-    slug="como-tramitar-cud-berazategui.html", ilu="discapacidad", articulo=True, borrador=True,
+    slug="como-tramitar-cud-berazategui.html", ilu="discapacidad", articulo=True, fecha="2026-11-04",
     title="Cómo tramitar el CUD en Berazategui, paso a paso | Sinapsis",
     desc="Guía para sacar o renovar el Certificado Único de Discapacidad (CUD) en Berazategui: qué es, dónde se pide, qué documentación llevar y qué pasa después.",
     crumb_parent=GUIAS, crumb="Cómo tramitar el CUD", tag="Guía · Discapacidad",
@@ -681,9 +682,8 @@ ART.append(dict(
           + card("3. Pedí turno en la junta y presentate", "Con la documentación lista, se pide turno en el lugar asignado. El día de la evaluación, un equipo interdisciplinario revisa la documentación y evalúa a la persona.")
           + card("4. Retirá el certificado", "El CUD (o la denegatoria) se retira en el mismo lugar, en la fecha que te indiquen. Puede retirarlo cualquier persona mayor de 18 años con el documento original de quien hizo el trámite."))
     + sec("¿Dónde se tramita si vivís en Berazategui?",
-          "<p>La junta que corresponde depende del domicilio que figura en el DNI, y la consulta oficial te la indica. Según el listado de juntas evaluadoras de la Defensoría del Pueblo de la Provincia de Buenos Aires, la junta de Berazategui funciona en la <strong>Unidad Sanitaria Dr. Sabatto</strong>, los <strong>jueves y viernes de 8 a 14 hs</strong>.</p>"
-          "<!-- VERIFICAR ANTES DE PUBLICAR: sede, dirección, días, horario y forma de pedir turno de la Junta Evaluadora de Berazategui (llamar a la Unidad Sanitaria o al área de discapacidad del Municipio). No publicar la dirección hasta confirmarla. -->"
-          "<p><strong>Antes de ir, confirmá día y horario:</strong> pueden cambiar, y el dato oficial actualizado es el que te da la consulta en argentina.gob.ar.</p>")
+          "<p>La junta que corresponde depende del domicilio que figura en el DNI, y la consulta oficial te la indica. Según el listado de juntas evaluadoras de la Defensoría del Pueblo de la Provincia de Buenos Aires, la junta de Berazategui funciona en la <strong>Unidad Sanitaria Dr. Sabatto</strong>, que depende de la Dirección de Salud del Municipio.</p>"
+          "<p><strong>Antes de ir, confirmá días, horarios y cómo se pide el turno:</strong> pueden cambiar, y el dato oficial actualizado es el que te da la consulta en argentina.gob.ar o el área de salud del Municipio de Berazategui.</p>")
     + '  <div class="svc-callout">El CUD <strong>no es un diagnóstico</strong>: certifica una discapacidad a partir de la documentación clínica y de la evaluación de la junta. Por eso es tan importante que los informes de los profesionales que atienden a la persona estén completos y actualizados.</div>\n'
     + sec("¿Para qué sirve?",
           ul(["<b>Cobertura del 100 %</b> de las prestaciones básicas por discapacidad (tratamientos de rehabilitación, apoyos educativos, entre otras), a cargo de la obra social o prepaga. Lo explicamos en <a href=\"prestaciones-discapacidad-ley-24901.html\">qué tiene que cubrir tu obra social</a>.",
@@ -710,7 +710,7 @@ ART.append(dict(
 
 # ───────── BORRADOR 2: Ley 24.901, qué tiene que cubrir la obra social ─────────
 ART.append(dict(
-    slug="prestaciones-discapacidad-ley-24901.html", ilu="obras-sociales", articulo=True, borrador=True,
+    slug="prestaciones-discapacidad-ley-24901.html", ilu="obras-sociales", articulo=True, fecha="2026-11-04",
     title="Qué cubre tu obra social con CUD: Ley 24.901 | Sinapsis",
     desc="Qué prestaciones por discapacidad tienen que cubrir las obras sociales y prepagas según la Ley 24.901, qué suelen pedir y a dónde reclamar si no cumplen.",
     crumb_parent=GUIAS, crumb="Qué cubre tu obra social", tag="Guía · Discapacidad",
@@ -735,7 +735,7 @@ ART.append(dict(
           + "<p>Antes de definir las prestaciones, la ley prevé una <strong>evaluación y orientación por equipos interdisciplinarios</strong> (art. 11).</p>")
     + sec("¿Qué suele pedir la obra social?",
           "<p>Cada obra social o prepaga tiene su propio circuito de autorización. En general se pide el <strong>CUD vigente</strong>, una <strong>indicación o prescripción</strong> del tratamiento, un <strong>plan de trabajo</strong> o informe de los profesionales y, en muchos casos, un <strong>presupuesto del prestador</strong>. Conviene consultar a tu cobertura cuáles son sus formularios y plazos.</p>"
-          "<!-- VERIFICAR CON LA ADMINISTRACIÓN DEL CENTRO: documentación que efectivamente piden las obras sociales con las que trabaja Sinapsis y quién hace la gestión (centro o familia). Ver DATOS_PENDIENTES, pregunta 35. -->")
+          )
     + sec("Si la cobertura se demora o te la rechazan",
           ul(["<b>Pedí la respuesta por escrito</b>, con fecha y motivo, y guardá copia de todo lo que presentaste.",
               "<b>Reclamá primero en tu obra social o prepaga</b>, por los canales que tenga habilitados.",
@@ -788,7 +788,9 @@ INDICE = [
     ("olvidos-memoria-adultos-mayores.html", "olvidos", "Olvidos en adultos mayores", "Qué es esperable y cuándo preocuparse.", "Adultos mayores"),
     # Desarrollo y discapacidad
     ("senales-autismo-ninos.html", "senales-autismo", "¿Cómo saber si mi hijo tiene autismo?", "Señales por edad y cuándo consultar.", "Autismo / TEA"),
-    ("centro-discapacidad-zona-sur.html", "discapacidad", "¿Qué es el CUD y cómo se tramita?", "Prestaciones para personas con discapacidad.", "Discapacidad"),
+    ("como-tramitar-cud-berazategui.html", "discapacidad", "Cómo tramitar el CUD en Berazategui", "El trámite paso a paso, gratis y sin gestores.", "Discapacidad"),
+    ("prestaciones-discapacidad-ley-24901.html", "obras-sociales", "Qué cubre tu obra social con CUD", "La Ley 24.901 y cómo reclamar.", "Discapacidad"),
+    ("centro-discapacidad-zona-sur.html", "discapacidad", "Atención a personas con discapacidad", "Prestaciones con CUD en Zona Sur.", "Discapacidad"),
 ]
 
 
@@ -846,9 +848,11 @@ if __name__ == "__main__":
         if a.get("borrador") and not con_borradores:
             print("borrador (no generado)", a["slug"])
             continue
+        P.FECHA = a.get("fecha", "2026-10-31")
         with open(os.path.join(P.ROOT, a["slug"]), "w", encoding="utf-8") as f:
             f.write(P.page(a))
         print("ok", a["slug"], len(a["title"]), len(a["desc"]))
+    P.FECHA = "2026-11-04"
     with open(os.path.join(P.ROOT, "guias.html"), "w", encoding="utf-8") as f:
         f.write(indice_html())
     print("ok guias.html")
