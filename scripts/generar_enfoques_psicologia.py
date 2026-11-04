@@ -276,7 +276,7 @@ def seccion_en_psicologia():
     """Agrega 'Enfoques de trabajo' a la página de Psicología (idempotente)."""
     ruta = os.path.join(P.ROOT, "psicologia-berazategui.html")
     s = open(ruta, encoding="utf-8").read()
-    s = re.sub(r"<!-- SINAPSIS:ENFOQUES -->.*?<!-- /SINAPSIS:ENFOQUES -->\n", "", s, flags=re.S)
+    s = re.sub(r"\n?<!-- SINAPSIS:ENFOQUES -->.*?<!-- /SINAPSIS:ENFOQUES -->\n", "", s, flags=re.S)
     tarjetas = "".join(f'<a class="svc-rel-card" href="{P.REL[k][0]}"><b>{P.REL[k][1]}</b><span>Conocé el enfoque</span></a>' for k in ENFOQUES)
     bloque = ('<!-- SINAPSIS:ENFOQUES -->\n'
               '  <section class="svc-section svc-relacionados" id="enfoques">\n'
