@@ -96,6 +96,12 @@ REL = {
     "tcc": ("terapia-cognitivo-conductual-berazategui.html", "Terapia cognitivo conductual", "Enfoque psicológico"),
     "sistemica": ("terapia-sistemica-familiar-berazategui.html", "Terapia sistémica y familiar", "Enfoque psicológico"),
     "junguiana": ("terapia-junguiana-berazategui.html", "Terapia junguiana", "Enfoque psicológico"),
+    "bebe": ("senales-alerta-desarrollo-bebe.html", "Señales de alerta en el bebé", "Guía · 0 a 12 meses"),
+    "atencion": ("no-presta-atencion-en-clase.html", "¿No presta atención en clase?", "Guía"),
+    "selectividad": ("selectividad-alimentaria-ninos.html", "Selectividad alimentaria", "Guía"),
+    "tdah_adultos": ("tdah-en-adultos.html", "TDAH en adultos", "Guía"),
+    "anticipacion": ("anticipacion-autismo-cambios-rutina.html", "Anticipar cambios en el autismo", "Guía"),
+    "estcog_casa": ("estimulacion-cognitiva-en-casa-adultos-mayores.html", "Estimulación cognitiva en casa", "Guía"),
     "vocacional": ("orientacion-vocacional-ocupacional-berazategui.html", "Orientación vocacional", "Estudio y trabajo"),
 }
 
@@ -126,8 +132,17 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
+def og_imagen(slug):
+    """Imagen para compartir de la página (scripts/generar_og.js) o la general del sitio."""
+    stem = slug[:-5] if slug.endswith(".html") else slug
+    if os.path.exists(os.path.join(ROOT, "img", "og", stem + ".jpg")):
+        return BASE + "img/og/" + stem + ".jpg"
+    return BASE + "og-image.jpg"
+
+
 def page(p):
     url = BASE + p["slug"]
+    og_img = og_imagen(p["slug"])
     title = p["title"]
     desc = p["desc"]
     assert len(desc) <= 160, (p["slug"], len(desc))
@@ -152,7 +167,7 @@ def page(p):
     }
     if p.get("articulo"):
         webpage.update({"headline": p["h1"], "datePublished": FECHA, "author": {"@id": BASE + "#organization"},
-                        "image": BASE + "og-image.jpg", "isAccessibleForFree": True, "lastReviewed": FECHA})
+                        "image": og_img, "isAccessibleForFree": True, "lastReviewed": FECHA})
     if p.get("sources"):
         webpage["citation"] = [FUENTES[k][1] for k in p["sources"]]
     faq = {
@@ -204,14 +219,14 @@ def page(p):
 <meta property="og:url" content="{url}">
 <meta property="og:site_name" content="Centro Sinapsis">
 <meta property="og:locale" content="es_AR">
-<meta property="og:image" content="https://sinapsiscentro.com.ar/og-image.jpg">
+<meta property="og:image" content="{og_img}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{esc(og_alt)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(desc)}">
-<meta name="twitter:image" content="https://sinapsiscentro.com.ar/og-image.jpg">
+<meta name="twitter:image" content="{og_img}">
 {ld}
 <!-- Google Analytics 4 -->
 <script>

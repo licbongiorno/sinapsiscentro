@@ -188,6 +188,12 @@ ILUSTRACIONES = {
     "disgrafia": ("pencil-line", "scribble-loop", "salvia", "Ilustración de dificultades en la escritura: un lápiz y un trazo"),
     "autonomia": ("t-shirt", "hand-heart", "durazno", "Ilustración de terapia ocupacional infantil: una remera y una mano que acompaña"),
     "motricidad-fina": ("scissors", "pencil-simple", "salvia", "Ilustración de motricidad fina: una tijera y un lápiz"),
+    "senales-bebe": ("baby", "eye", "durazno", "Ilustración de señales de alerta en el desarrollo del bebé: un bebé y un ojo atento"),
+    "atencion-clase": ("chalkboard-teacher", "target", "salvia", "Ilustración de problemas de atención en clase: un pizarrón y un objetivo"),
+    "selectividad": ("plant", "smiley", "durazno", "Ilustración de selectividad alimentaria: un brote que crece y una carita, como probar alimentos nuevos de a poco"),
+    "tdah-adultos": ("person", "clock", "salvia", "Ilustración de TDAH en adultos: una persona y un reloj"),
+    "anticipacion": ("calendar-check", "list-checks", "durazno", "Ilustración de anticipación en autismo: un calendario y una lista de pasos"),
+    "estimulacion-casa": ("lightbulb", "house-line", "salvia", "Ilustración de estimulación cognitiva en casa: una lamparita y una casa"),
     "ejercicio-mayores": ("person-simple-tai-chi", "heart", "durazno", "Ilustración de ejercicio en adultos mayores: una persona haciendo ejercicio y un corazón"),
 }
 
