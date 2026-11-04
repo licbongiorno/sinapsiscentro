@@ -202,7 +202,7 @@ No uses frases como "el mejor centro", ni promesas de resultados, ni números de
 
 Mensaje sugerido:
 
-> ¡Hola! Gracias por confiar en Centro Sinapsis 💙 Si sentís que el espacio te está ayudando, nos sería muy útil que dejes una reseña en Google. Así otras familias de la zona nos pueden encontrar. Podés contar tu experiencia sin dar datos personales ni de salud: [ENLACE]. ¡Gracias!
+> ¡Hola! Gracias por confiar en Centro Sinapsis 💙 Si sentís que el espacio te está ayudando, nos sería muy útil que dejes una reseña en Google. Así otras familias de la zona nos pueden encontrar. Podés contar tu experiencia sin dar datos personales ni de salud: https://g.page/r/CYmf1TBdkkxSEBM/review. ¡Gracias!
 
 **Qué no hacer:**
 

@@ -58,7 +58,7 @@ GA4 → Administrar → Eventos → buscar `generate_lead` (aparece cuando algui
 ### 2.4 Reseñas (el factor local número uno después de la cercanía)
 Mensaje para mandar por WhatsApp a familias contentas, unas 2 semanas después de empezar:
 
-> ¡Hola! Gracias por confiar en Centro Sinapsis 💙 Si sentís que te estamos ayudando, nos sería de mucha ayuda que dejes una reseña en Google contando tu experiencia (por ejemplo, por qué consultaste y cómo te sentiste). Así otras familias de la zona nos pueden encontrar: [ENLACE DE RESEÑAS DE GOOGLE]. ¡Gracias!
+> ¡Hola! Gracias por confiar en Centro Sinapsis 💙 Si sentís que te estamos ayudando, nos sería de mucha ayuda que dejes una reseña en Google contando tu experiencia (por ejemplo, por qué consultaste y cómo te sentiste). Así otras familias de la zona nos pueden encontrar: https://g.page/r/CYmf1TBdkkxSEBM/review. ¡Gracias!
 
 El enlace se saca del Perfil de Empresa → "Pedir reseñas". Contestá todas las reseñas, pero sin confirmar que la persona es paciente ni nombrar tratamientos, diagnósticos o familiares (secreto profesional). Por ejemplo: "¡Muchas gracias por tomarte el tiempo de escribir! Nos alegra mucho. Equipo de Centro Sinapsis".
 No ofrezcas descuentos a cambio de reseñas: Google lo prohíbe.
