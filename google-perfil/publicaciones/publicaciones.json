@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "01-lenguaje", "tema": "lenguaje", "fondo": "crema",
+    "eyebrow": "Fonoaudiología", "titulo": "Mi hijo no habla: <em>¿cuándo consultar?</em>",
+    "items": ["<b>18 meses:</b> no dice palabras sueltas", "<b>2 años:</b> no combina dos palabras", "<b>3 años:</b> casi no se le entiende"],
+    "nota": "Cada chico tiene sus tiempos, pero ante la duda, conviene consultar.",
+    "url": "retraso-lenguaje-ninos.html",
+    "texto": "Mi hijo no habla todavía: ¿cuándo consultar? Cada chico tiene sus tiempos, pero hay señales por edad que conviene no dejar pasar: a los 18 meses, no decir palabras sueltas; a los 2 años, no combinar dos palabras; a los 3, que casi no se le entienda. En Centro Sinapsis evaluamos el lenguaje infantil en Berazategui, sin derivación médica."
+  },
+  {
+    "slug": "02-tdah", "tema": "tdah", "fondo": "noche",
+    "eyebrow": "Atención · TDAH", "titulo": "El TDAH no es <em>falta de voluntad</em>",
+    "items": ["Evaluación neurocognitiva y psicodiagnóstico", "Psicología y psicopedagogía", "Para niños, adolescentes y adultos"],
+    "nota": "Es una forma distinta de funcionamiento de la atención y la organización.",
+    "url": "tdah-berazategui.html",
+    "texto": "El TDAH no es falta de voluntad ni mala conducta: es una forma distinta de funcionamiento de la atención, la organización y el control de los impulsos. En Centro Sinapsis lo evaluamos y acompañamos en niños, adolescentes y adultos, con evaluación neurocognitiva, psicodiagnóstico, psicología y psicopedagogía. El centro no receta medicación."
+  },
+  {
+    "slug": "03-caidas", "tema": "caidas", "fondo": "celeste",
+    "eyebrow": "Adultos mayores", "titulo": "Cómo <em>prevenir caídas</em>",
+    "items": ["Ejercicio de fuerza y equilibrio, guiado", "Revisar la vista y la medicación con el médico", "Casa segura: buena luz y sin alfombras sueltas"],
+    "nota": "Muchas caídas se pueden prevenir.",
+    "url": "prevencion-caidas-adultos-mayores.html",
+    "texto": "Las caídas son una de las principales causas de lesiones en personas mayores, pero muchas se pueden prevenir. Lo que más ayuda es el ejercicio de fuerza y equilibrio, revisar la vista y la medicación con el médico, y adaptar la casa. En nuestro gimnasio terapéutico de kinesiología trabajamos fuerza, equilibrio y autonomía."
+  },
+  {
+    "slug": "04-aptos", "tema": "aptos", "fondo": "crema",
+    "eyebrow": "Evaluaciones", "titulo": "Aptos <em>psicológicos</em> y psicotécnicos",
+    "items": ["Licencia de conducir", "Ingreso laboral y preocupacional", "Carreras que lo piden"],
+    "nota": "Informe firmado por psicólogo matriculado.",
+    "url": "aptos-psicologicos-psicotecnicos-berazategui.html",
+    "texto": "¿Necesitás un apto psicológico? Hacemos evaluaciones psicotécnicas para la licencia de conducir, el ingreso laboral y las carreras que lo piden, con informe firmado por psicólogo matriculado. Antes de sacar turno, confirmá qué tipo de informe te piden. Turnos por WhatsApp, en Berazategui."
+  },
+  {
+    "slug": "05-enfoques", "tema": "psicologia", "fondo": "noche",
+    "eyebrow": "Psicología", "titulo": "Distintos <em>enfoques</em>, un mismo cuidado",
+    "chips": ["Psicoanálisis", "Gestalt", "Cognitivo conductual", "Sistémica y familiar", "Junguiana"],
+    "nota": "Si no sabés cuál elegir, te orientamos en la primera entrevista.",
+    "url": "psicologia-berazategui.html", "ancla": "#enfoques",
+    "texto": "En Centro Sinapsis el equipo de psicología trabaja desde distintos enfoques: psicoanálisis, terapia Gestalt, cognitivo conductual (TCC), sistémica y familiar, y junguiana. Si ya sabés cuál preferís, contanos; si no, te orientamos en la primera entrevista. Conocé cada enfoque en nuestra web."
+  },
+  {
+    "slug": "06-dislexia", "tema": "dislexia", "fondo": "crema",
+    "eyebrow": "Psicopedagogía", "titulo": "Dislexia: <em>señales</em> para mirar",
+    "items": ["Lee muy despacio y con mucho esfuerzo", "Confunde o saltea letras de forma persistente", "Evita leer en voz alta y se frustra"],
+    "nota": "No tiene que ver con la inteligencia ni con el esfuerzo.",
+    "url": "dislexia-senales-ninos.html",
+    "texto": "La dislexia es una dificultad específica para aprender a leer con fluidez, que no tiene que ver con la inteligencia ni con el esfuerzo. Si tu hijo lee mucho más lento que sus compañeros, confunde o saltea letras de forma persistente o sufre cada vez que tiene que leer, conviene consultar. La psicopedagogía evalúa y acompaña."
+  },
+  {
+    "slug": "07-ansiedad", "tema": "ansiedad", "fondo": "celeste",
+    "eyebrow": "Psicología infantil", "titulo": "Ansiedad en <em>niños</em>",
+    "items": ["Dolores de panza o de cabeza frecuentes", "Evita la escuela o los cumpleaños", "Preocupación constante: “¿y si pasa algo?”"],
+    "nota": "Si dura semanas e interfiere en su vida diaria, conviene consultar.",
+    "url": "ansiedad-en-ninos.html",
+    "texto": "Sentir miedo o preocupación es normal en la infancia. La ansiedad se vuelve un problema cuando es muy intensa, dura semanas e interfiere en la vida diaria: dolores de panza o de cabeza frecuentes, evitar la escuela, preocupación constante. En Centro Sinapsis acompañamos a niños, adolescentes y sus familias, sin derivación médica."
+  },
+  {
+    "slug": "08-talleres", "tema": "talleres", "fondo": "noche",
+    "eyebrow": "Talleres", "titulo": "Aprender <em>en grupo</em>",
+    "items": ["Alfabetización", "Estimulación cognitiva para niños y para adultos", "Habilidades sociales"],
+    "nota": "Días, horarios y grupos por WhatsApp.",
+    "url": "talleres.html",
+    "texto": "Talleres en Centro Sinapsis, Berazategui: alfabetización, estimulación cognitiva para niños y para adultos, y habilidades sociales para niños, niñas y adolescentes. Son espacios grupales de aprendizaje, no tratamientos. Consultá días, horarios y grupos por WhatsApp."
+  }
+]
