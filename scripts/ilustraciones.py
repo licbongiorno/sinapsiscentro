@@ -160,6 +160,12 @@ ILUSTRACIONES = {
     "senales-autismo": ("baby", "list-checks", "salvia", "Ilustración de señales de autismo: un bebé y una lista de señales para observar"),
     "tdah": ("target", "brain", "durazno", "Ilustración de TDAH: un objetivo que representa la atención y un cerebro"),
     "lenguaje": ("chat-teardrop-dots", "baby", "salvia", "Ilustración de retraso del lenguaje: un globo de diálogo y un bebé"),
+    # enfoques de psicología
+    "psicoanalisis": ("armchair", "chat-teardrop-dots", "salvia", "Ilustración de psicoanálisis: un sillón de consultorio y un globo de diálogo"),
+    "gestalt": ("flower-lotus", "eye", "durazno", "Ilustración de terapia Gestalt: una flor de loto y un ojo que representa el darse cuenta"),
+    "tcc": ("lightbulb", "list-checks", "salvia", "Ilustración de terapia cognitivo conductual: una lamparita y una lista de objetivos"),
+    "sistemica": ("users-three", "house-line", "durazno", "Ilustración de terapia sistémica y familiar: un grupo de personas y una casa"),
+    "junguiana": ("sun", "sparkle", "salvia", "Ilustración de terapia junguiana: un sol y un destello que representan los símbolos"),
     "zona-sur": ("map-pin", "house-line", "durazno", "Ilustración de Zona Sur: un marcador de ubicación y una casa"),
     # talleres
     "talleres": ("users-four", "palette", "salvia", "Ilustración de talleres: un grupo de personas y una paleta de colores"),

@@ -436,3 +436,17 @@ Los datos están en `google-perfil/productos.json`. Las imágenes se regeneran c
 ```bash
 node scripts/generar_productos_google.js
 ```
+
+---
+
+## Productos de la categoría Psicología (enfoques)
+
+Cada orientación tiene su propia página. Usá estos enlaces en el botón **Más información**:
+
+| Producto | Enlace |
+|---|---|
+| Psicoanálisis | `https://sinapsiscentro.com.ar/psicoanalisis-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |
+| Terapia Gestalt | `https://sinapsiscentro.com.ar/terapia-gestalt-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |
+| Terapia Cognitivo Conductual | `https://sinapsiscentro.com.ar/terapia-cognitivo-conductual-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |
+| Terapia Sistémica | `https://sinapsiscentro.com.ar/terapia-sistemica-familiar-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |
+| Terapia Junguiana | `https://sinapsiscentro.com.ar/terapia-junguiana-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |

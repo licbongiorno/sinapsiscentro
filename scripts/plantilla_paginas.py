@@ -91,6 +91,11 @@ REL = {
     "to_ninos": ("que-hace-terapia-ocupacional-ninos.html", "¿Qué hace la terapia ocupacional?", "Guía"),
     "motricidad": ("motricidad-fina-ninos.html", "Motricidad fina", "Guía"),
     "ejercicio": ("ejercicio-adultos-mayores.html", "Ejercicio en adultos mayores", "Guía"),
+    "psicoanalisis": ("psicoanalisis-berazategui.html", "Psicoanálisis", "Enfoque psicológico"),
+    "gestalt": ("terapia-gestalt-berazategui.html", "Terapia Gestalt", "Enfoque psicológico"),
+    "tcc": ("terapia-cognitivo-conductual-berazategui.html", "Terapia cognitivo conductual", "Enfoque psicológico"),
+    "sistemica": ("terapia-sistemica-familiar-berazategui.html", "Terapia sistémica y familiar", "Enfoque psicológico"),
+    "junguiana": ("terapia-junguiana-berazategui.html", "Terapia junguiana", "Enfoque psicológico"),
     "vocacional": ("orientacion-vocacional-ocupacional-berazategui.html", "Orientación vocacional", "Estudio y trabajo"),
 }
 
