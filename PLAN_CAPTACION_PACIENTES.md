@@ -40,6 +40,8 @@ Cada una tiene: una respuesta directa en el primer párrafo que nombra a Sinapsi
 GA4 → Administrar → Eventos → buscar `generate_lead` (aparece cuando alguien lo dispare por primera vez) → activar **"Marcar como evento clave"**. Desde ahí vas a ver cuántas consultas trae cada página.
 
 ### 2.3 Perfil de Empresa de Google (lo que más mueve las búsquedas "cerca de mí")
+
+> **Actualizado:** la guía completa y vigente, con textos listos para pegar, está en `GUIA_PRODUCTOS_GOOGLE.md`. Si algo de esta sección no coincide, vale lo que dice esa guía.
 - **Categoría principal:** Centro de salud mental (o Psicólogo).
 - **Categorías secundarias:** Logopeda / Fonoaudiólogo, Terapeuta ocupacional, Psicopedagogo, Centro de rehabilitación, Fisioterapeuta.
 - **Descripción** (pegar tal cual, unos 650 caracteres):
@@ -50,7 +52,7 @@ GA4 → Administrar → Eventos → buscar `generate_lead` (aparece cuando algui
 - **Atributos:** "Cita previa obligatoria", "Accesible para sillas de ruedas" (sólo si es cierto).
 - **Fotos:** fachada (para que te reconozcan al llegar), la sala de espera, los consultorios y el equipo. Subir 2 o 3 fotos nuevas por mes.
 - **Publicaciones:** una por semana. Ideas: "¿Cómo saber si mi hijo tiene autismo?" con enlace a la guía; "¿Qué es el CUD y cómo se tramita?"; "Mi hijo no habla: ¿cuándo consultar?".
-- **Preguntas y respuestas:** cargar vos mismo las preguntas frecuentes de las páginas nuevas (¿atienden con CUD?, ¿necesito derivación?, ¿hacen diagnóstico de autismo?).
+- **Preguntas y respuestas:** Google reemplazó esta sección por un botón "Preguntar" que responde con IA a partir de la ficha, las reseñas y la web. Por eso la ficha tiene que estar completa.
 - **Enlace del botón "Sitio web":** `https://sinapsiscentro.com.ar/`. Si Google te deja un enlace de "Citas", poné el WhatsApp.
 
 ### 2.4 Reseñas (el factor local número uno después de la cercanía)
@@ -58,7 +60,7 @@ Mensaje para mandar por WhatsApp a familias contentas, unas 2 semanas después d
 
 > ¡Hola! Gracias por confiar en Centro Sinapsis 💙 Si sentís que te estamos ayudando, nos sería de mucha ayuda que dejes una reseña en Google contando tu experiencia (por ejemplo, por qué consultaste y cómo te sentiste). Así otras familias de la zona nos pueden encontrar: [ENLACE DE RESEÑAS DE GOOGLE]. ¡Gracias!
 
-El enlace se saca del Perfil de Empresa → "Pedir reseñas". Contestá todas las reseñas, nombrando el servicio con naturalidad ("¡Gracias! Nos alegra que la fonoaudiología esté ayudando a Tomi").
+El enlace se saca del Perfil de Empresa → "Pedir reseñas". Contestá todas las reseñas, pero sin confirmar que la persona es paciente ni nombrar tratamientos, diagnósticos o familiares (secreto profesional). Por ejemplo: "¡Muchas gracias por tomarte el tiempo de escribir! Nos alegra mucho. Equipo de Centro Sinapsis".
 No ofrezcas descuentos a cambio de reseñas: Google lo prohíbe.
 
 ### 2.5 Más lugares donde aparecer
