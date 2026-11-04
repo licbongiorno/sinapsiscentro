@@ -75,7 +75,7 @@ window.addEventListener("hashchange",function(){if(document.documentElement.clas
     "slogan": "Conexiones que importan",
     "foundingDate": "2026-02",
     "url": "https://sinapsiscentro.com.ar/",
-    "image": ["https://sinapsiscentro.com.ar/og-image.jpg", "https://sinapsiscentro.com.ar/img/centro/recepcion-1500.webp", "https://sinapsiscentro.com.ar/img/centro/consultorio-1500.webp"],
+    "image": ["https://sinapsiscentro.com.ar/og-image.jpg", "https://sinapsiscentro.com.ar/img/centro/fachada-1500.webp", "https://sinapsiscentro.com.ar/img/centro/recepcion-1500.webp", "https://sinapsiscentro.com.ar/img/centro/consultorio-infantil-1500.webp"],
     "telephone": "+5491168567160",
     "email": "sinapsisdatos@gmail.com",
     "areaServed": [
@@ -1230,17 +1230,12 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 #instagram-feed { background: var(--bg); padding: 110px 6%; }
 /* ═══ NUESTRO ESPACIO (fotos reales del centro) ═══ */
 #espacio { background: var(--bg); padding: 0 6% 110px; }
-.espacio-grid { max-width:1160px; margin:34px auto 0; display:grid; grid-template-columns:1.25fr 1fr; grid-template-rows:auto auto; gap:18px; }
-.espacio-grid figure { margin:0; position:relative; border-radius:22px; overflow:hidden; background:#e8e0d1; box-shadow:0 10px 30px rgba(13,37,53,.08); }
-.espacio-grid figure:first-child { grid-row:span 2; }
-.espacio-grid img { width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:3/2; }
-.espacio-grid figure:first-child img { aspect-ratio:auto; min-height:100%; }
-.espacio-grid figcaption { position:absolute; left:14px; bottom:14px; background:rgba(255,253,248,.92); color:var(--navy); font-weight:700; font-size:.88rem; padding:7px 14px; border-radius:999px; }
-@media (max-width: 760px) {
-  .espacio-grid { grid-template-columns:1fr; }
-  .espacio-grid figure:first-child { grid-row:auto; }
-  .espacio-grid figure:first-child img { aspect-ratio:3/2; }
-}
+.espacio-grid { max-width:1160px; margin:34px auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.espacio-grid figure { margin:0; position:relative; border-radius:20px; overflow:hidden; background:#e8e0d1; box-shadow:0 10px 30px rgba(13,37,53,.08); }
+.espacio-grid img { width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; display:block; }
+.espacio-grid figcaption { position:absolute; left:12px; bottom:12px; background:rgba(255,253,248,.92); color:var(--navy); font-weight:700; font-size:.85rem; padding:6px 13px; border-radius:999px; }
+@media (max-width: 860px) { .espacio-grid { grid-template-columns:repeat(2,1fr); gap:12px; } }
+@media (max-width: 520px) { .espacio-grid { grid-template-columns:1fr; } }
 .ig-feed-grid {
   max-width: 900px; margin: 50px auto 0; background: white; border-radius: var(--r-lg);
   overflow: hidden; line-height: 0;
@@ -1930,9 +1925,12 @@ footer { background: #050f17; padding: 72px 6% 34px; }
     <p class="section-body rv from-bottom d2" style="margin:14px auto 0;">Un lugar tranquilo y luminoso en Berazategui, pensado para que chicos, adultos y familias se sientan cómodos desde que llegan.</p>
   </div>
   <div class="espacio-grid rv from-bottom d3">
-    <figure><img src="img/centro/recepcion-1500.webp" srcset="img/centro/recepcion-800.webp 800w, img/centro/recepcion-1500.webp 1500w" sizes="(max-width:760px) 92vw, 640px" width="1500" height="1000" loading="lazy" decoding="async" alt="Recepción y sala de espera de Centro Sinapsis en Berazategui: escritorio de recepción, bancos para esperar y plantas"><figcaption>Recepción y sala de espera</figcaption></figure>
-    <figure><img src="img/centro/consultorio-1500.webp" srcset="img/centro/consultorio-800.webp 800w, img/centro/consultorio-1500.webp 1500w" sizes="(max-width:760px) 92vw, 500px" width="1500" height="1000" loading="lazy" decoding="async" alt="Consultorio de Centro Sinapsis con mesa blanca, dos sillas y ventana con luz natural"><figcaption>Consultorio</figcaption></figure>
-    <figure><img src="img/centro/recepcion-atencion-1350.webp" srcset="img/centro/recepcion-atencion-800.webp 800w, img/centro/recepcion-atencion-1350.webp 1350w" sizes="(max-width:760px) 92vw, 500px" width="1350" height="900" loading="lazy" decoding="async" alt="Integrante del equipo de Centro Sinapsis atendiendo en la recepción"><figcaption>Te recibimos</figcaption></figure>
+    <figure><img src="img/centro/fachada-1500.webp" srcset="img/centro/fachada-800.webp 800w, img/centro/fachada-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Fachada de Centro Sinapsis en Calle 27 Nº3907, Berazategui, con el cartel del centro y el número en la puerta"><figcaption>La entrada, en Calle 27 Nº3907</figcaption></figure>
+    <figure><img src="img/centro/recepcion-1500.webp" srcset="img/centro/recepcion-800.webp 800w, img/centro/recepcion-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Recepción y sala de espera de Centro Sinapsis: escritorio de recepción, bancos para esperar y plantas"><figcaption>Recepción y sala de espera</figcaption></figure>
+    <figure><img src="img/centro/consultorio-infantil-1500.webp" srcset="img/centro/consultorio-infantil-800.webp 800w, img/centro/consultorio-infantil-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Consultorio infantil de Centro Sinapsis con mesa y sillas para chicos, juguetes didácticos y escritorio"><figcaption>Consultorio infantil</figcaption></figure>
+    <figure><img src="img/centro/consultorio-1500.webp" srcset="img/centro/consultorio-800.webp 800w, img/centro/consultorio-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Consultorio de Centro Sinapsis con mesa blanca, dos sillas y ventana con luz natural"><figcaption>Consultorio</figcaption></figure>
+    <figure><img src="img/centro/consultorio-2-1500.webp" srcset="img/centro/consultorio-2-800.webp 800w, img/centro/consultorio-2-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Consultorio de Centro Sinapsis con escritorio, sillón y biblioteca"><figcaption>Consultorio</figcaption></figure>
+    <figure><img src="img/centro/recepcion-atencion-1350.webp" srcset="img/centro/recepcion-atencion-800.webp 800w, img/centro/recepcion-atencion-1350.webp 1350w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1350" height="900" loading="lazy" decoding="async" alt="Integrante del equipo de Centro Sinapsis atendiendo en la recepción"><figcaption>Te recibimos</figcaption></figure>
   </div>
 </section>
 
