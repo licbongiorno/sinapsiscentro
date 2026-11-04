@@ -1,30 +1,34 @@
-# Productos de la ficha de Google: listos para cargar
+# Productos de la ficha de Google: todos, por categoría
 
-Cada producto tiene su imagen, nombre, categoría, descripción y enlace. Se copian tal cual.
+16 productos en 5 categorías. Todo se copia tal cual: nombre, categoría, descripción y enlace. La foto la elige el centro.
 
-## Cómo se carga cada uno
+## Paso a paso (para cada producto)
 
-1. Entrá a la ficha (buscá **Centro Sinapsis** en Google con la sesión de sinapsisdatos@gmail.com, o en business.google.com).
-2. Tocá **Editar productos** (en el celular: **Editar perfil → Productos**) → **Agregar producto**.
-3. **Foto:** subí la imagen del producto (están en `google-perfil/productos/`).
-4. **Nombre del producto:** copiá el nombre (máximo 58 caracteres).
-5. **Categoría del producto:** la primera vez escribila; después elegila de la lista. Se usan solo 5: *Autismo y discapacidad*, *Evaluaciones*, *Terapias*, *Adultos mayores* y *Talleres*.
-6. **Precio:** dejalo **vacío**.
-7. **Descripción:** copiá la descripción (máximo 1000 caracteres; todas tienen menos de 850).
-8. **Botón:** elegí **Más información** y pegá el enlace.
-9. **Guardar.** Google puede tardar hasta un par de días en revisarlo y mostrarlo.
+1. Abrí Google con la sesión de **sinapsisdatos@gmail.com** y buscá **Centro Sinapsis**. Arriba aparece el panel de tu ficha.
+2. Tocá **Editar productos** (en el celular: **Editar perfil → Productos**).
+3. **Producto nuevo:** tocá **Agregar producto**. **Producto ya cargado:** tocá el producto y después el lápiz (**Editar**).
+4. **Foto del producto:** la tuya (es obligatoria).
+5. **Nombre del producto:** copiá el **Nombre** (máximo 58 caracteres).
+6. **Categoría del producto:** escribí la **Categoría** exacta. Si ya existe, aparece en la lista: elegila, no crees otra parecida.
+7. **Precio del producto:** dejalo **vacío**.
+8. **Descripción del producto:** copiá la **Descripción** completa (todas tienen menos de 1000 caracteres).
+9. **Botón del producto (opcional):** elegí **Más información**.
+10. **Vínculo del botón:** pegá el **Enlace**.
+11. Tocá **Guardar**. Google lo revisa y puede tardar hasta un par de días en mostrarlo.
 
-**Orden de carga:** cargalos del último (Talleres) al primero (Autismo). Google suele mostrar primero los más recientes, así arriba quedan Autismo, ADOS-2 y CUD, que son las búsquedas con más intención de consulta.
-
-**Si Google rechaza uno:** casi siempre es por una palabra de la descripción. Pasame el nombre del producto y lo reescribo.
+**Si Google rechaza un producto:** pasame cuál es y reescribo la descripción.
 
 ---
 
+# Categoría: Autismo y discapacidad
+
+> Categoría nueva: la creás al cargar el primer producto.
+
 ## 1. Autismo (TEA): evaluación y terapias
 
-![Autismo (TEA): evaluación y terapias](productos/01-autismo-tea.jpg)
+**Estado:** 🆕 Falta cargar
 
-**Imagen:** `google-perfil/productos/01-autismo-tea.jpg`
+Imagen de referencia: `google-perfil/productos/01-autismo-tea.jpg`
 
 **Nombre:**
 
@@ -32,7 +36,11 @@ Cada producto tiene su imagen, nombre, categoría, descripción y enlace. Se cop
 Autismo (TEA): evaluación y terapias
 ```
 
-**Categoría:** Autismo y discapacidad
+**Categoría:**
+
+```
+Autismo y discapacidad
+```
 
 **Descripción:**
 
@@ -58,47 +66,11 @@ https://sinapsiscentro.com.ar/autismo-tea-berazategui.html?utm_source=google&utm
 
 ---
 
-## 2. Evaluación ADOS-2 y ADI-R
+## 2. Atención con CUD (discapacidad)
 
-![Evaluación ADOS-2 y ADI-R](productos/02-ados-2-adi-r.jpg)
+**Estado:** 🆕 Falta cargar
 
-**Imagen:** `google-perfil/productos/02-ados-2-adi-r.jpg`
-
-**Nombre:**
-
-```
-Evaluación ADOS-2 y ADI-R
-```
-
-**Categoría:** Evaluaciones
-
-**Descripción:**
-
-```
-El ADOS-2 es una serie de actividades guiadas: el profesional juega, conversa e interactúa con la persona para observar su comunicación, su interacción social y su conducta. El ADI-R es una entrevista a los padres o cuidadores sobre el desarrollo.
-
-Son instrumentos estandarizados que forman parte de una evaluación clínica integral del Trastorno del Espectro Autista (TEA): ningún instrumento diagnostica por sí solo. El ADOS-2 tiene módulos según la edad y el lenguaje, por eso se usa desde la primera infancia hasta la adultez.
-
-Al terminar hay una devolución personalizada y un informe, que puede servir para iniciar el trámite del CUD u organizar apoyos.
-
-Para familias que notan diferencias en la comunicación o el juego, pedidos de la escuela o el pediatra, y adultos que consultan por primera vez. Coordinamos por WhatsApp.
-```
-
-**Botón:** Más información
-
-**Enlace:**
-
-```
-https://sinapsiscentro.com.ar/evaluacion-ados-2-adi-r-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
-```
-
----
-
-## 3. Atención con CUD (discapacidad)
-
-![Atención con CUD (discapacidad)](productos/03-discapacidad-cud.jpg)
-
-**Imagen:** `google-perfil/productos/03-discapacidad-cud.jpg`
+Imagen de referencia: `google-perfil/productos/03-discapacidad-cud.jpg`
 
 **Nombre:**
 
@@ -106,7 +78,11 @@ https://sinapsiscentro.com.ar/evaluacion-ados-2-adi-r-berazategui.html?utm_sourc
 Atención con CUD (discapacidad)
 ```
 
-**Categoría:** Autismo y discapacidad
+**Categoría:**
+
+```
+Autismo y discapacidad
+```
 
 **Descripción:**
 
@@ -130,11 +106,140 @@ https://sinapsiscentro.com.ar/centro-discapacidad-zona-sur.html?utm_source=googl
 
 ---
 
-## 4. Psicología para niños, adolescentes y adultos
+# Categoría: Evaluaciones
 
-![Psicología para niños, adolescentes y adultos](productos/04-psicologia.jpg)
+> Categoría nueva.
 
-**Imagen:** `google-perfil/productos/04-psicologia.jpg`
+## 3. Evaluación ADOS-2 y ADI-R
+
+**Estado:** 🆕 Falta cargar
+
+Imagen de referencia: `google-perfil/productos/02-ados-2-adi-r.jpg`
+
+**Nombre:**
+
+```
+Evaluación ADOS-2 y ADI-R
+```
+
+**Categoría:**
+
+```
+Evaluaciones
+```
+
+**Descripción:**
+
+```
+El ADOS-2 es una serie de actividades guiadas: el profesional juega, conversa e interactúa con la persona para observar su comunicación, su interacción social y su conducta. El ADI-R es una entrevista a los padres o cuidadores sobre el desarrollo.
+
+Son instrumentos estandarizados que forman parte de una evaluación clínica integral del Trastorno del Espectro Autista (TEA): ningún instrumento diagnostica por sí solo. El ADOS-2 tiene módulos según la edad y el lenguaje, por eso se usa desde la primera infancia hasta la adultez.
+
+Al terminar hay una devolución personalizada y un informe, que puede servir para iniciar el trámite del CUD u organizar apoyos.
+
+Para familias que notan diferencias en la comunicación o el juego, pedidos de la escuela o el pediatra, y adultos que consultan por primera vez. Coordinamos por WhatsApp.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/evaluacion-ados-2-adi-r-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
+```
+
+---
+
+## 4. TDAH: evaluación y acompañamiento
+
+**Estado:** 🆕 Falta cargar
+
+Imagen de referencia: `google-perfil/productos/08-tdah.jpg`
+
+**Nombre:**
+
+```
+TDAH: evaluación y acompañamiento
+```
+
+**Categoría:**
+
+```
+Evaluaciones
+```
+
+**Descripción:**
+
+```
+Evaluamos y acompañamos el TDAH (trastorno por déficit de atención e hiperactividad) en niños, adolescentes y adultos de Berazategui y la Zona Sur. El TDAH no es falta de voluntad ni mala conducta: es una forma distinta de funcionamiento de la atención, la organización y el control de los impulsos.
+
+Evaluación: evaluación neurocognitiva (atención, memoria y funciones ejecutivas) y psicodiagnóstico, con entrevistas a la familia y, si hace falta, información de la escuela.
+
+Acompañamiento: psicología (regulación, frustración e impulsividad), psicopedagogía (organización y técnicas de estudio) y orientación a la familia y la escuela.
+
+Muchos adultos consultan después del diagnóstico de un hijo. El centro no receta medicación. Coordinamos por WhatsApp.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/tdah-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
+```
+
+---
+
+## 5. Aptos psicológicos y psicotécnicos
+
+**Estado:** 🆕 Falta cargar
+
+Imagen de referencia: `google-perfil/productos/10-aptos-psicologicos.jpg`
+
+**Nombre:**
+
+```
+Aptos psicológicos y psicotécnicos
+```
+
+**Categoría:**
+
+```
+Evaluaciones
+```
+
+**Descripción:**
+
+```
+Evaluación psicológica breve para un trámite concreto, en nuestra sede de Berazategui:
+• licencia de conducir, cuando el trámite pide un informe psicológico;
+• exámenes psicotécnicos de ingreso laboral o preocupacionales;
+• carreras, profesorados e institutos que piden un apto para la inscripción.
+
+Incluye una conversación breve y pruebas elegidas según el trámite (atención, razonamiento y técnicas psicológicas habituales). El profesional redacta el informe con su firma y matrícula; el plazo de entrega se acuerda al pedir el turno.
+
+No es un tratamiento ni un psicodiagnóstico completo. Turno por WhatsApp.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/aptos-psicologicos-psicotecnicos-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
+```
+
+---
+
+# Categoría: Terapias
+
+> Ya existe en tu ficha. Abrí cada producto y reemplazá nombre, descripción y enlace.
+
+## 6. Psicología para niños, adolescentes y adultos
+
+**Estado:** ✏️ Ya cargado (Sesiones de Psicología): completar
+
+Imagen de referencia: `google-perfil/productos/04-psicologia.jpg`
 
 **Nombre:**
 
@@ -142,7 +247,11 @@ https://sinapsiscentro.com.ar/centro-discapacidad-zona-sur.html?utm_source=googl
 Psicología para niños, adolescentes y adultos
 ```
 
-**Categoría:** Terapias
+**Categoría:**
+
+```
+Terapias
+```
 
 **Descripción:**
 
@@ -166,11 +275,11 @@ https://sinapsiscentro.com.ar/psicologia-berazategui.html?utm_source=google&utm_
 
 ---
 
-## 5. Fonoaudiología: lenguaje, habla, voz y deglución
+## 7. Fonoaudiología: lenguaje, habla, voz y deglución
 
-![Fonoaudiología: lenguaje, habla, voz y deglución](productos/05-fonoaudiologia.jpg)
+**Estado:** ✏️ Ya cargado (Atención Fonoaudiológica): completar
 
-**Imagen:** `google-perfil/productos/05-fonoaudiologia.jpg`
+Imagen de referencia: `google-perfil/productos/05-fonoaudiologia.jpg`
 
 **Nombre:**
 
@@ -178,7 +287,11 @@ https://sinapsiscentro.com.ar/psicologia-berazategui.html?utm_source=google&utm_
 Fonoaudiología: lenguaje, habla, voz y deglución
 ```
 
-**Categoría:** Terapias
+**Categoría:**
+
+```
+Terapias
+```
 
 **Descripción:**
 
@@ -205,11 +318,11 @@ https://sinapsiscentro.com.ar/fonoaudiologia-berazategui.html?utm_source=google&
 
 ---
 
-## 6. Terapia ocupacional e integración sensorial
+## 8. Terapia ocupacional e integración sensorial
 
-![Terapia ocupacional e integración sensorial](productos/06-terapia-ocupacional.jpg)
+**Estado:** ✏️ Ya cargado (Sesiones de Terapia Ocupacional): completar
 
-**Imagen:** `google-perfil/productos/06-terapia-ocupacional.jpg`
+Imagen de referencia: `google-perfil/productos/06-terapia-ocupacional.jpg`
 
 **Nombre:**
 
@@ -217,7 +330,11 @@ https://sinapsiscentro.com.ar/fonoaudiologia-berazategui.html?utm_source=google&
 Terapia ocupacional e integración sensorial
 ```
 
-**Categoría:** Terapias
+**Categoría:**
+
+```
+Terapias
+```
 
 **Descripción:**
 
@@ -243,11 +360,11 @@ https://sinapsiscentro.com.ar/terapia-ocupacional-integracion-sensorial.html?utm
 
 ---
 
-## 7. Psicopedagogía: dificultades de aprendizaje
+## 9. Psicopedagogía: dificultades de aprendizaje
 
-![Psicopedagogía: dificultades de aprendizaje](productos/07-psicopedagogia.jpg)
+**Estado:** ✏️ Ya cargado (Atención Psicopedagógica): completar
 
-**Imagen:** `google-perfil/productos/07-psicopedagogia.jpg`
+Imagen de referencia: `google-perfil/productos/07-psicopedagogia.jpg`
 
 **Nombre:**
 
@@ -255,7 +372,11 @@ https://sinapsiscentro.com.ar/terapia-ocupacional-integracion-sensorial.html?utm
 Psicopedagogía: dificultades de aprendizaje
 ```
 
-**Categoría:** Terapias
+**Categoría:**
+
+```
+Terapias
+```
 
 **Descripción:**
 
@@ -282,47 +403,11 @@ https://sinapsiscentro.com.ar/psicopedagogia-dificultades-aprendizaje.html?utm_s
 
 ---
 
-## 8. TDAH: evaluación y acompañamiento
+## 10. Kinesiología para adultos mayores
 
-![TDAH: evaluación y acompañamiento](productos/08-tdah.jpg)
+**Estado:** ✏️ Ya cargado dos veces (Kinesiología y Rehabilitación): borrar uno y completar el otro
 
-**Imagen:** `google-perfil/productos/08-tdah.jpg`
-
-**Nombre:**
-
-```
-TDAH: evaluación y acompañamiento
-```
-
-**Categoría:** Evaluaciones
-
-**Descripción:**
-
-```
-Evaluamos y acompañamos el TDAH (trastorno por déficit de atención e hiperactividad) en niños, adolescentes y adultos de Berazategui y la Zona Sur. El TDAH no es falta de voluntad ni mala conducta: es una forma distinta de funcionamiento de la atención, la organización y el control de los impulsos.
-
-Evaluación: evaluación neurocognitiva (atención, memoria y funciones ejecutivas) y psicodiagnóstico, con entrevistas a la familia y, si hace falta, información de la escuela.
-
-Acompañamiento: psicología (regulación, frustración e impulsividad), psicopedagogía (organización y técnicas de estudio) y orientación a la familia y la escuela.
-
-Muchos adultos consultan después del diagnóstico de un hijo. El centro no receta medicación. Coordinamos por WhatsApp.
-```
-
-**Botón:** Más información
-
-**Enlace:**
-
-```
-https://sinapsiscentro.com.ar/tdah-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
-```
-
----
-
-## 9. Kinesiología para adultos mayores
-
-![Kinesiología para adultos mayores](productos/09-kinesiologia.jpg)
-
-**Imagen:** `google-perfil/productos/09-kinesiologia.jpg`
+Imagen de referencia: `google-perfil/productos/09-kinesiologia.jpg`
 
 **Nombre:**
 
@@ -330,7 +415,11 @@ https://sinapsiscentro.com.ar/tdah-berazategui.html?utm_source=google&utm_medium
 Kinesiología para adultos mayores
 ```
 
-**Categoría:** Adultos mayores
+**Categoría:**
+
+```
+Terapias
+```
 
 **Descripción:**
 
@@ -355,31 +444,38 @@ https://sinapsiscentro.com.ar/kinesiologia-adultos-mayores-berazategui.html?utm_
 
 ---
 
-## 10. Aptos psicológicos y psicotécnicos
+# Categoría: Psicologia
 
-![Aptos psicológicos y psicotécnicos](productos/10-aptos-psicologicos.jpg)
+> Ya existe en tu ficha con ese nombre (sin tilde): dejala así, no crees otra.
 
-**Imagen:** `google-perfil/productos/10-aptos-psicologicos.jpg`
+## 11. Psicoanálisis
+
+**Estado:** ✏️ Ya cargado: completar
 
 **Nombre:**
 
 ```
-Aptos psicológicos y psicotécnicos
+Psicoanálisis
 ```
 
-**Categoría:** Evaluaciones
+**Categoría:**
+
+```
+Psicologia
+```
 
 **Descripción:**
 
 ```
-Evaluación psicológica breve para un trámite concreto, en nuestra sede de Berazategui:
-• licencia de conducir, cuando el trámite pide un informe psicológico;
-• exámenes psicotécnicos de ingreso laboral o preocupacionales;
-• carreras, profesorados e institutos que piden un apto para la inscripción.
+Psicoterapia basada en la palabra y la escucha. Parte de una idea central: no todo lo que nos pasa es consciente. Hay deseos, temores y marcas de nuestra historia que influyen en cómo sentimos, elegimos y nos vinculamos.
 
-Incluye una conversación breve y pruebas elegidas según el trámite (atención, razonamiento y técnicas psicológicas habituales). El profesional redacta el informe con su firma y matrícula; el plazo de entrega se acuerda al pedir el turno.
+Puede ayudar con:
+• angustia o síntomas que no se terminan de entender;
+• situaciones que se repiten en la pareja, el trabajo o los vínculos;
+• duelos, separaciones y momentos de cambio;
+• dudas constantes o dificultad para decidir.
 
-No es un tratamiento ni un psicodiagnóstico completo. Turno por WhatsApp.
+Con niños y niñas se trabaja a través del juego y el dibujo, con entrevistas a la familia. No hace falta derivación médica: coordinamos la primera entrevista por WhatsApp.
 ```
 
 **Botón:** Más información
@@ -387,16 +483,184 @@ No es un tratamiento ni un psicodiagnóstico completo. Turno por WhatsApp.
 **Enlace:**
 
 ```
-https://sinapsiscentro.com.ar/aptos-psicologicos-psicotecnicos-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
+https://sinapsiscentro.com.ar/psicoanalisis-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
 ```
 
 ---
 
-## 11. Talleres: alfabetización, cognición y habilidades sociales
+## 12. Terapia Gestalt
 
-![Talleres: alfabetización, cognición y habilidades sociales](productos/11-talleres.jpg)
+**Estado:** ✏️ Ya cargado: completar
 
-**Imagen:** `google-perfil/productos/11-talleres.jpg`
+**Nombre:**
+
+```
+Terapia Gestalt
+```
+
+**Categoría:**
+
+```
+Psicologia
+```
+
+**Descripción:**
+
+```
+Enfoque humanista centrado en el aquí y ahora: qué sentís, qué hacés y qué evitás. A partir de ese "darse cuenta", integrando emociones, pensamientos y cuerpo, podés elegir formas más satisfactorias de vincularte con vos y con los demás.
+
+Puede ayudar con:
+• dificultad para reconocer o expresar las emociones;
+• ansiedad, estrés o sensación de desconexión;
+• duelos y asuntos que quedaron pendientes;
+• problemas en los vínculos o para poner límites;
+• ganas de conocerte mejor.
+
+En las sesiones se conversa y, si estás de acuerdo, se proponen ejercicios como la silla vacía. No hace falta derivación médica: escribinos por WhatsApp.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/terapia-gestalt-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
+```
+
+---
+
+## 13. Terapia cognitivo conductual (TCC)
+
+**Estado:** ✏️ Ya cargado: completar
+
+**Nombre:**
+
+```
+Terapia cognitivo conductual (TCC)
+```
+
+**Categoría:**
+
+```
+Psicologia
+```
+
+**Descripción:**
+
+```
+Terapia práctica y con objetivos claros. Trabaja cómo se conectan tus pensamientos, emociones y conductas, con herramientas concretas: registros, respiración, resolución de problemas y exposición gradual a lo que se evita. Es uno de los enfoques con más investigación científica, sobre todo en ansiedad y depresión.
+
+Puede ayudar con:
+• ansiedad, ataques de pánico y fobias;
+• tristeza o depresión;
+• pensamientos o conductas repetitivas;
+• estrés, problemas de sueño y manejo del enojo;
+• en niños y adolescentes: miedos y conducta, con participación de la familia.
+
+No hace falta derivación médica: coordinamos por WhatsApp.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/terapia-cognitivo-conductual-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
+```
+
+---
+
+## 14. Terapia sistémica y familiar
+
+**Estado:** ✏️ Ya cargado: completar
+
+**Nombre:**
+
+```
+Terapia sistémica y familiar
+```
+
+**Categoría:**
+
+```
+Psicologia
+```
+
+**Descripción:**
+
+```
+Enfoque que mira el malestar en el contexto de los vínculos: la familia, la pareja, la escuela o el trabajo. En lugar de buscar culpables, trabaja sobre la comunicación, los roles y los recursos que ya tienen. Puede ser individual, de pareja o familiar.
+
+Puede ayudar con:
+• conflictos familiares o de pareja que se repiten;
+• separaciones y familias ensambladas;
+• crianza, límites y convivencia con hijos adolescentes;
+• cuando un hijo tiene un diagnóstico (como TEA o TDAH) y la familia necesita reorganizarse;
+• duelos que afectan a toda la familia.
+
+No hace falta derivación médica: escribinos por WhatsApp.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/terapia-sistemica-familiar-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
+```
+
+---
+
+## 15. Terapia junguiana
+
+**Estado:** ✏️ Ya cargado: completar
+
+**Nombre:**
+
+```
+Terapia junguiana
+```
+
+**Categoría:**
+
+```
+Psicologia
+```
+
+**Descripción:**
+
+```
+Basada en la psicología analítica de Carl Jung. Trabaja con los sueños, los símbolos y la historia personal para conocerte en profundidad y avanzar hacia una vida más propia (lo que Jung llamó el proceso de individuación).
+
+Puede ayudar con:
+• crisis vitales y cambios de etapa;
+• angustia, desánimo o sensación de vacío;
+• sueños que se repiten o que inquietan;
+• duelos y transiciones importantes;
+• búsqueda de autoconocimiento.
+
+No hace falta recordar los sueños para empezar. No hace falta derivación médica: coordinamos la primera entrevista por WhatsApp.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/terapia-junguiana-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp
+```
+
+---
+
+# Categoría: Talleres
+
+> Categoría nueva.
+
+## 16. Talleres: alfabetización, cognición y habilidades sociales
+
+**Estado:** 🆕 Falta cargar
+
+Imagen de referencia: `google-perfil/productos/11-talleres.jpg`
 
 **Nombre:**
 
@@ -404,7 +668,11 @@ https://sinapsiscentro.com.ar/aptos-psicologicos-psicotecnicos-berazategui.html?
 Talleres: alfabetización, cognición y habilidades sociales
 ```
 
-**Categoría:** Talleres
+**Categoría:**
+
+```
+Talleres
+```
 
 **Descripción:**
 
@@ -431,22 +699,8 @@ https://sinapsiscentro.com.ar/talleres.html?utm_source=google&utm_medium=organic
 
 ## Para cambiar textos o imágenes
 
-Los datos están en `google-perfil/productos.json`. Las imágenes se regeneran con:
+Los textos de los 11 productos con imagen están en `google-perfil/productos.json`. Las imágenes se regeneran con:
 
 ```bash
 node scripts/generar_productos_google.js
 ```
-
----
-
-## Productos de la categoría Psicología (enfoques)
-
-Cada orientación tiene su propia página. Usá estos enlaces en el botón **Más información**:
-
-| Producto | Enlace |
-|---|---|
-| Psicoanálisis | `https://sinapsiscentro.com.ar/psicoanalisis-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |
-| Terapia Gestalt | `https://sinapsiscentro.com.ar/terapia-gestalt-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |
-| Terapia Cognitivo Conductual | `https://sinapsiscentro.com.ar/terapia-cognitivo-conductual-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |
-| Terapia Sistémica | `https://sinapsiscentro.com.ar/terapia-sistemica-familiar-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |
-| Terapia Junguiana | `https://sinapsiscentro.com.ar/terapia-junguiana-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp` |

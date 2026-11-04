@@ -75,7 +75,7 @@ window.addEventListener("hashchange",function(){if(document.documentElement.clas
     "slogan": "Conexiones que importan",
     "foundingDate": "2026-02",
     "url": "https://sinapsiscentro.com.ar/",
-    "image": "https://sinapsiscentro.com.ar/og-image.jpg",
+    "image": ["https://sinapsiscentro.com.ar/og-image.jpg", "https://sinapsiscentro.com.ar/img/centro/fachada-1500.webp", "https://sinapsiscentro.com.ar/img/centro/recepcion-1500.webp", "https://sinapsiscentro.com.ar/img/centro/consultorio-infantil-1500.webp"],
     "telephone": "+5491168567160",
     "email": "sinapsisdatos@gmail.com",
     "areaServed": [
@@ -1228,6 +1228,14 @@ footer { background: #050f17; padding: 72px 6% 34px; }
    INSTAGRAM (últimas novedades)
 ═══════════════════════════════════ */
 #instagram-feed { background: var(--bg); padding: 110px 6%; }
+/* ═══ NUESTRO ESPACIO (fotos reales del centro) ═══ */
+#espacio { background: var(--bg); padding: 0 6% 110px; }
+.espacio-grid { max-width:1160px; margin:34px auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.espacio-grid figure { margin:0; position:relative; border-radius:20px; overflow:hidden; background:#e8e0d1; box-shadow:0 10px 30px rgba(13,37,53,.08); }
+.espacio-grid img { width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; display:block; }
+.espacio-grid figcaption { position:absolute; left:12px; bottom:12px; background:rgba(255,253,248,.92); color:var(--navy); font-weight:700; font-size:.85rem; padding:6px 13px; border-radius:999px; }
+@media (max-width: 860px) { .espacio-grid { grid-template-columns:repeat(2,1fr); gap:12px; } }
+@media (max-width: 520px) { .espacio-grid { grid-template-columns:1fr; } }
 .ig-feed-grid {
   max-width: 900px; margin: 50px auto 0; background: white; border-radius: var(--r-lg);
   overflow: hidden; line-height: 0;
@@ -1906,6 +1914,23 @@ footer { background: #050f17; padding: 72px 6% 34px; }
     <a href="https://www.instagram.com/sinapsiscentro/" target="_blank" rel="noopener" class="btn-google btn-instagram rv from-bottom d1">
       <svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg> Seguir a @sinapsiscentro
     </a>
+  </div>
+</section>
+
+<!-- ═══ NUESTRO ESPACIO ═══ -->
+<section id="espacio">
+  <div style="max-width:1160px;margin:0 auto;text-align:center;">
+    <div class="section-tag rv from-bottom" style="justify-content:center;">Nuestro espacio</div>
+    <h2 class="section-title rv from-bottom d1">Así es <em>Centro Sinapsis</em></h2>
+    <p class="section-body rv from-bottom d2" style="margin:14px auto 0;">Un lugar tranquilo y luminoso en Berazategui, pensado para que chicos, adultos y familias se sientan cómodos desde que llegan.</p>
+  </div>
+  <div class="espacio-grid rv from-bottom d3">
+    <figure><img src="img/centro/fachada-1500.webp" srcset="img/centro/fachada-800.webp 800w, img/centro/fachada-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Fachada de Centro Sinapsis en Calle 27 Nº3907, Berazategui, con el cartel del centro y el número en la puerta"><figcaption>La entrada, en Calle 27 Nº3907</figcaption></figure>
+    <figure><img src="img/centro/recepcion-1500.webp" srcset="img/centro/recepcion-800.webp 800w, img/centro/recepcion-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Recepción y sala de espera de Centro Sinapsis: escritorio de recepción, bancos para esperar y plantas"><figcaption>Recepción y sala de espera</figcaption></figure>
+    <figure><img src="img/centro/consultorio-infantil-1500.webp" srcset="img/centro/consultorio-infantil-800.webp 800w, img/centro/consultorio-infantil-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Consultorio infantil de Centro Sinapsis con mesa y sillas para chicos, juguetes didácticos y escritorio"><figcaption>Consultorio infantil</figcaption></figure>
+    <figure><img src="img/centro/consultorio-1500.webp" srcset="img/centro/consultorio-800.webp 800w, img/centro/consultorio-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Consultorio de Centro Sinapsis con mesa blanca, dos sillas y ventana con luz natural"><figcaption>Consultorio</figcaption></figure>
+    <figure><img src="img/centro/consultorio-2-1500.webp" srcset="img/centro/consultorio-2-800.webp 800w, img/centro/consultorio-2-1500.webp 1500w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1500" height="1000" loading="lazy" decoding="async" alt="Consultorio de Centro Sinapsis con escritorio, sillón y biblioteca"><figcaption>Consultorio</figcaption></figure>
+    <figure><img src="img/centro/recepcion-atencion-1350.webp" srcset="img/centro/recepcion-atencion-800.webp 800w, img/centro/recepcion-atencion-1350.webp 1350w" sizes="(max-width:520px) 92vw, (max-width:860px) 46vw, 380px" width="1350" height="900" loading="lazy" decoding="async" alt="Integrante del equipo de Centro Sinapsis atendiendo en la recepción"><figcaption>Te recibimos</figcaption></figure>
   </div>
 </section>
 
