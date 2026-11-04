@@ -125,6 +125,8 @@ No marques precio en ningún servicio, salvo que el centro decida publicarlo (pr
 
 ### 1.5 Productos (vitrina con enlace a cada página de la web)
 
+> **Todo listo para cargar** (imagen, nombre, categoría, descripción y enlace de cada producto): `google-perfil/PRODUCTOS_GOOGLE.md`. Si algo no coincide con esta tabla, vale lo que dice ese archivo.
+
 Los servicios no admiten enlaces; los **Productos** sí, y además se muestran como tarjetas con foto. Se cargan en **Editar productos → Agregar producto**:
 
 - una foto (puede ser una pieza de Instagram);
