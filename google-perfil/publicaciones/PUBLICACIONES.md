@@ -1,14 +1,14 @@
 # Publicaciones para la ficha de Google
 
-Una por semana. Cada una: imagen + texto + botón **Más información** con el enlace.
+**Ritmo recomendado:** una por semana (o dos, si se puede sostener). Mejor constante que muchas juntas.
 
 **Cómo publicar:** ficha → **Agregar novedad** → subí la imagen → pegá el texto → botón **Más información** → pegá el enlace → **Publicar**.
 
-Ya hechas antes (también para publicar): `senales-autismo/` (5 imágenes) y `cud/` (5 imágenes).
+Carruseles hechos antes (publicar primero): `senales-autismo/` (5 imágenes, enlace a senales-autismo-ninos.html) y `cud/` (5 imágenes, enlace a centro-discapacidad-zona-sur.html).
 
 ---
 
-## Semana 1: Fonoaudiología
+## Publicación 1: Fonoaudiología
 
 ![](./01-lenguaje.jpg)
 
@@ -30,7 +30,7 @@ https://sinapsiscentro.com.ar/retraso-lenguaje-ninos.html?utm_source=google&utm_
 
 ---
 
-## Semana 2: Atención · TDAH
+## Publicación 2: Atención · TDAH
 
 ![](./02-tdah.jpg)
 
@@ -52,7 +52,7 @@ https://sinapsiscentro.com.ar/tdah-berazategui.html?utm_source=google&utm_medium
 
 ---
 
-## Semana 3: Adultos mayores
+## Publicación 3: Adultos mayores
 
 ![](./03-caidas.jpg)
 
@@ -74,7 +74,7 @@ https://sinapsiscentro.com.ar/prevencion-caidas-adultos-mayores.html?utm_source=
 
 ---
 
-## Semana 4: Evaluaciones
+## Publicación 4: Evaluaciones
 
 ![](./04-aptos.jpg)
 
@@ -96,7 +96,7 @@ https://sinapsiscentro.com.ar/aptos-psicologicos-psicotecnicos-berazategui.html?
 
 ---
 
-## Semana 5: Psicología
+## Publicación 5: Psicología
 
 ![](./05-enfoques.jpg)
 
@@ -118,7 +118,7 @@ https://sinapsiscentro.com.ar/psicologia-berazategui.html?utm_source=google&utm_
 
 ---
 
-## Semana 6: Psicopedagogía
+## Publicación 6: Psicopedagogía
 
 ![](./06-dislexia.jpg)
 
@@ -140,7 +140,7 @@ https://sinapsiscentro.com.ar/dislexia-senales-ninos.html?utm_source=google&utm_
 
 ---
 
-## Semana 7: Psicología infantil
+## Publicación 7: Psicología infantil
 
 ![](./07-ansiedad.jpg)
 
@@ -162,7 +162,7 @@ https://sinapsiscentro.com.ar/ansiedad-en-ninos.html?utm_source=google&utm_mediu
 
 ---
 
-## Semana 8: Talleres
+## Publicación 8: Talleres
 
 ![](./08-talleres.jpg)
 
@@ -180,6 +180,182 @@ Talleres en Centro Sinapsis, Berazategui: alfabetización, estimulación cogniti
 
 ```
 https://sinapsiscentro.com.ar/talleres.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
+```
+
+---
+
+## Publicación 9: Estimulación temprana
+
+![](./09-estimulacion-temprana.jpg)
+
+**Imagen:** `google-perfil/publicaciones/09-estimulacion-temprana.jpg`
+
+**Texto:**
+
+```
+Los primeros años de vida son una etapa en la que el cerebro tiene una capacidad de desarrollo particularmente alta. La estimulación temprana acompaña a bebés y niños de 0 a 6 años en lo motor, el lenguaje, lo cognitivo y lo social. No hace falta un diagnóstico previo: sirve como prevención y como apoyo cuando hay una alerta o una demora.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/estimulacion-temprana-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
+```
+
+---
+
+## Publicación 10: Terapia ocupacional
+
+![](./10-integracion-sensorial.jpg)
+
+**Imagen:** `google-perfil/publicaciones/10-integracion-sensorial.jpg`
+
+**Texto:**
+
+```
+Algunos chicos reaccionan de más o de menos a lo que les llega por los sentidos: se tapan los oídos con ruidos comunes, no toleran ciertas ropas o comidas, o buscan moverse y chocarse todo el tiempo. Cuando eso dificulta su día a día, la terapia ocupacional con enfoque en integración sensorial puede evaluar y acompañar. Sin derivación médica.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/integracion-sensorial-senales.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
+```
+
+---
+
+## Publicación 11: Fonoaudiología
+
+![](./11-tartamudez.jpg)
+
+**Imagen:** `google-perfil/publicaciones/11-tartamudez.jpg`
+
+**Texto:**
+
+```
+Entre los 2 y los 5 años muchos chicos repiten sílabas mientras aprenden a hablar, y muchas veces se resuelve sola. Conviene consultar con fonoaudiología si dura más de 6 meses, si hay bloqueos o tensión al hablar, si el chico se frustra o evita hablar, o si empezó después de los 3 años y medio. Lo que más ayuda en casa: tiempo y calma.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/tartamudez-ninos.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
+```
+
+---
+
+## Publicación 12: Adultos mayores
+
+![](./12-olvidos.jpg)
+
+**Imagen:** `google-perfil/publicaciones/12-olvidos.jpg`
+
+**Texto:**
+
+```
+Con los años es esperable tardar más en recordar un nombre. Conviene consultar cuando los olvidos son frecuentes y afectan la vida diaria: repetir las mismas preguntas, perderse en lugares conocidos, o no poder con tareas que antes resolvía. Hacemos evaluación neurocognitiva y estimulación cognitiva, junto al médico de cabecera.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/olvidos-memoria-adultos-mayores.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
+```
+
+---
+
+## Publicación 13: Psicología
+
+![](./13-primera-consulta.jpg)
+
+**Imagen:** `google-perfil/publicaciones/13-primera-consulta.jpg`
+
+**Texto:**
+
+```
+La primera consulta con un psicólogo es una charla para conocerse: contás qué te trae y qué te gustaría que cambie, a tu ritmo. No hace falta tener todo claro ni saber “qué tenés”, y todo lo que se habla es confidencial. Al final acuerdan cómo seguir. En Centro Sinapsis podés pedir tu primera entrevista por WhatsApp, sin derivación médica.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/primera-consulta-psicologo.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
+```
+
+---
+
+## Publicación 14: Orientación vocacional
+
+![](./14-orientacion-vocacional.jpg)
+
+**Imagen:** `google-perfil/publicaciones/14-orientacion-vocacional.jpg`
+
+**Texto:**
+
+```
+La orientación vocacional y ocupacional no es un test que da una respuesta mágica: es un proceso para conocerte mejor, explorar opciones reales y construir un proyecto propio. Para adolescentes que terminan la secundaria, adultos que quieren cambiar de rumbo y personas con discapacidad que buscan un proyecto de formación o de trabajo.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/orientacion-vocacional-ocupacional-berazategui.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
+```
+
+---
+
+## Publicación 15: Crianza
+
+![](./15-rabietas.jpg)
+
+**Imagen:** `google-perfil/publicaciones/15-rabietas.jpg`
+
+**Texto:**
+
+```
+Las rabietas son esperables entre el año y los 4 años: el chico siente emociones muy intensas y todavía no tiene herramientas para manejarlas. Ayuda mantener la calma, poner en palabras lo que siente y sostener el límite sin gritos. Conviene consultar si son diarias, muy largas, siguen intensas después de los 5 años o incluyen golpes.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/rabietas-berrinches-ninos.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
+```
+
+---
+
+## Publicación 16: Terapia ocupacional
+
+![](./16-motricidad-fina.jpg)
+
+**Imagen:** `google-perfil/publicaciones/16-motricidad-fina.jpg`
+
+**Texto:**
+
+```
+La motricidad fina son los movimientos precisos de manos y dedos: agarrar el lápiz, recortar, abrocharse, usar los cubiertos. Si a tu hijo le cuestan mucho estas actividades para su edad, evita dibujar o se frustra con las tareas manuales, conviene consultar con terapia ocupacional. En Centro Sinapsis la evaluamos sin derivación médica.
+```
+
+**Botón:** Más información
+
+**Enlace:**
+
+```
+https://sinapsiscentro.com.ar/motricidad-fina-ninos.html?utm_source=google&utm_medium=organic&utm_campaign=gbp_post
 ```
 
 ---

@@ -1,66 +1,245 @@
 [
   {
-    "slug": "01-lenguaje", "tema": "lenguaje", "fondo": "crema",
-    "eyebrow": "Fonoaudiología", "titulo": "Mi hijo no habla: <em>¿cuándo consultar?</em>",
-    "items": ["<b>18 meses:</b> no dice palabras sueltas", "<b>2 años:</b> no combina dos palabras", "<b>3 años:</b> casi no se le entiende"],
+    "slug": "01-lenguaje",
+    "tema": "lenguaje",
+    "fondo": "crema",
+    "eyebrow": "Fonoaudiología",
+    "titulo": "Mi hijo no habla: <em>¿cuándo consultar?</em>",
+    "items": [
+      "<b>18 meses:</b> no dice palabras sueltas",
+      "<b>2 años:</b> no combina dos palabras",
+      "<b>3 años:</b> casi no se le entiende"
+    ],
     "nota": "Cada chico tiene sus tiempos, pero ante la duda, conviene consultar.",
     "url": "retraso-lenguaje-ninos.html",
     "texto": "Mi hijo no habla todavía: ¿cuándo consultar? Cada chico tiene sus tiempos, pero hay señales por edad que conviene no dejar pasar: a los 18 meses, no decir palabras sueltas; a los 2 años, no combinar dos palabras; a los 3, que casi no se le entienda. En Centro Sinapsis evaluamos el lenguaje infantil en Berazategui, sin derivación médica."
   },
   {
-    "slug": "02-tdah", "tema": "tdah", "fondo": "noche",
-    "eyebrow": "Atención · TDAH", "titulo": "El TDAH no es <em>falta de voluntad</em>",
-    "items": ["Evaluación neurocognitiva y psicodiagnóstico", "Psicología y psicopedagogía", "Para niños, adolescentes y adultos"],
+    "slug": "02-tdah",
+    "tema": "tdah",
+    "fondo": "noche",
+    "eyebrow": "Atención · TDAH",
+    "titulo": "El TDAH no es <em>falta de voluntad</em>",
+    "items": [
+      "Evaluación neurocognitiva y psicodiagnóstico",
+      "Psicología y psicopedagogía",
+      "Para niños, adolescentes y adultos"
+    ],
     "nota": "Es una forma distinta de funcionamiento de la atención y la organización.",
     "url": "tdah-berazategui.html",
     "texto": "El TDAH no es falta de voluntad ni mala conducta: es una forma distinta de funcionamiento de la atención, la organización y el control de los impulsos. En Centro Sinapsis lo evaluamos y acompañamos en niños, adolescentes y adultos, con evaluación neurocognitiva, psicodiagnóstico, psicología y psicopedagogía. El centro no receta medicación."
   },
   {
-    "slug": "03-caidas", "tema": "caidas", "fondo": "celeste",
-    "eyebrow": "Adultos mayores", "titulo": "Cómo <em>prevenir caídas</em>",
-    "items": ["Ejercicio de fuerza y equilibrio, guiado", "Revisar la vista y la medicación con el médico", "Casa segura: buena luz y sin alfombras sueltas"],
+    "slug": "03-caidas",
+    "tema": "caidas",
+    "fondo": "celeste",
+    "eyebrow": "Adultos mayores",
+    "titulo": "Cómo <em>prevenir caídas</em>",
+    "items": [
+      "Ejercicio de fuerza y equilibrio, guiado",
+      "Revisar la vista y la medicación con el médico",
+      "Casa segura: buena luz y sin alfombras sueltas"
+    ],
     "nota": "Muchas caídas se pueden prevenir.",
     "url": "prevencion-caidas-adultos-mayores.html",
     "texto": "Las caídas son una de las principales causas de lesiones en personas mayores, pero muchas se pueden prevenir. Lo que más ayuda es el ejercicio de fuerza y equilibrio, revisar la vista y la medicación con el médico, y adaptar la casa. En nuestro gimnasio terapéutico de kinesiología trabajamos fuerza, equilibrio y autonomía."
   },
   {
-    "slug": "04-aptos", "tema": "aptos", "fondo": "crema",
-    "eyebrow": "Evaluaciones", "titulo": "Aptos <em>psicológicos</em> y psicotécnicos",
-    "items": ["Licencia de conducir", "Ingreso laboral y preocupacional", "Carreras que lo piden"],
+    "slug": "04-aptos",
+    "tema": "aptos",
+    "fondo": "crema",
+    "eyebrow": "Evaluaciones",
+    "titulo": "Aptos <em>psicológicos</em> y psicotécnicos",
+    "items": [
+      "Licencia de conducir",
+      "Ingreso laboral y preocupacional",
+      "Carreras que lo piden"
+    ],
     "nota": "Informe firmado por psicólogo matriculado.",
     "url": "aptos-psicologicos-psicotecnicos-berazategui.html",
     "texto": "¿Necesitás un apto psicológico? Hacemos evaluaciones psicotécnicas para la licencia de conducir, el ingreso laboral y las carreras que lo piden, con informe firmado por psicólogo matriculado. Antes de sacar turno, confirmá qué tipo de informe te piden. Turnos por WhatsApp, en Berazategui."
   },
   {
-    "slug": "05-enfoques", "tema": "psicologia", "fondo": "noche",
-    "eyebrow": "Psicología", "titulo": "Distintos <em>enfoques</em>, un mismo cuidado",
-    "chips": ["Psicoanálisis", "Gestalt", "Cognitivo conductual", "Sistémica y familiar", "Junguiana"],
+    "slug": "05-enfoques",
+    "tema": "psicologia",
+    "fondo": "noche",
+    "eyebrow": "Psicología",
+    "titulo": "Distintos <em>enfoques</em>, un mismo cuidado",
+    "chips": [
+      "Psicoanálisis",
+      "Gestalt",
+      "Cognitivo conductual",
+      "Sistémica y familiar",
+      "Junguiana"
+    ],
     "nota": "Si no sabés cuál elegir, te orientamos en la primera entrevista.",
-    "url": "psicologia-berazategui.html", "ancla": "#enfoques",
+    "url": "psicologia-berazategui.html",
+    "ancla": "#enfoques",
     "texto": "En Centro Sinapsis el equipo de psicología trabaja desde distintos enfoques: psicoanálisis, terapia Gestalt, cognitivo conductual (TCC), sistémica y familiar, y junguiana. Si ya sabés cuál preferís, contanos; si no, te orientamos en la primera entrevista. Conocé cada enfoque en nuestra web."
   },
   {
-    "slug": "06-dislexia", "tema": "dislexia", "fondo": "crema",
-    "eyebrow": "Psicopedagogía", "titulo": "Dislexia: <em>señales</em> para mirar",
-    "items": ["Lee muy despacio y con mucho esfuerzo", "Confunde o saltea letras de forma persistente", "Evita leer en voz alta y se frustra"],
+    "slug": "06-dislexia",
+    "tema": "dislexia",
+    "fondo": "crema",
+    "eyebrow": "Psicopedagogía",
+    "titulo": "Dislexia: <em>señales</em> para mirar",
+    "items": [
+      "Lee muy despacio y con mucho esfuerzo",
+      "Confunde o saltea letras de forma persistente",
+      "Evita leer en voz alta y se frustra"
+    ],
     "nota": "No tiene que ver con la inteligencia ni con el esfuerzo.",
     "url": "dislexia-senales-ninos.html",
     "texto": "La dislexia es una dificultad específica para aprender a leer con fluidez, que no tiene que ver con la inteligencia ni con el esfuerzo. Si tu hijo lee mucho más lento que sus compañeros, confunde o saltea letras de forma persistente o sufre cada vez que tiene que leer, conviene consultar. La psicopedagogía evalúa y acompaña."
   },
   {
-    "slug": "07-ansiedad", "tema": "ansiedad", "fondo": "celeste",
-    "eyebrow": "Psicología infantil", "titulo": "Ansiedad en <em>niños</em>",
-    "items": ["Dolores de panza o de cabeza frecuentes", "Evita la escuela o los cumpleaños", "Preocupación constante: “¿y si pasa algo?”"],
+    "slug": "07-ansiedad",
+    "tema": "ansiedad",
+    "fondo": "celeste",
+    "eyebrow": "Psicología infantil",
+    "titulo": "Ansiedad en <em>niños</em>",
+    "items": [
+      "Dolores de panza o de cabeza frecuentes",
+      "Evita la escuela o los cumpleaños",
+      "Preocupación constante: “¿y si pasa algo?”"
+    ],
     "nota": "Si dura semanas e interfiere en su vida diaria, conviene consultar.",
     "url": "ansiedad-en-ninos.html",
     "texto": "Sentir miedo o preocupación es normal en la infancia. La ansiedad se vuelve un problema cuando es muy intensa, dura semanas e interfiere en la vida diaria: dolores de panza o de cabeza frecuentes, evitar la escuela, preocupación constante. En Centro Sinapsis acompañamos a niños, adolescentes y sus familias, sin derivación médica."
   },
   {
-    "slug": "08-talleres", "tema": "talleres", "fondo": "noche",
-    "eyebrow": "Talleres", "titulo": "Aprender <em>en grupo</em>",
-    "items": ["Alfabetización", "Estimulación cognitiva para niños y para adultos", "Habilidades sociales"],
+    "slug": "08-talleres",
+    "tema": "talleres",
+    "fondo": "noche",
+    "eyebrow": "Talleres",
+    "titulo": "Aprender <em>en grupo</em>",
+    "items": [
+      "Alfabetización",
+      "Estimulación cognitiva para niños y para adultos",
+      "Habilidades sociales"
+    ],
     "nota": "Días, horarios y grupos por WhatsApp.",
     "url": "talleres.html",
     "texto": "Talleres en Centro Sinapsis, Berazategui: alfabetización, estimulación cognitiva para niños y para adultos, y habilidades sociales para niños, niñas y adolescentes. Son espacios grupales de aprendizaje, no tratamientos. Consultá días, horarios y grupos por WhatsApp."
+  },
+  {
+    "slug": "09-estimulacion-temprana",
+    "tema": "estimulacion-temprana",
+    "fondo": "celeste",
+    "eyebrow": "Estimulación temprana",
+    "titulo": "Los primeros años <em>importan</em>",
+    "items": [
+      "Para bebés y niños de 0 a 6 años",
+      "Motricidad, lenguaje, juego y vínculo",
+      "No hace falta un diagnóstico previo"
+    ],
+    "nota": "También acompaña a la familia en cada etapa.",
+    "url": "estimulacion-temprana-berazategui.html",
+    "texto": "Los primeros años de vida son una etapa en la que el cerebro tiene una capacidad de desarrollo particularmente alta. La estimulación temprana acompaña a bebés y niños de 0 a 6 años en lo motor, el lenguaje, lo cognitivo y lo social. No hace falta un diagnóstico previo: sirve como prevención y como apoyo cuando hay una alerta o una demora."
+  },
+  {
+    "slug": "10-integracion-sensorial",
+    "tema": "integracion-sensorial",
+    "fondo": "noche",
+    "eyebrow": "Terapia ocupacional",
+    "titulo": "¿Le molestan los <em>ruidos</em> o las <em>texturas</em>?",
+    "items": [
+      "Se tapa los oídos con ruidos comunes",
+      "No tolera etiquetas, costuras o ciertas comidas",
+      "Busca moverse y chocarse todo el tiempo"
+    ],
+    "nota": "Puede tratarse de cómo procesa la información de los sentidos.",
+    "url": "integracion-sensorial-senales.html",
+    "texto": "Algunos chicos reaccionan de más o de menos a lo que les llega por los sentidos: se tapan los oídos con ruidos comunes, no toleran ciertas ropas o comidas, o buscan moverse y chocarse todo el tiempo. Cuando eso dificulta su día a día, la terapia ocupacional con enfoque en integración sensorial puede evaluar y acompañar. Sin derivación médica."
+  },
+  {
+    "slug": "11-tartamudez",
+    "tema": "tartamudez",
+    "fondo": "crema",
+    "eyebrow": "Fonoaudiología",
+    "titulo": "Tartamudez: <em>¿cuándo consultar?</em>",
+    "items": [
+      "Dura más de 6 meses o va en aumento",
+      "Hay bloqueos o tensión al hablar",
+      "Se frustra o empieza a evitar hablar"
+    ],
+    "nota": "En casa ayuda escuchar con calma, sin terminar sus palabras.",
+    "url": "tartamudez-ninos.html",
+    "texto": "Entre los 2 y los 5 años muchos chicos repiten sílabas mientras aprenden a hablar, y muchas veces se resuelve sola. Conviene consultar con fonoaudiología si dura más de 6 meses, si hay bloqueos o tensión al hablar, si el chico se frustra o evita hablar, o si empezó después de los 3 años y medio. Lo que más ayuda en casa: tiempo y calma."
+  },
+  {
+    "slug": "12-olvidos",
+    "tema": "olvidos",
+    "fondo": "celeste",
+    "eyebrow": "Adultos mayores",
+    "titulo": "Olvidos: <em>¿cuándo preocuparse?</em>",
+    "items": [
+      "Repite las mismas preguntas en poco tiempo",
+      "Se pierde en lugares conocidos",
+      "Le cuestan tareas que antes resolvía"
+    ],
+    "nota": "Algunas causas tienen tratamiento: siempre conviene consultar.",
+    "url": "olvidos-memoria-adultos-mayores.html",
+    "texto": "Con los años es esperable tardar más en recordar un nombre. Conviene consultar cuando los olvidos son frecuentes y afectan la vida diaria: repetir las mismas preguntas, perderse en lugares conocidos, o no poder con tareas que antes resolvía. Hacemos evaluación neurocognitiva y estimulación cognitiva, junto al médico de cabecera."
+  },
+  {
+    "slug": "13-primera-consulta",
+    "tema": "primera-consulta",
+    "fondo": "noche",
+    "eyebrow": "Psicología",
+    "titulo": "Tu primera consulta con el <em>psicólogo</em>",
+    "items": [
+      "Contás lo que te trae, a tu ritmo",
+      "No hace falta saber “qué tenés”",
+      "Todo lo que se habla es confidencial"
+    ],
+    "nota": "Al final acuerdan cómo seguir. Sin derivación médica.",
+    "url": "primera-consulta-psicologo.html",
+    "texto": "La primera consulta con un psicólogo es una charla para conocerse: contás qué te trae y qué te gustaría que cambie, a tu ritmo. No hace falta tener todo claro ni saber “qué tenés”, y todo lo que se habla es confidencial. Al final acuerdan cómo seguir. En Centro Sinapsis podés pedir tu primera entrevista por WhatsApp, sin derivación médica."
+  },
+  {
+    "slug": "14-orientacion-vocacional",
+    "tema": "orientacion-vocacional",
+    "fondo": "crema",
+    "eyebrow": "Orientación vocacional",
+    "titulo": "¿No sabés qué <em>estudiar</em>?",
+    "items": [
+      "Adolescentes que terminan la secundaria",
+      "Adultos que quieren cambiar de rumbo",
+      "Personas con discapacidad y su proyecto"
+    ],
+    "nota": "No es un test mágico: es un proceso para construir tu proyecto.",
+    "url": "orientacion-vocacional-ocupacional-berazategui.html",
+    "texto": "La orientación vocacional y ocupacional no es un test que da una respuesta mágica: es un proceso para conocerte mejor, explorar opciones reales y construir un proyecto propio. Para adolescentes que terminan la secundaria, adultos que quieren cambiar de rumbo y personas con discapacidad que buscan un proyecto de formación o de trabajo."
+  },
+  {
+    "slug": "15-rabietas",
+    "tema": "berrinche",
+    "fondo": "celeste",
+    "eyebrow": "Crianza",
+    "titulo": "Rabietas: cómo <em>acompañarlas</em>",
+    "items": [
+      "Mantené la calma y quedate cerca",
+      "Poné en palabras lo que siente",
+      "Sostené el límite, sin gritos"
+    ],
+    "nota": "Son esperables entre el año y los 4 años.",
+    "url": "rabietas-berrinches-ninos.html",
+    "texto": "Las rabietas son esperables entre el año y los 4 años: el chico siente emociones muy intensas y todavía no tiene herramientas para manejarlas. Ayuda mantener la calma, poner en palabras lo que siente y sostener el límite sin gritos. Conviene consultar si son diarias, muy largas, siguen intensas después de los 5 años o incluyen golpes."
+  },
+  {
+    "slug": "16-motricidad-fina",
+    "tema": "motricidad-fina",
+    "fondo": "noche",
+    "eyebrow": "Terapia ocupacional",
+    "titulo": "Motricidad fina: <em>señales</em> para mirar",
+    "items": [
+      "Agarra el lápiz con toda la mano (después de los 4-5 años)",
+      "Evita dibujar, pintar o recortar",
+      "Le cuesta abrocharse o usar los cubiertos"
+    ],
+    "nota": "Cada chico tiene sus tiempos, pero ante la duda, conviene consultar.",
+    "url": "motricidad-fina-ninos.html",
+    "texto": "La motricidad fina son los movimientos precisos de manos y dedos: agarrar el lápiz, recortar, abrocharse, usar los cubiertos. Si a tu hijo le cuestan mucho estas actividades para su edad, evita dibujar o se frustra con las tareas manuales, conviene consultar con terapia ocupacional. En Centro Sinapsis la evaluamos sin derivación médica."
   }
 ]
