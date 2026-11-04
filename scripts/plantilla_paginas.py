@@ -96,6 +96,12 @@ REL = {
     "tcc": ("terapia-cognitivo-conductual-berazategui.html", "Terapia cognitivo conductual", "Enfoque psicológico"),
     "sistemica": ("terapia-sistemica-familiar-berazategui.html", "Terapia sistémica y familiar", "Enfoque psicológico"),
     "junguiana": ("terapia-junguiana-berazategui.html", "Terapia junguiana", "Enfoque psicológico"),
+    "bebe": ("senales-alerta-desarrollo-bebe.html", "Señales de alerta en el bebé", "Guía · 0 a 12 meses"),
+    "atencion": ("no-presta-atencion-en-clase.html", "¿No presta atención en clase?", "Guía"),
+    "selectividad": ("selectividad-alimentaria-ninos.html", "Selectividad alimentaria", "Guía"),
+    "tdah_adultos": ("tdah-en-adultos.html", "TDAH en adultos", "Guía"),
+    "anticipacion": ("anticipacion-autismo-cambios-rutina.html", "Anticipar cambios en el autismo", "Guía"),
+    "estcog_casa": ("estimulacion-cognitiva-en-casa-adultos-mayores.html", "Estimulación cognitiva en casa", "Guía"),
     "vocacional": ("orientacion-vocacional-ocupacional-berazategui.html", "Orientación vocacional", "Estudio y trabajo"),
 }
 

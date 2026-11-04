@@ -223,7 +223,7 @@ ART.append(dict(
         ("¿Hay terapia ocupacional en Berazategui?", "Sí. En Centro Sinapsis (Calle 27 Nº3907 esq. 139, Berazategui) hacemos terapia ocupacional con enfoque de integración sensorial, para familias de toda la Zona Sur."),
     ],
     sources=[],
-    related=["to", "tea", "senales", "tdah", "temprana", "guias"],
+    related=["to", "tea", "selectividad", "senales", "temprana", "guias"],
 ))
 
 # ───────────────────────── 6. OLVIDOS EN ADULTOS MAYORES ─────────────────────────
@@ -259,7 +259,7 @@ ART.append(dict(
         ("¿Dónde hacen evaluación de memoria en Berazategui?", "En Centro Sinapsis (Calle 27 Nº3907 esq. 139, Berazategui) hacemos evaluación neurocognitiva y estimulación cognitiva para adultos mayores de Berazategui, Quilmes, Florencio Varela y alrededores."),
     ],
     sources=["medline_memoria", "medline_dcl", "oms_demencia"],
-    related=["neuro", "estcog", "talleres", "caidas", "kine", "guias"],
+    related=["neuro", "estcog", "estcog_casa", "talleres", "caidas", "guias"],
 ))
 
 # ───────────────────────── 7. PREVENCIÓN DE CAÍDAS ─────────────────────────
@@ -336,7 +336,7 @@ ART.append(dict(
         ("¿Hay psicólogos infantiles en Berazategui?", "Sí. En Centro Sinapsis (Calle 27 Nº3907 esq. 139, Berazategui) atendemos a niños y adolescentes de toda la Zona Sur. Podés pedir una primera entrevista por WhatsApp, sin derivación."),
     ],
     sources=["medline_conducta", "medline_salud_mental", "medline_ansiedad"],
-    related=["psico", "ansiedad", "rabietas", "tdah", "primera", "guias"],
+    related=["psico", "ansiedad", "rabietas", "atencion", "tdah", "guias"],
 ))
 
 # ───────── PSICOLOGÍA 2: rabietas ─────────
@@ -761,15 +761,289 @@ ART.append(dict(
     related=["disc", "cud_guia", "obras", "tea", "temprana", "guias"],
 ))
 
+
+# ═════════════════════ GUÍAS NUEVAS (plan editorial 6, 7, 9, 10, 11 y 12) ═════════════════════
+# Publicadas el 2026-11-04 a pedido del centro. Contenido general basado en las fuentes
+# citadas (CDC, MedlinePlus, OMS); no incluye datos institucionales pendientes.
+# Pendiente: revisión del profesional indicado en PLAN_EDITORIAL.md para cada una.
+
+# ───────── 6. Señales de alerta en el desarrollo del bebé (0 a 12 meses) ─────────
+ART.append(dict(
+    slug="senales-alerta-desarrollo-bebe.html", ilu="senales-bebe", articulo=True, fecha="2026-11-04",
+    title="Señales de alerta en el desarrollo del bebé | Centro Sinapsis",
+    desc="Qué hace la mayoría de los bebés a los 2, 4, 6, 9 y 12 meses, qué señales conviene consultar y cómo ayuda la estimulación temprana. Guía para familias.",
+    crumb_parent=GUIAS, crumb="Señales de alerta en el bebé", tag="Guía · Estimulación temprana",
+    h1="Señales de alerta en el desarrollo del bebé, de 0 a 12 meses",
+    lead="Cada bebé tiene su ritmo. Te contamos qué hace la mayoría a cada edad y qué señales conviene consultar sin esperar.",
+    cta="Consultar por estimulación temprana", motivo="desarrollo",
+    wa="Hola! Quisiera consultar por el desarrollo de mi bebé.",
+    about={"@type": "MedicalCondition", "name": "Retraso en el desarrollo infantil"},
+    body=
+    sec("La respuesta corta",
+        "<p>Durante el primer año, los bebés van sumando habilidades en el movimiento, la comunicación, el juego y el vínculo. No todos lo hacen al mismo tiempo, pero hay <strong>referencias por edad</strong> que ayudan a saber si conviene consultar. "
+        "Si tu bebé no alcanza algunas de las habilidades de su edad, si <strong>pierde algo que ya hacía</strong> o si a vos algo te preocupa, consultá con el pediatra y con un equipo de <a href=\"estimulacion-temprana-berazategui.html\">estimulación temprana</a>. Consultar temprano no es alarmarse: es acompañar a tiempo.</p>")
+    + sec("Qué hace la mayoría de los bebés a cada edad",
+          "<p>Estas referencias siguen los indicadores del CDC, que muestran lo que hace la mayoría de los bebés (3 de cada 4) a cada edad. Si nació prematuro, se toma su edad corregida.</p>"
+          + card("Alrededor de los 2 meses", "Se calma cuando le hablan o lo alzan, mira las caras, sonríe cuando le hablan o le sonríen, hace sonidos además del llanto y, boca abajo, levanta un poco la cabeza.")
+          + card("Alrededor de los 4 meses", "Sonríe para llamar tu atención, empieza a reírse bajito (todavía sin carcajadas), hace sonidos como “ooo” o “aaa”, sostiene la cabeza firme sin apoyo y se lleva las manos a la boca.")
+          + card("Alrededor de los 6 meses", "Reconoce a las personas conocidas, se ríe, hace turnos de sonidos con vos, se da vuelta de boca abajo a boca arriba y se apoya en los brazos estando boca abajo.")
+          + card("Alrededor de los 9 meses", "Muestra distintas expresiones, reacciona cuando lo llamás por su nombre, hace sonidos como “mamama” o “bababa”, se sienta sin ayuda y pasa objetos de una mano a la otra.")
+          + card("Alrededor de los 12 meses", "Juega a juegos como las palmas, saluda con la mano, entiende el “no”, dice “mamá” o “papá” (o una palabra parecida), se para agarrándose de los muebles y busca cosas que ve que escondés."))
+    + sec("Señales para consultar",
+          ul(["<b>Pérdida de habilidades</b>: deja de hacer algo que ya hacía (sonreír, balbucear, sostener la cabeza, sentarse). Siempre conviene consultar pronto.",
+              "No sigue con la mirada a las personas o los objetos, o no reacciona a los sonidos fuertes.",
+              "Se lo nota <b>muy rígido o muy “blandito”</b>, o usa mucho más un lado del cuerpo que el otro.",
+              "A los 6 meses, casi no sonríe ni hace sonidos para interactuar.",
+              "A los 9 a 12 meses, no reacciona a su nombre, no balbucea o no usa gestos como saludar o señalar.",
+              "Tiene dificultades persistentes para alimentarse (succión, deglución) o duerme y se calma con mucha dificultad."])
+          + "<p class=\"svc-nota\">Una señal aislada no significa que haya un problema: lo que importa es el conjunto y que se mantenga en el tiempo. Ante la duda, consultá.</p>")
+    + '  <div class="svc-callout">Si notás algo que te preocupa, <strong>no esperes al próximo control</strong>: anotá qué observás, desde cuándo y, si podés, grabá un video corto. Ayuda mucho en la consulta con el pediatra y con el equipo de estimulación temprana.</div>\n'
+    + sec("Cómo acompañar el desarrollo en casa",
+          ul(["<b>Hablale y cantale</b> durante el día, aunque todavía no responda con palabras.",
+              "<b>Dale tiempo boca abajo</b> mientras está despierto y lo mirás, para fortalecer cuello, espalda y brazos.",
+              "<b>Jugá cara a cara</b>: imitá sus sonidos y gestos, y esperá su respuesta.",
+              "<b>Leé cuentos</b> con imágenes y nombrá lo que ven.",
+              "<b>Limitá las pantallas</b>: en el primer año, lo que más estimula es la interacción con las personas."]))
+    + sec("Cómo trabajamos en Centro Sinapsis",
+          "<p>En <a href=\"estimulacion-temprana-berazategui.html\">estimulación temprana</a> acompañamos a bebés y niños pequeños y a sus familias, con o sin diagnóstico previo. Si hace falta, sumamos a <a href=\"fonoaudiologia-berazategui.html\">fonoaudiología</a> o <a href=\"terapia-ocupacional-integracion-sensorial.html\">terapia ocupacional</a>. Podés pedir una primera entrevista por WhatsApp, sin derivación médica.</p>"),
+    faqs=[
+        ("¿A qué edad debería sentarse solo mi bebé?", "La mayoría de los bebés se sienta sin ayuda alrededor de los 9 meses. Si a esa edad todavía no lo logra, o si tenés dudas antes, conviene consultarlo con el pediatra."),
+        ("¿Qué pasa si mi bebé fue prematuro?", "Se toma en cuenta su edad corregida: la edad que tendría si hubiera nacido a término. El seguimiento del desarrollo es especialmente importante en los bebés prematuros."),
+        ("¿Cuándo conviene consultar por estimulación temprana?", "Cuando el bebé no alcanza algunas habilidades esperables para su edad, si pierde algo que ya hacía o si la familia nota algo que le preocupa. No hace falta tener un diagnóstico para empezar."),
+        ("¿Una señal de alerta significa que mi bebé tiene un trastorno?", "No. Una señal aislada no alcanza para decir que hay un problema. Indica que conviene mirar con más atención y consultar a un profesional."),
+    ],
+    sources=["cdc_hitos", "cdc_actearly", "medline_desarrollo"],
+    related=["temprana", "senales", "lenguaje", "to", "fono", "guias"],
+))
+
+# ───────── 7. ¿No presta atención en clase? ─────────
+ART.append(dict(
+    slug="no-presta-atencion-en-clase.html", ilu="atencion-clase", articulo=True, fecha="2026-11-04",
+    title="Mi hijo no presta atención en clase: causas | Centro Sinapsis",
+    desc="La falta de atención en la escuela puede deberse al TDAH, pero también al sueño, la ansiedad, la visión o una dificultad de aprendizaje. Cuándo consultar.",
+    crumb_parent=GUIAS, crumb="No presta atención en clase", tag="Guía · Atención y aprendizaje",
+    h1="¿No presta atención en clase? TDAH y otras causas posibles",
+    lead="Cuando la escuela avisa que tu hijo “se distrae”, no siempre es TDAH. Te contamos qué otras causas hay y cómo se evalúa.",
+    cta="Consultar por atención y aprendizaje", motivo="tdah",
+    wa="Hola! Quisiera consultar porque en la escuela dicen que mi hijo/a no presta atención.",
+    about={"@type": "MedicalCondition", "name": "Problemas de atención en la infancia"},
+    body=
+    sec("La respuesta corta",
+        "<p>Que un chico “no preste atención en clase” es un motivo de consulta muy frecuente, pero <strong>no es un diagnóstico</strong>. Puede tener que ver con el <a href=\"tdah-berazategui.html\">TDAH</a>, y también con el sueño, la ansiedad, problemas de visión o audición, una dificultad específica de aprendizaje o lo que está pasando en su vida. "
+        "Por eso lo importante es una <strong>evaluación integral</strong>, que mire al chico en casa y en la escuela, antes de ponerle un nombre.</p>")
+    + sec("Causas posibles de la falta de atención",
+          card("TDAH", "Le cuesta sostener la atención, organizarse y controlar los impulsos, en casa y en la escuela, desde hace tiempo y no solo en una materia.")
+          + card("Dificultades de aprendizaje", "Si leer, escribir o calcular le cuesta mucho, es esperable que se desconecte de las tareas que le exigen eso. Pasa, por ejemplo, con la <a href=\"dislexia-senales-ninos.html\">dislexia</a> o la <a href=\"discalculia-ninos.html\">discalculia</a>.")
+          + card("Sueño, visión y audición", "Dormir poco o mal, no ver bien el pizarrón o no escuchar bien a la maestra pueden parecer falta de atención. Conviene que el pediatra lo descarte.")
+          + card("Lo emocional", "La <a href=\"ansiedad-en-ninos.html\">ansiedad</a>, la tristeza o situaciones difíciles en la familia ocupan la cabeza y dejan poco lugar para la clase.")
+          + card("El contexto", "Cambios de escuela, de grado o de docente, grupos muy numerosos o tareas que no se ajustan a su nivel también influyen."))
+    + sec("¿Cuándo pensar en TDAH?",
+          "<p>El diagnóstico de TDAH es <strong>clínico</strong>: lo hace un profesional a partir de entrevistas, observación e información de la familia y la escuela. En general se tiene en cuenta que las dificultades:</p>"
+          + ul(["aparezcan en <b>más de un ámbito</b> (casa, escuela, actividades);",
+                "se mantengan en el tiempo, <b>durante varios meses</b>;",
+                "hayan empezado <b>en la infancia</b>;",
+                "afecten de verdad su aprendizaje, sus vínculos o su día a día;",
+                "no se expliquen mejor por otra causa."])
+          + "<p class=\"svc-nota\">Los cuestionarios que circulan en internet sirven para ordenar las dudas, pero no diagnostican.</p>")
+    + sec("Qué podés hacer mientras tanto",
+          ul(["<b>Hablá con la escuela</b>: preguntá en qué momentos se distrae, en qué materias y desde cuándo.",
+              "<b>Cuidá el sueño</b> y los horarios de pantallas, sobre todo a la noche.",
+              "<b>Pedí al pediatra</b> un control de visión y audición.",
+              "<b>Dividí las tareas</b> en partes cortas, con pausas y un lugar ordenado para hacerlas.",
+              "<b>Reconocé el esfuerzo</b>, no solo los resultados: muchos chicos con dificultades de atención se sienten “retados” todo el día."]))
+    + sec("Cómo trabajamos en Centro Sinapsis",
+          "<p>Hacemos una evaluación integral que puede incluir <a href=\"evaluacion-neurocognitiva-berazategui.html\">evaluación neurocognitiva</a>, <a href=\"psicodiagnostico-berazategui.html\">psicodiagnóstico</a> y <a href=\"psicopedagogia-dificultades-aprendizaje.html\">psicopedagogía</a>, con entrevistas a la familia e información de la escuela. Con eso se define qué está pasando y cómo acompañar. El centro no indica medicación: si hace falta, orientamos la consulta con el especialista.</p>"),
+    faqs=[
+        ("¿Si mi hijo se distrae en clase es TDAH?", "No necesariamente. La falta de atención puede deberse a muchas causas: sueño, ansiedad, problemas de visión o audición, dificultades de aprendizaje o el contexto escolar. Una evaluación profesional ayuda a entender qué está pasando."),
+        ("¿Quién diagnostica el TDAH?", "Un profesional de la salud con formación específica, a partir de entrevistas, observación, información de la familia y de la escuela y, cuando corresponde, pruebas de evaluación. No se diagnostica con un cuestionario online."),
+        ("¿La escuela puede diagnosticar TDAH?", "No. La escuela aporta información muy valiosa sobre cómo se desempeña el chico, pero el diagnóstico lo hace un profesional de la salud."),
+        ("¿Qué evaluación hacen en Centro Sinapsis?", "Según el caso, evaluación neurocognitiva, psicodiagnóstico y psicopedagogía, con entrevistas a la familia e información de la escuela. Podés consultar por WhatsApp, sin derivación médica."),
+    ],
+    sources=["cdc_tdah", "medline_tdah", "medline_aprendizaje"],
+    related=["tdah", "psicoped", "neuro", "dislexia", "ansiedad", "guias"],
+))
+
+# ───────── 9. Selectividad alimentaria ─────────
+ART.append(dict(
+    slug="selectividad-alimentaria-ninos.html", ilu="selectividad", articulo=True, fecha="2026-11-04",
+    title="Mi hijo come pocos alimentos: cuándo consultar | Sinapsis",
+    desc="Selectividad alimentaria en niños: qué es esperable, señales para consultar, cómo acompañar en casa y cómo ayudan la terapia ocupacional y la fonoaudiología.",
+    crumb_parent=GUIAS, crumb="Selectividad alimentaria", tag="Guía · Terapia ocupacional",
+    h1="Selectividad alimentaria: cuando comer es un problema para tu hijo",
+    lead="Muchos chicos pasan por una etapa de comer pocas cosas. Te ayudamos a distinguir lo esperable de lo que conviene consultar.",
+    cta="Consultar por alimentación", motivo="desarrollo",
+    wa="Hola! Quisiera consultar porque mi hijo/a come muy pocos alimentos.",
+    about={"@type": "MedicalCondition", "name": "Selectividad alimentaria infantil"},
+    body=
+    sec("La respuesta corta",
+        "<p>Entre los 2 y los 6 años es muy común que los chicos desconfíen de los alimentos nuevos y prefieran siempre los mismos. En la mayoría de los casos es una etapa. "
+        "Conviene consultar cuando la lista de alimentos que acepta es <strong>muy corta</strong>, cuando rechaza <strong>grupos enteros</strong> (por ejemplo, todas las verduras o todo lo que tenga cierta textura), cuando las comidas se vuelven un <strong>momento de mucha angustia</strong> o cuando afecta su <strong>crecimiento</strong>. Primero, siempre, el pediatra; después, según el caso, terapia ocupacional y fonoaudiología.</p>")
+    + sec("¿Qué es esperable y qué no?",
+          card("Suele ser parte de la etapa", "Desconfía de lo nuevo, pero de a poco prueba; come una variedad razonable de alimentos de distintos grupos; tiene días de comer más y días de comer menos; crece bien.")
+          + card("Conviene consultar", "Acepta muy pocos alimentos y la lista se achica con el tiempo; tiene arcadas o vómitos con ciertas texturas; solo come una marca o una presentación; las comidas duran mucho o terminan en llanto; le cuesta masticar o tragar; baja de peso o no crece como se espera."))
+    + sec("¿Por qué pasa?",
+          "<p>Las causas pueden ser varias y combinarse: una <strong>sensibilidad sensorial</strong> marcada a texturas, olores o temperaturas (ver <a href=\"integracion-sensorial-senales.html\">integración sensorial</a>), dificultades en la <strong>masticación o la deglución</strong>, experiencias desagradables con la comida (atragantamientos, reflujo) o el miedo a probar. "
+          "Es frecuente en chicos con <a href=\"autismo-tea-berazategui.html\">autismo</a>, aunque también aparece sin ningún diagnóstico. Cuando es muy restrictiva y afecta la salud, los profesionales pueden evaluar un trastorno de la alimentación llamado ARFID (trastorno de evitación o restricción de la ingesta de alimentos).</p>")
+    + sec("Cómo acompañar en casa",
+          ul(["<b>Sin presión, sin premios ni castigos</b> con la comida: aumentan el rechazo.",
+              "<b>Ofrecé lo nuevo de a poco</b>, en una porción chica, junto a algo que ya acepta. Muchas veces hace falta ofrecer un alimento muchas veces antes de que lo pruebe.",
+              "<b>Comé en familia</b> y mostrá que vos también comés esos alimentos.",
+              "<b>Involucralo</b> en las compras y en la cocina: tocar, oler y preparar la comida acerca sin obligar.",
+              "<b>Rutinas</b> de horarios y lugar para comer, sin pantallas en la mesa."]))
+    + '  <div class="svc-callout"><strong>Si tu hijo baja de peso, se atraganta seguido, tiene vómitos frecuentes o deja de tomar líquidos</strong>, consultá con el pediatra cuanto antes.</div>\n'
+    + sec("Cómo trabajamos en Centro Sinapsis",
+          "<p>La selectividad alimentaria se aborda mejor en equipo. En <a href=\"terapia-ocupacional-integracion-sensorial.html\">terapia ocupacional</a> trabajamos la parte sensorial y la tolerancia a nuevas texturas, y en <a href=\"fonoaudiologia-berazategui.html\">fonoaudiología</a>, la masticación y la deglución. Siempre en coordinación con el pediatra y, cuando hace falta, con nutrición.</p>"),
+    faqs=[
+        ("¿Es normal que mi hijo coma siempre lo mismo?", "Entre los 2 y los 6 años es común que los chicos prefieran pocos alimentos y desconfíen de lo nuevo. Conviene consultar si la lista es muy corta, rechaza grupos enteros, las comidas generan mucha angustia o afecta su crecimiento."),
+        ("¿La selectividad alimentaria tiene que ver con el autismo?", "Es más frecuente en chicos con autismo, muchas veces por sensibilidad sensorial, pero también aparece en chicos sin ningún diagnóstico."),
+        ("¿Quién trata la selectividad alimentaria?", "Depende de la causa: el pediatra evalúa el crecimiento y la salud general; la terapia ocupacional aborda la parte sensorial y la fonoaudiología la masticación y la deglución. Muchas veces se trabaja en equipo, junto con nutrición."),
+        ("¿Sirve obligarlo a probar?", "No. La presión, los premios o los castigos con la comida suelen aumentar el rechazo. Ayuda más ofrecer los alimentos de a poco, sin obligar, y comer en familia."),
+    ],
+    sources=["medline_preescolar", "medline_desarrollo"],
+    related=["to", "fono", "sensorial", "tea", "to_ninos", "guias"],
+))
+
+# ───────── 10. TDAH en adultos ─────────
+ART.append(dict(
+    slug="tdah-en-adultos.html", ilu="tdah-adultos", articulo=True, fecha="2026-11-04",
+    title="TDAH en adultos: señales y cuándo consultar | Centro Sinapsis",
+    desc="Desorganización, olvidos, postergación e impulsividad: cómo se manifiesta el TDAH en adultos, por qué hace falta una evaluación y cómo es en Berazategui.",
+    crumb_parent=GUIAS, crumb="TDAH en adultos", tag="Guía · Psicología",
+    h1="TDAH en adultos: señales y cuándo consultar",
+    lead="Muchos adultos llegan a la consulta después de años de sentirse desorganizados o “a las corridas”. Te contamos cómo se manifiesta el TDAH en la adultez y cómo se evalúa.",
+    cta="Consultar por TDAH en adultos", motivo="tdah",
+    wa="Hola! Quisiera consultar por una evaluación de TDAH en adultos.",
+    about={"@type": "MedicalCondition", "name": "Trastorno por déficit de atención e hiperactividad (TDAH) en adultos"},
+    body=
+    sec("La respuesta corta",
+        "<p>El TDAH no es solo de la infancia: en muchas personas continúa en la adultez, a veces sin haber sido diagnosticado nunca. "
+        "En los adultos suele verse como <strong>desorganización, olvidos, postergación, dificultad para terminar lo que se empieza, impulsividad e inquietud interna</strong>. "
+        "Si eso te acompaña desde siempre y afecta tu trabajo, tus estudios o tus vínculos, vale la pena una evaluación profesional. Un cuestionario online puede ayudarte a ordenar las dudas, pero no diagnostica.</p>")
+    + sec("Cómo se manifiesta en la adultez",
+          card("Atención y organización", "Te cuesta sostener la atención en tareas largas o aburridas, perdés cosas, te olvidás de citas o pagos, y la planificación del tiempo es una lucha constante.")
+          + card("Impulsividad", "Interrumpís, decidís o comprás sin pensarlo demasiado, te cuesta esperar y a veces decís cosas de las que después te arrepentís.")
+          + card("Inquietud", "Más que moverte todo el tiempo, sentís una inquietud interna, te cuesta relajarte o quedarte quieto en reuniones largas.")
+          + card("Consecuencias", "Cambios frecuentes de trabajo o de carrera, sensación de no rendir según tus capacidades, cansancio, frustración y baja autoestima."))
+    + sec("¿Por qué hace falta una evaluación?",
+          "<p>Muchas de estas dificultades también aparecen con la <strong>ansiedad</strong>, la <strong>depresión</strong>, la falta de sueño, el estrés o algunos problemas de salud. Por eso el diagnóstico lo hace un profesional y tiene en cuenta, entre otras cosas, que las dificultades:</p>"
+          + ul(["estén presentes <b>desde la infancia</b>, aunque en ese momento no se hayan notado o diagnosticado;",
+                "aparezcan en <b>más de un ámbito</b> de la vida;",
+                "interfieran de verdad en tu día a día;",
+                "no se expliquen mejor por otra causa."])
+          + "<p>Es común que un adulto consulte después de que diagnostican a su hijo o hija, al reconocerse en lo que escucha.</p>")
+    + sec("Qué podés hacer mientras tanto",
+          ul(["<b>Anotá ejemplos concretos</b> de lo que te pasa y, si podés, cómo eras de chico (boletines, comentarios de la familia).",
+              "<b>Usá apoyos externos</b>: agenda, alarmas, listas y recordatorios.",
+              "<b>Dividí las tareas grandes</b> en pasos chicos, con fechas.",
+              "<b>Cuidá el sueño y la actividad física</b>, que influyen mucho en la atención."]))
+    + sec("Cómo trabajamos en Centro Sinapsis",
+          "<p>Hacemos <a href=\"evaluacion-neurocognitiva-berazategui.html\">evaluación neurocognitiva</a> (atención, memoria y funciones ejecutivas) y <a href=\"psicodiagnostico-berazategui.html\">psicodiagnóstico</a>, y acompañamos con <a href=\"psicologia-berazategui.html\">psicología</a>: estrategias de organización, manejo de la impulsividad y acompañamiento emocional. "
+          "El centro <strong>no indica medicación</strong>; si se considera necesaria, orientamos la consulta con psiquiatría.</p>"),
+    faqs=[
+        ("¿El TDAH puede aparecer en la adultez?", "Las dificultades del TDAH empiezan en la infancia, pero muchas personas reciben el diagnóstico recién en la adultez, porque en su momento no se notaron o se interpretaron de otra forma."),
+        ("¿Hay un test para saber si tengo TDAH?", "Existen cuestionarios de cribado, como el ASRS de la OMS, que ayudan a ordenar las dudas, pero no diagnostican. El diagnóstico lo hace un profesional a partir de entrevistas y, cuando corresponde, de una evaluación neurocognitiva."),
+        ("¿El TDAH en adultos se trata solo con medicación?", "No necesariamente. La psicoterapia, las estrategias de organización y la psicoeducación ayudan mucho. Si se considera la medicación, la indica un médico psiquiatra; en Centro Sinapsis no se indica medicación."),
+        ("¿Evalúan TDAH en adultos en Berazategui?", "Sí. En Centro Sinapsis hacemos evaluación neurocognitiva y psicodiagnóstico para adultos. Podés pedir una primera entrevista por WhatsApp, sin derivación médica."),
+    ],
+    sources=["medline_tdah", "cdc_tdah"],
+    related=["tdah", "neuro", "psico", "psicodx", "primera", "guias"],
+))
+
+# ───────── 11. Anticipación en autismo ─────────
+ART.append(dict(
+    slug="anticipacion-autismo-cambios-rutina.html", ilu="anticipacion", articulo=True, fecha="2026-11-04",
+    title="Cómo anticipar cambios a un niño con autismo | Centro Sinapsis",
+    desc="Ideas prácticas para preparar a un niño con autismo para una consulta, un viaje o un cambio de rutina: anticipación, apoyos visuales y regulación sensorial.",
+    crumb_parent=GUIAS, crumb="Anticipar cambios en el autismo", tag="Guía · Autismo / TEA",
+    h1="Cómo preparar a un niño con autismo para una consulta o un cambio de rutina",
+    lead="Saber qué va a pasar da tranquilidad. Estas herramientas ayudan a que los cambios sean más previsibles y menos estresantes.",
+    cta="Consultar por autismo", motivo="tea",
+    wa="Hola! Quisiera consultar por acompañamiento para mi hijo/a con autismo.",
+    about={"@type": "MedicalCondition", "name": "Trastorno del espectro autista"},
+    body=
+    sec("La respuesta corta",
+        "<p>Muchos chicos con <a href=\"autismo-tea-berazategui.html\">autismo</a> se sienten más seguros cuando saben qué va a pasar, en qué orden y cuándo termina. "
+        "<strong>Anticipar</strong> con tiempo, usar <strong>apoyos visuales</strong> y planificar cómo cuidar su <strong>regulación sensorial</strong> ayuda a que una consulta médica, un viaje o un cambio en la rutina sea más llevadero para el chico y para la familia.</p>")
+    + sec("Herramientas que suelen ayudar",
+          card("Anticipar con tiempo", "Contale qué va a pasar unos días antes y recordalo el mismo día. Usá frases cortas y concretas: “Mañana vamos al médico. Te va a mirar los oídos. Después volvemos a casa”.")
+          + card("Apoyos visuales", "Una agenda con dibujos o fotos de cada paso (salir, viajar, esperar, consulta, volver) le permite ver la secuencia y saber cuándo termina.")
+          + card("Historias con imágenes", "Un relato corto, con fotos del lugar o de la persona que va a ver, ayuda a imaginar la situación antes de vivirla.")
+          + card("Regulación sensorial", "Llevá lo que lo calma: auriculares, un juguete, un objeto preferido o algo para morder o apretar. Si el lugar es ruidoso, buscá un rincón más tranquilo.")
+          + card("Un “después” claro", "Saber qué viene al terminar (ir a la plaza, su merienda preferida) ayuda a tolerar lo que cuesta."))
+    + sec("Antes de una consulta médica",
+          ul(["<b>Avisá al profesional</b> cómo se comunica tu hijo, qué le molesta (ruidos, luces, que lo toquen) y qué lo ayuda.",
+              "<b>Pedí, si se puede, el primer turno</b> o un horario con menos espera.",
+              "<b>Practicá en casa</b> con juegos: revisar los oídos a un muñeco, abrir la boca, subirse a una camilla.",
+              "<b>Llevá algo para la espera</b> y preparate para salir un rato si lo necesita."]))
+    + sec("Cuando el cambio es grande",
+          "<p>Mudanzas, un nuevo integrante en la familia, el cambio de escuela o las vacaciones se pueden anticipar con más tiempo: visitar el lugar antes, mirar fotos, contar los días en un calendario y mantener todo lo que se pueda de la rutina de siempre (comidas, horarios de sueño, objetos conocidos).</p>")
+    + '  <div class="svc-callout">Cada chico es distinto: lo que a uno lo calma, a otro lo puede alterar. Probá de a una herramienta y quedate con lo que funciona para tu hijo.</div>\n'
+    + sec("Cómo trabajamos en Centro Sinapsis",
+          "<p>En <a href=\"terapia-ocupacional-integracion-sensorial.html\">terapia ocupacional</a> trabajamos la regulación sensorial y la autonomía en la vida diaria, y en <a href=\"psicologia-berazategui.html\">psicología</a> acompañamos al chico y orientamos a la familia, también con estas herramientas de anticipación. Podés consultar por WhatsApp, con o sin CUD.</p>"),
+    faqs=[
+        ("¿Por qué a los chicos con autismo les cuestan tanto los cambios?", "Muchos chicos con autismo se sienten más seguros con la rutina y lo previsible. Un cambio inesperado puede generar mucha ansiedad. Anticipar qué va a pasar ayuda a que lo vivan con más tranquilidad."),
+        ("¿Qué es una agenda visual?", "Es una secuencia de dibujos o fotos que muestra los pasos de una actividad o del día, en orden. Ayuda a que el chico sepa qué va a pasar y cuándo termina."),
+        ("¿Cómo preparo a mi hijo con autismo para ir al médico?", "Anticipá la consulta con tiempo y con apoyos visuales, avisá al profesional qué le molesta y qué lo ayuda, practicá en casa con juegos y llevá algo que lo calme para la espera."),
+        ("¿Quién puede ayudarme con estas estrategias?", "La terapia ocupacional y la psicología trabajan estas herramientas con el chico y la familia. En Centro Sinapsis podés consultar por WhatsApp, sin derivación médica."),
+    ],
+    sources=["oms_tea", "medline_tea"],
+    related=["tea", "senales", "to", "psico", "disc", "guias"],
+))
+
+# ───────── 12. Estimulación cognitiva en casa ─────────
+ART.append(dict(
+    slug="estimulacion-cognitiva-en-casa-adultos-mayores.html", ilu="estimulacion-casa", articulo=True, fecha="2026-11-04",
+    title="Ejercicios de memoria para adultos mayores en casa | Sinapsis",
+    desc="Actividades simples para estimular la memoria y la atención de los adultos mayores en casa, hábitos que cuidan el cerebro y señales para consultar.",
+    crumb_parent=GUIAS, crumb="Estimulación cognitiva en casa", tag="Guía · Adultos mayores",
+    h1="Estimulación cognitiva en casa: actividades para adultos mayores",
+    lead="Mantener la mente activa es parte de envejecer bien. Te compartimos actividades simples y los hábitos que más ayudan.",
+    cta="Consultar por estimulación cognitiva", motivo="adultos-mayores",
+    wa="Hola! Quisiera consultar por estimulación cognitiva para un adulto mayor.",
+    about={"@type": "MedicalTherapy", "name": "Estimulación cognitiva en adultos mayores"},
+    body=
+    sec("La respuesta corta",
+        "<p>Leer, conversar, jugar a las cartas, aprender algo nuevo y moverse todos los días ayuda a mantener activas la memoria y la atención. "
+        "Ningún juego por sí solo previene la demencia, pero <strong>combinar actividad mental, actividad física y vida social</strong>, junto con el cuidado de la salud, es lo que más se recomienda. "
+        "Si los olvidos empiezan a afectar la vida diaria, lo indicado es una consulta, no más ejercicios.</p>")
+    + sec("Actividades para hacer en casa",
+          card("Memoria", "Recordar la lista de las compras antes de leerla, contar qué se hizo ayer, repasar fotos y recuerdos con la familia, aprender una canción o un poema.")
+          + card("Atención y concentración", "Sopas de letras, crucigramas, rompecabezas, encontrar diferencias, seguir una receta nueva paso a paso.")
+          + card("Lenguaje", "Leer en voz alta, conversar sobre noticias o libros, nombrar palabras que empiecen con una letra, escribir cartas o un diario.")
+          + card("Razonamiento y planificación", "Juegos de cartas y de mesa, organizar una salida o un presupuesto, juegos de estrategia como el dominó o el ajedrez.")
+          + card("Algo nuevo", "Aprender un idioma, un instrumento, una manualidad o a usar el celular: lo nuevo exige más que lo que ya sale de memoria.")
+          + '<p>También podés usar nuestros <a href="juegos.html">juegos</a> y <a href="ejercicios.html">ejercicios gratuitos</a>, pensados para hacer en casa.</p>')
+    + sec("Hábitos que cuidan el cerebro",
+          ul(["<b>Moverse todos los días</b>: la Organización Mundial de la Salud recomienda actividad física regular también para cuidar la salud cognitiva. Ver <a href=\"ejercicio-adultos-mayores.html\">ejercicio para adultos mayores</a>.",
+              "<b>Mantener los vínculos</b>: la soledad y el aislamiento afectan la memoria y el ánimo.",
+              "<b>Controlar la presión, el azúcar y el colesterol</b> con el médico de cabecera.",
+              "<b>Revisar la audición y la vista</b>: oír y ver bien ayuda a participar y a recordar.",
+              "<b>Dormir bien</b> y consultar si hay ronquidos fuertes o pausas al respirar.",
+              "<b>No fumar y moderar el alcohol</b>."]))
+    + '  <div class="svc-callout">Si los olvidos son frecuentes y afectan la vida diaria (repetir las mismas preguntas, perderse en lugares conocidos, no poder con tareas que antes resolvía), conviene consultar. Mirá <a href="olvidos-memoria-adultos-mayores.html">cuándo preocuparse por los olvidos</a>.</div>\n'
+    + sec("Cómo trabajamos en Centro Sinapsis",
+          "<p>En <a href=\"estimulacion-cognitiva-berazategui.html\">estimulación cognitiva</a> armamos actividades a medida de cada persona, y en el <a href=\"talleres.html\">taller de estimulación cognitiva para adultos</a> se trabaja en grupo, que además suma el encuentro con otros. Si hace falta, una <a href=\"evaluacion-neurocognitiva-berazategui.html\">evaluación neurocognitiva</a> ayuda a entender qué está pasando.</p>"),
+    faqs=[
+        ("¿Qué ejercicios ayudan a la memoria de los adultos mayores?", "Actividades que combinan memoria, atención y lenguaje, como recordar listas, leer y conversar, juegos de cartas y de mesa, crucigramas y aprender algo nuevo. Lo ideal es sumarles actividad física y vida social."),
+        ("¿Los juegos de memoria previenen la demencia?", "Ningún juego por sí solo previene la demencia. Lo que más se recomienda es combinar actividad mental, actividad física, vínculos sociales y el control de la salud, como la presión arterial y la audición."),
+        ("¿Cuándo conviene consultar por los olvidos?", "Cuando son frecuentes y afectan la vida diaria: repetir las mismas preguntas, perderse en lugares conocidos o tener dificultades nuevas con tareas que antes resolvía. En esos casos conviene una evaluación."),
+        ("¿Tienen talleres de estimulación cognitiva para adultos en Berazategui?", "Sí. En Centro Sinapsis hay un taller de estimulación cognitiva para adultos y adultos mayores. Consultá días y horarios por WhatsApp."),
+    ],
+    sources=["oms_demencia", "medline_memoria", "oms_actividad"],
+    related=["estcog", "olvidos", "ejercicio", "talleres", "neuro", "guias"],
+))
+
 # ───────────────────────── índice /guias.html ─────────────────────────
 INDICE = [
     # Psicología
+    ("tdah-en-adultos.html", "tdah-adultos", "TDAH en adultos", "Señales y cuándo consultar.", "Psicología"),
     ("cuando-llevar-a-mi-hijo-al-psicologo.html", "psicologo-infantil", "¿Cuándo llevar a mi hijo al psicólogo?", "Señales y cómo es la primera consulta.", "Psicología"),
     ("ansiedad-en-ninos.html", "ansiedad", "Ansiedad en niños y adolescentes", "Señales y cómo acompañar en casa.", "Psicología"),
     ("rabietas-berrinches-ninos.html", "berrinche", "Rabietas y berrinches", "Qué es esperable y cuándo consultar.", "Psicología"),
     ("primera-consulta-psicologo.html", "primera-consulta", "Tu primera consulta con el psicólogo", "Qué pasa y qué preguntar.", "Psicología"),
     ("tdah-berazategui.html", "tdah", "TDAH en niños y adultos", "Atención, inquietud e impulsividad.", "Psicología"),
     # Psicopedagogía
+    ("no-presta-atencion-en-clase.html", "atencion-clase", "¿No presta atención en clase?", "TDAH y otras causas posibles.", "Psicopedagogía"),
     ("que-hace-un-psicopedagogo.html", "psicopedagogo", "¿Qué hace un psicopedagogo?", "Cuándo consultar y cómo es el proceso.", "Psicopedagogía"),
     ("dislexia-senales-ninos.html", "dislexia", "Dislexia en niños", "Señales en el jardín y la primaria.", "Psicopedagogía"),
     ("discalculia-ninos.html", "discalculia", "Discalculia", "Cuando los números cuestan más.", "Psicopedagogía"),
@@ -779,15 +1053,19 @@ INDICE = [
     ("problemas-pronunciacion-ninos.html", "pronunciacion", "Mi hijo no pronuncia bien", "La erre, la ese y otros sonidos.", "Fonoaudiología"),
     ("tartamudez-ninos.html", "tartamudez", "Tartamudez en niños", "Cuándo es parte del desarrollo y cuándo consultar.", "Fonoaudiología"),
     # Terapia ocupacional
+    ("selectividad-alimentaria-ninos.html", "selectividad", "Selectividad alimentaria", "Cuando comer es un problema.", "Terapia Ocupacional"),
     ("que-hace-terapia-ocupacional-ninos.html", "autonomia", "¿Qué hace la terapia ocupacional?", "Autonomía, juego y sentidos.", "Terapia Ocupacional"),
     ("integracion-sensorial-senales.html", "integracion-sensorial", "Integración sensorial", "Ruidos, texturas y movimiento: qué mirar.", "Terapia Ocupacional"),
     ("motricidad-fina-ninos.html", "motricidad-fina", "Motricidad fina", "Lápiz, tijeras y botones: qué es esperable.", "Terapia Ocupacional"),
     # Kinesiología y adultos mayores
     ("ejercicio-adultos-mayores.html", "ejercicio-mayores", "Ejercicio para adultos mayores", "Por qué y cómo empezar.", "Kinesiología"),
     ("prevencion-caidas-adultos-mayores.html", "caidas", "Cómo prevenir caídas", "Fuerza, equilibrio y una casa segura.", "Kinesiología"),
+    ("estimulacion-cognitiva-en-casa-adultos-mayores.html", "estimulacion-casa", "Estimulación cognitiva en casa", "Actividades para la memoria.", "Adultos mayores"),
     ("olvidos-memoria-adultos-mayores.html", "olvidos", "Olvidos en adultos mayores", "Qué es esperable y cuándo preocuparse.", "Adultos mayores"),
     # Desarrollo y discapacidad
+    ("senales-alerta-desarrollo-bebe.html", "senales-bebe", "Señales de alerta en el bebé", "Qué hace a cada edad, de 0 a 12 meses.", "Estimulación temprana"),
     ("senales-autismo-ninos.html", "senales-autismo", "¿Cómo saber si mi hijo tiene autismo?", "Señales por edad y cuándo consultar.", "Autismo / TEA"),
+    ("anticipacion-autismo-cambios-rutina.html", "anticipacion", "Anticipar cambios en el autismo", "Consultas, viajes y cambios de rutina.", "Autismo / TEA"),
     ("como-tramitar-cud-berazategui.html", "discapacidad", "Cómo tramitar el CUD en Berazategui", "El trámite paso a paso, gratis y sin gestores.", "Discapacidad"),
     ("prestaciones-discapacidad-ley-24901.html", "obras-sociales", "Qué cubre tu obra social con CUD", "La Ley 24.901 y cómo reclamar.", "Discapacidad"),
     ("centro-discapacidad-zona-sur.html", "discapacidad", "Atención a personas con discapacidad", "Prestaciones con CUD en Zona Sur.", "Discapacidad"),
