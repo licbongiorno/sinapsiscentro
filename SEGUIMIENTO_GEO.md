@@ -102,3 +102,22 @@ Lectura práctica:
 - Las respuestas de IA **cambian** entre días, cuentas y versiones del modelo. Una sola prueba no es una tendencia.
 - Aparecer en una respuesta no implica ser recomendado, y no aparecer no implica que el sitio esté mal posicionado en Google.
 - Este seguimiento mide **visibilidad**. Las consultas y los turnos se miden en GA4 (`generate_lead`) y preguntando "¿cómo nos conociste?" en la primera entrevista.
+
+## 7. Línea de base en buscador web (2026-11-04)
+
+Prueba hecha por Claude con un buscador web general, **no** con ChatGPT, Gemini, Perplexity ni Copilot. Por eso no se carga en `seguimiento-geo.csv`. Sirve como referencia de qué fuentes usan hoy los buscadores para estas consultas.
+
+| Consulta | ¿Aparece el centro? | Qué aparece en su lugar |
+|---|---|---|
+| centro de autismo Berazategui | No | Doctoralia (especialistas en autismo), una ordenanza municipal, centros de otros países |
+| psicólogo Berazategui | No | Doctoralia (listado general y por cobertura), Psicología y Mente, Clínica San Martín |
+| "Centro Sinapsis" Berazategui | No | Centros "Sinapsis" de España y Ecuador (homónimos) |
+| cómo tramitar el CUD en Berazategui | No | Defensoría del Pueblo PBA (listado de juntas), notas de medios nacionales |
+
+**Lectura:**
+
+- Esperable: las guías y la conexión con la ficha de Google se publicaron el mismo día, y los buscadores tardan semanas en indexar y reordenar.
+- **Doctoralia aparece primero en dos de las cuatro consultas.** Crear el perfil del centro ahí es la acción externa con más impacto inmediato.
+- La confusión con los homónimos sigue. Ayudan la ficha de Google ya conectada (`sameAs`/`hasMap`), Doctoralia y Bing Places con el mismo nombre y la misma dirección.
+
+**Próxima medición:** mediados de diciembre de 2026, con las mismas consultas y la ronda completa del CSV en las IA.
