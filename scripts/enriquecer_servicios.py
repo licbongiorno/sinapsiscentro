@@ -160,6 +160,8 @@ S["kinesiologia-adultos-mayores-berazategui.html"] = dict(
     ],
     faqs=[
         ("¿Necesito una indicación médica para empezar?", "Para coordinar la primera consulta no hace falta. Igual, si tenés alguna condición de salud, es recomendable que tu médico de cabecera esté al tanto de que vas a empezar actividad física, y en la valoración inicial lo conversamos."),
+        ("¿Qué tipo de ejercicio se recomienda para las personas mayores?", "La Organización Mundial de la Salud recomienda que las personas mayores combinen actividad aeróbica con ejercicios de equilibrio y de fuerza, varios días por semana y adaptados a las posibilidades de cada uno. Ese trabajo de fuerza, equilibrio y movilidad es justamente el que se hace en el gimnasio terapéutico, con un plan que el kinesiólogo ajusta a medida que avanzás."),
+        ("Ya me caí alguna vez, ¿me sirve igual?", "Sí, y es un buen momento para empezar. Después de una caída es común sentir miedo a volver a caerse y moverse menos, y eso aumenta el riesgo. Trabajar fuerza y equilibrio de forma guiada ayuda a recuperar seguridad en el día a día. Si la caída es reciente o tuviste una lesión, conviene que primero te vea tu médico."),
     ],
 )
 
@@ -350,8 +352,10 @@ def procesar(nombre, d):
     s = open(ruta, encoding="utf-8").read()
 
     # 1) bloque estructural (idempotente)
-    s = re.sub(r"<!-- SINAPSIS:ESTRUCTURA -->.*?<!-- /SINAPSIS:ESTRUCTURA -->\n", "", s, flags=re.S)
-    ancla = re.search(r'  <section class="svc-section">\n    <h2>(Cómo es la primera entrevista|Cómo pedir una consulta)</h2>', s)
+    # (se borra también la línea en blanco que se agrega al insertar, para que correrlo de nuevo no sume espacios)
+    s = re.sub(r"<!-- SINAPSIS:ESTRUCTURA -->.*?<!-- /SINAPSIS:ESTRUCTURA -->\n\n?", "", s, flags=re.S)
+    # si la página tiene la sección de enfoques (scripts/generar_enfoques_psicologia.py), la estructura va antes
+    ancla = re.search(r'<!-- SINAPSIS:ENFOQUES -->', s) or re.search(r'  <section class="svc-section">\n    <h2>(Cómo es la primera entrevista|Cómo pedir una consulta)</h2>', s)
     assert ancla, nombre
     s = s[:ancla.start()] + bloque(d) + "\n" + s[ancla.start():]
     s = s.replace("<h2>Cómo es la primera entrevista</h2>", "<h2>Cómo pedir una consulta</h2>")
