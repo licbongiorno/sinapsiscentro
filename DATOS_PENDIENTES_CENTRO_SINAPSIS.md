@@ -13,7 +13,7 @@ Este documento reúne todas las preguntas que el centro tiene que responder para
 - Nombre, dirección, teléfono, email y horario general:
   - Calle 27 Nº3907 esq. 139, Berazategui;
   - 11 6856-7160;
-  - sinapsiscentro@gmail.com;
+  - sinapsisdatos@gmail.com;
   - lunes a viernes de 9 a 20 y sábados de 9 a 13.
 - Los 6 profesionales publicados, con sus matrículas.
 - Las 30 coberturas por discapacidad del listado.

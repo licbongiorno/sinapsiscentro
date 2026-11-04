@@ -7,6 +7,7 @@ Atención sin derivación médica previa, con y sin CUD. Sin CUD, se atiende por
 ## Servicios
 
 - [Psicología](https://sinapsiscentro.com.ar/psicologia-berazategui.html): terapia individual para niños, adolescentes y adultos.
+  - Enfoques de trabajo del equipo de psicología: [psicoanálisis](https://sinapsiscentro.com.ar/psicoanalisis-berazategui.html), [terapia Gestalt](https://sinapsiscentro.com.ar/terapia-gestalt-berazategui.html), [terapia cognitivo conductual (TCC)](https://sinapsiscentro.com.ar/terapia-cognitivo-conductual-berazategui.html), [terapia sistémica y familiar](https://sinapsiscentro.com.ar/terapia-sistemica-familiar-berazategui.html) y [terapia junguiana](https://sinapsiscentro.com.ar/terapia-junguiana-berazategui.html). El profesional y el enfoque se definen en la primera entrevista.
 - [Psicopedagogía](https://sinapsiscentro.com.ar/psicopedagogia-dificultades-aprendizaje.html): dificultades de aprendizaje, lecto-escritura, atención y organización escolar.
 - [Fonoaudiología](https://sinapsiscentro.com.ar/fonoaudiologia-berazategui.html): lenguaje, habla, voz y deglución.
 - [Terapia Ocupacional](https://sinapsiscentro.com.ar/terapia-ocupacional-integracion-sensorial.html): integración sensorial y habilidades de la vida diaria.
@@ -70,5 +71,5 @@ Atención sin derivación médica previa, con y sin CUD. Sin CUD, se atiende por
 ## Contacto
 
 - WhatsApp / teléfono: +54 9 11 6856-7160
-- Email: sinapsiscentro@gmail.com
+- Email: sinapsisdatos@gmail.com
 - [Sitio completo](https://sinapsiscentro.com.ar/)
