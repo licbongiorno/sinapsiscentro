@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://sinapsiscentro.com.ar/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://sinapsiscentro.com.ar/img/centro/centro-sinapsis-berazategui-fachada-1500.webp</image:loc></image:image>
+    <image:image><image:loc>https://sinapsiscentro.com.ar/img/centro/centro-sinapsis-berazategui-recepcion-sala-de-espera-1500.webp</image:loc></image:image>
+    <image:image><image:loc>https://sinapsiscentro.com.ar/img/centro/centro-sinapsis-berazategui-consultorio-infantil-1500.webp</image:loc></image:image>
+    <image:image><image:loc>https://sinapsiscentro.com.ar/img/centro/centro-sinapsis-berazategui-consultorio-1500.webp</image:loc></image:image>
+    <image:image><image:loc>https://sinapsiscentro.com.ar/img/centro/centro-sinapsis-berazategui-consultorio-2-1500.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://sinapsiscentro.com.ar/cuando-llevar-a-mi-hijo-al-psicologo.html</loc>
