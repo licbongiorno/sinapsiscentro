@@ -209,9 +209,10 @@ def page(p):
 <meta name="description" content="{esc(desc)}">
 <meta name="robots" content="{'noindex, nofollow' if p.get('borrador') else 'index, follow, max-image-preview:large'}">
 <link rel="canonical" href="{url}">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#08202e">
 <meta property="og:type" content="{'article' if p.get('articulo') else 'website'}">
 <meta property="og:title" content="{esc(title)}">
@@ -259,7 +260,7 @@ def page(p):
 
 <nav class="svc-nav">
   <a href="/" class="svc-brand">
-    <span class="logo-symbol" aria-hidden="true">✦</span>
+    <img class="logo-symbol" src="logo-sinapsis-claro.svg" alt="" width="40" height="40">
     <div><b>CENTRO SINAPSIS</b><small>Conexiones que importan</small></div>
   </a>
   <a href="{wa}" target="_blank" rel="noopener" class="svc-nav-cta" aria-label="Consultar por WhatsApp">

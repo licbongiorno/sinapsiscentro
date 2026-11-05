@@ -12,6 +12,7 @@ const ROOT = path.resolve(__dirname, '..');
 const BASE = 'https://sinapsiscentro.com.ar/';
 const OUT = path.join(ROOT, 'img', 'og');
 fs.mkdirSync(OUT, { recursive: true });
+const LOGO = 'data:image/svg+xml;base64,' + fs.readFileSync(path.join(ROOT, 'logo-sinapsis-claro.svg')).toString('base64');
 
 const limpiar = s => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/\s+/g, ' ').trim();
 
@@ -30,7 +31,7 @@ body{width:1200px;height:630px;background:#f4efe4;position:relative;overflow:hid
 .b1{position:absolute;width:640px;height:640px;border-radius:50%;background:#e3e9df;right:-180px;top:-120px}
 .b2{position:absolute;width:420px;height:420px;border-radius:50%;background:#f1ddd3;left:-210px;bottom:-230px}
 .marca{position:absolute;left:84px;top:64px;display:flex;align-items:center;gap:18px}
-.mk{width:64px;height:64px;border-radius:18px;background:#08202e;color:#7ed6e4;font:34px Georgia,serif;display:grid;place-items:center}
+.mk{width:64px;height:64px;border-radius:18px;background:#08202e;display:grid;place-items:center}.mk img{width:52px;height:52px}
 .nm{font:700 26px 'Playfair Display',serif;letter-spacing:.14em;color:#1f2a33}
 .sb{font:800 13px Nunito;letter-spacing:.24em;color:#a4593a;margin-top:3px}
 .tx{position:absolute;left:84px;top:178px;width:640px}
@@ -41,7 +42,7 @@ h1{font:700 52px/1.12 'Playfair Display',serif;color:#1f2a33;margin-top:14px}
 .ilu{position:absolute;right:70px;top:115px;width:400px;height:400px;border-radius:50%;background:#fbf8f2;border:2px solid #d9d2c3;box-shadow:0 18px 44px rgba(44,42,34,.12);display:grid;place-items:center}
 .ilu svg{width:350px;height:350px}
 </style></head><body><div class="b1"></div><div class="b2"></div>
-<div class="marca"><div class="mk">✦</div><div><div class="nm">CENTRO SINAPSIS</div><div class="sb">CONEXIONES QUE IMPORTAN</div></div></div>
+<div class="marca"><div class="mk"><img src="${LOGO}"></div><div><div class="nm">CENTRO SINAPSIS</div><div class="sb">CONEXIONES QUE IMPORTAN</div></div></div>
 <div class="tx"><div class="tag">${d.tag}</div><h1 id="t">${d.titulo}</h1></div>
 <div class="chips"><span class="chip">Berazategui · Zona Sur</span><span class="chip">sinapsiscentro.com.ar</span></div>
 <div class="ilu">${svg}</div></body></html>`;
