@@ -1,0 +1,32 @@
+# Control de calidad del sitio del Lic. Nicolás Bongiorno (carpeta sitio-bongiorno/).
+# Independiente del flujo "Calidad del sitio" de Centro Sinapsis.
+name: Sitio Nicolás Bongiorno
+
+on:
+  pull_request:
+    paths: ["sitio-bongiorno/**", ".github/workflows/sitio-bongiorno.yml"]
+  push:
+    branches: [main]
+    paths: ["sitio-bongiorno/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: sitio-bongiorno
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generar el sitio
+        run: python3 build.py
+      - name: public/ está actualizado (se generó y se subió después de editar)
+        run: git diff --exit-code -- public || (echo "Corré python3 build.py y subí public/" && exit 1)
+      - name: SEO, enlaces, datos estructurados y FAQ
+        run: python3 validar.py
