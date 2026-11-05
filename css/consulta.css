@@ -31,7 +31,23 @@
 .cq-campo select:focus-visible, .cq-campo input:focus-visible {
   outline: 2px solid var(--teal-mid, #2aaec2); outline-offset: 1px; border-color: transparent;
 }
-.cq-enviar { border: 0; cursor: pointer; font: inherit; width: 100%; justify-content: center; }
+.cq-enviar {
+  /* estilo propio: no depende de servicios.css (en index.html no se carga) */
+  border: 0; cursor: pointer; font: inherit; font-weight: 700; font-size: 0.98rem;
+  width: 100%; min-height: 54px; padding: 15px 28px; border-radius: 50px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  color: #fff; background: linear-gradient(135deg, #1e8a4a, #25a85c);
+  box-shadow: 0 10px 28px rgba(30,138,74,0.28);
+  transition: transform 0.25s cubic-bezier(.22,1,.36,1), box-shadow 0.25s cubic-bezier(.22,1,.36,1);
+  touch-action: manipulation;
+}
+.cq-enviar .arrow { transition: transform 0.25s cubic-bezier(.22,1,.36,1); }
+.cq-enviar:active { transform: scale(0.97); }
+.cq-enviar:focus-visible { outline: 3px solid var(--teal-mid, #2aaec2); outline-offset: 3px; }
+@media (hover: hover) {
+  .cq-enviar:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(30,138,74,0.34); }
+  .cq-enviar:hover .arrow { transform: translateX(4px); }
+}
 .cq-legal { font-size: 0.8rem; color: var(--text-soft, #5a7583); margin: 12px 0 0; text-align: center; }
 
 /* promesas bajo el CTA del hero de las páginas de captación */

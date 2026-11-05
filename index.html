@@ -315,7 +315,7 @@ nav.solid {
 
 .nav-brand {
   display: flex; align-items: center; gap: 13px;
-  text-decoration: none; order: 2;
+  text-decoration: none; order: 0;
 }
 .logo-mark {
   height: 46px; width: auto;
@@ -378,7 +378,7 @@ nav.solid {
 .nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 @media(max-width:768px){
-  .nav-brand { margin-left: auto; }
+  .nav-brand { margin-left: auto; order: 2; }
   .nav-burger { display: flex; }
   .nav-links {
     position: fixed; top: 0; left: 0; right: auto; height: 100vh; width: min(78vw, 320px);
@@ -448,10 +448,8 @@ nav.solid {
   color: white; letter-spacing: 0.02em;
   animation: heroRise 0.9s var(--easing) both; /* sin opacidad 0: no retrasa el LCP */
 }
-.hero-title .outline {
-  -webkit-text-stroke: 1.5px rgba(126,214,228,0.8);
-  color: transparent;
-}
+.hero-title .outline { color: var(--teal-soft); }
+.hero-title .outline em { font-style: italic; }
 .hero-title .accent { color: var(--teal-soft); font-style: italic; }
 .hero-title .break { display: block; }
 
@@ -474,6 +472,12 @@ nav.solid {
   animation: fadeUp 1s 0.25s var(--easing) both;
 }
 .hero-sub strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+@media (max-width: 600px) {
+  /* en el celular el botón de turno tiene que entrar en la primera pantalla */
+  .hero-sub, .hero-scroll-hint { display: none; }
+  .hero-facts { margin-top: 20px; font-size: 1rem; line-height: 1.6; }
+  .hero-cta-row { margin-top: 26px; }
+}
 
 .hero-cta-row {
   margin-top: 48px; display: flex; gap: 16px; justify-content: center;
@@ -573,10 +577,7 @@ nav.solid {
   font-weight: 500; line-height: 1.2; color: var(--navy);
 }
 .section-title em { font-style: italic; color: var(--teal-texto); }
-.section-title .outline-dark {
-  -webkit-text-stroke: 1.5px var(--teal-deep);
-  color: transparent;
-}
+.section-title .outline-dark { color: var(--teal-texto); font-style: italic; }
 .section-body {
   font-size: 1.05rem; line-height: 1.85; color: var(--text-mid);
   font-weight: 400; max-width: 580px;
@@ -611,6 +612,12 @@ nav.solid {
 }
 .empatia-left .lead em { font-style: italic; color: var(--teal-texto); }
 .empatia-left .section-body { margin-top: 20px; }
+.empatia-foto { margin: 30px 0 0; position: relative; border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 18px 44px rgba(8,32,46,0.12); }
+.empatia-foto img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 0.8s var(--easing); }
+.empatia-foto figcaption { position: absolute; left: 14px; bottom: 14px; }
+.empatia-foto figcaption a { display: inline-block; background: rgba(8,32,46,0.82); color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 700; padding: 8px 16px; border-radius: 50px; backdrop-filter: blur(6px); transition: background 0.25s; }
+.empatia-foto figcaption a:hover { background: var(--teal-deep); }
+@media (hover: hover) { .empatia-foto:hover img { transform: scale(1.03); } }
 
 .pain-cards {
   display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
@@ -656,9 +663,11 @@ nav.solid {
 }
 .steps-grid::before {
   content:''; position:absolute; top: 56px; left:calc(16.6% + 28px); right:calc(16.6% + 28px);
-  height: 1px; background: linear-gradient(90deg, var(--teal-mid), var(--teal-soft), var(--teal-mid));
-  opacity: 0.25;
+  height: 2px; background: linear-gradient(90deg, var(--teal-mid), var(--teal-soft), var(--teal-mid));
+  opacity: 0.45; transform-origin: left center;
 }
+.js-ready .steps-grid::before { transform: scaleX(0); transition: transform 1.6s 0.35s var(--easing); }
+.js-ready .steps-grid.visible::before { transform: scaleX(1); }
 @media(max-width:768px){ .steps-grid { grid-template-columns:1fr; } .steps-grid::before { display:none; } }
 
 .step-card {
@@ -922,6 +931,8 @@ a.service-tile { display: block; text-decoration: none; color: inherit; cursor: 
 }
 .faq-item.open .faq-a { max-height: 300px; }
 .faq-a p { padding: 0 48px 24px 0; font-size: 0.95rem; color: var(--text-soft); line-height: 1.75; }
+.faq-a p { opacity: 0; transform: translateY(-6px); transition: opacity 0.35s var(--easing), transform 0.35s var(--easing); }
+.faq-item.open .faq-a p { opacity: 1; transform: none; }
 .faq-a p a { color: var(--teal-texto); text-decoration: underline; }
 
 /* ═══════════════════════════════════
@@ -1121,6 +1132,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   transition: opacity 0.3s, transform 0.3s, background 0.3s, border-color 0.3s; backdrop-filter: blur(10px);
 }
 .go-top.show { opacity:1; transform:scale(1); }
+@media (max-width: 768px) { .go-top { display: none; } }
 .go-top svg { stroke: white; fill: none; width: 18px; height: 18px; stroke-width:2.5; }
 
 /* ═══════════════════════════════════
@@ -1363,6 +1375,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
   <link rel="stylesheet" href="css/consulta.css">
   <link rel="stylesheet" href="css/talleres.css">
   <link rel="stylesheet" href="css/accesibilidad.css">
+  <link rel="stylesheet" href="css/movimiento.css">
 </head>
 <body>
 
@@ -1440,6 +1453,10 @@ footer { background: #050f17; padding: 72px 6% 34px; }
       <p class="section-body rv from-bottom d2">
         En Centro Sinapsis te recibimos sin listas de espera eternas ni trámites complicados. Escuchamos, evaluamos y acompañamos. Así de simple, así de humano.
       </p>
+      <figure class="empatia-foto rv from-bottom d3">
+        <img src="img/centro/centro-sinapsis-berazategui-recepcion-sala-de-espera-800.webp" srcset="img/centro/centro-sinapsis-berazategui-recepcion-sala-de-espera-800.webp 800w, img/centro/centro-sinapsis-berazategui-recepcion-sala-de-espera-1500.webp 1500w" sizes="(max-width:900px) 92vw, 540px" width="800" height="533" loading="lazy" decoding="async" alt="Recepción y sala de espera de Centro Sinapsis en Berazategui">
+        <figcaption><a href="#espacio">Conocé nuestro espacio →</a></figcaption>
+      </figure>
     </div>
     <div class="pain-cards">
       <div class="pain-card rv scale-in d1">
@@ -1514,7 +1531,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
     <div class="section-tag rv from-bottom" style="justify-content:center;">Así empezamos a trabajar juntos</div>
     <h2 class="section-title rv from-bottom d1">Tres pasos para <em>empezar</em></h2>
   </div>
-  <div class="steps-grid">
+  <div class="steps-grid rv">
     <div class="step-card rv from-bottom d1">
       <div class="step-num">1</div>
       <h3>Escribinos</h3>
@@ -1767,7 +1784,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 
 <!-- ═══ FAQ ═══ -->
 <section id="faq">
-  <div style="max-width:1160px;margin:0 auto;">
+  <div style="max-width:780px;margin:0 auto;">
     <div class="section-tag rv from-bottom">Dudas frecuentes</div>
     <h2 class="section-title rv from-bottom d1">Preguntas que<br><em>todos hacen</em></h2>
   </div>
@@ -2134,11 +2151,6 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 </footer>
 
 <div role="region" aria-label="Accesos directos">
-  <!-- FLOATING RECURSOS -->
-  <a href="#recursos" class="fab-recursos" title="Ver recursos gratuitos" aria-label="Ver recursos gratuitos">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></svg>
-    <span class="fab-recursos-txt">Recursos gratis</span>
-  </a>
 
   <!-- FLOATING WA -->
   <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="fab" title="Pedir turno por WhatsApp" aria-label="Pedir turno por WhatsApp">

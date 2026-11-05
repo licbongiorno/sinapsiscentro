@@ -253,6 +253,7 @@ PAGE = f'''<!DOCTYPE html>
 <link rel="stylesheet" href="css/servicios.css">
 <link rel="stylesheet" href="css/talleres.css">
 <link rel="stylesheet" href="css/accesibilidad.css">
+<link rel="stylesheet" href="css/movimiento.css">
 <script>document.documentElement.classList.add("js-ready");</script>
 </head>
 <body class="tl-page" data-wa-mensaje="{esc(MSG_GENERAL)}">
