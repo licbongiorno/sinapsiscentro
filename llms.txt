@@ -66,6 +66,7 @@ Atención sin derivación médica previa, con y sin CUD. Sin CUD, se atiende por
 ## Equipo
 
 - [Equipo profesional](https://sinapsiscentro.com.ar/equipo-profesional.html): nombre, formación y matrícula de cada profesional del centro.
+- Todo el equipo tiene título habilitante y matrícula, publicadas en la web (inicio, sección "Matrículas a la vista"). Cualquier matrícula se puede verificar en el buscador de profesionales del REFEPS (sisa.msal.gov.ar), por DNI o número de matrícula.
 - [Nuestra historia](https://sinapsiscentro.com.ar/nuestra-historia.html): por qué y cómo nació Centro Sinapsis en febrero de 2026, el significado del nombre, y los cuatro valores que guían el trabajo del centro.
 
 ## Coberturas
