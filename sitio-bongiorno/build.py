@@ -423,19 +423,23 @@ def bloque_resenas():
         citas.append(f'''<figure class="resena">
   <span class="resena__comillas">{ICON["comillas"]}</span>
   <blockquote><p>{esc(c["texto"])}</p></blockquote>
-  <figcaption>Paciente · <a href="{c["url"]}" target="_blank" rel="noopener">{esc(c["fuente"])}</a> · {esc(c["fecha"])}</figcaption>
+  <figcaption>Paciente · Reseña en {esc(c["fuente"])} · {esc(c["fecha"])}</figcaption>
 </figure>''')
+    botones = "".join(
+        f'<a class="boton {"boton--claro" if i == 0 else "boton--secundario"}" href="{p["url"]}" target="_blank" rel="noopener">'
+        f'{esc(p["cantidad"])} en {esc(p["nombre"])} {ICON["externo"]}</a>' for i, p in enumerate(r["plataformas"]))
+    d = r["destacado"]
     return f'''<div class="resenas__cabecera">
   <div class="encabezado-seccion" style="margin:0">
     <p class="antetitulo">Experiencias</p>
     <h2>Lo que cuentan <em>quienes ya transitaron</em> este espacio</h2>
   </div>
-  <div class="resenas__dato"><strong>{esc(r["cantidad"])}</strong><span>opiniones publicadas por pacientes en {esc(r["plataforma"])} <small>(relevado en {esc(r["fecha_relevamiento"])})</small></span></div>
+  <div class="resenas__dato"><strong>{esc(d["cantidad"])}</strong><span>{esc(d["texto"])} <small>(relevado en {esc(r["fecha_relevamiento"])})</small></span></div>
 </div>
 <div class="carrusel">
   <div class="carrusel__pista" tabindex="0" role="region" aria-label="Fragmentos de opiniones de pacientes">{"".join(citas)}</div>
-  <div class="acciones" style="margin-top:2rem;justify-content:space-between">
-    <a class="boton boton--claro" href="{r["url"]}" target="_blank" rel="noopener">Leer todas las opiniones en {esc(r["plataforma"])} {ICON["externo"]}</a>
+  <div class="acciones resenas__acciones" style="margin-top:2rem;justify-content:space-between">
+    <div class="acciones">{botones}</div>
     <div class="carrusel__controles">
       <button class="carrusel__boton" type="button" data-carrusel="prev" aria-label="Opinión anterior">{ICON["flecha-izq"]}</button>
       <button class="carrusel__boton" type="button" data-carrusel="next" aria-label="Opinión siguiente">{ICON["flecha"]}</button>
