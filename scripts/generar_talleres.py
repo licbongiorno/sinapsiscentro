@@ -209,9 +209,10 @@ PAGE = f'''<!DOCTYPE html>
 <meta name="description" content="{esc(DESC)}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="{URL}">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#08202e">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{esc(TITLE)}">
@@ -263,7 +264,7 @@ PAGE = f'''<!DOCTYPE html>
 
 <nav class="svc-nav">
   <a href="/" class="svc-brand">
-    <span class="logo-symbol" aria-hidden="true">✦</span>
+    <img class="logo-symbol" src="logo-sinapsis-claro.svg" alt="" width="40" height="40">
     <div><b>CENTRO SINAPSIS</b><small>Conexiones que importan</small></div>
   </a>
   <a href="{wa(MSG_GENERAL)}" target="_blank" rel="noopener" class="svc-nav-cta" aria-label="Consultar por los talleres por WhatsApp">
