@@ -186,7 +186,7 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
 .svc-faq-a p a { color: var(--teal-texto); text-decoration: underline; }
 
 /* equipo profesional (tarjeta por persona, ver equipo-profesional.html) */
-.svc-equipo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 18px; margin: 28px 0 8px; }
+.svc-equipo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: 18px; margin: 28px 0 8px; }
 .svc-equipo-card {
   background: white; border: 1.5px solid rgba(42,174,194,0.1); border-radius: var(--r-lg);
   padding: 24px 22px; display: flex; flex-direction: column; gap: 4px;
@@ -291,8 +291,11 @@ main.svc-main { max-width: 820px; margin: 0 auto; padding: 70px 6% 40px; }
 
 /* micro-animación de entrada al hacer scroll, reusable en cualquier
    página de servicio (hoy solo se usa en nuestra-historia.html) */
-.svc-reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--easing), transform 0.7s var(--easing); }
-.svc-reveal.in { opacity: 1; transform: translateY(0); }
+/* Solo se oculta si el navegador ejecuta JavaScript: sin JS, el texto se ve igual. */
+@media (scripting: enabled) {
+  .svc-reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--easing), transform 0.7s var(--easing); }
+  .svc-reveal.in { opacity: 1; transform: translateY(0); }
+}
 @media (prefers-reduced-motion: reduce) { .svc-reveal { opacity: 1; transform: none; transition: none; } }
 
 /* CTA final */
@@ -363,7 +366,9 @@ footer.svc-footer .svc-footer-contacto { margin-bottom: 8px; color: rgba(255,255
 
 /* ── Estructura editorial de servicios (scripts/enriquecer_servicios.py) ── */
 .svc-nota { font-size: 0.92rem; color: var(--text-soft, #4a5a63); margin-top: 12px; font-style: italic; }
-.svc-como { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 8px; counter-reset: como; }
+.svc-como { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-top: 8px; counter-reset: como; }
+/* con 4 pasos: 2 + 2 en vez de 3 + 1 suelto */
+.svc-como:has(> :nth-child(4):last-child) { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .svc-como-item {
   background: #fff; border: 1px solid rgba(8,32,46,0.08); border-radius: 18px;
   padding: 20px 20px 18px; position: relative; counter-increment: como;
