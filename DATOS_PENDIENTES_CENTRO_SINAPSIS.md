@@ -15,7 +15,7 @@ Este documento reúne todas las preguntas que el centro tiene que responder para
   - 11 6856-7160;
   - sinapsisdatos@gmail.com;
   - lunes a viernes de 9 a 20 y sábados de 9 a 13.
-- Los 6 profesionales publicados, con sus matrículas.
+- Los 7 profesionales publicados, con sus matrículas (Carolina Noemí Torancio, psicopedagoga, matrícula 243213, sumada el 06/11/2026; falta su formación).
 - Las 30 coberturas por discapacidad del listado.
 - El circuito de reintegro sin CUD.
 - El permiso de las 3 personas cuyas reseñas se citan.
