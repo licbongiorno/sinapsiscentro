@@ -98,6 +98,28 @@ const PerfilModal = (() => {
       });
     }
 
+    // Borrar todos los datos guardados (dispositivo y, si hay sesión, cuenta).
+    const borrar = document.createElement("button");
+    borrar.type = "button";
+    borrar.textContent = "Borrar todos mis datos";
+    borrar.style.cssText = "display:block;margin:10px auto 0;border:none;background:none;color:#a33a3a;font-weight:700;font-size:0.74rem;text-decoration:underline;cursor:pointer;padding:6px;";
+    borrar.addEventListener("click", async () => {
+      const ok = window.confirm(
+        "Se van a borrar tu progreso, logros, reflexiones escritas, creaciones y actividades" +
+        (user ? ", en este dispositivo y en tu cuenta." : " guardadas en este dispositivo.") +
+        " No se puede deshacer. ¿Continuar?");
+      if (!ok) return;
+      borrar.disabled = true;
+      const res = await Storage.borrarTodo();
+      if (user) await Auth.cerrarSesion().catch(() => {});
+      cerrar();
+      onCambioCallback();
+      window.alert(res.nube === "error"
+        ? "Se borró lo guardado en este dispositivo, pero no pudimos borrar la copia de tu cuenta. Probá de nuevo con conexión o escribinos a sinapsisdatos@gmail.com."
+        : "Listo: se borraron todos tus datos.");
+    });
+    cuentaDiv.appendChild(borrar);
+
     document.getElementById("inputNombre").value = perfil.nombre || "";
     const avataresLista = document.getElementById("avataresLista");
     avataresLista.innerHTML = AVATARES.map(a => `<button class="jp-avatar-opcion ${a === perfil.avatar ? "activo" : ""}" data-av="${a}">${a}</button>`).join("");

@@ -91,7 +91,7 @@
     <div class="svc-breadcrumb"><a href="/">Inicio</a><span>/</span><em>Privacidad</em></div>
     <div class="svc-tag">Legal</div>
     <h1 class="svc-title">Política de privacidad</h1>
-    <p class="svc-lead">Última actualización: 17 de septiembre de 2026. Este documento explica qué información recolecta este sitio y para qué se usa.</p>
+    <p class="svc-lead">Última actualización: 14 de noviembre de 2026. Este documento explica qué información recolecta este sitio y para qué se usa.</p>
   </div>
 </header>
 
@@ -105,9 +105,10 @@
     <h2>¿Qué datos recolectamos y con qué finalidad?</h2>
     <ul>
       <li><b>Datos de contacto que vos nos enviás:</b> si escribís por WhatsApp, email o completás algún formulario, recibimos lo que hayas decidido compartir (por ejemplo tu nombre y tu consulta) para poder responderte y coordinar una entrevista.</li>
-      <li><b>Cuenta opcional del sitio:</b> si elegís crear un perfil para guardar tu progreso en los juegos o recursos, usamos Firebase Authentication (Google) para gestionar ese inicio de sesión.</li>
-      <li><b>Uso del sitio (Google Analytics):</b> usamos Google Analytics 4 para entender qué páginas se visitan y qué botones se usan (por ejemplo, si se tocó el botón de WhatsApp). No enviamos a Analytics ningún dato de salud, ni el contenido de tus consultas o conversaciones.</li>
-      <li><b>Preferencias guardadas en tu propio dispositivo:</b> cosas como el modo accesible activado, tu progreso en los juegos o tus pistas favoritas se guardan con <code>localStorage</code> en tu navegador — no se envían a nuestros servidores.</li>
+      <li><b>Cuenta opcional del sitio:</b> si elegís iniciar sesión con Google para guardar tu progreso en los juegos o recursos, usamos Firebase Authentication (Google) para gestionar ese inicio de sesión. Mientras tengas la sesión iniciada, una copia de tu progreso se guarda en Firebase Firestore, en un registro que solo vos podés leer o modificar: perfil (nombre y avatar que elijas), puntajes, logros, racha, favoritos y, si las guardaste, tus <b>reflexiones escritas</b> de los ejercicios. El equipo del centro no lee esas reflexiones ni las usa para ningún fin.</li>
+      <li><b>Reflexiones escritas:</b> en algunos ejercicios podés escribir lo que pensás o sentís. Solo se guardan si tocás "Guardar y continuar"; nunca se envían a Analytics ni se usan en estadísticas. Como pueden contener información personal sensible, te recomendamos no escribir datos que identifiquen a otras personas.</li>
+      <li><b>Uso del sitio (Google Analytics):</b> usamos Google Analytics 4 para entender qué páginas se visitan y qué botones se usan (por ejemplo, si se tocó el botón de WhatsApp y, si la elegiste en el selector, el área de servicio, como "fonoaudiología"). No enviamos a Analytics ningún dato de salud, ni el contenido de tus consultas o conversaciones.</li>
+      <li><b>Preferencias guardadas en tu propio dispositivo:</b> cosas como el modo accesible activado, tu progreso en los juegos o tus pistas favoritas se guardan con <code>localStorage</code> en tu navegador. Si no iniciás sesión, quedan solo en tu dispositivo.</li>
       <li><b>Funcionamiento sin conexión:</b> el sitio usa un service worker para poder abrirse parcialmente sin internet; esto guarda copias técnicas de las páginas en tu navegador, no datos personales.</li>
     </ul>
   </section>
@@ -125,6 +126,7 @@
   <section class="svc-section">
     <h2>Tus derechos</h2>
     <p>Podés pedirnos en cualquier momento que te contemos qué información tenemos sobre vos, que la corrijamos si está mal, o que la borremos, escribiendo a <a href="mailto:sinapsisdatos@gmail.com">sinapsisdatos@gmail.com</a>. Vamos a responder en un plazo razonable.</p>
+    <p>También podés borrar todo vos mismo, sin pedir nada: en las secciones de recursos, abrí tu perfil (ícono de persona arriba a la derecha) y tocá <b>"Borrar todos mis datos"</b>. Se elimina lo guardado en tu dispositivo y, si tenías la sesión iniciada, también la copia de tu cuenta.</p>
   </section>
 
   <section class="svc-section">
