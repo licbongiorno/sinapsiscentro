@@ -271,4 +271,49 @@
 
   document.querySelectorAll("[data-consulta]").forEach(armarFormulario);
   agregarFab();
+  agregarPuenteSenales();
+
+  /* ── 4) Puente después de "Señales…" en guías y servicios ─────────
+   * Es el punto de mayor intención de la lectura. Se ofrece la consulta
+   * con el mensaje propio de la página, sin urgencia ni miedo, y un
+   * atajo al formulario de la misma página. Solo si existen ambos. */
+  function agregarPuenteSenales() {
+    var msg = document.body.getAttribute("data-wa-mensaje");
+    var form = document.getElementById("consulta");
+    if (!msg || !form) return;
+    var titulo = null;
+    document.querySelectorAll("main section.svc-section > h2").forEach(function (h) {
+      if (!titulo && /se[ñn]al/i.test(h.textContent)) titulo = h;
+    });
+    if (!titulo) return;
+    var seccion = titulo.parentNode;
+    if (seccion.nextElementSibling === form) return; // el formulario ya está ahí
+    estilosPuente();
+    var caja = el("aside", { "class": "cq-puente", "aria-label": "Consultar con el equipo" });
+    caja.appendChild(el("p", { "class": "cq-puente-t" }, "¿Reconocés alguna de estas señales?"));
+    caja.appendChild(el("p", { "class": "cq-puente-s" }, "Una consulta sirve para despejar dudas, aunque después resulte que no hace falta un tratamiento. Te respondemos por WhatsApp de lunes a viernes de 9 a 20 y sábados de 9 a 13."));
+    var fila = el("div", { "class": "cq-puente-fila" });
+    fila.appendChild(el("a", { href: waUrl(msg), target: "_blank", rel: "noopener", "class": "cq-puente-btn", "data-ubicacion": "puente-senales" },
+      "<span>Consultar por WhatsApp</span><span aria-hidden=\"true\">→</span>"));
+    fila.appendChild(el("a", { href: "#consulta", "class": "cq-puente-link" }, "o armá tu consulta paso a paso ↓"));
+    caja.appendChild(fila);
+    seccion.parentNode.insertBefore(caja, seccion.nextSibling);
+  }
+
+  function estilosPuente() {
+    if (document.getElementById("cq-puente-css")) return;
+    var s = document.createElement("style");
+    s.id = "cq-puente-css";
+    s.textContent = [
+      ".cq-puente{max-width:760px;margin:8px auto 36px;padding:22px 24px;border-radius:20px;background:linear-gradient(135deg,#eef7f8,#f6f1ea);border:1px solid rgba(26,122,138,.18)}",
+      ".cq-puente-t{font-family:'Playfair Display',serif;font-size:1.25rem;color:#0d2a38;margin:0 0 6px}",
+      ".cq-puente-s{font-size:.92rem;line-height:1.6;color:#3a5a6a;margin:0 0 16px}",
+      ".cq-puente-fila{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}",
+      ".cq-puente-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 24px;border-radius:999px;background:#0e7a35;color:#fff;font-weight:800;text-decoration:none;transition:background .15s,transform .15s}",
+      ".cq-puente-btn:hover,.cq-puente-btn:focus-visible{background:#0a5c2e}.cq-puente-btn:active{transform:scale(.97)}",
+      ".cq-puente-link{color:#1a5f6b;font-weight:700;font-size:.9rem}",
+      "@media (prefers-reduced-motion:reduce){.cq-puente-btn{transition:none}}"
+    ].join("");
+    document.head.appendChild(s);
+  }
 })();
