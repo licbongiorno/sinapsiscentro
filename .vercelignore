@@ -1,0 +1,13 @@
+# Archivos de trabajo que no forman parte del sitio publicado.
+# Vercel publica todo el repositorio salvo lo que figura acá: sin esta lista,
+# informes internos, planillas y scripts quedaban accesibles por URL.
+*.md
+*.csv
+scripts/
+tests/
+google-perfil/
+.agents/
+.claude/
+.impeccable/
+.github/
+skills-lock.json
