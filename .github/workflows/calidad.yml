@@ -27,16 +27,18 @@ jobs:
   humo:
     # Abre todas las páginas y todos los juegos en Chromium (celular, 390 px)
     # y falla si algo lanza errores, desborda o rompe el enlace de WhatsApp.
-    runs-on: ubuntu-latest
+    # Ubuntu fijo: ubuntu-latest pasó a 26.04 y Playwright todavía no instala
+    # Chromium ahí. Subir esta versión junto con la de Playwright.
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
       - name: Instalar Playwright (solo para las pruebas, no se publica)
         run: |
-          npm i --no-save playwright@1.56.1
+          npm i --no-save playwright@1.63.0
           npx playwright install --with-deps chromium
       - name: Pruebas de humo (páginas + juegos)
         run: node tests/smoke.js
