@@ -252,6 +252,8 @@ const GameEngine = (() => {
       if (!estado || estado.terminado) return;
       estado.terminado = true;
       if (estado.timerId) clearInterval(estado.timerId);
+      // Medición de uso (solo qué juego y si se completó; nunca respuestas ni puntajes).
+      if (window.gtag) window.gtag("event", "juego_completado", { juego_id: estado.juegoId, exito: !!exito });
       if (alFinalizarCallback) alFinalizarCallback();
 
       // Igual que en logros.js/storage.js: algunos de estos juegos ahora

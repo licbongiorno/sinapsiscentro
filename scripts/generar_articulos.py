@@ -1072,6 +1072,38 @@ INDICE = [
 ]
 
 
+# Etapa de vida de cada guía, para el filtro "¿Para quién?" del índice.
+# Solo refleja a quién está dirigido el artículo (no agrega contenido nuevo).
+ETAPAS = [("todas", "Todas"), ("bebes", "Bebés"), ("ninos", "Niñas y niños"), ("adolescentes", "Adolescentes"),
+          ("adultos", "Adultos"), ("mayores", "Adultos mayores"), ("familias", "Trámites y familias")]
+ETAPA_GUIA = {
+    "tdah-en-adultos.html": "adultos", "cuando-llevar-a-mi-hijo-al-psicologo.html": "ninos adolescentes",
+    "ansiedad-en-ninos.html": "ninos adolescentes", "rabietas-berrinches-ninos.html": "ninos",
+    "primera-consulta-psicologo.html": "adolescentes adultos", "tdah-berazategui.html": "ninos adolescentes adultos",
+    "no-presta-atencion-en-clase.html": "ninos adolescentes", "que-hace-un-psicopedagogo.html": "ninos adolescentes",
+    "dislexia-senales-ninos.html": "ninos", "discalculia-ninos.html": "ninos", "dificultades-escritura-disgrafia.html": "ninos adolescentes",
+    "retraso-lenguaje-ninos.html": "bebes ninos", "problemas-pronunciacion-ninos.html": "ninos", "tartamudez-ninos.html": "ninos",
+    "selectividad-alimentaria-ninos.html": "bebes ninos", "que-hace-terapia-ocupacional-ninos.html": "ninos",
+    "integracion-sensorial-senales.html": "bebes ninos", "motricidad-fina-ninos.html": "ninos",
+    "ejercicio-adultos-mayores.html": "mayores", "prevencion-caidas-adultos-mayores.html": "mayores",
+    "estimulacion-cognitiva-en-casa-adultos-mayores.html": "mayores", "olvidos-memoria-adultos-mayores.html": "mayores",
+    "senales-alerta-desarrollo-bebe.html": "bebes", "senales-autismo-ninos.html": "bebes ninos",
+    "anticipacion-autismo-cambios-rutina.html": "ninos adolescentes adultos familias",
+    "como-tramitar-cud-berazategui.html": "familias", "prestaciones-discapacidad-ley-24901.html": "familias",
+    "centro-discapacidad-zona-sur.html": "familias",
+}
+
+# Herramientas interactivas que ya existen en el sitio (no indexables, gratuitas).
+HERRAMIENTAS = [
+    ("juegos.html", "Juegos", "Memoria, atención, lenguaje, emociones y razonamiento."),
+    ("ejercicios.html", "Ejercicios guiados", "Calma, emociones, pensamientos, sueño y hábitos."),
+    ("mindfulness.html", "Mindfulness", "Pausas breves de atención plena."),
+    ("infantil.html", "Rincón infantil", "Actividades pensadas para los más chicos."),
+    ("creatividad.html", "Creatividad", "Dibujo, escritura e ideas para crear."),
+    ("sonidos.html", "Sonidos para relajarse", "Ambientes para descansar o concentrarse."),
+]
+
+
 def indice_html():
     url = P.BASE + "guias.html"
     title = "Guías para familias: desarrollo y salud mental | Centro Sinapsis"
@@ -1088,10 +1120,12 @@ def indice_html():
     ]
     ld_html = "\n".join('<script type="application/ld+json">\n' + json.dumps(o, ensure_ascii=False, indent=2) + "\n</script>" for o in ld)
     tarjetas = "".join(f'''
-      <a class="gu-card" href="{s}">
+      <a class="gu-card" href="{s}" data-etapa="{ETAPA_GUIA.get(s, "")}">
         <img src="img/ilustraciones/{ilu}.svg?v={P.ILU.VERSION}" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">{esc(tag)}</span><h2>{esc(t)}</h2><p>{esc(d)}</p></div>
       </a>''' for s, ilu, t, d, tag in INDICE)
+    filtros = "".join(f'\n    <button type="button" data-filtro="{k}" aria-pressed="{str(k == "todas").lower()}">{esc(n)}</button>' for k, n in ETAPAS)
+    herramientas = "".join(f'\n      <li><a href="{h}"><b>{esc(n)}</b><span>{esc(d)}</span></a></li>' for h, n, d in HERRAMIENTAS)
     # se reutiliza la página de un artículo como base visual (nav, hero, footer)
     base = P.page(dict(ART[0], slug="guias.html", title=title, desc=desc, crumb_parent=("Inicio", ""), crumb="Guías para familias",
                        tag="Guías para familias", h1="Guías para familias", ilu="guias", articulo=False, faqs=[("x", "x")], sources=[], related=[],
@@ -1106,7 +1140,17 @@ def indice_html():
   <section class="svc-section">
     <p>En estas guías respondemos las preguntas que más nos hacen las familias de Berazategui, Quilmes, Florencio Varela y toda la Zona Sur. Son informativas y no reemplazan una evaluación: si algo de lo que leés te preocupa, escribinos y lo charlamos.</p>
   </section>
+  <div class="gu-filtro" role="group" aria-label="Filtrar guías por etapa" hidden>
+    <span class="gu-filtro-label">¿Para quién?</span>{filtros}
+  </div>
+  <p class="gu-filtro-estado" aria-live="polite"></p>
   <section class="gu-grid" aria-label="Artículos">{tarjetas}
+  </section>
+  <section class="gu-herramientas" aria-labelledby="gu-herr-titulo">
+    <h2 id="gu-herr-titulo">Para practicar en casa</h2>
+    <p>Recursos interactivos y gratuitos del centro. Son recreativos y educativos: no evalúan ni reemplazan una consulta.</p>
+    <ul>{herramientas}
+    </ul>
   </section>
   <section class="svc-section" id="consulta">
     <div data-consulta data-motivo=""></div>
@@ -1115,6 +1159,7 @@ def indice_html():
     base = base[:m_ini] + cuerpo + base[m_fin:]
     base = base.replace('<a href="/">Inicio</a><span>/</span><a href="/">Inicio</a><span>/</span>', '<a href="/">Inicio</a><span>/</span>')
     base = base.replace('<link rel="stylesheet" href="css/consulta.css">', '<link rel="stylesheet" href="css/consulta.css">\n<link rel="stylesheet" href="css/guias.css">')
+    base = base.replace("</body>", '<script src="js/guias-filtro.js" defer></script>\n</body>', 1)
     return base
 
 
