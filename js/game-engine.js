@@ -28,6 +28,11 @@
  */
 
 const GameEngine = (() => {
+  /** Recarga para otra partida salteando la ficha previa de juego.html. */
+  function reintentar() {
+    try { sessionStorage.setItem("jg-directo", new URLSearchParams(location.search).get("id") || "1"); } catch (e) {}
+    window.location.reload();
+  }
   let estado = null;
   let alFinalizarCallback = null;
 
@@ -281,7 +286,7 @@ const GameEngine = (() => {
     },
 
     reiniciar() {
-      window.location.reload();
+      reintentar();
     },
 
     /**
@@ -326,7 +331,7 @@ const GameEngine = (() => {
     // pantalla se queda "atrás" en el tablero ya cerrado — nunca se
     // entera de que la partida terminó ni encuentra los botones nuevos.
     document.getElementById("geFinTitulo")?.focus();
-    document.getElementById("geJugarDeNuevo").addEventListener("click", () => window.location.reload());
+    document.getElementById("geJugarDeNuevo").addEventListener("click", () => reintentar());
     document.getElementById("geOtroJuego").addEventListener("click", () => window.location.href = window.__geVolverA || "juegos.html");
     document.getElementById("geCompartir").addEventListener("click", () => {
       const nombreJuego = (juego && (juego.titulo || juego.nombre)) || "Este juego";

@@ -32,6 +32,13 @@
     <summary>🧠 ¿Qué entrena?</summary>
     <p id="jgBeneficio"></p>
   </details>
+  <section class="jg-ficha" id="jgFicha" hidden aria-labelledby="jgTitulo">
+    <ul class="jg-datos" id="jgDatos"></ul>
+    <p class="jg-record" id="jgRecord" hidden></p>
+    <button type="button" class="jg-empezar" id="jgEmpezar">Empezar</button>
+    <a class="jg-volver" id="jgVolver" href="juegos.html">← Volver a los juegos</a>
+    <p class="jg-aviso">Juego recreativo y educativo para practicar en casa. No evalúa ni diagnostica: si algo te preocupa, <a href="index.html#consulta-home">consultá con el equipo</a>.</p>
+  </section>
   <div id="jgContenedor"></div>
 </main>
 
@@ -78,17 +85,56 @@
     // juego, para que los puntos y el progreso se guarden ya mismo
     // en la cuenta correcta (una sola vez; ver comentario abajo).
     let arrancado = false;
-    Auth.onCambio((user) => {
-      if (arrancado) return; // ignoramos cambios de sesión mientras el juego ya está en curso
-      arrancado = true;
-      const listo = () => {
-        const script = document.createElement("script");
-        script.src = juego.archivo;
-        document.body.appendChild(script);
-      };
-      if (user) Storage.vincularUsuario(user).then(listo);
-      else listo();
+    const sesionLista = new Promise((resolver) => {
+      Auth.onCambio((user) => {
+        if (arrancado) return; // ignoramos cambios de sesión mientras el juego ya está en curso
+        arrancado = true;
+        if (user) Storage.vincularUsuario(user).then(resolver, resolver);
+        else resolver();
+      });
     });
+    const cargarJuego = () => sesionLista.then(() => {
+      const script = document.createElement("script");
+      script.src = juego.archivo;
+      document.body.appendChild(script);
+    });
+
+    // Ficha previa: qué es, para qué edad, cuánto dura y el récord propio,
+    // antes de que arranque cualquier cronómetro. "Jugar de nuevo" la saltea.
+    let directo = false;
+    try { directo = sessionStorage.getItem("jg-directo") === juego.id; sessionStorage.removeItem("jg-directo"); } catch (e) {}
+    if (directo) {
+      cargarJuego();
+    } else {
+      const cat = CatalogoJuegos.categoriaPorId(juego.categoria);
+      const DIF = { facil: "Fácil", media: "Intermedio", dificil: "Desafiante" };
+      const datos = [
+        cat && `${cat.icono} ${cat.nombre}`,
+        juego.edadMin && `Desde ${juego.edadMin} años`,
+        juego.duracion && `⏱ ${juego.duracion}`,
+        DIF[juego.dificultad] && `Nivel: ${DIF[juego.dificultad]}`,
+        juego.necesita === "sesion" && "Para jugar con otra persona",
+      ].filter(Boolean);
+      const ul = document.getElementById("jgDatos");
+      datos.forEach((t) => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+      const prog = Storage.getProgreso(juego.id);
+      if (prog.partidas > 0) {
+        const rec = document.getElementById("jgRecord");
+        rec.textContent = `Jugaste ${prog.partidas} ${prog.partidas === 1 ? "vez" : "veces"}` +
+          (juego.puntuable && prog.mejorPuntaje > 0 ? ` · tu mejor puntaje: ${prog.mejorPuntaje}` : "") +
+          " (se guarda en este dispositivo o en tu cuenta).";
+        rec.hidden = false;
+        document.getElementById("jgEmpezar").textContent = "Jugar otra vez";
+      }
+      const ficha = document.getElementById("jgFicha");
+      ficha.hidden = false;
+      const btn = document.getElementById("jgEmpezar");
+      if (window.__geVolverA) document.getElementById("jgVolver").href = window.__geVolverA;
+      btn.addEventListener("click", () => {
+        ficha.remove();
+        cargarJuego();
+      }, { once: true });
+    }
   }
 </script>
 
