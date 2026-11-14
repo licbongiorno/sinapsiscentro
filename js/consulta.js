@@ -148,6 +148,127 @@
     }
   }
 
+  /* ── 3) Selector de especialidad ──────────────────────────────────
+   * Los enlaces con [data-wa-selector] (botones genéricos de la home) no
+   * van directo a WhatsApp: abren un panel corto para elegir el área y el
+   * mensaje sale ya con esa especialidad. "Escribir sin elegir" mantiene
+   * el camino de siempre, así que nunca suma un paso obligatorio.
+   * Sin JS, el enlace sigue funcionando como antes (href original).
+   * Analytics recibe solo el área de servicio (dato institucional), nunca
+   * el motivo de consulta ni datos de salud. */
+  var AREAS = [
+    ["psicologia", "Psicología"],
+    ["psicopedagogia", "Psicopedagogía"],
+    ["fonoaudiologia", "Fonoaudiología"],
+    ["terapia-ocupacional", "Terapia ocupacional"],
+    ["evaluaciones", "Evaluaciones (TEA, neurocognitiva, psicodiagnóstico)"],
+    ["estimulacion", "Estimulación temprana o cognitiva"],
+    ["kinesiologia", "Kinesiología para adultos mayores"],
+    ["vocacional", "Orientación vocacional"],
+    ["cud", "Atención con CUD"],
+    ["orientacion", "No sé qué área necesito"]
+  ];
+
+  function estilosSelector() {
+    if (document.getElementById("wa-sel-css")) return;
+    var css = [
+      ".wa-sel{position:fixed;z-index:100001;right:16px;bottom:88px;width:min(360px,calc(100vw - 32px));max-height:calc(100dvh - 120px);overflow:auto;",
+      "background:#fff;color:#0d2a38;border-radius:20px;box-shadow:0 24px 60px rgba(8,32,46,.32);padding:18px 16px 14px;font-family:Nunito,system-ui,sans-serif;",
+      "transform-origin:100% 100%;animation:waSelIn .22s cubic-bezier(.2,.8,.2,1) both}",
+      "@keyframes waSelIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}",
+      ".wa-sel h2{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:500;margin:0 34px 4px 4px;line-height:1.25}",
+      ".wa-sel p{font-size:.84rem;color:#4a6472;margin:0 4px 12px}",
+      ".wa-sel ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}",
+      ".wa-sel li a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border-radius:12px;background:#f1f7f9;color:#0d2a38;text-decoration:none;font-weight:600;font-size:.92rem;transition:background .15s,transform .15s}",
+      ".wa-sel li a::after{content:'→';color:#1a7a8a;transition:transform .15s}",
+      ".wa-sel li a:hover,.wa-sel li a:focus-visible{background:#dff0f3}.wa-sel li a:hover::after{transform:translateX(3px)}",
+      ".wa-sel li a:active{transform:scale(.98)}",
+      ".wa-sel a.wa-sel-libre{display:flex;align-items:center;gap:10px;padding:13px 14px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.95rem;margin-top:10px;background:#0e7a35;color:#fff;justify-content:center}.wa-sel a.wa-sel-libre::after{color:#fff}",
+      ".wa-sel a.wa-sel-libre:hover,.wa-sel a.wa-sel-libre:focus-visible{background:#0a5c2e}",
+      ".wa-sel-cerrar{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;border-radius:50%;background:#f1f7f9;color:#0d2a38;font-size:1.2rem;cursor:pointer}",
+      ".wa-sel-nota{font-size:.75rem!important;margin:10px 4px 0!important;text-align:center}",
+      ".wa-sel-fondo{position:fixed;inset:0;z-index:100000;background:rgba(8,32,46,.35)}",
+      "@media (max-width:520px){.wa-sel{left:12px;right:12px;width:auto;bottom:12px;border-radius:22px}}",
+      "@media (prefers-reduced-motion:reduce){.wa-sel{animation:none}}"
+    ].join("");
+    var s = document.createElement("style");
+    s.id = "wa-sel-css";
+    s.textContent = css;
+    document.head.appendChild(s);
+  }
+
+  function minusculaInicial(t) { return t.charAt(0).toLowerCase() + t.slice(1); }
+
+  var panelAbierto = null;
+
+  function cerrarSelector() {
+    if (!panelAbierto) return;
+    var p = panelAbierto;
+    panelAbierto = null;
+    p.fondo.remove();
+    p.panel.remove();
+    document.removeEventListener("keydown", p.teclas);
+    p.origen.setAttribute("aria-expanded", "false");
+    p.origen.focus();
+  }
+
+  function abrirSelector(origen) {
+    estilosSelector();
+    var ubicacion = origen.getAttribute("data-wa-selector") || "selector";
+    var fondo = el("div", { "class": "wa-sel-fondo" });
+    var panel = el("div", { "class": "wa-sel", role: "dialog", "aria-modal": "true", "aria-labelledby": "wa-sel-titulo" });
+    panel.appendChild(el("h2", { id: "wa-sel-titulo" }, "¿Sobre qué área querés consultar?"));
+    panel.appendChild(el("p", {}, "Elegí una y te abrimos WhatsApp con el mensaje listo. Si no sabés, también está bien: te orientamos."));
+    var lista = el("ul", {});
+    AREAS.forEach(function (a) {
+      var texto = a[0] === "orientacion"
+        ? "Hola, Centro Sinapsis! Quisiera hacer una consulta y que me orienten sobre qué área es la indicada."
+        : "Hola, Centro Sinapsis! Quisiera consultar por " + minusculaInicial(a[1].replace(/ \(.*\)$/, "")) + ".";
+      var li = el("li", {});
+      li.appendChild(el("a", {
+        href: waUrl(texto), target: "_blank", rel: "noopener",
+        "data-especialidad": a[0], "data-ubicacion": ubicacion
+      }, a[1]));
+      lista.appendChild(li);
+    });
+    panel.appendChild(lista);
+    var libre = el("a", { href: origen.getAttribute("href"), target: "_blank", rel: "noopener", "class": "wa-sel-libre", "data-ubicacion": ubicacion }, "Escribir sin elegir");
+    panel.appendChild(libre);
+    panel.appendChild(el("p", { "class": "wa-sel-nota" }, "Lun a vie 9 a 20 · Sáb 9 a 13 · Calle 27 Nº3907 esq. 139"));
+    var cerrar = el("button", { type: "button", "class": "wa-sel-cerrar", "aria-label": "Cerrar" }, "×");
+    panel.appendChild(cerrar);
+
+    function teclas(e) {
+      if (e.key === "Escape") { e.preventDefault(); cerrarSelector(); return; }
+      if (e.key !== "Tab") return;
+      var focos = panel.querySelectorAll("a,button");
+      var primero = focos[0], ultimo = focos[focos.length - 1];
+      if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+      else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+    }
+    fondo.addEventListener("click", cerrarSelector);
+    cerrar.addEventListener("click", cerrarSelector);
+    // Después de elegir, se cierra (la pestaña de WhatsApp ya se abrió).
+    panel.addEventListener("click", function (e) { if (e.target.closest("a")) setTimeout(cerrarSelector, 0); });
+    document.addEventListener("keydown", teclas);
+    document.body.appendChild(fondo);
+    document.body.appendChild(panel);
+    origen.setAttribute("aria-expanded", "true");
+    panelAbierto = { panel: panel, fondo: fondo, origen: origen, teclas: teclas };
+    panel.querySelector("a").focus();
+  }
+
+  document.querySelectorAll("[data-wa-selector]").forEach(function (a) {
+    a.setAttribute("aria-haspopup", "dialog");
+    a.setAttribute("aria-expanded", "false");
+    a.addEventListener("click", function (e) {
+      // Ctrl/Cmd+clic o clic medio: respetar la intención de abrir el enlace directo.
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      if (panelAbierto) cerrarSelector(); else abrirSelector(a);
+    });
+  });
+
   document.querySelectorAll("[data-consulta]").forEach(armarFormulario);
   agregarFab();
 })();
