@@ -1125,6 +1125,8 @@ def indice_html():
         <div><span class="gu-tag">{esc(tag)}</span><h2>{esc(t)}</h2><p>{esc(d)}</p></div>
       </a>''' for s, ilu, t, d, tag in INDICE)
     filtros = "".join(f'\n    <button type="button" data-filtro="{k}" aria-pressed="{str(k == "todas").lower()}">{esc(n)}</button>' for k, n in ETAPAS)
+    from generar_fichas import FICHAS
+    fichas = "".join(f'\n      <li><a href="{f["slug"]}"><b>{esc(f["titulo"])}</b><span>{esc(f["para"])} · PDF imprimible</span></a></li>' for f in FICHAS)
     herramientas = "".join(f'\n      <li><a href="{h}"><b>{esc(n)}</b><span>{esc(d)}</span></a></li>' for h, n, d in HERRAMIENTAS)
     # se reutiliza la página de un artículo como base visual (nav, hero, footer)
     base = P.page(dict(ART[0], slug="guias.html", title=title, desc=desc, crumb_parent=("Inicio", ""), crumb="Guías para familias",
@@ -1150,6 +1152,9 @@ def indice_html():
     <h2 id="gu-herr-titulo">Para practicar en casa</h2>
     <p>Recursos interactivos y gratuitos del centro. Son recreativos y educativos: no evalúan ni reemplazan una consulta.</p>
     <ul>{herramientas}
+    </ul>
+    <h3 class="gu-fichas-t">Fichas para imprimir</h3>
+    <ul class="gu-fichas">{fichas}
     </ul>
   </section>
   <section class="svc-section" id="consulta">

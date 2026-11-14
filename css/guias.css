@@ -48,3 +48,4 @@
 @media (hover: hover) { .gu-herramientas a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(8,32,46,0.08); } }
 .gu-herramientas a:focus-visible { outline: 2px solid #b46e50; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .gu-herramientas a, .gu-filtro button { transition: none; } .gu-herramientas a:hover { transform: none; } }
+.gu-fichas-t { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.1rem; color: var(--navy); margin: 22px 0 10px; }

@@ -296,6 +296,13 @@
     fila.appendChild(el("a", { href: waUrl(msg), target: "_blank", rel: "noopener", "class": "cq-puente-btn", "data-ubicacion": "puente-senales" },
       "<span>Consultar por WhatsApp</span><span aria-hidden=\"true\">→</span>"));
     fila.appendChild(el("a", { href: "#consulta", "class": "cq-puente-link" }, "o armá tu consulta paso a paso ↓"));
+    var FICHAS = {
+      "retraso-lenguaje-ninos.html": "ficha-senales-lenguaje.html",
+      "senales-alerta-desarrollo-bebe.html": "ficha-desarrollo-bebe.html",
+      "prevencion-caidas-adultos-mayores.html": "ficha-prevencion-caidas.html"
+    };
+    var pagina = location.pathname.split("/").pop();
+    if (FICHAS[pagina]) fila.appendChild(el("a", { href: FICHAS[pagina], "class": "cq-puente-link" }, "Descargar esta guía como ficha para imprimir"));
     caja.appendChild(fila);
     seccion.parentNode.insertBefore(caja, seccion.nextSibling);
   }
