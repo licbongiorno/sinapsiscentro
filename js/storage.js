@@ -496,6 +496,29 @@ const Storage = {
   },
 
   /** Se llama cuando el usuario cierra sesión: empieza de nuevo como invitado en este dispositivo. */
+  /**
+   * Derecho de supresión (Ley 25.326): borra TODO lo que el sitio guardó de
+   * esta persona — progreso, logros, reflexiones, creaciones, mezclas y
+   * actividades infantiles — en este dispositivo y, si hay sesión, también
+   * el documento users/{uid} de Firestore (las reglas permiten que cada
+   * persona borre el suyo). Mantiene solo la preferencia de modo accesible.
+   */
+  async borrarTodo() {
+    clearTimeout(_timerNube);
+    const uid = _uidNube;
+    _uidNube = null; // corta cualquier sincronización pendiente
+    let nube = "sin-cuenta";
+    const db = _db();
+    if (uid && db) {
+      try { await db.collection("users").doc(uid).delete(); nube = "borrada"; }
+      catch (e) { console.warn("Storage: no se pudo borrar en la nube", e); nube = "error"; }
+    }
+    Object.keys(localStorage)
+      .filter((k) => k.startsWith(`${NS}:`) || k.startsWith("sinapsis_infantil:"))
+      .forEach((k) => localStorage.removeItem(k));
+    return { nube };
+  },
+
   desvincularUsuario() {
     _uidNube = null;
     clearTimeout(_timerNube);

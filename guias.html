@@ -55,7 +55,7 @@
   "url": "https://sinapsiscentro.com.ar/guias.html",
   "description": "Guías claras sobre autismo, lenguaje, dislexia, TDAH, ansiedad, integración sensorial y adultos mayores, escritas por el equipo de Centro Sinapsis.",
   "inLanguage": "es-AR",
-  "dateModified": "2026-11-04",
+  "dateModified": "2026-11-14",
   "isPartOf": {
     "@id": "https://sinapsiscentro.com.ar/#website"
   },
@@ -308,119 +308,149 @@
   <section class="svc-section">
     <p>En estas guías respondemos las preguntas que más nos hacen las familias de Berazategui, Quilmes, Florencio Varela y toda la Zona Sur. Son informativas y no reemplazan una evaluación: si algo de lo que leés te preocupa, escribinos y lo charlamos.</p>
   </section>
+  <div class="gu-filtro" role="group" aria-label="Filtrar guías por etapa" hidden>
+    <span class="gu-filtro-label">¿Para quién?</span>
+    <button type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+    <button type="button" data-filtro="bebes" aria-pressed="false">Bebés</button>
+    <button type="button" data-filtro="ninos" aria-pressed="false">Niñas y niños</button>
+    <button type="button" data-filtro="adolescentes" aria-pressed="false">Adolescentes</button>
+    <button type="button" data-filtro="adultos" aria-pressed="false">Adultos</button>
+    <button type="button" data-filtro="mayores" aria-pressed="false">Adultos mayores</button>
+    <button type="button" data-filtro="familias" aria-pressed="false">Trámites y familias</button>
+  </div>
+  <p class="gu-filtro-estado" aria-live="polite"></p>
   <section class="gu-grid" aria-label="Artículos">
-      <a class="gu-card" href="tdah-en-adultos.html">
+      <a class="gu-card" href="tdah-en-adultos.html" data-etapa="adultos">
         <img src="img/ilustraciones/tdah-adultos.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicología</span><h2>TDAH en adultos</h2><p>Señales y cuándo consultar.</p></div>
       </a>
-      <a class="gu-card" href="cuando-llevar-a-mi-hijo-al-psicologo.html">
+      <a class="gu-card" href="cuando-llevar-a-mi-hijo-al-psicologo.html" data-etapa="ninos adolescentes">
         <img src="img/ilustraciones/psicologo-infantil.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicología</span><h2>¿Cuándo llevar a mi hijo al psicólogo?</h2><p>Señales y cómo es la primera consulta.</p></div>
       </a>
-      <a class="gu-card" href="ansiedad-en-ninos.html">
+      <a class="gu-card" href="ansiedad-en-ninos.html" data-etapa="ninos adolescentes">
         <img src="img/ilustraciones/ansiedad.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicología</span><h2>Ansiedad en niños y adolescentes</h2><p>Señales y cómo acompañar en casa.</p></div>
       </a>
-      <a class="gu-card" href="rabietas-berrinches-ninos.html">
+      <a class="gu-card" href="rabietas-berrinches-ninos.html" data-etapa="ninos">
         <img src="img/ilustraciones/berrinche.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicología</span><h2>Rabietas y berrinches</h2><p>Qué es esperable y cuándo consultar.</p></div>
       </a>
-      <a class="gu-card" href="primera-consulta-psicologo.html">
+      <a class="gu-card" href="primera-consulta-psicologo.html" data-etapa="adolescentes adultos">
         <img src="img/ilustraciones/primera-consulta.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicología</span><h2>Tu primera consulta con el psicólogo</h2><p>Qué pasa y qué preguntar.</p></div>
       </a>
-      <a class="gu-card" href="tdah-berazategui.html">
+      <a class="gu-card" href="tdah-berazategui.html" data-etapa="ninos adolescentes adultos">
         <img src="img/ilustraciones/tdah.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicología</span><h2>TDAH en niños y adultos</h2><p>Atención, inquietud e impulsividad.</p></div>
       </a>
-      <a class="gu-card" href="no-presta-atencion-en-clase.html">
+      <a class="gu-card" href="no-presta-atencion-en-clase.html" data-etapa="ninos adolescentes">
         <img src="img/ilustraciones/atencion-clase.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicopedagogía</span><h2>¿No presta atención en clase?</h2><p>TDAH y otras causas posibles.</p></div>
       </a>
-      <a class="gu-card" href="que-hace-un-psicopedagogo.html">
+      <a class="gu-card" href="que-hace-un-psicopedagogo.html" data-etapa="ninos adolescentes">
         <img src="img/ilustraciones/psicopedagogo.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicopedagogía</span><h2>¿Qué hace un psicopedagogo?</h2><p>Cuándo consultar y cómo es el proceso.</p></div>
       </a>
-      <a class="gu-card" href="dislexia-senales-ninos.html">
+      <a class="gu-card" href="dislexia-senales-ninos.html" data-etapa="ninos">
         <img src="img/ilustraciones/dislexia.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicopedagogía</span><h2>Dislexia en niños</h2><p>Señales en el jardín y la primaria.</p></div>
       </a>
-      <a class="gu-card" href="discalculia-ninos.html">
+      <a class="gu-card" href="discalculia-ninos.html" data-etapa="ninos">
         <img src="img/ilustraciones/discalculia.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicopedagogía</span><h2>Discalculia</h2><p>Cuando los números cuestan más.</p></div>
       </a>
-      <a class="gu-card" href="dificultades-escritura-disgrafia.html">
+      <a class="gu-card" href="dificultades-escritura-disgrafia.html" data-etapa="ninos adolescentes">
         <img src="img/ilustraciones/disgrafia.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Psicopedagogía</span><h2>Dificultades en la escritura</h2><p>Disgrafía y disortografía.</p></div>
       </a>
-      <a class="gu-card" href="retraso-lenguaje-ninos.html">
+      <a class="gu-card" href="retraso-lenguaje-ninos.html" data-etapa="bebes ninos">
         <img src="img/ilustraciones/lenguaje.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Fonoaudiología</span><h2>Mi hijo no habla: ¿cuándo consultar?</h2><p>Qué es esperable a cada edad en el lenguaje.</p></div>
       </a>
-      <a class="gu-card" href="problemas-pronunciacion-ninos.html">
+      <a class="gu-card" href="problemas-pronunciacion-ninos.html" data-etapa="ninos">
         <img src="img/ilustraciones/pronunciacion.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Fonoaudiología</span><h2>Mi hijo no pronuncia bien</h2><p>La erre, la ese y otros sonidos.</p></div>
       </a>
-      <a class="gu-card" href="tartamudez-ninos.html">
+      <a class="gu-card" href="tartamudez-ninos.html" data-etapa="ninos">
         <img src="img/ilustraciones/tartamudez.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Fonoaudiología</span><h2>Tartamudez en niños</h2><p>Cuándo es parte del desarrollo y cuándo consultar.</p></div>
       </a>
-      <a class="gu-card" href="selectividad-alimentaria-ninos.html">
+      <a class="gu-card" href="selectividad-alimentaria-ninos.html" data-etapa="bebes ninos">
         <img src="img/ilustraciones/selectividad.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Terapia Ocupacional</span><h2>Selectividad alimentaria</h2><p>Cuando comer es un problema.</p></div>
       </a>
-      <a class="gu-card" href="que-hace-terapia-ocupacional-ninos.html">
+      <a class="gu-card" href="que-hace-terapia-ocupacional-ninos.html" data-etapa="ninos">
         <img src="img/ilustraciones/autonomia.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Terapia Ocupacional</span><h2>¿Qué hace la terapia ocupacional?</h2><p>Autonomía, juego y sentidos.</p></div>
       </a>
-      <a class="gu-card" href="integracion-sensorial-senales.html">
+      <a class="gu-card" href="integracion-sensorial-senales.html" data-etapa="bebes ninos">
         <img src="img/ilustraciones/integracion-sensorial.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Terapia Ocupacional</span><h2>Integración sensorial</h2><p>Ruidos, texturas y movimiento: qué mirar.</p></div>
       </a>
-      <a class="gu-card" href="motricidad-fina-ninos.html">
+      <a class="gu-card" href="motricidad-fina-ninos.html" data-etapa="ninos">
         <img src="img/ilustraciones/motricidad-fina.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Terapia Ocupacional</span><h2>Motricidad fina</h2><p>Lápiz, tijeras y botones: qué es esperable.</p></div>
       </a>
-      <a class="gu-card" href="ejercicio-adultos-mayores.html">
+      <a class="gu-card" href="ejercicio-adultos-mayores.html" data-etapa="mayores">
         <img src="img/ilustraciones/ejercicio-mayores.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Kinesiología</span><h2>Ejercicio para adultos mayores</h2><p>Por qué y cómo empezar.</p></div>
       </a>
-      <a class="gu-card" href="prevencion-caidas-adultos-mayores.html">
+      <a class="gu-card" href="prevencion-caidas-adultos-mayores.html" data-etapa="mayores">
         <img src="img/ilustraciones/caidas.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Kinesiología</span><h2>Cómo prevenir caídas</h2><p>Fuerza, equilibrio y una casa segura.</p></div>
       </a>
-      <a class="gu-card" href="estimulacion-cognitiva-en-casa-adultos-mayores.html">
+      <a class="gu-card" href="estimulacion-cognitiva-en-casa-adultos-mayores.html" data-etapa="mayores">
         <img src="img/ilustraciones/estimulacion-casa.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Adultos mayores</span><h2>Estimulación cognitiva en casa</h2><p>Actividades para la memoria.</p></div>
       </a>
-      <a class="gu-card" href="olvidos-memoria-adultos-mayores.html">
+      <a class="gu-card" href="olvidos-memoria-adultos-mayores.html" data-etapa="mayores">
         <img src="img/ilustraciones/olvidos.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Adultos mayores</span><h2>Olvidos en adultos mayores</h2><p>Qué es esperable y cuándo preocuparse.</p></div>
       </a>
-      <a class="gu-card" href="senales-alerta-desarrollo-bebe.html">
+      <a class="gu-card" href="senales-alerta-desarrollo-bebe.html" data-etapa="bebes">
         <img src="img/ilustraciones/senales-bebe.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Estimulación temprana</span><h2>Señales de alerta en el bebé</h2><p>Qué hace a cada edad, de 0 a 12 meses.</p></div>
       </a>
-      <a class="gu-card" href="senales-autismo-ninos.html">
+      <a class="gu-card" href="senales-autismo-ninos.html" data-etapa="bebes ninos">
         <img src="img/ilustraciones/senales-autismo.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Autismo / TEA</span><h2>¿Cómo saber si mi hijo tiene autismo?</h2><p>Señales por edad y cuándo consultar.</p></div>
       </a>
-      <a class="gu-card" href="anticipacion-autismo-cambios-rutina.html">
+      <a class="gu-card" href="anticipacion-autismo-cambios-rutina.html" data-etapa="ninos adolescentes adultos familias">
         <img src="img/ilustraciones/anticipacion.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Autismo / TEA</span><h2>Anticipar cambios en el autismo</h2><p>Consultas, viajes y cambios de rutina.</p></div>
       </a>
-      <a class="gu-card" href="como-tramitar-cud-berazategui.html">
+      <a class="gu-card" href="como-tramitar-cud-berazategui.html" data-etapa="familias">
         <img src="img/ilustraciones/discapacidad.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Discapacidad</span><h2>Cómo tramitar el CUD en Berazategui</h2><p>El trámite paso a paso, gratis y sin gestores.</p></div>
       </a>
-      <a class="gu-card" href="prestaciones-discapacidad-ley-24901.html">
+      <a class="gu-card" href="prestaciones-discapacidad-ley-24901.html" data-etapa="familias">
         <img src="img/ilustraciones/obras-sociales.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Discapacidad</span><h2>Qué cubre tu obra social con CUD</h2><p>La Ley 24.901 y cómo reclamar.</p></div>
       </a>
-      <a class="gu-card" href="centro-discapacidad-zona-sur.html">
+      <a class="gu-card" href="centro-discapacidad-zona-sur.html" data-etapa="familias">
         <img src="img/ilustraciones/discapacidad.svg?v=2" alt="" width="120" height="120" loading="lazy" decoding="async">
         <div><span class="gu-tag">Discapacidad</span><h2>Atención a personas con discapacidad</h2><p>Prestaciones con CUD en Zona Sur.</p></div>
       </a>
+  </section>
+  <section class="gu-herramientas" aria-labelledby="gu-herr-titulo">
+    <h2 id="gu-herr-titulo">Para practicar en casa</h2>
+    <p>Recursos interactivos y gratuitos del centro. Son recreativos y educativos: no evalúan ni reemplazan una consulta.</p>
+    <ul>
+      <li><a href="juegos.html"><b>Juegos</b><span>Memoria, atención, lenguaje, emociones y razonamiento.</span></a></li>
+      <li><a href="ejercicios.html"><b>Ejercicios guiados</b><span>Calma, emociones, pensamientos, sueño y hábitos.</span></a></li>
+      <li><a href="mindfulness.html"><b>Mindfulness</b><span>Pausas breves de atención plena.</span></a></li>
+      <li><a href="infantil.html"><b>Rincón infantil</b><span>Actividades pensadas para los más chicos.</span></a></li>
+      <li><a href="creatividad.html"><b>Creatividad</b><span>Dibujo, escritura e ideas para crear.</span></a></li>
+      <li><a href="sonidos.html"><b>Sonidos para relajarse</b><span>Ambientes para descansar o concentrarse.</span></a></li>
+    </ul>
+    <h3 class="gu-fichas-t">Fichas para imprimir</h3>
+    <ul class="gu-fichas">
+      <li><a href="ficha-senales-lenguaje.html"><b>Lenguaje: señales para consultar según la edad</b><span>Familias con niñas y niños de 1 a 3 años · PDF imprimible</span></a></li>
+      <li><a href="ficha-desarrollo-bebe.html"><b>Desarrollo del bebé: qué es esperable y cuándo consultar</b><span>Familias con bebés de 0 a 12 meses · PDF imprimible</span></a></li>
+      <li><a href="ficha-anticipar-cambios-tea.html"><b>Autismo: cómo anticipar consultas y cambios de rutina</b><span>Familias de niñas, niños y adolescentes con TEA · PDF imprimible</span></a></li>
+      <li><a href="ficha-prevencion-caidas.html"><b>Adultos mayores: cómo prevenir caídas</b><span>Adultos mayores y sus familias · PDF imprimible</span></a></li>
+    </ul>
   </section>
   <section class="svc-section" id="consulta">
     <div data-consulta data-motivo=""></div>
@@ -457,5 +487,6 @@ document.querySelectorAll(".svc-faq-item").forEach(function (item, index) {
 <script src="js/consulta.js" defer></script>
 <script src="js/analytics-eventos.js" defer></script>
 <script src="js/accesibilidad.js" defer></script>
+<script src="js/guias-filtro.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,37 @@
+/* Fichas imprimibles (ficha-*.html, generadas por scripts/generar_fichas.py).
+   Pensadas para A4 en blanco y negro: en pantalla se ven como una hoja. */
+:root { --navy: #0d2a38; --teal: #1a7a8a; --texto: #23404d; --suave: #4a6472; --borde: #d7e3e7; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #e9f0f2; color: var(--texto); font: 400 15px/1.55 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+.fi-acciones { max-width: 210mm; margin: 0 auto; padding: 16px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+.fi-acciones a { color: var(--teal); font-weight: 700; text-decoration: none; padding: 8px 4px; }
+.fi-acciones a:hover { text-decoration: underline; }
+.fi-acciones button { border: 0; border-radius: 999px; background: var(--navy); color: #fff; font: 800 0.95rem inherit; font-family: inherit; padding: 12px 22px; min-height: 44px; cursor: pointer; }
+.fi-acciones button:hover { background: var(--teal); }
+.fi-acciones a:focus-visible, .fi-acciones button:focus-visible { outline: 3px solid #2aaec2; outline-offset: 3px; }
+.fi-hoja { max-width: 210mm; margin: 0 auto 40px; background: #fff; padding: 18mm 16mm; box-shadow: 0 10px 40px rgba(8,32,46,0.12); }
+.fi-cabecera { display: flex; gap: 14px; align-items: center; border-bottom: 2px solid var(--navy); padding-bottom: 12px; margin-bottom: 16px; }
+.fi-marca { margin: 0; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; color: var(--teal); }
+.fi-cabecera h1 { margin: 2px 0; font-family: Georgia, 'Playfair Display', serif; font-weight: 500; font-size: 1.6rem; line-height: 1.2; color: var(--navy); }
+.fi-para { margin: 0; color: var(--suave); font-size: 0.9rem; }
+.fi-hoja section { margin: 0 0 14px; break-inside: avoid-page; }
+.fi-hoja h2 { font-size: 1.05rem; color: var(--navy); margin: 0 0 8px; padding-left: 10px; border-left: 4px solid var(--teal); }
+.fi-hoja h3 { font-size: 0.95rem; color: var(--navy); margin: 10px 0 2px; }
+.fi-hoja p { margin: 0 0 6px; }
+.fi-hoja ul { margin: 0; padding-left: 20px; }
+.fi-hoja li { margin: 0 0 5px; }
+.fi-hoja div { break-inside: avoid; }
+.fi-fuentes { font-size: 0.8rem; color: var(--suave); }
+.fi-fuentes h2 { font-size: 0.85rem; }
+.fi-fuentes a { color: var(--suave); }
+.fi-pie { border-top: 1px solid var(--borde); padding-top: 10px; font-size: 0.78rem; color: var(--suave); }
+.fi-aviso { font-weight: 700; color: var(--texto); }
+@media (max-width: 600px) { .fi-hoja { padding: 22px 18px; } .fi-cabecera h1 { font-size: 1.3rem; } }
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body { background: #fff; font-size: 11pt; }
+  .fi-acciones { display: none; }
+  .fi-hoja { box-shadow: none; padding: 0; margin: 0; max-width: none; }
+  .fi-fuentes a { text-decoration: none; }
+  .fi-fuentes a::after { content: " (" attr(href) ")"; word-break: break-all; }
+}

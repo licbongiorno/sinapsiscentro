@@ -12,10 +12,10 @@ document.addEventListener("click",function(e){var a=e.target.closest&&e.target.c
 window.addEventListener("hashchange",function(){if(document.documentElement.classList.contains("cv-off"))return;document.documentElement.classList.add("cv-off");var t=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(t){requestAnimationFrame(function(){t.scrollIntoView();});setTimeout(function(){t.scrollIntoView({behavior:"instant"});},700);}});</script>
 <script>try{if(localStorage.getItem("sinapsis_modo_accesible")==="1")document.documentElement.classList.add("modo-accesible");}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Psicología y TEA en Berazategui y Zona Sur | Centro Sinapsis</title>
+  <title>Centro interdisciplinario en Berazategui, Zona Sur | Sinapsis</title>
 
   <!-- SEO -->
-  <meta name="description" content="Psicología, psicopedagogía, fonoaudiología y terapia ocupacional en Berazategui y Zona Sur de Buenos Aires. Sin derivación previa, turnos esta semana.">
+  <meta name="description" content="Centro interdisciplinario en Berazategui: psicología, psicopedagogía, fonoaudiología, terapia ocupacional, kinesiología y evaluaciones. Con y sin CUD.">
   <link rel="canonical" href="https://sinapsiscentro.com.ar/">
   <meta name="robots" content="index, follow">
   <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -26,8 +26,8 @@ window.addEventListener("hashchange",function(){if(document.documentElement.clas
   <!-- Open Graph / redes sociales -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Centro Sinapsis">
-  <meta property="og:title" content="Psicología y TEA en Berazategui y Zona Sur | Centro Sinapsis">
-  <meta property="og:description" content="Psicología, psicopedagogía, fonoaudiología y terapia ocupacional en Berazategui y Zona Sur de Buenos Aires. Primera entrevista en 48 hs, sin derivación previa.">
+  <meta property="og:title" content="Centro interdisciplinario en Berazategui, Zona Sur | Sinapsis">
+  <meta property="og:description" content="Centro interdisciplinario en Berazategui: psicología, psicopedagogía, fonoaudiología, terapia ocupacional, kinesiología y evaluaciones. Con y sin CUD.">
   <meta property="og:locale" content="es_AR">
   <meta property="og:url" content="https://sinapsiscentro.com.ar/">
   <meta property="og:image" content="https://sinapsiscentro.com.ar/og-image.jpg">
@@ -35,8 +35,8 @@ window.addEventListener("hashchange",function(){if(document.documentElement.clas
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Centro Sinapsis — Conexiones que importan. Psicología, Psicopedagogía, Fonoaudiología, Terapia Ocupacional. Berazategui y Zona Sur de Buenos Aires.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Psicología y TEA en Berazategui y Zona Sur | Centro Sinapsis">
-  <meta name="twitter:description" content="Psicología, psicopedagogía, fonoaudiología y terapia ocupacional en Berazategui y Zona Sur de Buenos Aires. Primera entrevista en 48 hs, sin derivación previa.">
+  <meta name="twitter:title" content="Centro interdisciplinario en Berazategui, Zona Sur | Sinapsis">
+  <meta name="twitter:description" content="Centro interdisciplinario en Berazategui: psicología, psicopedagogía, fonoaudiología, terapia ocupacional, kinesiología y evaluaciones. Con y sin CUD.">
   <meta name="twitter:image" content="https://sinapsiscentro.com.ar/og-image.jpg">
 
   <meta name="theme-color" content="#08202e">
@@ -153,7 +153,9 @@ window.addEventListener("hashchange",function(){if(document.documentElement.clas
       { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#nicolas-bongiorno" },
       { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#thomas-dalessandro" },
       { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#sol-aylen-lopez" },
-      { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#carolina-noemi-torancio" },
+      { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#marina-rocio-lescano" },
+      { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#diego-cepeda" },
+      { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#beatriz-mariela-sanabria" },
       { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#flavia-avellaneda" },
       { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#rocio-gonzalez" },
       { "@id": "https://sinapsiscentro.com.ar/equipo-profesional.html#ian-lautaro-guzman" }
@@ -370,6 +372,16 @@ nav.solid {
   font-weight: 600 !important;
 }
 .nav-cta::after { display:none !important; }
+/* Entre 769 y 1180 px el menú completo no entraba: el botón "Pedir turno"
+   se partía en dos líneas y la marca ocupaba cuatro. Se compacta sin ocultar nada. */
+@media (min-width: 961px) and (max-width: 1180px) {
+  .nav-links { gap: clamp(14px, 1.6vw, 24px); }
+  .nav-links a { font-size: 0.82rem; letter-spacing: 0.02em; }
+  .nav-cta { padding: 9px 18px !important; white-space: nowrap; }
+  .brand-text b { font-size: 1.15rem; white-space: nowrap; }
+  .brand-text small { font-size: 0.62rem; letter-spacing: 0.14em; white-space: nowrap; }
+  .logo-mark { height: 40px; }
+}
 
 .nav-burger {
   display: none; width: 42px; height: 42px; border: none; background: rgba(126,214,228,0.1);
@@ -383,7 +395,7 @@ nav.solid {
 .nav-burger.open span:nth-child(2) { opacity: 0; }
 .nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-@media(max-width:768px){
+@media(max-width:960px){
   .nav-brand { margin-left: auto; order: 2; }
   .nav-burger { display: flex; }
   .nav-links {
@@ -523,6 +535,65 @@ nav.solid {
   animation: fadeUp 1s 0.5s var(--easing) both;
 }
 .hero-recursos-link:hover { opacity: 1; color: white; text-decoration: underline; }
+
+/* Tres datos que responden las dudas típicas antes de escribir.
+   Son hechos confirmados por el centro (ver DATOS_PENDIENTES), no promesas. */
+.hero-confianza {
+  list-style: none; padding: 0; margin: 22px auto 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px;
+  font-size: 0.84rem; font-weight: 600; color: rgba(255,255,255,0.78);
+  animation: fadeUp 1s 0.45s var(--easing) both;
+}
+.hero-confianza li { display: inline-flex; align-items: center; gap: 7px; }
+.hero-confianza li::before {
+  content: ""; width: 14px; height: 14px; flex-shrink: 0; border-radius: 50%;
+  background: rgba(61,232,140,0.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%233de88c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat;
+}
+
+/* Foto real del centro: solo en escritorio (en celular el <picture> pide
+   un GIF de 1 px, así no compite con el botón ni con el LCP). */
+.hero-visual { display: none; margin: 0; }
+@media (min-width: 1024px) {
+  #hero { min-height: min(100vh, 900px); }
+  .hero-inner {
+    max-width: 1220px; width: 88%;
+    display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(40px, 5vw, 80px); align-items: center;
+    padding: 132px 0 96px; text-align: left;
+  }
+  .hero-title { font-size: clamp(2.6rem, 3.9vw, 3.9rem); line-height: 1.08; }
+  .hero-title .break { display: inline; }
+  .hero-facts { margin: 22px 0 0; font-size: 1.04rem; line-height: 1.62; max-width: 560px; }
+  /* la bajada emocional ya la cubren el título y la foto; en escritorio
+     priorizamos que el botón entre en la primera pantalla (igual que en celular) */
+  .hero-sub { display: none; }
+  .hero-tag { margin-bottom: 28px; letter-spacing: 0.16em; }
+  .hero-cta-row { justify-content: flex-start; margin-top: 36px; }
+  .hero-confianza { justify-content: flex-start; margin-left: 0; }
+  .hero-recursos-link { text-align: left; }
+  .hero-visual {
+    display: block; position: relative;
+    animation: heroRise 1s 0.15s var(--easing) both;
+  }
+  .hero-visual img {
+    display: block; width: 100%; height: auto; aspect-ratio: 4 / 4.4; object-fit: cover; object-position: 38% 50%;
+    border-radius: 28px 28px 28px 120px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.38), 0 0 0 1px rgba(126,214,228,0.18);
+  }
+  .hero-visual figcaption {
+    position: absolute; left: -28px; bottom: 34px; max-width: 78%;
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 16px 20px; border-radius: 18px;
+    background: rgba(8,32,46,0.86); backdrop-filter: blur(10px);
+    border: 1px solid rgba(126,214,228,0.22);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  }
+  .hv-marca { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: white; }
+  .hv-marca em { color: var(--teal-soft); }
+  .hv-dato { font-size: 0.8rem; color: rgba(255,255,255,0.72); }
+  #hero .hero-scroll-hint { display: none; }
+  .hero-tag { font-size: 0.7rem; letter-spacing: 0.12em; }
+}
 
 .hero-scroll-hint {
   position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
@@ -1340,7 +1411,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 .js-ready .testimonios-grid.visible .testimonio-card:nth-child(2) { transition-delay: 0.12s, 0.12s, 0s, 0s, 0s; }
 .js-ready .testimonios-grid.visible .testimonio-card:nth-child(3) { transition-delay: 0.24s, 0.24s, 0s, 0s, 0s; }
 @media (prefers-reduced-motion: reduce) { .js-ready .testimonios-grid .testimonio-card { opacity:1; translate:none; } }
-.desliza-hint { display:none; text-align:center; font-size:0.8rem; font-weight:700; color:var(--text-soft); margin-top:6px; letter-spacing:0.04em; }
+.desliza-hint { display:none; text-align:center; font-size:0.8rem; font-weight:700; color:#4a6472; margin-top:6px; letter-spacing:0.04em; }
 .testimonios-google-card {
   max-width: 640px; margin: 50px auto 0; background: white; border-radius: var(--r-lg);
   padding: 40px 32px; text-align: center;
@@ -1523,7 +1594,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
     <li><a href="talleres.html">Talleres</a></li>
     <li><a href="guias.html">Guías</a></li>
     <li><a href="#recursos" class="nav-link-recursos">Recursos <span class="nav-badge-gratis">Gratis</span></a></li>
-    <li><a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20una%20primera%20consulta." target="_blank" rel="noopener" class="nav-cta">Pedir turno</a></li>
+    <li><a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20una%20primera%20consulta." target="_blank" rel="noopener" class="nav-cta" data-wa-selector="nav">Pedir turno</a></li>
   </ul>
   <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
@@ -1536,6 +1607,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 <section id="hero">
   <div class="hero-gradient"></div>
   <div class="hero-inner">
+    <div class="hero-copy">
     <div class="hero-tag">
       <span class="pulse"></span>
       Un equipo, un mismo lugar · Berazategui y Zona Sur de Buenos Aires
@@ -1550,7 +1622,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
       Atención principalmente presencial en nuestro espacio en Berazategui: <strong>te escuchamos, evaluamos y acompañamos</strong> desde la primera consulta, sin listas de espera eternas ni trámites complicados.
     </p>
     <div class="hero-cta-row">
-      <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="btn-hero-main">
+      <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="btn-hero-main" data-wa-selector="hero">
         <span>Pedir una primera entrevista</span>
         <span class="arrow" aria-hidden="true">→</span>
       </a>
@@ -1558,7 +1630,24 @@ footer { background: #050f17; padding: 72px 6% 34px; }
         Ver servicios ↓
       </a>
     </div>
+    <ul class="hero-confianza" aria-label="Lo esencial del centro">
+      <li>Con y sin CUD</li>
+      <li>Sin derivación previa</li>
+      <li>Todas las áreas en un mismo lugar</li>
+    </ul>
     <a href="#recursos" class="hero-recursos-link">O explorá nuestros recursos gratuitos →</a>
+    </div>
+    <figure class="hero-visual">
+      <picture>
+        <source media="(max-width: 1023px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
+        <img src="img/centro/centro-sinapsis-berazategui-fachada-800.webp" srcset="img/centro/centro-sinapsis-berazategui-fachada-800.webp 800w, img/centro/centro-sinapsis-berazategui-fachada-1500.webp 1500w" sizes="(min-width: 1024px) 40vw, 1px" width="800" height="533" alt="Fachada de Centro Sinapsis en Calle 27 Nº3907 esquina 139, Berazategui, con el cartel de horarios en la entrada" decoding="async">
+      </picture>
+      <figcaption>
+        <span class="hv-marca">Sinapsis · <em>donde vos sos el centro</em></span>
+        <span class="hv-dato">Calle 27 Nº3907 esq. 139, Berazategui</span>
+        <span class="hv-dato">Lun a vie 9 a 20 · Sáb 9 a 13</span>
+      </figcaption>
+    </figure>
   </div>
   <div class="hero-scroll-hint">
     <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
@@ -2031,7 +2120,9 @@ footer { background: #050f17; padding: 72px 6% 34px; }
         <li><a href="equipo-profesional.html#nicolas-bongiorno"><b>Nicolás Bongiorno</b><span class="mat-prof">Psicólogo</span><span class="mat-num">M.P. 8209</span></a></li>
         <li><a href="equipo-profesional.html#thomas-dalessandro"><b>Thomas D'Alessandro</b><span class="mat-prof">Psicólogo</span><span class="mat-num">M.P. 063794 (PBA) · M.N. 87282</span></a></li>
         <li><a href="equipo-profesional.html#sol-aylen-lopez"><b>Sol Aylen López</b><span class="mat-prof">Psicóloga</span><span class="mat-num">M.P. 063929 (PBA)</span></a></li>
-        <li><a href="equipo-profesional.html#carolina-noemi-torancio"><b>Carolina Noemí Torancio</b><span class="mat-prof">Psicopedagoga</span><span class="mat-num">Mat. 243213</span></a></li>
+        <li><a href="equipo-profesional.html#marina-rocio-lescano"><b>Marina Rocío Lescano</b><span class="mat-prof">Psicóloga</span><span class="mat-num">M.P. 063461 (PBA)</span></a></li>
+        <li><a href="equipo-profesional.html#diego-cepeda"><b>Diego Cepeda</b><span class="mat-prof">Psicólogo</span><span class="mat-num">M.P. 63938</span></a></li>
+        <li><a href="equipo-profesional.html#beatriz-mariela-sanabria"><b>Beatriz Mariela Sanabria</b><span class="mat-prof">Psicopedagoga</span><span class="mat-num">Mat. 300490 (PBA)</span></a></li>
         <li><a href="equipo-profesional.html#flavia-avellaneda"><b>Flavia Avellaneda</b><span class="mat-prof">Terapista ocupacional</span><span class="mat-num">M.P.O. 874</span></a></li>
         <li><a href="equipo-profesional.html#rocio-gonzalez"><b>Rocío González</b><span class="mat-prof">Terapista ocupacional</span><span class="mat-num">M.N. 5060 · M.P.O. 2012</span></a></li>
         <li><a href="equipo-profesional.html#ian-lautaro-guzman"><b>Ian Lautaro Guzmán</b><span class="mat-prof">Kinesiólogo</span><span class="mat-num">M.P. 9372</span></a></li>
@@ -2358,7 +2449,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 <div role="region" aria-label="Accesos directos">
 
   <!-- FLOATING WA -->
-  <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="fab" title="Pedir turno por WhatsApp" aria-label="Pedir turno por WhatsApp">
+  <a href="https://wa.me/5491168567160?text=Hola!%20Quisiera%20pedir%20un%20turno." target="_blank" rel="noopener" class="fab" data-wa-selector="boton-flotante" title="Pedir turno por WhatsApp" aria-label="Pedir turno por WhatsApp">
     <svg viewBox="0 0 448 512" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false" style="vertical-align:-0.125em"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
     <span class="fab-txt">Pedir turno</span>
   </a>
@@ -2432,7 +2523,7 @@ function setMobileMenuState(isOpen){
   navBurger.setAttribute('aria-expanded', String(isOpen));
   navBurger.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
 
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 960) {
     navLinksEl.inert = !isOpen;
     navLinksEl.setAttribute('aria-hidden', String(!isOpen));
   } else {
