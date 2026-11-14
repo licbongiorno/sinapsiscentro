@@ -370,6 +370,16 @@ nav.solid {
   font-weight: 600 !important;
 }
 .nav-cta::after { display:none !important; }
+/* Entre 769 y 1180 px el menú completo no entraba: el botón "Pedir turno"
+   se partía en dos líneas y la marca ocupaba cuatro. Se compacta sin ocultar nada. */
+@media (min-width: 961px) and (max-width: 1180px) {
+  .nav-links { gap: clamp(14px, 1.6vw, 24px); }
+  .nav-links a { font-size: 0.82rem; letter-spacing: 0.02em; }
+  .nav-cta { padding: 9px 18px !important; white-space: nowrap; }
+  .brand-text b { font-size: 1.15rem; white-space: nowrap; }
+  .brand-text small { font-size: 0.62rem; letter-spacing: 0.14em; white-space: nowrap; }
+  .logo-mark { height: 40px; }
+}
 
 .nav-burger {
   display: none; width: 42px; height: 42px; border: none; background: rgba(126,214,228,0.1);
@@ -383,7 +393,7 @@ nav.solid {
 .nav-burger.open span:nth-child(2) { opacity: 0; }
 .nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-@media(max-width:768px){
+@media(max-width:960px){
   .nav-brand { margin-left: auto; order: 2; }
   .nav-burger { display: flex; }
   .nav-links {
@@ -523,6 +533,65 @@ nav.solid {
   animation: fadeUp 1s 0.5s var(--easing) both;
 }
 .hero-recursos-link:hover { opacity: 1; color: white; text-decoration: underline; }
+
+/* Tres datos que responden las dudas típicas antes de escribir.
+   Son hechos confirmados por el centro (ver DATOS_PENDIENTES), no promesas. */
+.hero-confianza {
+  list-style: none; padding: 0; margin: 22px auto 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px;
+  font-size: 0.84rem; font-weight: 600; color: rgba(255,255,255,0.78);
+  animation: fadeUp 1s 0.45s var(--easing) both;
+}
+.hero-confianza li { display: inline-flex; align-items: center; gap: 7px; }
+.hero-confianza li::before {
+  content: ""; width: 14px; height: 14px; flex-shrink: 0; border-radius: 50%;
+  background: rgba(61,232,140,0.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%233de88c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat;
+}
+
+/* Foto real del centro: solo en escritorio (en celular el <picture> pide
+   un GIF de 1 px, así no compite con el botón ni con el LCP). */
+.hero-visual { display: none; margin: 0; }
+@media (min-width: 1024px) {
+  #hero { min-height: min(100vh, 900px); }
+  .hero-inner {
+    max-width: 1220px; width: 88%;
+    display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(40px, 5vw, 80px); align-items: center;
+    padding: 132px 0 96px; text-align: left;
+  }
+  .hero-title { font-size: clamp(2.6rem, 3.9vw, 3.9rem); line-height: 1.08; }
+  .hero-title .break { display: inline; }
+  .hero-facts { margin: 22px 0 0; font-size: 1.04rem; line-height: 1.62; max-width: 560px; }
+  /* la bajada emocional ya la cubren el título y la foto; en escritorio
+     priorizamos que el botón entre en la primera pantalla (igual que en celular) */
+  .hero-sub { display: none; }
+  .hero-tag { margin-bottom: 28px; letter-spacing: 0.16em; }
+  .hero-cta-row { justify-content: flex-start; margin-top: 36px; }
+  .hero-confianza { justify-content: flex-start; margin-left: 0; }
+  .hero-recursos-link { text-align: left; }
+  .hero-visual {
+    display: block; position: relative;
+    animation: heroRise 1s 0.15s var(--easing) both;
+  }
+  .hero-visual img {
+    display: block; width: 100%; height: auto; aspect-ratio: 4 / 4.4; object-fit: cover; object-position: 38% 50%;
+    border-radius: 28px 28px 28px 120px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.38), 0 0 0 1px rgba(126,214,228,0.18);
+  }
+  .hero-visual figcaption {
+    position: absolute; left: -28px; bottom: 34px; max-width: 78%;
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 16px 20px; border-radius: 18px;
+    background: rgba(8,32,46,0.86); backdrop-filter: blur(10px);
+    border: 1px solid rgba(126,214,228,0.22);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  }
+  .hv-marca { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: white; }
+  .hv-marca em { color: var(--teal-soft); }
+  .hv-dato { font-size: 0.8rem; color: rgba(255,255,255,0.72); }
+  #hero .hero-scroll-hint { display: none; }
+  .hero-tag { font-size: 0.7rem; letter-spacing: 0.12em; }
+}
 
 .hero-scroll-hint {
   position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
@@ -1536,6 +1605,7 @@ footer { background: #050f17; padding: 72px 6% 34px; }
 <section id="hero">
   <div class="hero-gradient"></div>
   <div class="hero-inner">
+    <div class="hero-copy">
     <div class="hero-tag">
       <span class="pulse"></span>
       Un equipo, un mismo lugar · Berazategui y Zona Sur de Buenos Aires
@@ -1558,7 +1628,24 @@ footer { background: #050f17; padding: 72px 6% 34px; }
         Ver servicios ↓
       </a>
     </div>
+    <ul class="hero-confianza" aria-label="Lo esencial del centro">
+      <li>Con y sin CUD</li>
+      <li>Sin derivación previa</li>
+      <li>Todas las áreas en un mismo lugar</li>
+    </ul>
     <a href="#recursos" class="hero-recursos-link">O explorá nuestros recursos gratuitos →</a>
+    </div>
+    <figure class="hero-visual">
+      <picture>
+        <source media="(max-width: 1023px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
+        <img src="img/centro/centro-sinapsis-berazategui-fachada-800.webp" srcset="img/centro/centro-sinapsis-berazategui-fachada-800.webp 800w, img/centro/centro-sinapsis-berazategui-fachada-1500.webp 1500w" sizes="(min-width: 1024px) 40vw, 1px" width="800" height="533" alt="Fachada de Centro Sinapsis en Calle 27 Nº3907 esquina 139, Berazategui, con el cartel de horarios en la entrada" decoding="async">
+      </picture>
+      <figcaption>
+        <span class="hv-marca">Sinapsis · <em>donde vos sos el centro</em></span>
+        <span class="hv-dato">Calle 27 Nº3907 esq. 139, Berazategui</span>
+        <span class="hv-dato">Lun a vie 9 a 20 · Sáb 9 a 13</span>
+      </figcaption>
+    </figure>
   </div>
   <div class="hero-scroll-hint">
     <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
@@ -2432,7 +2519,7 @@ function setMobileMenuState(isOpen){
   navBurger.setAttribute('aria-expanded', String(isOpen));
   navBurger.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
 
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 960) {
     navLinksEl.inert = !isOpen;
     navLinksEl.setAttribute('aria-hidden', String(!isOpen));
   } else {
