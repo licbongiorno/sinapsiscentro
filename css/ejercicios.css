@@ -127,11 +127,12 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 .eh-seccion .eh-seccion-sub { font-size: 0.8rem; color: var(--text-soft); margin-bottom: 14px; }
 
 /* ── CATEGORÍAS ── */
-.eh-categorias-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.eh-categorias-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.eh-categorias-grid > * { min-width: 0; }
 .eh-cat-card { background: white; border-radius: var(--r); padding: 16px 8px; text-align: center; box-shadow: 0 4px 14px rgba(8,32,46,0.05); border: 1px solid rgba(42,174,194,0.08); transition: transform 0.2s; touch-action: manipulation; }
 .eh-cat-card:active { transform: scale(0.96); }
 .eh-cat-card .emoji { font-size: 1.5rem; display: block; margin-bottom: 6px; }
-.eh-cat-card .nombre { font-size: 0.74rem; font-weight: 700; color: var(--text); }
+.eh-cat-card .nombre { font-size: 0.74rem; font-weight: 700; color: var(--text); overflow-wrap: break-word; hyphens: auto; }
 .eh-cat-card .cantidad { font-size: 0.62rem; color: var(--text-soft); display: block; margin-top: 3px; }
 
 /* ── LISTA DE EJERCICIOS (filas, no tarjetas grandes) ── */
@@ -167,7 +168,7 @@ header.eh-header::before { content: ''; position: absolute; inset: 0; background
 .eh-reflexion-borrar:hover { opacity: 1; }
 
 @media(min-width: 700px) {
-  .eh-categorias-grid { grid-template-columns: repeat(4, 1fr); }
+  .eh-categorias-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .eh-necesidad-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
